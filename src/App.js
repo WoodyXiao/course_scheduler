@@ -76,6 +76,14 @@ function App() {
         courseInput={courseInput}
         setDisplayCourseText={setDisplayCourseText}
       />
+
+      {/* Display loading message while fetching data */}
+      {isLoading && <p>Searching course...</p>}
+
+      {/* Conditional rendering of course results if data is available */}
+      {!isLoading && courseData && (
+        <></>
+      )}
     </main>
   );
 }
