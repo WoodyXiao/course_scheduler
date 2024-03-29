@@ -36,6 +36,18 @@ const RenderCourse = ({ courses, courseName, courseNum, onSelectCourse }) => {
           )}
         </div>
       ))}
+      {/* Priority Slider */}
+      <div>
+        <p>Set Priority: </p>
+        <CoursePrioritySlider
+          priority={priority}
+          onChange={(newPriority) => setPriority(newPriority)}
+        />
+      </div>
+      {/* Select course button */}
+      <button onClick={() => onSelectCourse(priority, organizedCourses)}>
+        Select This Course
+      </button>
     </div>
   ) : (
     <p>Loading course deatails...s</p>
