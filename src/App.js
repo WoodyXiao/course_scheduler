@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import { fetchCourseData } from "./utils/api";
 import CourseInput from "./components/CourseInput";
+import CourseResults from "./components/CourseResults";
+import { extractCourseName, extractCourseNum } from "./utils/utils";
 
 function App() {
   // State for managing course input by user
@@ -60,6 +62,41 @@ function App() {
     );
   };
 
+  // Function to handle selection of a course with priority
+  const handleSelectWithPriority = (priority, selectedCourse) => {
+    const newSelectedCourse = {
+      ...selectedCourse,
+      priority: priority, // Add priority to the course data
+    };
+
+    // Check if the course is already in the selected list
+    if (
+      selectedCourses.some(
+        (course) => JSON.stringify(course) === JSON.stringify(newSelectedCourse)
+      )
+    ) {
+      setFeedbackMessage("This course is already in the list.");
+    } else {
+      // Add course to the selected list and display success message
+      setSelectedCourses([...selectedCourses, newSelectedCourse]);
+      setFeedbackMessage(
+        `Successfully added ${newSelectedCourse["1"].course} to the list.`
+      );
+      setCourseData(null);
+    }
+  };
+
+  // Handler for removing a course
+  const handleRemoveCourse = (courseIndex) => {
+    setFeedbackMessage(`Successfully removed ${selectedCourses[courseIndex]['1'].course} to the list.`);
+    setSelectedCourses(selectedCourses.filter((_, index) => index !== courseIndex));
+  };
+
+  // Effect hook for logging the selected courses list
+  useEffect(() => {
+    console.log('Selected Courses:', selectedCourses);
+  }, [selectedCourses]);
+
   return (
     <main>
       {/* Header */}
@@ -82,8 +119,19 @@ function App() {
 
       {/* Conditional rendering of course results if data is available */}
       {!isLoading && courseData && (
-        <></>
+        <CourseResults
+          courseData={courseData.data}
+          courseName={extractCourseName(displayCourseText)}
+          courseNum={extractCourseNum(displayCourseText)}
+          onSelectCourse={handleSelectWithPriority}
+        />
       )}
+
+      {/* Displaying feedback messages */}
+      {!isLoading && <p>{feedbackMessage}</p>}
+
+        {/* Component for displaying selected courses */}
+      <SelectedCourses courses={selectedCourses} onRemoveCourse={handleRemoveCourse} />
     </main>
   );
 }
