@@ -3,6 +3,7 @@ import "./App.css";
 import { fetchCourseData } from "./utils/api";
 import CourseInput from "./components/CourseInput";
 import CourseResults from "./components/CourseResults";
+import SelectedCourses from "./components/SelectedCourses";
 import { extractCourseName, extractCourseNum } from "./utils/utils";
 
 function App() {
@@ -88,13 +89,17 @@ function App() {
 
   // Handler for removing a course
   const handleRemoveCourse = (courseIndex) => {
-    setFeedbackMessage(`Successfully removed ${selectedCourses[courseIndex]['1'].course} to the list.`);
-    setSelectedCourses(selectedCourses.filter((_, index) => index !== courseIndex));
+    setFeedbackMessage(
+      `Successfully removed ${selectedCourses[courseIndex]["1"].course} to the list.`
+    );
+    setSelectedCourses(
+      selectedCourses.filter((_, index) => index !== courseIndex)
+    );
   };
 
   // Effect hook for logging the selected courses list
   useEffect(() => {
-    console.log('Selected Courses:', selectedCourses);
+    console.log("Selected Courses:", selectedCourses);
   }, [selectedCourses]);
 
   return (
@@ -130,8 +135,11 @@ function App() {
       {/* Displaying feedback messages */}
       {!isLoading && <p>{feedbackMessage}</p>}
 
-        {/* Component for displaying selected courses */}
-      <SelectedCourses courses={selectedCourses} onRemoveCourse={handleRemoveCourse} />
+      {/* Component for displaying selected courses */}
+      <SelectedCourses
+        courses={selectedCourses}
+        onRemoveCourse={handleRemoveCourse}
+      />
     </main>
   );
 }

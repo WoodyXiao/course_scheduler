@@ -19,7 +19,7 @@ const RenderCourse = ({ courses, courseName, courseNum, onSelectCourse }) => {
 
     // Asyn function to fetch and store detailed information for each course
     const fetchAndStoreDetails = async () => {
-      const newOrganizedCourses = organizedCourses(courses);
+      const newOrganizedCourses = organizeCourses(courses);
 
       // Loop over each course to fetch additional details
       for (const key of Object.keys(newOrganizedCourses)) {
