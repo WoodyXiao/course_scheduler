@@ -4,6 +4,7 @@ import { fetchCourseData } from "./utils/api";
 import CourseInput from "./components/CourseInput";
 import CourseResults from "./components/CourseResults";
 import SelectedCourses from "./components/SelectedCourses";
+import GenerateSchedule from "./components/GenerateSchedule";
 import { extractCourseName, extractCourseNum } from "./utils/utils";
 
 function App() {
@@ -140,6 +141,9 @@ function App() {
         courses={selectedCourses}
         onRemoveCourse={handleRemoveCourse}
       />
+
+      {/* Component for generating the optimized courses schedule */}
+      <GenerateSchedule selectedCourses={selectedCourses} />
     </main>
   );
 }
