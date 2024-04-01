@@ -41,4 +41,51 @@ const GeneratSchedule = ({ selectedCourses }) => {
 
     return newSelectedCourses;
   };
+
+  // Function to simplify the selectedCourses structure
+  const simplifySelectedCourses = (selectedCourses) => {
+    return selectedCourses.map((courseObj) => {
+      const courseEntries = Object.entries(courseObj).filter(
+        ([key]) => key !== "priority"
+      );
+      const priority = courseObj.priority;
+
+      const simplifiedCourse = courseEntries.map(([key, course]) => {
+        const lecture = course.lecture
+          ? {
+              text: course.lecture.text,
+              value: course.lecture.value,
+              scheduleEntries: course.lecture.courseSchedule.map(
+                (schedule) => ({
+                  ...schedule,
+                  type: "lecture", // Adding type to distinguish between lecture and lab
+                })
+              ),
+            }
+          : null;
+
+        const labs =
+          course.labs?.map((lab) => ({
+            text: lab.text,
+            value: lab.value,
+            scheduleEntries: lab.courseSchedule.map((schedule) => ({
+              ...schedule,
+              type: "lab", // Adding type for labs
+            })),
+          })) ?? [];
+
+        return {
+          courseId: key,
+          courseName: course.course,
+          lecture,
+          labs,
+        };
+      });
+
+      return {
+        courses: simplifiedCourse,
+        priority,
+      };
+    });
+  };
 };
