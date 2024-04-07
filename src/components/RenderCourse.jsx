@@ -54,7 +54,7 @@ const RenderCourse = ({ courses, courseName, courseNum, onSelectCourse }) => {
     return () => {
       isSubscribed = false;
     };
-  }, [courses]);// Dependency array to run effect when 'courses' changes
+  }, [courses]); // Dependency array to run effect when 'courses' changes
 
   // Function to fetch detailed course information from the API
   const fetchDetails = async (value) => {
@@ -74,7 +74,7 @@ const RenderCourse = ({ courses, courseName, courseNum, onSelectCourse }) => {
     const organizedCourses = {};
 
     courses.forEach((course) => {
-      const key = course.associatedClass[0];
+      const key = course.associatedClass;
       if (!organizedCourses[key]) {
         organizedCourses[key] = {
           course: courseName.toUpperCase() + " " + courseNum,
@@ -86,6 +86,15 @@ const RenderCourse = ({ courses, courseName, courseNum, onSelectCourse }) => {
         organizedCourses[key].lecture = course;
       } else if (course.classType === "n") {
         organizedCourses[key].labs.push(course);
+      }
+    });
+
+    // Remove a object when its lecture value is null.
+    Object.keys(organizedCourses).forEach((key) => {
+      // Check if the lecture property is null.
+      if (organizedCourses[key].lecture === null) {
+        // If true, delete this property from the object.
+        delete organizedCourses[key];
       }
     });
 
@@ -103,7 +112,7 @@ const RenderCourse = ({ courses, courseName, courseNum, onSelectCourse }) => {
       {Object.entries(organizedCourses).map(([key, value]) => (
         <div key={key}>
           <h3>
-            Lecture:{""}
+            Lecture:{" "}
             {value.lecture
               ? `${value.lecture.title} (${value.lecture.value})`
               : "No lecture available"}
