@@ -4,6 +4,8 @@ const extractCourseNum = (input) => {
   if (input[input.length - 1] === "w") {
     return input.match(/\d+/g) ? input.match(/\d+/g).join("") + "w" : "";
   }
+
+  return input.match(/\d+/g) ? input.match(/\d+/g).join("") : "";
 };
 
 // Function to extract course name from a string
