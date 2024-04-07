@@ -6,6 +6,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CoursePrioritySlider from "./CoursePrioritySlider";
+import { fetchDetails } from "../utils/api";
 
 const RenderCourse = ({ courses, courseName, courseNum, onSelectCourse }) => {
   const [organizedCourses, setOrganizedCourses] = useState({});
@@ -26,13 +27,15 @@ const RenderCourse = ({ courses, courseName, courseNum, onSelectCourse }) => {
         // Fetch details for lectures
         if (newOrganizedCourses[key].lecture && isSubscribed) {
           newOrganizedCourses[key].lecture.details = await fetchDetails(
+            courseName,
+            courseNum,
             newOrganizedCourses[key].lecture.value
           );
         }
         // Fetch details for labs
         for (const lab of newOrganizedCourses[key].labs) {
           if (isSubscribed) {
-            lab.details = await fetchDetails(lab.value);
+            lab.details = await fetchDetails(courseName, courseNum, lab.value);
           }
         }
       }
@@ -55,19 +58,6 @@ const RenderCourse = ({ courses, courseName, courseNum, onSelectCourse }) => {
       isSubscribed = false;
     };
   }, [courses]); // Dependency array to run effect when 'courses' changes
-
-  // Function to fetch detailed course information from the API
-  const fetchDetails = async (value) => {
-    const url = `https://www.sfu.ca/bin/wcm/course-outlines?2024/summer/${courseName}/${courseNum}/${value}`;
-
-    try {
-      const response = await axios.get(url);
-      return response.data;
-    } catch (error) {
-      console.error(`Error fetching details for ${value}:`, error);
-      return {}; // Return an empty object in case of error
-    }
-  };
 
   // Function to organized courses into a structured format with lectures and labs
   const organizeCourses = (course) => {
