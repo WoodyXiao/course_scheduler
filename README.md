@@ -10,7 +10,6 @@ This React application is designed to assist SFU students in selecting and prior
 - **Priority Assignment:** For each course, users can assign a priority level (0-10) to indicate their interest.
 - **Course Selection:** Users can select courses for consideration in their schedule. The selected courses are displayed in a list with their assigned priorities.
 - **Remove Selected Course:** Each selected course can be removed from the list if the user changes their mind.
-- **Feedback Messages:** The application provides feedback messages for actions like successful course addition, errors during course fetching, etc.
 - **Responsive UI:** The application has a simple and responsive user interface, making it easy to navigate and use on various devices.
 
 ## Data Flow
