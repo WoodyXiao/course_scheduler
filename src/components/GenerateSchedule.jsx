@@ -9,93 +9,90 @@ const GenerateSchedule = ({ selectedCourses }) => {
 
   // ---------------- Weighted Interval Scheduling Algorithm Implementation ---------------------
 
+      // Function to check if two sessions overlap
+      const doSessionsOverlap = (session1, session2) => {
+        const days1 = session1.days.split(", ");
+        const days2 = session2.days.split(", ");
+        const timeOverlap = !(
+          Date.parse(`01/01/2000 ${session1.endTime}`) <=
+            Date.parse(`01/01/2000 ${session2.startTime}`) ||
+          Date.parse(`01/01/2000 ${session2.endTime}`) <=
+            Date.parse(`01/01/2000 ${session1.startTime}`)
+        );
+        return days1.some((day) => days2.includes(day)) && timeOverlap;
+      };
+  
+      // Simplefies the handling of multiple days for a single lecture or lab session
+      const expandScheduleEntries = (scheduleEntries) => {
+        return scheduleEntries.flatMap((entry) => {
+          return entry.days.split(", ").map((day) => ({
+            ...entry,
+            day, // Override the days field with the single day for comparision
+          }));
+        });
+      };
+
   // Main Function for Course Scheduling
   const scheduleCourses = (simplifiedCourses) => {
-    let finalSchedule = [];
-    let totalMaxPriority = 0;
+    let bestSchedule = [];
+    let maxPriority = 0;
 
-    // Function to check if two sessions overlap
-    const doSessionsOverlap = (session1, session2) => {
-      const days1 = session1.days.split(", ");
-      const days2 = session2.days.split(", ");
-      const timeOverlap = !(
-        Date.parse(`01/01/2000 ${session1.endTime}`) <=
-          Date.parse(`01/01/2000 ${session2.startTime}`) ||
-        Date.parse(`01/01/2000 ${session2.endTime}`) <=
-          Date.parse(`01/01/2000 ${session1.startTime}`)
-      );
-      return days1.some((day) => days2.includes(day)) && timeOverlap;
-    };
-
-    // Create a copy of the courses sorted by priority
-    const courseOptions = [...simplifiedCourses].sort(
-      (a, b) => b.priority - a.priority
-    );
-
-    // Function to check for global conflicts
-    const isGloballyConflicting = (scheduleEntry) => {
-      return finalSchedule.some((scheduledCourse) =>
-        scheduledCourse.scheduleEntries.some((scheduledSession) =>
-          doSessionsOverlap(scheduleEntry, scheduledSession)
-        )
-      );
-    };
-
-    // Iterate over each course group
-    courseOptions.forEach((courseGroup) => {
-      let chosenCourse = null;
-      let maxPriority = -1;
-
-      // Evaluate each course in the group
-      courseGroup.courses.forEach((course) => {
-        const { lecture, labs } = course;
-
-        // Check if the lecture session conflicts
-        if (!lecture.scheduleEntries.some(isGloballyConflicting)) {
-          // Find a non-conflicting lab session, if labs are available
-          let availableLab = null;
-          if (labs.length > 0) {
-            availableLab = labs.find(
-              (lab) => !lab.scheduleEntries.some(isGloballyConflicting)
-            );
-            if (!availableLab) return; // No suitable lab found, skip this course
-          }
-
-          // If a non-conflicting lab is found, or there are no labs
-          if (availableLab || labs.length === 0) {
-            if (courseGroup.priority > maxPriority) {
-              chosenCourse = {
-                ...course,
-                chosenLab: availableLab ? availableLab.text : null,
-              };
-              maxPriority = courseGroup.priority;
-            }
-          }
+    const buildSchedule = (currentIndex, currentSchedule, currentPriority) => {
+      if (currentIndex === simplifiedCourses.length) {
+        if(currentPriority > maxPriority) {
+          bestSchedule = currentSchedule;
+          maxPriority = currentPriority;
         }
+        return;
+      }
+
+      const courseGroup = simplifiedCourses[currentIndex];
+      const groupPriority = parseInt(courseGroup.priority, 10) // Convert priority to integer.
+
+      courseGroup.courses.forEach((course) => {
+        const lectureEntries = expandScheduleEntries(
+          course.lecture.scheduleEntries,
+        );
+        const labOptions = [null, ...course.labs];
+
+        labOptions.forEach((lab) => {
+          const labEntries = lab ? expandScheduleEntries(lab.scheduleEntries) : [];
+          const allEntries = [...lectureEntries, ...labEntries];
+
+          const hasAnyConflict = allEntries.some((entry) => 
+          currentSchedule.some((scheduleCourse) =>
+            scheduleCourse.scheduleEntries.some((scheduledSession) => 
+              doSessionsOverlap(entry, scheduledSession),
+              ), 
+            ),
+          );
+
+          if (!hasAnyConflict) {
+            const newPriority = currentPriority + groupPriority; 
+            const newSchedule = [
+              ...currentSchedule,
+              {
+                courseId: course.courseId,
+                courseName: course.courseName,
+                lecture: course.lecture.text,
+                lab: lab ? lab.text : "",
+                scheduleEntries: allEntries,
+                priority: groupPriority, 
+              }
+            ];
+            buildSchedule(currentIndex + 1, newSchedule, newPriority);
+          }
+        });
       });
 
-      // If a course was chosen, add it to the final schedule
-      if (chosenCourse) {
-        finalSchedule.push({
-          courseId: chosenCourse.courseId,
-          courseName: chosenCourse.courseName,
-          lecture: chosenCourse.lecture.text,
-          lab: chosenCourse.chosenLab,
-          scheduleEntries: [
-            ...chosenCourse.lecture.scheduleEntries,
-            ...(chosenCourse.chosenLab
-              ? chosenCourse.labs.find(
-                  (lab) => lab.text === chosenCourse.chosenLab
-                ).scheduleEntries
-              : []),
-          ],
-          priority: courseGroup.priority,
-        });
-        totalMaxPriority += parseInt(courseGroup.priority, 10);
-      }
-    });
+      // Skip this courseGroup and check the next one.
+      buildSchedule(currentIndex + 1, currentSchedule, currentPriority);
+    };
 
-    return { schedule: finalSchedule, totalMaxPriority };
+    // Initialize recursive scheduling an empty schedule and zero total priority.
+    buildSchedule(0, [], 0);
+
+    return {schedule: bestSchedule, totalMaxPriority: maxPriority};
   };
 
   return (
