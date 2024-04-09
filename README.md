@@ -12,6 +12,10 @@ This React application is designed to assist SFU students in selecting and prior
 - **Remove Selected Course:** Each selected course can be removed from the list if the user changes their mind.
 - **Responsive UI:** The application has a simple and responsive user interface, making it easy to navigate and use on various devices.
 
+### Customized Scheduler Algorithm
+
+This feature introduces a sophisticated approach to scheduling by implementing a customized scheduler algorithm. The algorithm meticulously considers the user-assigned priorities for each selected course and works to generate an optimized academic schedule. It achieves this by evaluating potential time overlaps and respecting the set priorities to construct a conflict-free and priority-optimized schedule. This tailored algorithm is especially designed to navigate the complexities of course scheduling, ensuring that students can efficiently plan their academic terms without the hassle of manual conflict resolution.
+
 ## Data Flow
 
 1. **Course Search:** The user inputs a course code, which triggers an API call to fetch course details.
@@ -23,4 +27,4 @@ This React application is designed to assist SFU students in selecting and prior
 
 ## Future Plans (To-Do)
 
-- **Customized Scheduler Algorithm:** Implement an algorithm to generate an optimized course schedule based on the selected courses and their assigned priorities. The algorithm will consider factors like time overlaps, course priorities, and other constraints to create the most suitable schedule for the student.
+- **Customized Scheduler Algorithm:** Future development will focus on refining and enhancing the customized scheduler algorithm. The aim is to introduce a more advanced version that incorporates dynamic programming or other optimization techniques to improve efficiency and scalability. This update will ensure that the scheduler can handle a larger dataset of courses and constraints, providing an even more seamless and user-friendly scheduling experience for SFU students.
