@@ -36,7 +36,7 @@ const restructureSelectedCourses = (selectedCourses) => {
   const newSelectedCourses = selectedCourses.map((courseObj) => {
     const newCourseObj = {};
     for (const key in courseObj) {
-      if (!courseObj.hasOwnProperty(key)) continue;
+      if (!courseObj.hasOwnProperty(key) || key === "course") continue;
 
       const course = courseObj[key];
       newCourseObj[key] = {
