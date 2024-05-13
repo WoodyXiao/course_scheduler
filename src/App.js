@@ -74,7 +74,7 @@ function App() {
     // Check if the course is already in the selected list
     if (
       selectedCourses.some(
-        (course) => JSON.stringify(course) === JSON.stringify(newSelectedCourse)
+        (course) => course["1"].course === newSelectedCourse["1"].course
       )
     ) {
       setFeedbackMessage("This course is already in the list.");
