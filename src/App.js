@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import { fetchCourseData } from "./utils/api";
-import CourseInput from "./components/CourseInput";
-import CourseResults from "./components/CourseResults";
-import SelectedCourses from "./components/SelectedCourses";
-import GenerateSchedule from "./components/GenerateSchedule";
+import { fetchCourseData } from "./api/api";
+import CourseInput from "./features/CourseInput";
+import CourseResults from "./features/CourseResults";
+import SelectedCourses from "./features/SelectedCourses";
+import GenerateSchedule from "./features/GenerateSchedule";
 import { extractCourseName, extractCourseNum } from "./utils/utils";
 
 function App() {

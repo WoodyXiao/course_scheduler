@@ -6,7 +6,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CoursePrioritySlider from "./CoursePrioritySlider";
-import { fetchDetails } from "../utils/api";
+import { fetchDetails } from "../api/api";
 
 const RenderCourse = ({ courses, courseName, courseNum, onSelectCourse }) => {
   const [organizedCourses, setOrganizedCourses] = useState({});
