@@ -140,7 +140,15 @@ const SelectMultiCourses = ({
     return organizedCourses;
   };
 
-  return <div></div>;
+  return (
+    <div>
+      <div>
+        <p>or</p>
+        <h3>Select multiple courses</h3>
+        <button onClick={() => processCourseList()}>Fast select</button>
+      </div>
+    </div>
+  );
 };
 
 export default SelectMultiCourses;
