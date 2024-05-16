@@ -5,6 +5,7 @@ import CourseInput from "./features/CourseInput";
 import CourseResults from "./features/CourseResults";
 import SelectedCourses from "./features/SelectedCourses";
 import GenerateSchedule from "./features/GenerateSchedule";
+import SelectMultiCourses from "./features/SelectMultiCourses";
 import { extractCourseName, extractCourseNum } from "./utils/utils";
 
 function App() {
@@ -118,6 +119,20 @@ function App() {
         setCourseInput={setCourseInput}
         courseInput={courseInput}
         setDisplayCourseText={setDisplayCourseText}
+      />
+
+      {/* Component for select multi courses */}
+      <SelectMultiCourses
+        courseList={[
+          { courseName: "STAT", courseNum: "270", priority: 7 },
+          { courseName: "CMPT", courseNum: "403", priority: 8 },
+          { courseName: "CMPT", courseNum: "471", priority: 6 },
+          { courseName: "CMPT", courseNum: "105w", priority: 9 },
+          { courseName: "MACM", courseNum: "316", priority: 5 },
+        ]}
+        fetchCourseData={fetchCourseData}
+        handleSelectWithPriority={handleSelectWithPriority}
+        setSelectedCourses={setSelectedCourses}
       />
 
       {/* Display loading message while fetching data */}
