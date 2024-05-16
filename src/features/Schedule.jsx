@@ -1,6 +1,6 @@
 import React from "react";
 
-const Schedule = ({ schedule, totalPriority }) => {
+const Schedule = ({ schedule, totalMaxPriority }) => {
   return (
     <div>
       <h3>Your Schedule</h3>
@@ -30,7 +30,7 @@ const Schedule = ({ schedule, totalPriority }) => {
           </li>
         ))}
       </ul>
-      <h5>Total Priority: {totalPriority}</h5>
+      <h5>Total Max Priority: {totalMaxPriority}</h5>
     </div>
   );
 };

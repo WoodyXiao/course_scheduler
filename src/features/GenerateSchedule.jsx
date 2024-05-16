@@ -12,7 +12,7 @@ import Schedule from "./Schedule.jsx";
 const GenerateSchedule = ({ selectedCourses }) => {
   const [selectedSchedule, setSelectedSchedule] = useState({
     schedule: [],
-    totalPriority: 0,
+    totalMaxPriority: 0,
   });
 
   // ---------------- Weighted Interval Scheduling Algorithm Implementation ---------------------
@@ -110,7 +110,7 @@ const GenerateSchedule = ({ selectedCourses }) => {
       <button
         onClick={() => {
           const finalSelectedCourses = simplifySelectedCourses(
-            restructureSelectedCourses(selectedCourses),
+            restructureSelectedCourses(selectedCourses)
           );
           console.log("Selected Courses:", finalSelectedCourses);
           const newSelectedSchedule = scheduleCourses(finalSelectedCourses);
@@ -120,21 +120,23 @@ const GenerateSchedule = ({ selectedCourses }) => {
       >
         Generate Schedule
       </button>
-      <button
-        onClick={() =>
-          setSelectedSchedule({
-            schedule: [],
-            totalPriority: 0,
-          })
-        }
-      >
-        clear
-      </button>
       {selectedSchedule.schedule.length !== 0 && (
-        <Schedule
-          schedule={selectedSchedule.schedule}
-          totalPriority={selectedSchedule.totalPriority}
-        />
+        <>
+          <button
+            onClick={() =>
+              setSelectedSchedule({
+                schedule: [],
+                totalPriority: 0,
+              })
+            }
+          >
+            clear
+          </button>
+          <Schedule
+            schedule={selectedSchedule.schedule}
+            totalMaxPriority={selectedSchedule.totalMaxPriority}
+          />
+        </>
       )}
     </div>
   );
