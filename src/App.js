@@ -153,6 +153,7 @@ function App() {
 
       {/* Component for displaying selected courses */}
       <SelectedCourses
+        setSelectedCourses={setSelectedCourses}
         courses={selectedCourses}
         onRemoveCourse={handleRemoveCourse}
       />

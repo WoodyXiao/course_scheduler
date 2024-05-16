@@ -4,7 +4,7 @@ This component is responsible for displaying the list of selected courses.
 
 import React from "react";
 
-const SelectedCourses = ({ courses, onRemoveCourse }) => {
+const SelectedCourses = ({ setSelectedCourses, courses, onRemoveCourse }) => {
   const handleRemoveClick = (courseIndex) => {
     // Show confirmation dialog
     const isConfirmed = window.confirm(
@@ -22,15 +22,18 @@ const SelectedCourses = ({ courses, onRemoveCourse }) => {
       {courses.length === 0 ? (
         <p>No courses selected.</p>
       ) : (
-        <ul>
-          {courses.map((course, index) => (
-            <li key={index}>
-              {course["1"].course} {course["1"].lecture.title} - Priority:{" "}
-              {course.priority}
-              <button onClick={() => handleRemoveClick(index)}>Remove</button>
-            </li>
-          ))}
-        </ul>
+        <>
+          <ul>
+            {courses.map((course, index) => (
+              <li key={index}>
+                {course["1"].course} {course["1"].lecture.title} - Priority:{" "}
+                {course.priority}
+                <button onClick={() => handleRemoveClick(index)}>Remove</button>
+              </li>
+            ))}
+          </ul>
+          <button onClick={() => setSelectedCourses([])}>remove all</button>
+        </>
       )}
     </div>
   );
