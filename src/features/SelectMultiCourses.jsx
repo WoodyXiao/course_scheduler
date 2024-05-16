@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import axios from "axios";
+import { fetchDetails } from "../api/api";
 
 const SelectMultiCourses = ({
   courseList,
@@ -35,17 +35,6 @@ const SelectMultiCourses = ({
           console.error("Error fetching course data:", error);
         }
       );
-    }
-  };
-
-  const fetchDetails = async (courseName, courseNum, value) => {
-    const url = `https://www.sfu.ca/bin/wcm/course-outlines?2024/summer/${courseName}/${courseNum}/${value}`;
-    try {
-      const response = await axios.get(url);
-      return response.data;
-    } catch (error) {
-      console.error(`Error fetching details for ${value}:`, error);
-      return {}; // Return an empty object in case of error.
     }
   };
 
