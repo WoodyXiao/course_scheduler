@@ -6,6 +6,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CoursePrioritySlider from "./CoursePrioritySlider";
+import CourseCard from "../components/CourseCard";
 import { fetchDetails } from "../api/api";
 import ActionButton from "../components/ActionButton";
 
@@ -100,13 +101,18 @@ const RenderCourse = ({ courses, courseName, courseNum, onSelectCourse }) => {
   // Render the organized courses with lecture and lab details
   return !isLoading ? (
     <div>
-      {Object.entries(organizedCourses).map(([key, value]) => (
+      {/* {Object.entries(organizedCourses).map(([key, value]) => (
         <div key={key}>
           <h3>
             Lecture:{" "}
-            {value.lecture
-              ? `${value.lecture.title} (${value.lecture.value})`
-              : "No lecture available"}
+            {value.lecture ? (
+              <CourseCard
+                courseID={courseName.toUpperCase() + ' ' + courseNum}
+                title={`${value.lecture.title}(${value.lecture.value})`}
+              />
+            ) : (
+              "No lecture available"
+            )}
           </h3>
           {value.labs.length > 0 && (
             <ul>
@@ -118,7 +124,18 @@ const RenderCourse = ({ courses, courseName, courseNum, onSelectCourse }) => {
             </ul>
           )}
         </div>
-      ))}
+      ))} */}
+
+      <div>
+          {organizedCourses['1'].lecture ? (
+            <CourseCard
+              courseID={courseName.toUpperCase() + " " + courseNum}
+              title={`${organizedCourses['1'].lecture.title}`}
+            />
+          ) : (
+            "No lecture available"
+          )}
+      </div>
       {/* Priority Slider */}
       <div>
         <p>Set Priority: </p>
@@ -128,7 +145,10 @@ const RenderCourse = ({ courses, courseName, courseNum, onSelectCourse }) => {
         />
       </div>
       {/* Select course button */}
-      <ActionButton text={"Select This Course"} onClick={() => onSelectCourse(priority, organizedCourses)} />
+      <ActionButton
+        text={"Select This Course"}
+        onClick={() => onSelectCourse(priority, organizedCourses)}
+      />
     </div>
   ) : (
     <p>Loading course deatails...s</p>

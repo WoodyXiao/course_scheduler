@@ -140,8 +140,7 @@ function App() {
           <svg
             className="motion-reduce:hidden animate-spin ..."
             viewBox="0 0 24 24"
-          >
-          </svg>
+          ></svg>
           <p>Searching course...</p>
         </span>
       )}
