@@ -25,13 +25,14 @@ const CourseInput = ({
 
   return (
     <div>
-      <h3>Course Search</h3>
+      <h3 className="font-bold">Course Search</h3>
       <input
+        className="appearance bg-transparent border text-gray-700 mr-3 py-1 px-2 leading-tight rounded"
         placeholder="Enter your course"
         value={courseInput}
         onChange={(e) => setCourseInput(e.target.value)}
       />
-      <button onClick={handleSearchClick}>search</button>
+      <button className="flex-shrink-0 bg-sfu-light-red hover:bg-sfu-dark-red border-sfu-light-red hover:border-sfu-dark-red text-sm border-4 text-white py-1 px-2 rounded" onClick={handleSearchClick}>search</button>
     </div>
   );
 };

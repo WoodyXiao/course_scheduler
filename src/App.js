@@ -7,6 +7,7 @@ import SelectedCourses from "./features/SelectedCourses";
 import GenerateSchedule from "./features/GenerateSchedule";
 import SelectMultiCourses from "./features/SelectMultiCourses";
 import { extractCourseName, extractCourseNum } from "./utils/utils";
+import Header from "./components/Header";
 
 function App() {
   // State for managing course input by user
@@ -107,7 +108,8 @@ function App() {
   return (
     <main>
       {/* Header */}
-      <h1>SFU Courses Scheduler</h1>
+      <Header />
+      <h1 className="text-3xl font-bold">SFU Courses Scheduler</h1>
       <p>
         (Select courses and set its priority, and we will create a scheduler for
         you.)

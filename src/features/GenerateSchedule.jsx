@@ -108,6 +108,7 @@ const GenerateSchedule = ({ selectedCourses }) => {
   return (
     <div>
       <button
+        className="flex-shrink-0 bg-sfu-light-red hover:bg-sfu-dark-red border-sfu-light-red hover:border-sfu-dark-red text-sm border-4 text-white py-1 px-2 rounded"
         onClick={() => {
           const finalSelectedCourses = simplifySelectedCourses(
             restructureSelectedCourses(selectedCourses)
@@ -123,6 +124,7 @@ const GenerateSchedule = ({ selectedCourses }) => {
       {selectedSchedule.schedule.length !== 0 && (
         <>
           <button
+            className="flex-shrink-0 bg-sfu-light-red hover:bg-sfu-dark-red border-sfu-light-red hover:border-sfu-dark-red text-sm border-4 text-white py-1 px-2 rounded"
             onClick={() =>
               setSelectedSchedule({
                 schedule: [],
