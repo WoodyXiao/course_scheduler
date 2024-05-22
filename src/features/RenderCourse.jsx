@@ -7,6 +7,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CoursePrioritySlider from "./CoursePrioritySlider";
 import { fetchDetails } from "../api/api";
+import ActionButton from "../components/ActionButton";
 
 const RenderCourse = ({ courses, courseName, courseNum, onSelectCourse }) => {
   const [organizedCourses, setOrganizedCourses] = useState({});
@@ -127,9 +128,7 @@ const RenderCourse = ({ courses, courseName, courseNum, onSelectCourse }) => {
         />
       </div>
       {/* Select course button */}
-      <button className="flex-shrink-0 bg-sfu-light-red hover:bg-sfu-dark-red border-sfu-light-red hover:border-sfu-dark-red text-sm border-4 text-white py-1 px-2 rounded" onClick={() => onSelectCourse(priority, organizedCourses)}>
-        Select This Course
-      </button>
+      <ActionButton text={"Select This Course"} onClick={() => onSelectCourse(priority, organizedCourses)} />
     </div>
   ) : (
     <p>Loading course deatails...s</p>

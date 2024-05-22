@@ -7,7 +7,6 @@ import SelectedCourses from "./features/SelectedCourses";
 import GenerateSchedule from "./features/GenerateSchedule";
 import SelectMultiCourses from "./features/SelectMultiCourses";
 import { extractCourseName, extractCourseNum } from "./utils/utils";
-import Header from "./components/Header";
 
 function App() {
   // State for managing course input by user
@@ -106,10 +105,8 @@ function App() {
   }, [selectedCourses]);
 
   return (
-    <main>
-      {/* Header */}
-      <Header />
-      <h1 className="text-3xl font-bold">SFU Courses Scheduler</h1>
+    <main className="flex-grow mt-8 p-4 max-w-screen-xl mx-auto w-full">
+      <h1 className="text-3xl font-bold">Welcome to SFU Courses Scheduler</h1>
       <p>
         (Select courses and set its priority, and we will create a scheduler for
         you.)
@@ -138,7 +135,16 @@ function App() {
       />
 
       {/* Display loading message while fetching data */}
-      {isLoading && <p>Searching course...</p>}
+      {isLoading && (
+        <span>
+          <svg
+            className="motion-reduce:hidden animate-spin ..."
+            viewBox="0 0 24 24"
+          >
+          </svg>
+          <p>Searching course...</p>
+        </span>
+      )}
 
       {/* Conditional rendering of course results if data is available */}
       {!isLoading && courseData && (

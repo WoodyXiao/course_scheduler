@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { fetchDetails } from "../api/api";
+import ActionButton from "../components/ActionButton";
 
 const SelectMultiCourses = ({
   courseList,
@@ -134,7 +135,7 @@ const SelectMultiCourses = ({
       <div>
         <p>or</p>
         <h3 className="font-bold">Select multiple courses</h3>
-        <button className="flex-shrink-0 bg-sfu-light-red hover:bg-sfu-dark-red border-sfu-light-red hover:border-sfu-dark-red text-sm border-4 text-white py-1 px-2 rounded" onClick={() => processCourseList()}>Fast select</button>
+        <ActionButton text={"Fast select"} onClick={() => processCourseList()}/>
       </div>
     </div>
   );

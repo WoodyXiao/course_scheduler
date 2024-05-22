@@ -8,6 +8,7 @@ import {
   simplifySelectedCourses,
 } from "../utils/utils.jsx";
 import Schedule from "./Schedule.jsx";
+import ActionButton from "../components/ActionButton.jsx";
 
 const GenerateSchedule = ({ selectedCourses }) => {
   const [selectedSchedule, setSelectedSchedule] = useState({
@@ -107,8 +108,8 @@ const GenerateSchedule = ({ selectedCourses }) => {
 
   return (
     <div>
-      <button
-        className="flex-shrink-0 bg-sfu-light-red hover:bg-sfu-dark-red border-sfu-light-red hover:border-sfu-dark-red text-sm border-4 text-white py-1 px-2 rounded"
+      <ActionButton
+        text={"Generate Schedule"}
         onClick={() => {
           const finalSelectedCourses = simplifySelectedCourses(
             restructureSelectedCourses(selectedCourses)
@@ -118,22 +119,18 @@ const GenerateSchedule = ({ selectedCourses }) => {
           console.log("Selected Schedule:", newSelectedSchedule);
           setSelectedSchedule(newSelectedSchedule);
         }}
-      >
-        Generate Schedule
-      </button>
+      />
       {selectedSchedule.schedule.length !== 0 && (
         <>
-          <button
-            className="flex-shrink-0 bg-sfu-light-red hover:bg-sfu-dark-red border-sfu-light-red hover:border-sfu-dark-red text-sm border-4 text-white py-1 px-2 rounded"
+          <ActionButton
+            text={"clear"}
             onClick={() =>
               setSelectedSchedule({
                 schedule: [],
                 totalPriority: 0,
               })
             }
-          >
-            clear
-          </button>
+          />
           <Schedule
             schedule={selectedSchedule.schedule}
             totalMaxPriority={selectedSchedule.totalMaxPriority}

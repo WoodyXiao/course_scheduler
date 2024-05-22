@@ -56,6 +56,14 @@ const Header = () => {
                 About
               </a>
             </li>
+            <li>
+              <a
+                href="/"
+                className="block py-2 px-3 text-white rounded hover:bg-sfu-dark-red md:hover:bg-sfu-dark-red md:p-0"
+              >
+                Contact
+              </a>
+            </li>
           </ul>
         </div>
       </div>

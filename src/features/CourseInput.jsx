@@ -4,6 +4,7 @@
 
 import React from "react";
 import { extractCourseName, extractCourseNum } from "../utils/utils";
+import ActionButton from "../components/ActionButton";
 
 const CourseInput = ({
   onSearch,
@@ -32,7 +33,7 @@ const CourseInput = ({
         value={courseInput}
         onChange={(e) => setCourseInput(e.target.value)}
       />
-      <button className="flex-shrink-0 bg-sfu-light-red hover:bg-sfu-dark-red border-sfu-light-red hover:border-sfu-dark-red text-sm border-4 text-white py-1 px-2 rounded" onClick={handleSearchClick}>search</button>
+      <ActionButton text={"Search"} onClick={handleSearchClick} />
     </div>
   );
 };
