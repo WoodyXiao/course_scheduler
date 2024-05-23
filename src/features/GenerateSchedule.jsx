@@ -54,30 +54,26 @@ const GenerateSchedule = ({ selectedCourses }) => {
         }
         return;
       }
-
+    
       const courseGroup = simplifiedCourses[currentIndex];
-      const groupPriority = parseInt(courseGroup.priority, 10); // Convert priority to integer.
-
+      const groupPriority = parseInt(courseGroup.priority, 10);
+    
       courseGroup.courses.forEach((course) => {
-        const lectureEntries = expandScheduleEntries(
-          course.lecture.scheduleEntries
-        );
-        const labOptions = [null, ...course.labs];
-
-        labOptions.forEach((lab) => {
-          const labEntries = lab
-            ? expandScheduleEntries(lab.scheduleEntries)
-            : [];
-          const allEntries = [...lectureEntries, ...labEntries];
-
-          const hasAnyConflict = allEntries.some((entry) =>
-            currentSchedule.some((scheduleCourse) =>
-              scheduleCourse.scheduleEntries.some((scheduledSession) =>
+        // 获取课程的所有 lecture 和 lab 的时间段
+        const lectureEntries = expandScheduleEntries(course.lecture.scheduleEntries);
+        const labOptions = course.labs.length > 0 ? course.labs.map(lab => expandScheduleEntries(lab.scheduleEntries)) : [[]];
+    
+        labOptions.forEach(labEntries => {
+          const allEntries = [...lectureEntries, ...labEntries.flat()];
+    
+          const hasAnyConflict = allEntries.some(entry =>
+            currentSchedule.some(scheduleCourse =>
+              scheduleCourse.scheduleEntries.some(scheduledSession =>
                 doSessionsOverlap(entry, scheduledSession)
               )
             )
           );
-
+    
           if (!hasAnyConflict) {
             const newPriority = currentPriority + groupPriority;
             const newSchedule = [
@@ -86,7 +82,7 @@ const GenerateSchedule = ({ selectedCourses }) => {
                 courseId: course.courseId,
                 courseName: course.courseName,
                 lecture: course.lecture.text,
-                lab: lab ? lab.text : "",
+                lab: labEntries.length > 0 ? labEntries[0].text : "",
                 scheduleEntries: allEntries,
                 priority: groupPriority,
               },
@@ -95,10 +91,11 @@ const GenerateSchedule = ({ selectedCourses }) => {
           }
         });
       });
-
+    
       // Skip this courseGroup and check the next one.
       buildSchedule(currentIndex + 1, currentSchedule, currentPriority);
     };
+    
 
     // Initialize recursive scheduling an empty schedule and zero total priority.
     buildSchedule(0, [], 0);
@@ -108,7 +105,7 @@ const GenerateSchedule = ({ selectedCourses }) => {
 
   return (
     <div>
-      <h3 className="font-bold">2. Now generate a schedule</h3>
+      <h3 className="font-bold">3.Now generate a schedule</h3>
       <ActionButton
         text={"Generate Schedule"}
         onClick={() => {

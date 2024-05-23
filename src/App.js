@@ -141,9 +141,10 @@ function App() {
           courseList={[
             { courseName: "STAT", courseNum: "270", priority: 7 },
             { courseName: "CMPT", courseNum: "403", priority: 8 },
-            { courseName: "CMPT", courseNum: "471", priority: 6 },
+            { courseName: "CMPT", courseNum: "471", priority: 3 },
             { courseName: "CMPT", courseNum: "105w", priority: 9 },
-            { courseName: "MACM", courseNum: "316", priority: 5 },
+            { courseName: "MACM", courseNum: "316", priority: 2 },
+            { courseName: "IAT", courseNum: "100", priority: 10 },
           ]}
           fetchCourseData={fetchCourseData}
           handleSelectWithPriority={handleSelectWithPriority}

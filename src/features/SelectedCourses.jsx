@@ -19,7 +19,7 @@ const SelectedCourses = ({ setSelectedCourses, courses, onRemoveCourse }) => {
 
   return (
     <div>
-      <h3 className="font-bold">Courses you selected:</h3>
+      <h3 className="font-bold">2. Courses you selected:</h3>
       {courses.length === 0 ? (
         <p>No courses selected yet...</p>
       ) : (
