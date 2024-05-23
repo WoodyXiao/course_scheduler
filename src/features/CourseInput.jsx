@@ -26,7 +26,7 @@ const CourseInput = ({
 
   return (
     <div>
-      <h3 className="font-bold">Course Search</h3>
+      <h3 className="font-bold">1. Course Search</h3>
       <input
         className="appearance bg-transparent border text-gray-700 mr-3 py-1 px-2 leading-tight rounded"
         placeholder="Enter your course"

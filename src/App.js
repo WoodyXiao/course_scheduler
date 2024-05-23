@@ -145,7 +145,7 @@ function App() {
         setSelectedCourses={setSelectedCourses}
       />
 
-      <hr className="my-12 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
+      <hr className="my-6 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
 
       {/* Display loading message while fetching data */}
       {isLoading && (
@@ -170,8 +170,14 @@ function App() {
 
       {/* Displaying feedback messages */}
       {!isLoading && showNotification && (
-        <MessageNotification message={feedbackMessage} status={"success"} onClose={toggleNotification}/>
+        <MessageNotification
+          message={feedbackMessage}
+          status={"success"}
+          onClose={toggleNotification}
+        />
       )}
+
+      <hr className="my-6 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
 
       {/* Component for displaying selected courses */}
       <SelectedCourses

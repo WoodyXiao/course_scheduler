@@ -4,7 +4,6 @@
  */
 
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import CoursePrioritySlider from "./CoursePrioritySlider";
 import CourseCard from "../components/CourseCard";
 import { fetchDetails } from "../api/api";

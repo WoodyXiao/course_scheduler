@@ -3,6 +3,7 @@ This component is responsible for displaying the list of selected courses.
 */
 
 import React from "react";
+import SelectedCourseList from "../components/SelectedCourseList";
 
 const SelectedCourses = ({ setSelectedCourses, courses, onRemoveCourse }) => {
   const handleRemoveClick = (courseIndex) => {
@@ -18,12 +19,12 @@ const SelectedCourses = ({ setSelectedCourses, courses, onRemoveCourse }) => {
 
   return (
     <div>
-      <h3>Selected Courses:</h3>
+      <h3>Courses you selected:</h3>
       {courses.length === 0 ? (
         <p>No courses selected.</p>
       ) : (
         <>
-          <ul>
+          {/* <ul>
             {courses.map((course, index) => (
               <li key={index}>
                 {course["1"].course} {course["1"].lecture.title} - Priority:{" "}
@@ -42,7 +43,8 @@ const SelectedCourses = ({ setSelectedCourses, courses, onRemoveCourse }) => {
                 </button>
               </li>
             ))}
-          </ul>
+          </ul> */}
+          <SelectedCourseList courses={courses} handleRemoveClick={handleRemoveClick}/>
           <button
             className="flex-shrink-0 bg-sfu-light-red hover:bg-sfu-dark-red border-sfu-light-red hover:border-sfu-dark-red text-sm border-4 text-white py-1 px-2 rounded"
             onClick={() => setSelectedCourses([])}

@@ -134,7 +134,7 @@ const SelectMultiCourses = ({
     <div>
       <div>
         <p>or</p>
-        <h3 className="font-bold">Select multiple courses</h3>
+        <h3 className="font-bold">1. Select multiple courses</h3>
         <ActionButton text={"Fast select"} onClick={() => processCourseList()}/>
       </div>
     </div>

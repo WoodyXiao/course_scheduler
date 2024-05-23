@@ -108,6 +108,7 @@ const GenerateSchedule = ({ selectedCourses }) => {
 
   return (
     <div>
+      <h3 className="font-bold">2. Now generate a schedule</h3>
       <ActionButton
         text={"Generate Schedule"}
         onClick={() => {
