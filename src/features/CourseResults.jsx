@@ -7,6 +7,7 @@ import RenderCourse from "./RenderCourse";
 
 const CourseResults = ({
   courseData,
+  setCourseData,
   courseName,
   courseNum,
   onSelectCourse,
@@ -18,6 +19,7 @@ const CourseResults = ({
       </p>
       <RenderCourse
         courses={courseData}
+        setCourseData={setCourseData}
         courseName={courseName}
         courseNum={courseNum}
         onSelectCourse={onSelectCourse}

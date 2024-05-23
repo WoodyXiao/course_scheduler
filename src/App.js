@@ -167,6 +167,7 @@ function App() {
         <>
           <CourseResults
             courseData={courseData.data}
+            setCourseData={setCourseData}
             courseName={extractCourseName(displayCourseText)}
             courseNum={extractCourseNum(displayCourseText)}
             onSelectCourse={handleSelectWithPriority}

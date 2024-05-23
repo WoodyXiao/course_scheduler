@@ -10,7 +10,7 @@ import { fetchDetails } from "../api/api";
 import ActionButton from "../components/ActionButton";
 import { COURSE_URL } from "../utils/utils";
 
-const RenderCourse = ({ courses, courseName, courseNum, onSelectCourse }) => {
+const RenderCourse = ({ courses, setCourseData, courseName, courseNum, onSelectCourse }) => {
   const [organizedCourses, setOrganizedCourses] = useState({});
   // State for the priority of the course
   const [priority, setPriority] = useState(0);
@@ -130,6 +130,7 @@ const RenderCourse = ({ courses, courseName, courseNum, onSelectCourse }) => {
           {organizedCourses['1'].lecture ? (
             <CourseCard
               courseID={courseName.toUpperCase() + " " + courseNum}
+              setCourseData={setCourseData}
               title={`${organizedCourses['1'].lecture.title}`}
               url={`${COURSE_URL}/${courseName}/${courseNum}.html`}
             />
