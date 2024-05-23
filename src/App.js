@@ -7,6 +7,7 @@ import SelectedCourses from "./features/SelectedCourses";
 import GenerateSchedule from "./features/GenerateSchedule";
 import SelectMultiCourses from "./features/SelectMultiCourses";
 import { extractCourseName, extractCourseNum } from "./utils/utils";
+import MessageNotification from "./components/MessageNotification";
 
 function App() {
   // State for managing course input by user
@@ -21,6 +22,8 @@ function App() {
   const [displayCourseText, setDisplayCourseText] = useState("");
   // State for loading status
   const [isLoading, setIsLoading] = useState(false);
+  // State for display notification
+  const [showNotification, setShowNotification] = useState(false);
 
   // Handler for successful data fetch from API
   const onFetchSuccess = (data, courseName, courseNum) => {
@@ -79,6 +82,7 @@ function App() {
       )
     ) {
       setFeedbackMessage("This course is already in the list.");
+      setShowNotification(!showNotification);
     } else {
       // Add course to the selected list and display success message
       setSelectedCourses([...selectedCourses, newSelectedCourse]);
@@ -86,7 +90,13 @@ function App() {
         `Successfully added ${newSelectedCourse["1"].course} to the list.`
       );
       setCourseData(null);
+      setShowNotification(!showNotification);
     }
+  };
+
+  // Handler for displaying notification or not
+  const toggleNotification = () => {
+    setShowNotification(!showNotification);
   };
 
   // Handler for removing a course
@@ -97,6 +107,7 @@ function App() {
     setSelectedCourses(
       selectedCourses.filter((_, index) => index !== courseIndex)
     );
+    setShowNotification(!showNotification);
   };
 
   // Effect hook for logging the selected courses list
@@ -134,6 +145,8 @@ function App() {
         setSelectedCourses={setSelectedCourses}
       />
 
+      <hr className="my-12 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
+
       {/* Display loading message while fetching data */}
       {isLoading && (
         <span>
@@ -156,7 +169,9 @@ function App() {
       )}
 
       {/* Displaying feedback messages */}
-      {!isLoading && <p>{feedbackMessage}</p>}
+      {!isLoading && showNotification && (
+        <MessageNotification message={feedbackMessage} status={"success"} onClose={toggleNotification}/>
+      )}
 
       {/* Component for displaying selected courses */}
       <SelectedCourses

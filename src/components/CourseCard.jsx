@@ -1,16 +1,18 @@
 import React from "react";
 
-const CourseCard = ({ courseID, title, description }) => {
+const CourseCard = ({ courseID, title, description, url }) => {
   return (
-    <div className="flex max-w-lg rounded overflow-hidden shadow-lg">
-      <div className="flex items-center justify-center bg-blue-600 text-white text-xl font-bold p-4 w-26 h-24">
-        {courseID}
+    <a href={url} target="_blank" rel="noreferrer">
+      <div className="flex max-w-lg rounded overflow-hidden shadow-lg">
+        <div className="flex items-center justify-center bg-blue-600 text-white text-xl font-bold p-4 w-26 h-24">
+          {courseID}
+        </div>
+        <div className="px-6 py-4">
+          <div className="font-bold text-xl mb-2">{title}</div>
+          <p className="text-gray-700 text-base">{description}</p>
+        </div>
       </div>
-      <div className="px-6 py-4">
-        <div className="font-bold text-xl mb-2">{title}</div>
-        <p className="text-gray-700 text-base">{description}</p>
-      </div>
-    </div>
+    </a>
   );
 };
 

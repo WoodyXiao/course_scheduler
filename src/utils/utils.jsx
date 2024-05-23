@@ -113,4 +113,6 @@ const simplifySelectedCourses = (selectedCourses) => {
   });
 };
 
-export { extractCourseNum, extractCourseName, restructureSelectedCourses, simplifySelectedCourses };
+const COURSE_URL = `https://www.sfu.ca/students/calendar/2024/summer/courses/`;
+
+export { extractCourseNum, extractCourseName, restructureSelectedCourses, simplifySelectedCourses, COURSE_URL };

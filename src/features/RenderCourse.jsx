@@ -9,6 +9,7 @@ import CoursePrioritySlider from "./CoursePrioritySlider";
 import CourseCard from "../components/CourseCard";
 import { fetchDetails } from "../api/api";
 import ActionButton from "../components/ActionButton";
+import { COURSE_URL } from "../utils/utils";
 
 const RenderCourse = ({ courses, courseName, courseNum, onSelectCourse }) => {
   const [organizedCourses, setOrganizedCourses] = useState({});
@@ -131,6 +132,7 @@ const RenderCourse = ({ courses, courseName, courseNum, onSelectCourse }) => {
             <CourseCard
               courseID={courseName.toUpperCase() + " " + courseNum}
               title={`${organizedCourses['1'].lecture.title}`}
+              url={`${COURSE_URL}/${courseName}/${courseNum}.html`}
             />
           ) : (
             "No lecture available"
@@ -151,7 +153,7 @@ const RenderCourse = ({ courses, courseName, courseNum, onSelectCourse }) => {
       />
     </div>
   ) : (
-    <p>Loading course deatails...s</p>
+    <p>Loading course deatails...</p>
   );
 };
 
