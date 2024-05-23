@@ -123,29 +123,33 @@ function App() {
         you.)
       </p>
 
-      {/* Course input component */}
-      <CourseInput
-        onSearch={handleCourseSearch}
-        setCourseInput={setCourseInput}
-        courseInput={courseInput}
-        setDisplayCourseText={setDisplayCourseText}
-      />
+      <div className="lg:flex items-center md:block">
+        {/* Course input component */}
+        <CourseInput
+          onSearch={handleCourseSearch}
+          setCourseInput={setCourseInput}
+          courseInput={courseInput}
+          setDisplayCourseText={setDisplayCourseText}
+        />
 
-      {/* Component for select multi courses */}
-      <SelectMultiCourses
-        courseList={[
-          { courseName: "STAT", courseNum: "270", priority: 7 },
-          { courseName: "CMPT", courseNum: "403", priority: 8 },
-          { courseName: "CMPT", courseNum: "471", priority: 6 },
-          { courseName: "CMPT", courseNum: "105w", priority: 9 },
-          { courseName: "MACM", courseNum: "316", priority: 5 },
-        ]}
-        fetchCourseData={fetchCourseData}
-        handleSelectWithPriority={handleSelectWithPriority}
-        setSelectedCourses={setSelectedCourses}
-      />
+        <div className="flex-auto h-full ">
+          <p className="flex-auto">or</p>
+        </div>
 
-      <hr className="my-6 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
+        {/* Component for select multi courses */}
+        <SelectMultiCourses
+          courseList={[
+            { courseName: "STAT", courseNum: "270", priority: 7 },
+            { courseName: "CMPT", courseNum: "403", priority: 8 },
+            { courseName: "CMPT", courseNum: "471", priority: 6 },
+            { courseName: "CMPT", courseNum: "105w", priority: 9 },
+            { courseName: "MACM", courseNum: "316", priority: 5 },
+          ]}
+          fetchCourseData={fetchCourseData}
+          handleSelectWithPriority={handleSelectWithPriority}
+          setSelectedCourses={setSelectedCourses}
+        />
+      </div>
 
       {/* Display loading message while fetching data */}
       {isLoading && (
@@ -160,12 +164,15 @@ function App() {
 
       {/* Conditional rendering of course results if data is available */}
       {!isLoading && courseData && (
-        <CourseResults
-          courseData={courseData.data}
-          courseName={extractCourseName(displayCourseText)}
-          courseNum={extractCourseNum(displayCourseText)}
-          onSelectCourse={handleSelectWithPriority}
-        />
+        <>
+          <CourseResults
+            courseData={courseData.data}
+            courseName={extractCourseName(displayCourseText)}
+            courseNum={extractCourseNum(displayCourseText)}
+            onSelectCourse={handleSelectWithPriority}
+          />
+          <hr className="my-6 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
+        </>
       )}
 
       {/* Displaying feedback messages */}
@@ -176,8 +183,6 @@ function App() {
           onClose={toggleNotification}
         />
       )}
-
-      <hr className="my-6 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
 
       {/* Component for displaying selected courses */}
       <SelectedCourses

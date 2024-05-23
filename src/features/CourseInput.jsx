@@ -25,7 +25,7 @@ const CourseInput = ({
   };
 
   return (
-    <div>
+    <div className="flex-auto">
       <h3 className="font-bold">1. Course Search</h3>
       <input
         className="appearance bg-transparent border text-gray-700 mr-3 py-1 px-2 leading-tight rounded"
