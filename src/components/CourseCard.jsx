@@ -1,13 +1,8 @@
-import { useState } from "react";
-
 const CourseCard = ({ courseID, setCourseData, title, description, url }) => {
-  const [isVisible, setIsVisible] = useState(true); // Control visibility
 
   const handleClose = () => {
     setCourseData(null);
   };
-
-  if (!isVisible) return null; // Don't render the component if it's not visible
 
   return (
     <div className="relative flex max-w-lg rounded overflow-hidden shadow-lg">
