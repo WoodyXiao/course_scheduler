@@ -43,7 +43,7 @@ const Header = () => {
           <ul className="flex flex-col p-4 md:p-0 mt-4 rounded-lg bg-sfu-light-red md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0">
             <li>
               <Link
-                to="/CourseTreeview"
+                to="/CourseTreeView"
                 className="block py-2 px-3 text-white rounded hover:bg-sfu-dark-red md:hover:bg-sfu-dark-red md:p-0"
               >
                 Courses Treeview

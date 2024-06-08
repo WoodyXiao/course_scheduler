@@ -4,7 +4,9 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import CourseTreeview from "./pages/CourseTreeview";
+import CourseTreeView from "./pages/CourseTreeView";
+
+
 
 function Main() {
   return (
@@ -12,7 +14,7 @@ function Main() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/CourseTreeview" element={<CourseTreeview />} />
+        <Route path="/courseTreeView" element={<CourseTreeView />} /> 
       </Routes>
       <Footer />
     </div>
