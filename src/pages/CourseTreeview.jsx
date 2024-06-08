@@ -379,7 +379,7 @@ const treeData = {
 const CourseTreeView = () => {
   return (
     <div className="flex-grow mt-8 p-4 max-w-screen-xl mx-auto w-full">
-      <h1>Course Requirements Quick Check</h1>
+      <h1 className="text-3xl font-bold">Course Requirements Quick Check</h1>
       <div className="flex-auto">
       <h3 className="font-bold">Course Search</h3>
       <input
