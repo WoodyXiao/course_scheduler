@@ -6,6 +6,7 @@ function TreeView({ data }) {
   // Initialize the tree data state
   const [treeData, setTreeData] = useState(() => d3.hierarchy(data));
   console.log("text", treeData);
+
   // Function to toggle children on and off
   const toggleChildren = (node) => {
     if (node.children) {
@@ -29,8 +30,8 @@ function TreeView({ data }) {
 
   const drawTree = () => {
     const margin = { top: 20, right: 90, bottom: 30, left: 90 };
-    const width = 960 - margin.right - margin.left;
-    const height = 500 - margin.top - margin.bottom;
+    const width = 1200 - margin.right - margin.left;
+    const height = 700 - margin.top - margin.bottom;
 
     const svg = d3.select(ref.current);
     svg.selectAll("*").remove(); // Clear the SVG to redraw
@@ -50,13 +51,11 @@ function TreeView({ data }) {
       .attr("class", "link")
       .attr(
         "d",
-        d3
-          .linkHorizontal()
+        d3.linkHorizontal()
           .x((d) => d.y)
           .y((d) => d.x)
       )
       .attr("stroke", (d) => {
-        // Check the condition on the source node to determine the link color
         if (d.source.data.condition === "OR") return "blue";
         if (d.source.data.condition === "AND") return "red";
         return "red"; // Default color
@@ -79,27 +78,39 @@ function TreeView({ data }) {
 
     node
       .append("circle")
-      .attr("r", (d) => {
-        // Check the condition on the source node to determine the link color
-        if (d.data.condition) return 0;
-        return 10; // Default color
+      .attr("r", (d) => (d.data.condition ? 0 : 15))
+      .style("fill", (d) => (d.children ? "#555" : "#999"))
+      .on("mouseover", function (event, d) {
+        svg.selectAll(".node circle")
+          .filter((dd) => dd.data.name === d.data.name)
+          .style("fill", "orange")
+          .style("stroke-width", 3);
       })
-      .style("fill", (d) => (d.children ? "#555" : "#999"));
+      .on("mouseout", function (event, d) {
+        svg.selectAll(".node circle")
+          .filter((dd) => dd.data.name === d.data.name)
+          .style("fill", (dd) => (dd.children ? "#555" : "#999"))
+          .style("stroke", null)
+          .style("font-weight", null)
+          .style("stroke-width", null);
+      });
 
     node
       .append("text")
-      .attr("dy", "1.5em")
-      .attr("dx", "-3em")
-      // .attr("x", d => (d.children || d._children) ? -15 : 15)
-      // .style("text-anchor", d => (d.children || d._children) ? "end" : "start")
-      .text((d) => d.data.name);
+      .attr("dy", "0.31em")
+      .style("text-anchor", "middle")
+      .text((d) => {
+        if (d.data.condition) return "";
+        return d.data.name;
+      })
+      .style("pointer-events", "none");  // Make text non-interactive to ensure circle handles hover
   };
 
   return (
     <svg
       ref={ref}
       width="1200"
-      height="600"
+      height="700"
       style={{ border: "1px solid black" }}
     ></svg>
   );
