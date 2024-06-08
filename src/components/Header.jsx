@@ -41,12 +41,20 @@ const Header = () => {
         </button>
         <div className={`${isOpen ? 'block' : 'hidden'} w-full md:block md:w-auto`} id="navbar-default">
           <ul className="flex flex-col p-4 md:p-0 mt-4 rounded-lg bg-sfu-light-red md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0">
+          <li>
+              <Link
+                to="/"
+                className="block py-2 px-3 text-white rounded hover:bg-sfu-dark-red md:hover:bg-sfu-dark-red md:p-0"
+              >
+                Course Scheduler
+              </Link>
+            </li>
             <li>
               <Link
                 to="/CourseTreeView"
                 className="block py-2 px-3 text-white rounded hover:bg-sfu-dark-red md:hover:bg-sfu-dark-red md:p-0"
               >
-                Courses Treeview
+                Courses Requirement
               </Link>
             </li>
             <li>

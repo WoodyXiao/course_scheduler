@@ -1,5 +1,6 @@
 import React from "react";
 import TreeView from "../components/TreeView";
+import ActionButton from "../components/ActionButton";
 
 const treeData = {
   name: "Course",
@@ -379,6 +380,15 @@ const CourseTreeView = () => {
   return (
     <div className="flex-grow mt-8 p-4 max-w-screen-xl mx-auto w-full">
       <h1>Course Requirements Quick Check</h1>
+      <div className="flex-auto">
+      <h3 className="font-bold">Course Search</h3>
+      <input
+        className="appearance bg-transparent border text-gray-700 mr-3 py-1 px-2 leading-tight rounded"
+        placeholder="Enter your course"
+        value={""}
+      />
+      <ActionButton text={"Search"} />
+    </div>
       <TreeView data={treeData} />
     </div>
   );
