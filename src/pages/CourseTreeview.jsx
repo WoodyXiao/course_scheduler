@@ -9,59 +9,53 @@ const treeData = {
       name: "CMPT 471",
       children: [
         {
-          name: "Pre",
+          name: "AND",
           condition: "AND",
           children: [
             {
-              name: "AND",
-              condition: "AND",
+              name: "CMPT 300",
               children: [
                 {
-                  name: "CMPT 300",
+                  name: "AND",
+                  condition: "AND",
                   children: [
                     {
-                      name: "AND",
-                      condition: "AND",
+                      name: "CMPT 225",
                       children: [
                         {
-                          name: "CMPT 225",
+                          name: "AND",
+                          condition: "AND",
                           children: [
                             {
-                              name: "AND",
-                              condition: "AND",
+                              name: "MACM 101",
+                            },
+                            {
+                              name: "CMPT 125",
                               children: [
-                                {
-                                  name: "MACM 101",
-                                },
-                                {
-                                  name: "CMPT 125",
-                                  children: [
-                                    {
-                                      name: "OR",
-                                      condition: "OR",
-                                      children: [
-                                        {
-                                          name: "CMPT 120",
-                                        },
-                                        {
-                                          name: "CMPT 130",
-                                        },
-                                      ],
-                                    },
-                                  ],
-                                },
                                 {
                                   name: "OR",
                                   condition: "OR",
                                   children: [
-                                    { name: "CMPT 129" },
                                     {
-                                      name: "CMPT 135",
-                                      children: [
-                                        {
-                                          name: "CMPT 130",
-                                        },
-                                      ],
+                                      name: "CMPT 120",
+                                    },
+                                    {
+                                      name: "CMPT 130",
+                                    },
+                                  ],
+                                },
+                              ],
+                            },
+                            {
+                              name: "OR",
+                              condition: "OR",
+                              children: [
+                                { name: "CMPT 129" },
+                                {
+                                  name: "CMPT 135",
+                                  children: [
+                                    {
+                                      name: "CMPT 130",
                                     },
                                   ],
                                 },
@@ -292,78 +286,65 @@ const treeData = {
                 },
               ],
             },
+
             {
-              name: "AND",
-              condition: "AND",
+              name: "CMPT 371",
               children: [
                 {
-                  name: "CMPT 371",
+                  name: "AND",
+                  condition: "AND",
                   children: [
                     {
-                      name: "AND",
-                      condition: "AND",
+                      name: "CMPT 225",
                       children: [
-                        {
-                          name: "CMPT 225",
-                          children: [
-                            {
-                              name: "AND",
-                              condition: "AND",
-                              children: [
-                                {
-                                  name: "MACM 101",
-                                },
-                                {
-                                  name: "CMPT 125",
-                                  children: [
-                                    {
-                                      name: "OR",
-                                      condition: "OR",
-                                      children: [
-                                        {
-                                          name: "CMPT 120",
-                                        },
-                                        {
-                                          name: "CMPT 130",
-                                        },
-                                      ],
-                                    },
-                                  ],
-                                },
-                                {
-                                  name: "OR",
-                                  condition: "OR",
-                                  children: [
-                                    { name: "CMPT 129" },
-                                    {
-                                      name: "CMPT 135",
-                                      children: [
-                                        {
-                                          name: "CMPT 130",
-                                        },
-                                      ],
-                                    },
-                                  ],
-                                },
-                              ],
-                            },
-                          ],
-                        },
                         {
                           name: "AND",
                           condition: "AND",
                           children: [
                             {
+                              name: "MACM 101",
+                            },
+                            {
+                              name: "CMPT 125",
+                              children: [
+                                {
+                                  name: "OR",
+                                  condition: "OR",
+                                  children: [
+                                    {
+                                      name: "CMPT 120",
+                                    },
+                                    {
+                                      name: "CMPT 130",
+                                    },
+                                  ],
+                                },
+                              ],
+                            },
+                            {
                               name: "OR",
                               condition: "OR",
                               children: [
-                                { name: "MATH 151" },
-                                { name: "MATH 150" },
+                                { name: "CMPT 129" },
+                                {
+                                  name: "CMPT 135",
+                                  children: [
+                                    {
+                                      name: "CMPT 130",
+                                    },
+                                  ],
+                                },
                               ],
                             },
                           ],
                         },
                       ],
+                    },
+
+                    {
+                      name: "OR",
+                      condition: "OR",
+                      children: [{ name: "MATH 151" }, { name: "MATH 150" }],
                     },
                   ],
                 },
@@ -381,14 +362,14 @@ const CourseTreeView = () => {
     <div className="flex-grow mt-8 p-4 max-w-screen-xl mx-auto w-full">
       <h1 className="text-3xl font-bold">Course Requirements Quick Check</h1>
       <div className="flex-auto">
-      <h3 className="font-bold">Course Search</h3>
-      <input
-        className="appearance bg-transparent border text-gray-700 mr-3 py-1 px-2 leading-tight rounded"
-        placeholder="Enter your course"
-        value={""}
-      />
-      <ActionButton text={"Search"} />
-    </div>
+        <h3 className="font-bold">Course Search</h3>
+        <input
+          className="appearance bg-transparent border text-gray-700 mr-3 py-1 px-2 leading-tight rounded"
+          placeholder="Enter your course"
+          value={""}
+        />
+        <ActionButton text={"Search"} />
+      </div>
       <TreeView data={treeData} />
     </div>
   );

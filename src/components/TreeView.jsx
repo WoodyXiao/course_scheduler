@@ -82,7 +82,7 @@ function TreeView({ data }) {
       .attr("dy", "0.31em")
       .style("text-anchor", "middle")
       .text((d) => {
-        if (d.data.condition) return "";
+        if (d.data.condition) return d.data.name;
         return d.data.name;
       })
       .style("pointer-events", "none");  // Make text non-interactive to ensure circle handles hover
@@ -93,7 +93,7 @@ function TreeView({ data }) {
   
     const zoom = d3.zoom()
       .scaleExtent([0.1, 3])
-      .filter(event => event.ctrlKey)  // Only zoom when Ctrl key is pressed
+      .filter(event => event.shiftKey)  // Only zoom when Ctrl key is pressed
       .on("zoom", (event) => {
         d3.select(svgRef.current).select('g')
           .attr("transform", event.transform);
