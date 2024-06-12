@@ -357,6 +357,13 @@ const treeData = {
   ],
 };
 
+const cmpt225 = {
+  info: {
+    prerequisites:
+      "(MACM 101 and (CMPT 125, CMPT 129 or CMPT 135)) or (ENSC 251 and ENSC 252), all with a minimum grade of C-.",
+  },
+};
+
 const CourseTreeView = () => {
   return (
     <div className="flex-grow mt-8 p-4 max-w-screen-xl mx-auto w-full">
