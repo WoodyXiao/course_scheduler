@@ -1,8 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import * as d3 from "d3";
 
 function TreeView({ data }) {
-  const ref = useRef();
   const svgRef = useRef();
   const [treeData, setTreeData] = useState(() => d3.hierarchy(data));
 
@@ -23,12 +22,7 @@ function TreeView({ data }) {
     setTreeData(d3.hierarchy(treeData.data));
   };
 
-  useEffect(() => {
-    drawTree();
-    setupZoom();
-  }, [treeData]); // Redraw the tree when treeData changes and setup zoom
-
-  const drawTree = () => {
+  const drawTree = useCallback(() => {
     const margin = { top: 10, right: 10, bottom: 30, left: 50 };
     const width = 1200 - margin.right - margin.left;
     const height = 700 - margin.top - margin.bottom;
@@ -86,21 +80,26 @@ function TreeView({ data }) {
         return d.data.name;
       })
       .style("pointer-events", "none");  // Make text non-interactive to ensure circle handles hover
-  };
+  }, [treeData]);
 
-  const setupZoom = () => {
+  const setupZoom = useCallback(() => {
     const svg = d3.select(svgRef.current);
   
     const zoom = d3.zoom()
       .scaleExtent([0.1, 3])
-      .filter(event => event.shiftKey)  // Only zoom when Ctrl key is pressed
+      .filter(event => event.shiftKey)  // Only zoom when Shift key is pressed
       .on("zoom", (event) => {
         d3.select(svgRef.current).select('g')
           .attr("transform", event.transform);
       });
   
     svg.call(zoom);
-  };
+  }, [svgRef]);
+
+  useEffect(() => {
+    drawTree();
+    setupZoom();
+  }, [treeData, drawTree, setupZoom]);
 
   return (
     <svg
