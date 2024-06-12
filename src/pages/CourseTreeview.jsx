@@ -357,7 +357,7 @@ const treeData = {
   ],
 };
 
-const cmpt225 = {
+const cmpt225mock = {
   info: {
     prerequisites:
       "(MACM 101 and (CMPT 125, CMPT 129 or CMPT 135)) or (ENSC 251 and ENSC 252), all with a minimum grade of C-.",
