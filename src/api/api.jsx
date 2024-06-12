@@ -4,7 +4,7 @@
 import axios from "axios";
 
 const fetchCourseData = (courseName, courseNum, onSuccess, onError) => {
-  const courseURL = `http://www.sfu.ca/bin/wcm/course-outlines?2024/summer/${courseName}/${courseNum}`;
+  const courseURL = `https://www.sfu.ca/bin/wcm/course-outlines?2024/summer/${courseName}/${courseNum}`;
 
   axios
     .get(courseURL)
