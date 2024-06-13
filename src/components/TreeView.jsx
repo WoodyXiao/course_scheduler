@@ -25,7 +25,7 @@ function TreeView({ data }) {
   const drawTree = useCallback(() => {
     const margin = { top: 10, right: 10, bottom: 30, left: 50 };
     const width = 1200 - margin.right - margin.left;
-    const height = 900 - margin.top - margin.bottom;
+    const height = 1050 - margin.top - margin.bottom;
 
     const svg = d3.select(svgRef.current);
     svg.selectAll("*").remove(); // Clear the SVG to redraw
@@ -74,6 +74,7 @@ function TreeView({ data }) {
 
     node.append("text")
       .attr("dy", "0.31em")
+      .style("font-size", "13px")
       .style("text-anchor", "middle")
       .text((d) => {
         if (d.data.condition) return d.data.name;
@@ -105,7 +106,7 @@ function TreeView({ data }) {
     <svg
       ref={svgRef}
       width="1200"
-      height="900"
+      height="1000"
       style={{ border: "1px solid black" }}
     ></svg>
   );
