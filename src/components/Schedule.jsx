@@ -1,4 +1,5 @@
 import React from "react";
+import {extractCourseNum} from "../utils/utils";
 
 const Schedule = ({ schedule, totalMaxPriority }) => {
   const generateTimeSlots = () => {
@@ -11,7 +12,7 @@ const Schedule = ({ schedule, totalMaxPriority }) => {
     return slots;
   };
 
-  const timeSlots = generateTimeSlots(); // From 7:00 to 23:55, every 5 minutes
+  const timeSlots = generateTimeSlots();
   const days = ["Mo", "Tu", "We", "Th", "Fr"];
 
   const timeToMinutes = (time) => {
@@ -40,12 +41,21 @@ const Schedule = ({ schedule, totalMaxPriority }) => {
       "red",
       "green",
       "blue",
-      "yellow",
-      "purple",
+      "navy",
+      "teal",
       "pink",
       "indigo",
+      "grey",
+      "orange",
+      "beige",
+      "aqua",
+      "teal",
+      "yellow",
+      "brown",
+      "purple",
     ];
-    return `bg-${baseColors[parseInt(courseId) % baseColors.length]}-200`;
+    console.log("tt", courseId);
+    return `${baseColors[parseInt(courseId) % baseColors.length]}`;
   };
 
   return (
@@ -112,6 +122,7 @@ const Schedule = ({ schedule, totalMaxPriority }) => {
                     if (coursesAtThisTime.length > 0) {
                       return coursesAtThisTime.map((course) => (
                         <td
+                        style={{background:`${getColor(extractCourseNum(course.courseName))}`}}
                           key={course.courseId}
                           rowSpan={course.rowSpan}
                           className={`border border-gray-300 p-1 ${getColor(

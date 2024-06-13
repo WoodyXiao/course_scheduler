@@ -25,7 +25,7 @@ function TreeView({ data }) {
   const drawTree = useCallback(() => {
     const margin = { top: 10, right: 10, bottom: 30, left: 50 };
     const width = 1200 - margin.right - margin.left;
-    const height = 700 - margin.top - margin.bottom;
+    const height = 900 - margin.top - margin.bottom;
 
     const svg = d3.select(svgRef.current);
     svg.selectAll("*").remove(); // Clear the SVG to redraw
@@ -55,7 +55,7 @@ function TreeView({ data }) {
       });
 
     node.append("circle")
-      .attr("r", (d) => (d.data.condition ? 0 : 15))
+      .attr("r", (d) => (d.data.condition ? 0 : 8))
       .style("fill", (d) => (d.children ? "#555" : "#999"))
       .on("mouseover", function (event, d) {
         svg.selectAll(".node circle")
@@ -105,7 +105,7 @@ function TreeView({ data }) {
     <svg
       ref={svgRef}
       width="1200"
-      height="700"
+      height="900"
       style={{ border: "1px solid black" }}
     ></svg>
   );
