@@ -5,7 +5,11 @@ function TreeView({ data }) {
   const svgRef = useRef();
   const [treeData, setTreeData] = useState(() => d3.hierarchy(data));
 
-  // Function to toggle children on and off
+  useEffect(() => {
+    // This effect runs when `data` prop changes.
+    setTreeData(d3.hierarchy(data));  // Recreate the hierarchy with the new data
+  }, [data]);
+
   const toggleChildren = (node) => {
     if (node.children) {
       node._children = node.children;
@@ -15,11 +19,7 @@ function TreeView({ data }) {
       node._children = null;
     }
     // Force React state update by creating a new hierarchy
-    setTreeVirtualRoot(node);
-  };
-
-  const setTreeVirtualRoot = (node) => {
-    setTreeData(d3.hierarchy(treeData.data));
+    setTreeData(treeData => d3.hierarchy(treeData.data));
   };
 
   const drawTree = useCallback(() => {
@@ -55,20 +55,17 @@ function TreeView({ data }) {
       });
 
     node.append("circle")
-      .attr("r", (d) => (d.data.condition ? 0 : 8))
+      .attr("r", 8)
       .style("fill", (d) => (d.children ? "#555" : "#999"))
       .on("mouseover", function (event, d) {
-        svg.selectAll(".node circle")
-          .filter((dd) => dd.data.name === d.data.name)
+        d3.select(this)
           .style("fill", "orange")
           .style("stroke-width", 3);
       })
       .on("mouseout", function (event, d) {
-        svg.selectAll(".node circle")
-          .filter((dd) => dd.data.name === d.data.name)
+        d3.select(this)
           .style("fill", (dd) => (dd.children ? "#555" : "#999"))
           .style("stroke", null)
-          .style("font-weight", null)
           .style("stroke-width", null);
       });
 
@@ -76,16 +73,12 @@ function TreeView({ data }) {
       .attr("dy", "0.31em")
       .style("font-size", "13px")
       .style("text-anchor", "middle")
-      .text((d) => {
-        if (d.data.condition) return d.data.name;
-        return d.data.name;
-      })
+      .text((d) => d.data.name)
       .style("pointer-events", "none");  // Make text non-interactive to ensure circle handles hover
   }, [treeData]);
 
   const setupZoom = useCallback(() => {
     const svg = d3.select(svgRef.current);
-  
     const zoom = d3.zoom()
       .scaleExtent([0.1, 3])
       .filter(event => event.shiftKey)  // Only zoom when Shift key is pressed
@@ -93,14 +86,13 @@ function TreeView({ data }) {
         d3.select(svgRef.current).select('g')
           .attr("transform", event.transform);
       });
-  
     svg.call(zoom);
   }, [svgRef]);
 
   useEffect(() => {
     drawTree();
     setupZoom();
-  }, [treeData, drawTree, setupZoom]);
+  }, [treeData, drawTree, setupZoom]);  // Update dependencies
 
   return (
     <svg

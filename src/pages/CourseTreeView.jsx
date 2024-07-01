@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import TreeView from "../components/TreeView";
 import ActionButton from "../components/ActionButton";
 
@@ -34,41 +34,43 @@ const treeData = {
                                   name: "MACM 101",
                                 },
                                 {
-                                  name:"AND",
-                                  condition:"AND",
-                                  children:[{
-                                    name: "CMPT 125",
-                                    children: [
-                                      {
-                                        name: "OR",
-                                        condition: "OR",
-                                        children: [
-                                          {
-                                            name: "CMPT 120",
-                                          },
-                                          {
-                                            name: "CMPT 130",
-                                          },
-                                        ],
-                                      },
-                                    ],
-                                  },
-                                  {
-                                    name: "OR",
-                                    condition: "OR",
-                                    children: [
-                                      { name: "CMPT 129" },
-                                      {
-                                        name: "CMPT 135",
-                                        children: [
-                                          {
-                                            name: "CMPT 130",
-                                          },
-                                        ],
-                                      },
-                                    ],
-                                  },]
-                                }
+                                  name: "AND",
+                                  condition: "AND",
+                                  children: [
+                                    {
+                                      name: "CMPT 125",
+                                      children: [
+                                        {
+                                          name: "OR",
+                                          condition: "OR",
+                                          children: [
+                                            {
+                                              name: "CMPT 120",
+                                            },
+                                            {
+                                              name: "CMPT 130",
+                                            },
+                                          ],
+                                        },
+                                      ],
+                                    },
+                                    {
+                                      name: "OR",
+                                      condition: "OR",
+                                      children: [
+                                        { name: "CMPT 129" },
+                                        {
+                                          name: "CMPT 135",
+                                          children: [
+                                            {
+                                              name: "CMPT 130",
+                                            },
+                                          ],
+                                        },
+                                      ],
+                                    },
+                                  ],
+                                },
                               ],
                             },
                             {
@@ -342,41 +344,43 @@ const treeData = {
                                                   name: "MACM 101",
                                                 },
                                                 {
-                                                  name:"AND",
-                                                  condition:"AND",
-                                                  children:[{
-                                                    name: "CMPT 125",
-                                                    children: [
-                                                      {
-                                                        name: "OR",
-                                                        condition: "OR",
-                                                        children: [
-                                                          {
-                                                            name: "CMPT 120",
-                                                          },
-                                                          {
-                                                            name: "CMPT 130",
-                                                          },
-                                                        ],
-                                                      },
-                                                    ],
-                                                  },
-                                                  {
-                                                    name: "OR",
-                                                    condition: "OR",
-                                                    children: [
-                                                      { name: "CMPT 129" },
-                                                      {
-                                                        name: "CMPT 135",
-                                                        children: [
-                                                          {
-                                                            name: "CMPT 130",
-                                                          },
-                                                        ],
-                                                      },
-                                                    ],
-                                                  },]
-                                                }
+                                                  name: "AND",
+                                                  condition: "AND",
+                                                  children: [
+                                                    {
+                                                      name: "CMPT 125",
+                                                      children: [
+                                                        {
+                                                          name: "OR",
+                                                          condition: "OR",
+                                                          children: [
+                                                            {
+                                                              name: "CMPT 120",
+                                                            },
+                                                            {
+                                                              name: "CMPT 130",
+                                                            },
+                                                          ],
+                                                        },
+                                                      ],
+                                                    },
+                                                    {
+                                                      name: "OR",
+                                                      condition: "OR",
+                                                      children: [
+                                                        { name: "CMPT 129" },
+                                                        {
+                                                          name: "CMPT 135",
+                                                          children: [
+                                                            {
+                                                              name: "CMPT 130",
+                                                            },
+                                                          ],
+                                                        },
+                                                      ],
+                                                    },
+                                                  ],
+                                                },
                                               ],
                                             },
                                             {
@@ -410,7 +414,8 @@ const treeData = {
                                                               children: [
                                                                 {
                                                                   name: "OR",
-                                                                  condition: "OR",
+                                                                  condition:
+                                                                    "OR",
                                                                   children: [
                                                                     {
                                                                       name: "CMPT 120",
@@ -513,41 +518,43 @@ const treeData = {
                                   name: "MACM 101",
                                 },
                                 {
-                                  name:"AND",
-                                  condition:"AND",
-                                  children:[{
-                                    name: "CMPT 125",
-                                    children: [
-                                      {
-                                        name: "OR",
-                                        condition: "OR",
-                                        children: [
-                                          {
-                                            name: "CMPT 120",
-                                          },
-                                          {
-                                            name: "CMPT 130",
-                                          },
-                                        ],
-                                      },
-                                    ],
-                                  },
-                                  {
-                                    name: "OR",
-                                    condition: "OR",
-                                    children: [
-                                      { name: "CMPT 129" },
-                                      {
-                                        name: "CMPT 135",
-                                        children: [
-                                          {
-                                            name: "CMPT 130",
-                                          },
-                                        ],
-                                      },
-                                    ],
-                                  },]
-                                }
+                                  name: "AND",
+                                  condition: "AND",
+                                  children: [
+                                    {
+                                      name: "CMPT 125",
+                                      children: [
+                                        {
+                                          name: "OR",
+                                          condition: "OR",
+                                          children: [
+                                            {
+                                              name: "CMPT 120",
+                                            },
+                                            {
+                                              name: "CMPT 130",
+                                            },
+                                          ],
+                                        },
+                                      ],
+                                    },
+                                    {
+                                      name: "OR",
+                                      condition: "OR",
+                                      children: [
+                                        { name: "CMPT 129" },
+                                        {
+                                          name: "CMPT 135",
+                                          children: [
+                                            {
+                                              name: "CMPT 130",
+                                            },
+                                          ],
+                                        },
+                                      ],
+                                    },
+                                  ],
+                                },
                               ],
                             },
                             {
@@ -665,88 +672,121 @@ const treeData = {
 // Test the parse pre
 const cmpt225 = {
   info: {
-      prerequisites: "(MACM 101 and (CMPT 125 and (CMPT 129 or CMPT 135))) or (ENSC 251 and ENSC 252)",
+    prerequisites:
+      "(MACM 101 and (CMPT 125 and (CMPT 129 or CMPT 135))) or (ENSC 251 and ENSC 252)",
   },
 };
 
-function parsePrerequisites(prerequisites) {
-  let index = 0;
-  const tokens = prerequisites.match(/\(|\)|\w+ \d+|and|or/gi);
+const CourseTreeView = () => {
+  const [courseData, setCourseData] = useState(null);
+  const [courseNumber, setCourseNumber] = useState("");
+  const [inputValue, setInputValue] = useState("");
 
-  function parseExpression() {
-      let exprStack = [];
-      let current = { name: "ROOT", condition: "", children: [] };
+  function parsePrerequisites(prerequisites) {
+    // Removing specific program descriptions and general cleanup
+    prerequisites = prerequisites.replace(
+        /(for students in an Applied Physics program)|Either|, all with a minimum grade of [A-Z-]+\./g,
+        ''
+    );
+    prerequisites = prerequisites.trim();
 
-      while (index < tokens.length) {
-          let token = tokens[index].toUpperCase();
-          index++;
+    // Tokenization to capture relevant terms and structures
+    const tokens = prerequisites.match(/\(|\)|\w+ \d+|and|or/gi);
 
-          if (token === '(') {
-              // Start of a new sub-expression
-              exprStack.push(current);
-              current = { name: "ROOT", condition: "", children: [] };
-          } else if (token === 'AND' || token === 'OR') {
-              if (current.name === "ROOT") {
-                  // Assign current node's name and condition if empty
-                  current.name = token;
-                  current.condition = token;
-              } else {
-                  // Different operations start or condition nesting is required
-                  let newNode = { name: token, condition: token, children: [] };
-                  if (current.condition !== token) {
-                      exprStack.push(current);
-                      current = newNode;
-                  } else {
-                      // Continue collecting children for the same condition
-                      if (current.children.length > 0 && current.children[current.children.length - 1].condition !== "") {
-                          exprStack.push(current);
-                          current = newNode;
-                      }
-                  }
-              }
-          } else if (token === ')') {
-              // End of a sub-expression
-              let completed = current;
-              current = exprStack.pop();
-              current.children.push(completed);
-          } else if (/\w+ \d+/.test(token)) {
-              // It's a course, simply add it
-              current.children.push({
-                  name: token,
-                  condition: "",
-                  children: []
-              });
-          }
-      }
+    let index = 0;
+    function parseExpression() {
+        let exprStack = [];
+        let current = { name: "ROOT", condition: "", children: [] };
 
-      return current.children.length === 1 ? current.children[0] : current;
-  }
+        while (index < tokens.length) {
+            let token = tokens[index].toUpperCase();
+            index++;
 
-  const root = {
-      name: "CMPT 225",
-      condition: "",
-      children: [parseExpression()]
-  };
+            if (token === "(") {
+                exprStack.push(current);
+                current = { name: "ROOT", condition: "", children: [] };
+            } else if (token === "AND" || token === "OR") {
+                if (current.name === "ROOT") {
+                    current.name = token;
+                    current.condition = token;
+                } else {
+                    let newNode = { name: token, condition: token, children: [] };
+                    exprStack.push(current);
+                    current = newNode;
+                }
+            } else if (token === ")") {
+                let completed = current;
+                current = exprStack.pop();
+                current.children.push(completed);
+            } else if (/\w+ \d+/.test(token)) {
+                current.children.push({ name: token, condition: "", children: [] });
+            }
+        }
 
-  return root;
+        return current.children.length === 1 ? current.children[0] : current;
+    }
+
+    return {
+        name: `CMPT`,
+        condition: "",
+        children: [parseExpression()],
+    };
 }
 
-const CourseTreeView = () => {
-  console.log(JSON.stringify(parsePrerequisites(cmpt225.info.prerequisites), null, 2))
+  useEffect(() => {
+    if (courseNumber) {
+      // Reset course data to ensure UI reflects the loading state
+      setCourseData(null);
+      console.log("xxx");
+
+      // Dynamically import the JSON data from the local file
+      import("../assets/sfu_courses_2024/cmpt/sfu_cmpt_2024_summer.json")
+        .then((data) => {
+          // Find the course in the loaded data
+          const course = data.default.find(
+            (course) => course.course_number === courseNumber
+          );
+          if (course) {
+            const parsedData = parsePrerequisites(course.prerequisites);
+            setCourseData(parsedData);
+          } else {
+            setCourseData(null);
+          }
+        })
+        .catch((error) => console.error("Failed to load course data", error));
+    }
+  }, [courseNumber]); // Depend on courseNumber to refetch when it changes
+
+  const handleSearch = () => {
+    setCourseNumber(inputValue.trim());
+  };
+
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  };
+
+  console.log("xxxx", courseData);
 
   return (
     <div className="flex-grow mt-8 p-4 max-w-screen-xl mx-auto w-full">
       <h1 className="text-3xl font-bold">Course Requirements Quick Check</h1>
       <div className="flex-auto">
         <h3 className="font-bold">Course Search</h3>
+        cmpt
         <input
-          className="appearance bg-transparent border text-gray-700 mr-3 py-1 px-2 leading-tight rounded"
-          placeholder="Enter your course"
-          value={""}
+          className="appearance-none bg-transparent border border-gray-500 text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none rounded"
+          type="text"
+          placeholder="Enter your course number"
+          value={inputValue}
+          onChange={handleInputChange}
         />
-        <ActionButton text={"Search"} />
+        <ActionButton text={"Search"} onClick={handleSearch} />
       </div>
-      <TreeView data={treeData} />
+      {courseData ? (
+        <TreeView data={courseData} />
+      ) : (
+        <div>No course data found. Please enter a valid course number.</div>
+      )}
     </div>
   );
 };
