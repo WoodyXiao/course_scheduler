@@ -25,14 +25,20 @@ const output = {
                   children: [],
                 },
                 {
-                  name: "OR",
-                  condition: "OR",
+                  name: "AND",
+                  condition: "AND",
                   children: [
-                    { name: "CMPT 129", condition: "", children: [] },
                     {
-                      name: "CMPT 135",
-                      condition: "",
-                      children: [],
+                      name: "OR",
+                      condition: "OR",
+                      children: [
+                        { name: "CMPT 129", condition: "", children: [] },
+                        {
+                          name: "CMPT 135",
+                          condition: "",
+                          children: [],
+                        },
+                      ],
                     },
                   ],
                 },
@@ -60,4 +66,3 @@ const output = {
     },
   ],
 };
-
