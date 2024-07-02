@@ -681,56 +681,48 @@ const CourseTreeView = () => {
   const [courseData, setCourseData] = useState(null);
   const [courseNumber, setCourseNumber] = useState("");
   const [inputValue, setInputValue] = useState("");
+  const [extraInfo, setExtraInfo] = useState([]);
 
   function parsePrerequisites(prerequisites) {
-    console.log("before remove des: ", prerequisites);
+    let removedDescriptions = []; // Array to store removed parts
 
-    // Removing specific program descriptions and general cleanup
+    console.log("original: ", prerequisites);
+
+    // Preprocess to correctly format course numbers with department prefixes
     prerequisites = prerequisites.replace(
-      /(for students in an Applied Physics program|Either|, all with a minimum grade of [A-Z-]+\.)|(\s+MATH 154 or MATH 157 with (at least a|a grade of at least) B\+ may be substituted for MATH 15[01] or MATH 15[01])/g,
-      ""
-    );
-
-    console.log("before 'comma' convert to 'and': ", prerequisites);
-
-    // Only replace commas with 'and' and adjust parentheses when necessary
-    prerequisites = prerequisites.replace(
-      /\(([^)]+)\)/g,
-      function (match, group) {
-        if (group.includes(",")) {
-          // Check if the group actually needs modification
-          let parts = group.split(",").map((part) => part.trim());
-          return (
-            "(" +
-            parts
-              .map((part) => {
-                // Nested condition handling for 'or'
-                if (part.includes("or")) {
-                  let subParts = part
-                    .split("or")
-                    .map((subPart) => subPart.trim());
-                  return "(" + subParts.join(" or ") + ")";
-                }
-                return part;
-              })
-              .join(" and ") +
-            ")"
+      /(\w+)\s+(\d+)((?:\s*(?:,|and)\s*\d+)*)/g,
+      (match, dept, firstCourse, remainingCourses) => {
+        if (remainingCourses) {
+          remainingCourses = remainingCourses.replace(
+            /(\s*(?:,|and)\s*)(\d+)/g,
+            `$1${dept} $2`
           );
         }
-        return match; // Return the original match if no commas
+        return `${dept} ${firstCourse}${remainingCourses}`;
       }
     );
 
-    console.log("after 'comma' convert to 'and': ", prerequisites);
+    console.log("After expanding course numbers: ", prerequisites);
+    console.log("before remove des: ", prerequisites);
+
+    // Removing specific program descriptions and capturing them
+    prerequisites = prerequisites.replace(
+      /(for students in an Applied Physics program|Either|, all with a minimum grade of [A-Z-]+\.)|(\s+with a minimum grade of C-)|(\s+MATH 154 or MATH 157 with (a grade of at least|at least) B\+ may be substituted for MATH 15[01]( or MATH 15[01])?\.?)/g,
+      function(match) {
+          removedDescriptions.push(match.trim());
+          return ""; // Replace the match with an empty string
+      }
+    );
+
+    setExtraInfo(removedDescriptions);
+    console.log("removed detail info: ", removedDescriptions);
+    console.log("after removed des ", prerequisites);
 
     prerequisites = prerequisites.trim();
 
-    console.log("after trim: ", prerequisites);
-
     // Tokenization to capture relevant terms and structures
     const tokens = prerequisites.match(/\(|\)|\w+ \d+|and|or/gi);
-    console.log("Processed prerequisites for tokens:", prerequisites);
-
+    console.log("tokens ", tokens);
     let index = 0;
     function parseExpression() {
       let exprStack = [];
@@ -765,12 +757,11 @@ const CourseTreeView = () => {
     }
 
     return {
-      name: "CMPT 225",
+      name: "CMPT",
       condition: "",
       children: [parseExpression()],
     };
   }
-
   useEffect(() => {
     if (courseNumber) {
       // Reset course data to ensure UI reflects the loading state
@@ -778,7 +769,7 @@ const CourseTreeView = () => {
       console.log("xxx");
 
       // Dynamically import the JSON data from the local file
-      import("../assets/sfu_courses_2024/cmpt/sfu_cmpt_2024_summer.json")
+      import("../assets/sfu_courses_2024/cmpt/sfu_cmpt_2024_spring.json")
         .then((data) => {
           // Find the course in the loaded data
           const course = data.default.find(
@@ -803,7 +794,7 @@ const CourseTreeView = () => {
     setInputValue(event.target.value);
   };
 
-  console.log("xxxx", courseData);
+  // console.log("xxxx", courseData);
 
   return (
     <div className="flex-grow mt-8 p-4 max-w-screen-xl mx-auto w-full">
@@ -825,6 +816,12 @@ const CourseTreeView = () => {
       ) : (
         <div>No course data found. Please enter a valid course number.</div>
       )}
+      <h1 className="font-bold">Extra infos:</h1>
+      {extraInfo.map((text, index) => (
+        <p key={index}>
+          {index + 1}. {text}
+        </p>
+      ))}
     </div>
   );
 };
