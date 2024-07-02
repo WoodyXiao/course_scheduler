@@ -693,9 +693,9 @@ const CourseTreeView = () => {
     // Removing specific program descriptions and capturing them
     prerequisites = prerequisites.replace(
       /(for students in an Applied Physics program|Either|, all with a minimum grade of [A-Z-]+\.)|(\s+with a minimum grade of C-)|(\s*MATH \d{3} or MATH \d{3} with (at least a|a grade of at least) B\+ may be substituted for MATH \d{3}( or MATH \d{3})?( \([^)]*\))?|\s*CMPT \d{3} and \d{3} are recommended|\s*are recommended)/g,
-      function(match) {
-          removedDescriptions.push(match.trim());
-          return ""; // Replace the match with an empty string
+      function (match) {
+        removedDescriptions.push(match.trim());
+        return ""; // Replace the match with an empty string
       }
     );
 
@@ -758,7 +758,7 @@ const CourseTreeView = () => {
     }
 
     return {
-      name: "CMPT",
+      name: `CMPT ${courseNumber}`,
       condition: "",
       children: [parseExpression()],
     };
@@ -817,12 +817,16 @@ const CourseTreeView = () => {
       ) : (
         <div>No course data found. Please enter a valid course number.</div>
       )}
-      <h1 className="font-bold">Extra infos:</h1>
-      {extraInfo.map((text, index) => (
-        <p key={index}>
-          {index + 1}. {text}
-        </p>
-      ))}
+      {courseData && (
+        <h1 className="font-bold">Extra notes ({courseData.name}):</h1>
+      )}
+      <ul>
+        {extraInfo.map((text, index) => (
+          <li key={index}>
+            {index + 1}. {text}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
