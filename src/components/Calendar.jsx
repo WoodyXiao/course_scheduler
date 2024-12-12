@@ -169,7 +169,10 @@ const Calendar = ({ courseSchedule }) => {
     >
       <canvas
         ref={canvasRef}
-        style={{ width: `${dimensions.width}`, height: `${dimensions.height}` }}
+        style={{
+          width: `${dimensions.width}px`,
+          height: `${dimensions.height}px`,
+        }}
       />
       {selectedEvent && (
         <div
