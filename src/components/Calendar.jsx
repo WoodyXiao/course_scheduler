@@ -4,7 +4,7 @@ import { extractCourseNum } from "../utils/utils";
 const Calendar = ({ courseSchedule }) => {
   const canvasRef = useRef(null);
   const containerRef = useRef(null);
-  const [dimensions, setDimensions] = useState({ width: 700, height: 690 });
+  const [dimensions, setDimensions] = useState({ width: 700, height: 700 });
   const [selectedEvent, setSelectedEvent] = useState(null);
 
   const getColorByCourse = (index) => {
@@ -167,7 +167,10 @@ const Calendar = ({ courseSchedule }) => {
       className="calendar-container w-full"
       onClick={handleCanvasClick}
     >
-      <canvas ref={canvasRef} />
+      <canvas
+        ref={canvasRef}
+        style={{ width: `${dimensions.width}`, height: `${dimensions.height}` }}
+      />
       {selectedEvent && (
         <div
           style={{
