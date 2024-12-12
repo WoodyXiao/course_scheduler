@@ -4,7 +4,7 @@
 import axios from "axios";
 
 const fetchCourseData = (courseName, courseNum, onSuccess, onError) => {
-  const courseURL = `https://www.sfu.ca/bin/wcm/course-outlines?2024/fall/${courseName}/${courseNum}`;
+  const courseURL = `https://www.sfu.ca/bin/wcm/course-outlines?2025/spring/${courseName}/${courseNum}`;
 
   axios
     .get(courseURL)
@@ -14,7 +14,7 @@ const fetchCourseData = (courseName, courseNum, onSuccess, onError) => {
 
 // Function to fetch detailed course information from the API.
 const fetchDetails = async (courseName, courseNum, value) => {
-  const url = `https://www.sfu.ca/bin/wcm/course-outlines?2024/fall/${courseName}/${courseNum}/${value}`;
+  const url = `https://www.sfu.ca/bin/wcm/course-outlines?2025/spring/${courseName}/${courseNum}/${value}`;
 
   try {
     const response = await axios.get(url);
