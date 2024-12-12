@@ -8,6 +8,7 @@ import {
   simplifySelectedCourses,
 } from "../utils/utils.jsx";
 import Schedule from "../components/Schedule.jsx";
+import Calendar from "../components/Calendar.jsx";
 import ActionButton from "../components/ActionButton.jsx";
 
 const GenerateSchedule = ({ selectedCourses }) => {
@@ -54,26 +55,33 @@ const GenerateSchedule = ({ selectedCourses }) => {
         }
         return;
       }
-    
+
       const courseGroup = simplifiedCourses[currentIndex];
       const groupPriority = parseInt(courseGroup.priority, 10);
-    
+
       courseGroup.courses.forEach((course) => {
         // 获取课程的所有 lecture 和 lab 的时间段
-        const lectureEntries = expandScheduleEntries(course.lecture.scheduleEntries);
-        const labOptions = course.labs.length > 0 ? course.labs.map(lab => expandScheduleEntries(lab.scheduleEntries)) : [[]];
-    
-        labOptions.forEach(labEntries => {
+        const lectureEntries = expandScheduleEntries(
+          course.lecture.scheduleEntries
+        );
+        const labOptions =
+          course.labs.length > 0
+            ? course.labs.map((lab) =>
+                expandScheduleEntries(lab.scheduleEntries)
+              )
+            : [[]];
+
+        labOptions.forEach((labEntries) => {
           const allEntries = [...lectureEntries, ...labEntries.flat()];
-    
-          const hasAnyConflict = allEntries.some(entry =>
-            currentSchedule.some(scheduleCourse =>
-              scheduleCourse.scheduleEntries.some(scheduledSession =>
+
+          const hasAnyConflict = allEntries.some((entry) =>
+            currentSchedule.some((scheduleCourse) =>
+              scheduleCourse.scheduleEntries.some((scheduledSession) =>
                 doSessionsOverlap(entry, scheduledSession)
               )
             )
           );
-    
+
           if (!hasAnyConflict) {
             const newPriority = currentPriority + groupPriority;
             const newSchedule = [
@@ -91,11 +99,10 @@ const GenerateSchedule = ({ selectedCourses }) => {
           }
         });
       });
-    
+
       // Skip this courseGroup and check the next one.
       buildSchedule(currentIndex + 1, currentSchedule, currentPriority);
     };
-    
 
     // Initialize recursive scheduling an empty schedule and zero total priority.
     buildSchedule(0, [], 0);
