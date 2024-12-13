@@ -8,6 +8,9 @@ const Calendar = ({ courseSchedule }) => {
   const [selectedEvent, setSelectedEvent] = useState(null);
 
   const getColorByCourse = (index) => {
+    if (index[index.length - 1] === "w") {
+      index = index.slice(0, -1);
+    }
     const hue = index * 137.508;
     return `hsl(${hue % 360}, 50%, 70%)`;
   };
