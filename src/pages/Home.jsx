@@ -140,11 +140,17 @@ function Home() {
         <SelectMultiCourses
           courseList={[
             { courseName: "STAT", courseNum: "270", priority: 7 },
-            { courseName: "CMPT", courseNum: "403", priority: 8 },
-            { courseName: "CMPT", courseNum: "471", priority: 6 },
+            { courseName: "CMPT", courseNum: "433", priority: 8 },
+            { courseName: "CMPT", courseNum: "431", priority: 6 },
             { courseName: "CMPT", courseNum: "105w", priority: 3 },
             { courseName: "MACM", courseNum: "316", priority: 9 },
-            { courseName: "IAT", courseNum: "100", priority: 10 },
+            { courseName: "CMPT", courseNum: "225", priority: 1 },
+            { courseName: "CMPT", courseNum: "376w", priority: 5 },
+            { courseName: "IAT", courseNum: "265", priority: 3 },
+            { courseName: "MATH", courseNum: "151", priority: 10 },
+            { courseName: "MACM", courseNum: "201", priority: 9 },
+            { courseName: "CMPT", courseNum: "295", priority: 2 },
+            { courseName: "CMPT", courseNum: "454", priority: 4 },
           ]}
           fetchCourseData={fetchCourseData}
           handleSelectWithPriority={handleSelectWithPriority}
@@ -178,7 +184,7 @@ function Home() {
       )}
 
       {/* Displaying feedback messages */}
-      {!isLoading && showNotification &&(
+      {!isLoading && showNotification && (
         <MessageNotification
           message={feedbackMessage}
           status={"success"}

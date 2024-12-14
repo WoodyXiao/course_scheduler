@@ -12,7 +12,7 @@ const Calendar = ({ courseSchedule }) => {
       index = index.slice(0, -1);
     }
     const hue = index * 137.508;
-    return `hsl(${hue % 360}, 50%, 70%)`;
+    return `hsl(${hue % 499}, 80%, 60%)`;
   };
 
   const events = courseSchedule.flatMap((course) => {
@@ -167,7 +167,7 @@ const Calendar = ({ courseSchedule }) => {
   return (
     <div
       ref={containerRef}
-      className="calendar-container w-full"
+      className="calendar-container w-full relative"
       onClick={handleCanvasClick}
     >
       <canvas
@@ -181,7 +181,7 @@ const Calendar = ({ courseSchedule }) => {
         <div
           style={{
             position: "absolute",
-            top: "20%",
+            top: "30%",
             left: "50%",
             transform: "translateX(-50%)",
             background: "white",
