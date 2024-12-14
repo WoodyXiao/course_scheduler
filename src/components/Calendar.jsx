@@ -35,12 +35,16 @@ const Calendar = ({ courseSchedule }) => {
     }
   };
 
+  const removeParentheses = (inputString) => {
+    return inputString.replace(/ \([^)]*\)/, "");
+  };
+
   useEffect(() => {
     window.addEventListener("resize", updateSize);
     updateSize();
     return () => window.removeEventListener("resize", updateSize);
   }, []);
-
+  console.log("xxxxx", events);
   const timeToYPosition = (
     time,
     startHour = 7,
@@ -160,7 +164,12 @@ const Calendar = ({ courseSchedule }) => {
 
       context.fillStyle = "black";
       context.font = "12px Arial";
-      context.fillText(event.title, startX + 5, startY + 20, dayWidth - 10);
+      context.fillText(
+        removeParentheses(event.title),
+        startX + 5,
+        startY + 20,
+        dayWidth - 10
+      );
     });
   }, [dimensions, events]);
 
