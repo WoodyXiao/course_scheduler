@@ -5,11 +5,16 @@ This component is responsible for displaying the list of selected courses.
 import React from "react";
 import SelectedCourseList from "../components/SelectedCourseList";
 
-const SelectedCourses = ({ setSelectedCourses, courses, onRemoveCourse }) => {
+const SelectedCourses = ({
+  setSelectedCourses,
+  courses,
+  onRemoveCourse,
+  assosiateNum,
+}) => {
   const handleRemoveClick = (courseIndex) => {
     // Show confirmation dialog
     const isConfirmed = window.confirm(
-      `Are you sure you want to remove ${courses[courseIndex]["1"].course}?`
+      `Are you sure you want to remove ${courses[courseIndex][assosiateNum].course}?`
     );
     if (isConfirmed) {
       // Call the onRemoveCourse function passed from the parent component
@@ -44,7 +49,10 @@ const SelectedCourses = ({ setSelectedCourses, courses, onRemoveCourse }) => {
               </li>
             ))}
           </ul> */}
-          <SelectedCourseList courses={courses} handleRemoveClick={handleRemoveClick}/>
+          <SelectedCourseList
+            courses={courses}
+            handleRemoveClick={handleRemoveClick}
+          />
           <button
             className="flex-shrink-0 bg-sfu-light-red hover:bg-sfu-dark-red border-sfu-light-red hover:border-sfu-dark-red text-sm border-4 text-white py-1 px-2 rounded"
             onClick={() => setSelectedCourses([])}

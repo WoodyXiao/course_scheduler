@@ -23,7 +23,10 @@ function Home() {
   const [isLoading, setIsLoading] = useState(false);
   // State for display notification
   const [showNotification, setShowNotification] = useState(false);
-
+  // ******State for assosiate number, this is for accessing a course data.
+  const [assosiateNum, setAssosiateNum] = useState();
+  console.log("courseData", courseData);
+  console.log("associatedClass", assosiateNum);
   // Handler for successful data fetch from API
   const onFetchSuccess = (data, courseName, courseNum) => {
     setCourseData(null);
@@ -34,6 +37,7 @@ function Home() {
 
     // Updating state with fetched data and reset feedback message
     setCourseData({ data, name: safeCourseName, number: safeCourseNum });
+    setAssosiateNum(data[0].associatedClass);
     setFeedbackMessage("");
   };
 
@@ -77,9 +81,13 @@ function Home() {
 
     // Check if the course is already in the selected list
     if (
-      selectedCourses.some(
-        (course) => course["1"].course === newSelectedCourse["1"].course
-      )
+      selectedCourses.some((course) => {
+        if ("1" in course) {
+          return course["1"].course === newSelectedCourse[assosiateNum].course;
+        } else {
+          return course["2"].course === newSelectedCourse[assosiateNum].course;
+        }
+      })
     ) {
       setFeedbackMessage("This course is already in the list.");
       setShowNotification(!showNotification);
@@ -87,7 +95,7 @@ function Home() {
       // Add course to the selected list and display success message
       setSelectedCourses([...selectedCourses, newSelectedCourse]);
       setFeedbackMessage(
-        `Successfully added ${newSelectedCourse["1"].course} to the list.`
+        `Successfully added ${newSelectedCourse[assosiateNum].course} to the list.`
       );
       setCourseData(null);
       setShowNotification(!showNotification);
@@ -102,7 +110,7 @@ function Home() {
   // Handler for removing a course
   const handleRemoveCourse = (courseIndex) => {
     setFeedbackMessage(
-      `Successfully removed ${selectedCourses[courseIndex]["1"].course} to the list.`
+      `Successfully removed ${selectedCourses[courseIndex][assosiateNum].course} to the list.`
     );
     setSelectedCourses(
       selectedCourses.filter((_, index) => index !== courseIndex)
@@ -148,7 +156,7 @@ function Home() {
             { courseName: "CMPT", courseNum: "376w", priority: 5 },
             { courseName: "IAT", courseNum: "265", priority: 3 },
             { courseName: "MATH", courseNum: "151", priority: 10 },
-            { courseName: "MACM", courseNum: "201", priority: 9 },
+            { courseName: "CMPT", courseNum: "201", priority: 9 },
             { courseName: "CMPT", courseNum: "295", priority: 2 },
             { courseName: "CMPT", courseNum: "454", priority: 4 },
           ]}
@@ -197,6 +205,7 @@ function Home() {
         setSelectedCourses={setSelectedCourses}
         courses={selectedCourses}
         onRemoveCourse={handleRemoveCourse}
+        assosiateNum={assosiateNum}
       />
 
       {/* Component for generating the optimized courses schedule */}

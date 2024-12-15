@@ -10,13 +10,21 @@ import { fetchDetails } from "../api/api";
 import ActionButton from "../components/ActionButton";
 import { COURSE_URL } from "../utils/utils";
 
-const RenderCourse = ({ courses, setCourseData, courseName, courseNum, onSelectCourse }) => {
+const RenderCourse = ({
+  courses,
+  setCourseData,
+  courseName,
+  courseNum,
+  onSelectCourse,
+}) => {
   const [organizedCourses, setOrganizedCourses] = useState({});
   // State for the priority of the course
   const [priority, setPriority] = useState(0);
   // State for loading status
   const [isLoading, setIsLoading] = useState(true);
-
+  //
+  const [assosiateNum, setAssosiateNum] = useState(courses[0].associatedClass);
+  console.log("xxxxcourses", courses);
   useEffect(() => {
     let isSubscribed = true; // Flag to control effect cleanup, preventing memory leaks
 
@@ -92,7 +100,7 @@ const RenderCourse = ({ courses, setCourseData, courseName, courseNum, onSelectC
 
     return organizedCourses;
   };
-
+  console.log("");
   // Display a message if no courses are available
   if (!courses || !Array.isArray(courses) || courses.length === 0) {
     return <div>No courses available</div>;
@@ -127,16 +135,16 @@ const RenderCourse = ({ courses, setCourseData, courseName, courseNum, onSelectC
       ))} */}
 
       <div>
-          {organizedCourses['1'].lecture ? (
-            <CourseCard
-              courseID={courseName.toUpperCase() + " " + courseNum}
-              setCourseData={setCourseData}
-              title={`${organizedCourses['1'].lecture.title}`}
-              url={`${COURSE_URL}/${courseName}/${courseNum}.html`}
-            />
-          ) : (
-            "No lecture available"
-          )}
+        {organizedCourses[assosiateNum].lecture ? (
+          <CourseCard
+            courseID={courseName.toUpperCase() + " " + courseNum}
+            setCourseData={setCourseData}
+            title={`${organizedCourses[assosiateNum].lecture.title}`}
+            url={`${COURSE_URL}/${courseName}/${courseNum}.html`}
+          />
+        ) : (
+          "No lecture available"
+        )}
       </div>
       {/* Priority Slider */}
       <div>
