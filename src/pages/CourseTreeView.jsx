@@ -686,8 +686,6 @@ const CourseTreeView = () => {
   function parsePrerequisites(prerequisites) {
     let removedDescriptions = []; // Array to store removed parts
 
-    console.log("original: ", prerequisites);
-
     console.log("before remove des: ", prerequisites);
 
     // Removing specific program descriptions and capturing them
@@ -770,7 +768,7 @@ const CourseTreeView = () => {
       console.log("xxx");
 
       // Dynamically import the JSON data from the local file
-      import("../assets/sfu_courses_2024/cmpt/sfu_cmpt_2024_spring.json")
+      import("../assets/sfu_courses_2025/cmpt/sfu_cmpt_2025_spring.json")
         .then((data) => {
           // Find the course in the loaded data
           const course = data.default.find(
@@ -795,7 +793,7 @@ const CourseTreeView = () => {
     setInputValue(event.target.value);
   };
 
-  // console.log("xxxx", courseData);
+  console.log("courseData", courseData);
 
   return (
     <div className="flex-grow mt-8 p-4 max-w-screen-xl mx-auto w-full">
