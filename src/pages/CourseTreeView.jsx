@@ -1,810 +1,211 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import TreeView from "../components/TreeView";
 import ActionButton from "../components/ActionButton";
-
-const treeData = {
-  name: "Course",
-  children: [
-    {
-      name: "CMPT 471",
-      children: [
-        {
-          name: "AND",
-          condition: "AND",
-          children: [
-            {
-              name: "CMPT 300",
-              children: [
-                {
-                  name: "AND",
-                  condition: "AND",
-                  children: [
-                    {
-                      name: "CMPT 225",
-                      children: [
-                        {
-                          name: "OR",
-                          condition: "OR",
-                          children: [
-                            {
-                              name: "AND",
-                              condition: "AND",
-                              children: [
-                                {
-                                  name: "MACM 101",
-                                },
-                                {
-                                  name: "AND",
-                                  condition: "AND",
-                                  children: [
-                                    {
-                                      name: "CMPT 125",
-                                      children: [
-                                        {
-                                          name: "OR",
-                                          condition: "OR",
-                                          children: [
-                                            {
-                                              name: "CMPT 120",
-                                            },
-                                            {
-                                              name: "CMPT 130",
-                                            },
-                                          ],
-                                        },
-                                      ],
-                                    },
-                                    {
-                                      name: "OR",
-                                      condition: "OR",
-                                      children: [
-                                        { name: "CMPT 129" },
-                                        {
-                                          name: "CMPT 135",
-                                          children: [
-                                            {
-                                              name: "CMPT 130",
-                                            },
-                                          ],
-                                        },
-                                      ],
-                                    },
-                                  ],
-                                },
-                              ],
-                            },
-                            {
-                              name: "AND",
-                              condition: "AND",
-                              children: [
-                                {
-                                  name: "ENSC 251",
-                                  children: [
-                                    {
-                                      name: "OR",
-                                      condition: "OR",
-                                      children: [
-                                        {
-                                          name: "ENSC 151",
-                                        },
-                                        {
-                                          name: "CMPT 135",
-                                          children: [
-                                            {
-                                              name: "CMPT 130",
-                                            },
-                                          ],
-                                        },
-                                        {
-                                          name: "AND",
-                                          condition: "AND",
-                                          children: [
-                                            {
-                                              name: "CMPT 125",
-                                              children: [
-                                                {
-                                                  name: "OR",
-                                                  condition: "OR",
-                                                  children: [
-                                                    {
-                                                      name: "CMPT 120",
-                                                    },
-                                                    {
-                                                      name: "CMPT 130",
-                                                    },
-                                                  ],
-                                                },
-                                              ],
-                                            },
-                                            {
-                                              name: "CMPT 127",
-                                            },
-                                          ],
-                                        },
-                                      ],
-                                    },
-                                  ],
-                                },
-                                {
-                                  name: "ENSC 252",
-                                  children: [
-                                    {
-                                      name: "OR",
-                                      condition: "OR",
-                                      children: [
-                                        { name: "ENSC 151" },
-                                        {
-                                          name: "CMPT 125",
-                                          children: [
-                                            {
-                                              name: "OR",
-                                              condition: "OR",
-                                              children: [
-                                                {
-                                                  name: "CMPT 120",
-                                                },
-                                                {
-                                                  name: "CMPT 130",
-                                                },
-                                              ],
-                                            },
-                                          ],
-                                        },
-                                        { name: "CMPT 126" },
-                                        {
-                                          name: "CMPT 135",
-                                          children: [
-                                            {
-                                              name: "CMPT 130",
-                                            },
-                                          ],
-                                        },
-                                      ],
-                                    },
-                                  ],
-                                },
-                              ],
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                    {
-                      name: "OR",
-                      condition: "OR",
-                      children: [
-                        {
-                          name: "CMPT 295",
-                          children: [
-                            {
-                              name: "OR",
-                              condition: "OR",
-                              children: [
-                                {
-                                  name: "AND",
-                                  condition: "AND",
-                                  children: [
-                                    { name: "MACM 101" },
-                                    {
-                                      name: "OR",
-                                      condition: "OR",
-                                      children: [
-                                        {
-                                          name: "CMPT 125",
-                                          children: [
-                                            {
-                                              name: "OR",
-                                              condition: "OR",
-                                              children: [
-                                                {
-                                                  name: "CMPT 120",
-                                                },
-                                                {
-                                                  name: "CMPT 130",
-                                                },
-                                              ],
-                                            },
-                                          ],
-                                        },
-                                        {
-                                          name: "CMPT 135",
-                                          children: [{ name: "CMPT 130" }],
-                                        },
-                                      ],
-                                    },
-                                  ],
-                                },
-                                {
-                                  name: "AND",
-                                  condition: "AND",
-                                  children: [
-                                    { name: "MATH 151" },
-                                    { name: "CMPT 102" },
-                                  ],
-                                },
-                              ],
-                            },
-                          ],
-                        },
-                        {
-                          name: "ENSC 254",
-                          children: [
-                            {
-                              name: "OR",
-                              condition: "OR",
-                              children: [
-                                {
-                                  name: "AND",
-                                  condition: "AND",
-                                  children: [
-                                    {
-                                      name: "ENSC 251",
-                                      children: [
-                                        {
-                                          name: "OR",
-                                          condition: "OR",
-                                          children: [
-                                            {
-                                              name: "ENSC 151",
-                                            },
-                                            {
-                                              name: "CMPT 135",
-                                              children: [
-                                                {
-                                                  name: "CMPT 130",
-                                                },
-                                              ],
-                                            },
-                                            {
-                                              name: "AND",
-                                              condition: "AND",
-                                              children: [
-                                                {
-                                                  name: "CMPT 125",
-                                                  children: [
-                                                    {
-                                                      name: "OR",
-                                                      condition: "OR",
-                                                      children: [
-                                                        {
-                                                          name: "CMPT 120",
-                                                        },
-                                                        {
-                                                          name: "CMPT 130",
-                                                        },
-                                                      ],
-                                                    },
-                                                  ],
-                                                },
-                                                {
-                                                  name: "CMPT 127",
-                                                },
-                                              ],
-                                            },
-                                          ],
-                                        },
-                                      ],
-                                    },
-                                    {
-                                      name: "ENSC 252",
-                                      children: [
-                                        {
-                                          name: "OR",
-                                          condition: "OR",
-                                          children: [
-                                            { name: "ENSC 151" },
-                                            {
-                                              name: "CMPT 125",
-                                              children: [
-                                                {
-                                                  name: "OR",
-                                                  condition: "OR",
-                                                  children: [
-                                                    {
-                                                      name: "CMPT 120",
-                                                    },
-                                                    {
-                                                      name: "CMPT 130",
-                                                    },
-                                                  ],
-                                                },
-                                              ],
-                                            },
-                                            { name: "CMPT 126" },
-                                            {
-                                              name: "CMPT 135",
-                                              children: [
-                                                {
-                                                  name: "CMPT 130",
-                                                },
-                                              ],
-                                            },
-                                          ],
-                                        },
-                                      ],
-                                    },
-                                  ],
-                                },
-                                {
-                                  name: "AND",
-                                  condition: "NAD",
-                                  children: [
-                                    {
-                                      name: "CMPT 225",
-                                      children: [
-                                        {
-                                          name: "OR",
-                                          condition: "OR",
-                                          children: [
-                                            {
-                                              name: "AND",
-                                              condition: "AND",
-                                              children: [
-                                                {
-                                                  name: "MACM 101",
-                                                },
-                                                {
-                                                  name: "AND",
-                                                  condition: "AND",
-                                                  children: [
-                                                    {
-                                                      name: "CMPT 125",
-                                                      children: [
-                                                        {
-                                                          name: "OR",
-                                                          condition: "OR",
-                                                          children: [
-                                                            {
-                                                              name: "CMPT 120",
-                                                            },
-                                                            {
-                                                              name: "CMPT 130",
-                                                            },
-                                                          ],
-                                                        },
-                                                      ],
-                                                    },
-                                                    {
-                                                      name: "OR",
-                                                      condition: "OR",
-                                                      children: [
-                                                        { name: "CMPT 129" },
-                                                        {
-                                                          name: "CMPT 135",
-                                                          children: [
-                                                            {
-                                                              name: "CMPT 130",
-                                                            },
-                                                          ],
-                                                        },
-                                                      ],
-                                                    },
-                                                  ],
-                                                },
-                                              ],
-                                            },
-                                            {
-                                              name: "AND",
-                                              condition: "AND",
-                                              children: [
-                                                {
-                                                  name: "ENSC 251",
-                                                  children: [
-                                                    {
-                                                      name: "OR",
-                                                      condition: "OR",
-                                                      children: [
-                                                        {
-                                                          name: "ENSC 151",
-                                                        },
-                                                        {
-                                                          name: "CMPT 135",
-                                                          children: [
-                                                            {
-                                                              name: "CMPT 130",
-                                                            },
-                                                          ],
-                                                        },
-                                                        {
-                                                          name: "AND",
-                                                          condition: "AND",
-                                                          children: [
-                                                            {
-                                                              name: "CMPT 125",
-                                                              children: [
-                                                                {
-                                                                  name: "OR",
-                                                                  condition:
-                                                                    "OR",
-                                                                  children: [
-                                                                    {
-                                                                      name: "CMPT 120",
-                                                                    },
-                                                                    {
-                                                                      name: "CMPT 130",
-                                                                    },
-                                                                  ],
-                                                                },
-                                                              ],
-                                                            },
-                                                            {
-                                                              name: "CMPT 127",
-                                                            },
-                                                          ],
-                                                        },
-                                                      ],
-                                                    },
-                                                  ],
-                                                },
-                                                {
-                                                  name: "ENSC 252",
-                                                  children: [
-                                                    {
-                                                      name: "OR",
-                                                      condition: "OR",
-                                                      children: [
-                                                        { name: "ENSC 151" },
-                                                        {
-                                                          name: "CMPT 125",
-                                                          children: [
-                                                            {
-                                                              name: "OR",
-                                                              condition: "OR",
-                                                              children: [
-                                                                {
-                                                                  name: "CMPT 120",
-                                                                },
-                                                                {
-                                                                  name: "CMPT 130",
-                                                                },
-                                                              ],
-                                                            },
-                                                          ],
-                                                        },
-                                                        { name: "CMPT 126" },
-                                                        {
-                                                          name: "CMPT 135",
-                                                          children: [
-                                                            {
-                                                              name: "CMPT 130",
-                                                            },
-                                                          ],
-                                                        },
-                                                      ],
-                                                    },
-                                                  ],
-                                                },
-                                              ],
-                                            },
-                                          ],
-                                        },
-                                      ],
-                                    },
-                                    {
-                                      name: "CMPT 150",
-                                    },
-                                  ],
-                                },
-                              ],
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-              ],
-            },
-
-            {
-              name: "CMPT 371",
-              children: [
-                {
-                  name: "AND",
-                  condition: "AND",
-                  children: [
-                    {
-                      name: "CMPT 225",
-                      children: [
-                        {
-                          name: "OR",
-                          condition: "OR",
-                          children: [
-                            {
-                              name: "AND",
-                              condition: "AND",
-                              children: [
-                                {
-                                  name: "MACM 101",
-                                },
-                                {
-                                  name: "AND",
-                                  condition: "AND",
-                                  children: [
-                                    {
-                                      name: "CMPT 125",
-                                      children: [
-                                        {
-                                          name: "OR",
-                                          condition: "OR",
-                                          children: [
-                                            {
-                                              name: "CMPT 120",
-                                            },
-                                            {
-                                              name: "CMPT 130",
-                                            },
-                                          ],
-                                        },
-                                      ],
-                                    },
-                                    {
-                                      name: "OR",
-                                      condition: "OR",
-                                      children: [
-                                        { name: "CMPT 129" },
-                                        {
-                                          name: "CMPT 135",
-                                          children: [
-                                            {
-                                              name: "CMPT 130",
-                                            },
-                                          ],
-                                        },
-                                      ],
-                                    },
-                                  ],
-                                },
-                              ],
-                            },
-                            {
-                              name: "AND",
-                              condition: "AND",
-                              children: [
-                                {
-                                  name: "ENSC 251",
-                                  children: [
-                                    {
-                                      name: "OR",
-                                      condition: "OR",
-                                      children: [
-                                        {
-                                          name: "ENSC 151",
-                                        },
-                                        {
-                                          name: "CMPT 135",
-                                          children: [
-                                            {
-                                              name: "CMPT 130",
-                                            },
-                                          ],
-                                        },
-                                        {
-                                          name: "AND",
-                                          condition: "AND",
-                                          children: [
-                                            {
-                                              name: "CMPT 125",
-                                              children: [
-                                                {
-                                                  name: "OR",
-                                                  condition: "OR",
-                                                  children: [
-                                                    {
-                                                      name: "CMPT 120",
-                                                    },
-                                                    {
-                                                      name: "CMPT 130",
-                                                    },
-                                                  ],
-                                                },
-                                              ],
-                                            },
-                                            {
-                                              name: "CMPT 127",
-                                            },
-                                          ],
-                                        },
-                                      ],
-                                    },
-                                  ],
-                                },
-                                {
-                                  name: "ENSC 252",
-                                  children: [
-                                    {
-                                      name: "OR",
-                                      condition: "OR",
-                                      children: [
-                                        { name: "ENSC 151" },
-                                        {
-                                          name: "CMPT 125",
-                                          children: [
-                                            {
-                                              name: "OR",
-                                              condition: "OR",
-                                              children: [
-                                                {
-                                                  name: "CMPT 120",
-                                                },
-                                                {
-                                                  name: "CMPT 130",
-                                                },
-                                              ],
-                                            },
-                                          ],
-                                        },
-                                        { name: "CMPT 126" },
-                                        {
-                                          name: "CMPT 135",
-                                          children: [
-                                            {
-                                              name: "CMPT 130",
-                                            },
-                                          ],
-                                        },
-                                      ],
-                                    },
-                                  ],
-                                },
-                              ],
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                    {
-                      name: "OR",
-                      condition: "OR",
-                      children: [{ name: "MATH 151" }, { name: "MATH 150" }],
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },
-  ],
-};
-
-// Test the parse pre
-const cmpt225 = {
-  info: {
-    prerequisites:
-      "One W course and (CMPT 225 and (MACM 101 or (ENSC 251 and ENSC 252)) and (MATH 151 or MATH 150))",
-  },
-};
 
 const CourseTreeView = () => {
   const [courseData, setCourseData] = useState(null);
   const [courseNumber, setCourseNumber] = useState("");
   const [inputValue, setInputValue] = useState("");
   const [extraInfo, setExtraInfo] = useState([]);
+  const [allCourses, setAllCourses] = useState([]);
+  const extraInfoRef = useRef([]);
 
-  function parsePrerequisites(prerequisites) {
-    let removedDescriptions = []; // Array to store removed parts
+  // 1. 加载并标准化所有课程，自动从 name 提取 subject 字段
+  useEffect(() => {
+    import("../assets/sfu_courses_2025/cmpt/sfu_cmpt_2025_spring.json")
+      .then((data) => {
+        const normalized = (data.default || []).map(item => {
+          // 先找现成的 subject/department/code，否则从 name 字段抽取
+          let subject = item.subject || item.department || item.code || item.subject_area || "";
+          if (!subject && item.name) {
+            // 提取 "CMPT" from "CMPT 225 D100"
+            const match = item.name.match(/^([A-Z]+)\s/);
+            if (match) subject = match[1];
+          }
+          return {
+            ...item,
+            course_number: String(item.course_number).toUpperCase(),
+            subject: String(subject).toUpperCase()
+          };
+        });
+        console.log("标准化后的allCourses示例:", normalized[0]);
+        setAllCourses(normalized);
+      })
+      .catch((error) => console.error("Failed to load course data", error));
+  }, []);
 
-    console.log("before remove des: ", prerequisites);
+  // 2. 搜索和递归
+  useEffect(() => {
+    if (courseNumber && allCourses.length > 0) {
+      setCourseData(null);
+      extraInfoRef.current = [];
 
-    // Removing specific program descriptions and capturing them
+      const inputNum = courseNumber.toUpperCase().trim();
+      const course = allCourses.find(
+        (c) => (c.course_number || "") === inputNum
+      );
+      console.log("[Search] 输入课号：", inputNum, " | 查找到课程：", course);
+
+      if (course && course.prerequisites) {
+        const parsedData = parsePrerequisites(
+          course.prerequisites,
+          allCourses,
+          new Set(),
+          `${course.subject} ${course.course_number}`
+        );
+        setCourseData(parsedData);
+        setExtraInfo([...extraInfoRef.current]);
+      } else {
+        setCourseData(null);
+        setExtraInfo([]);
+      }
+    }
+  }, [courseNumber, allCourses]);
+
+  // 3. 递归解析
+  function parsePrerequisites(
+    prerequisites,
+    allCourses,
+    visited = new Set(),
+    courseFullName = ""
+  ) {
+    let removedDescriptions = [];
     prerequisites = prerequisites.replace(
       /(for students in an Applied Physics program|both with a minimum grade of [A-Z-]| all with a minimum grade of [A-Z-]+\.)|(\s+with a minimum grade of C-)|(\s*MATH \d{3} or MATH \d{3} with (at least a|a grade of at least) B\+ may be substituted for MATH \d{3}( or MATH \d{3})?( \([^)]*\))?|\s*CMPT \d{3} and \d{3} are recommended|\s*are recommended)|(\s*at least \d+ units)|(\s*CGPA and UDGPA over \d+\.\d+)|(\s*enrolled in any [^,]+ program)|(\s*Participation in the [^,]+ is competitive and an application must be submitted to the [^,]+ by a defined due date announced each term)/g,
       function (match) {
         removedDescriptions.push(match.trim());
-        return ""; // Replace the match with an empty string
+        return "";
       }
     );
+    if (removedDescriptions.length > 0) {
+      extraInfoRef.current.push(...removedDescriptions);
+    }
 
-    setExtraInfo(removedDescriptions);
-    console.log("removed detail info: ", removedDescriptions);
-    console.log("after removed des ", prerequisites);
-
-    // Preprocess to correctly format course numbers with department prefixes
     prerequisites = prerequisites.replace(
-      /(\w+)\s+(\d+)((?:\s*(?:,|and)\s*\d+)*)/g,
+      /(\w+)\s+(\d+[A-Z]?)(\s*(?:,|and)\s*\d+[A-Z]?)+/g,
       (match, dept, firstCourse, remainingCourses) => {
-        if (remainingCourses) {
-          remainingCourses = remainingCourses.replace(
-            /(\s*(?:,|and)\s*)(\d+)/g,
-            `$1${dept} $2`
-          );
-        }
+        remainingCourses = remainingCourses.replace(
+          /(\s*(?:,|and)\s*)(\d+[A-Z]?)/g,
+          `$1${dept} $2`
+        );
         return `${dept} ${firstCourse}${remainingCourses}`;
       }
     );
-
-    console.log("After expanding course numbers: ", prerequisites);
-
     prerequisites = prerequisites.trim();
 
-    // Tokenization to capture relevant terms and structures
-    const tokens = prerequisites.match(/\(|\)|\w+ \d+|and|or/gi);
-    console.log("tokens ", tokens);
+    const tokens = prerequisites.match(/\(|\)|\w+ \d+[A-Z]?|and|or/gi) || [];
     let index = 0;
+
     function parseExpression() {
       let exprStack = [];
       let current = { name: "ROOT", condition: "", children: [] };
-
       while (index < tokens.length) {
-        let token = tokens[index].toUpperCase();
+        let token = tokens[index];
         index++;
 
         if (token === "(") {
           exprStack.push(current);
           current = { name: "ROOT", condition: "", children: [] };
-        } else if (token === "AND" || token === "OR") {
+          continue;
+        }
+
+        if (token && (token.toUpperCase() === "AND" || token.toUpperCase() === "OR")) {
           if (current.name === "ROOT") {
-            current.name = token;
-            current.condition = token;
+            current.name = token.toUpperCase();
+            current.condition = token.toUpperCase();
           } else {
-            let newNode = { name: token, condition: token, children: [] };
+            let newNode = { name: token.toUpperCase(), condition: token.toUpperCase(), children: [] };
             exprStack.push(current);
             current = newNode;
           }
-        } else if (token === ")") {
+          continue;
+        }
+
+        if (token === ")") {
           let completed = current;
           current = exprStack.pop();
           current.children.push(completed);
-        } else if (/\w+ \d+/.test(token)) {
-          current.children.push({ name: token, condition: "", children: [] });
+          continue;
         }
-      }
 
+        if (/^\w+ \d+[A-Z]?$/.test(token)) {
+          const splitToken = token.split(" ");
+          const dept = splitToken[0];
+          const num = splitToken[1];
+          if (!dept || !num) {
+            console.error("非法token: ", token, "无法分割为 subject 和 course_number");
+            current.children.push({ name: token, condition: "", children: [] });
+            continue;
+          }
+          const key = `${dept.toUpperCase()} ${num.toUpperCase()}`;
+          console.log(
+            "[token]=", token,
+            "| [dept]=", dept,
+            "| [num]=", num,
+            "| [key]=", key
+          );
+          if (!visited.has(key)) {
+            visited.add(key);
+
+            const matched = allCourses.filter(
+              (c) =>
+                (c.subject || "") === dept.toUpperCase() &&
+                (c.course_number || "") === num.toUpperCase()
+            );
+            console.log("查找课程key:", key, "，找到条数:", matched.length, matched);
+
+            const found = matched[0];
+            let childNode = { name: key, condition: "", children: [] };
+            if (found && found.prerequisites && found.prerequisites.trim()) {
+              console.log("递归查找: ", key, "的先修:", found.prerequisites);
+              const subTree = parsePrerequisites(
+                found.prerequisites,
+                allCourses,
+                new Set(visited), // 👈 传副本
+                key
+              );
+              if (subTree && subTree.children && subTree.children.length > 0) {
+                childNode.children = subTree.children;
+                childNode.condition = subTree.condition || "";
+              }
+            }
+            current.children.push(childNode);
+          } else {
+            current.children.push({ name: key, condition: "", children: [] });
+          }
+          continue;
+        }
+
+        console.warn("遇到未知token:", token);
+        current.children.push({ name: String(token), condition: "", children: [] });
+      }
       return current.children.length === 1 ? current.children[0] : current;
     }
 
     return {
-      name: `CMPT ${courseNumber}`,
+      name: courseFullName || "",
       condition: "",
       children: [parseExpression()],
     };
   }
-  useEffect(() => {
-    if (courseNumber) {
-      // Reset course data to ensure UI reflects the loading state
-      setCourseData(null);
-      console.log("xxx");
-
-      // Dynamically import the JSON data from the local file
-      import("../assets/sfu_courses_2025/cmpt/sfu_cmpt_2025_spring.json")
-        .then((data) => {
-          // Find the course in the loaded data
-          const course = data.default.find(
-            (course) => course.course_number === courseNumber
-          );
-          if (course) {
-            const parsedData = parsePrerequisites(course.prerequisites);
-            setCourseData(parsedData);
-          } else {
-            setCourseData(null);
-          }
-        })
-        .catch((error) => console.error("Failed to load course data", error));
-    }
-  }, [courseNumber]); // Depend on courseNumber to refetch when it changes
 
   const handleSearch = () => {
-    setCourseNumber(inputValue.trim());
+    setCourseNumber(inputValue.trim().toUpperCase());
   };
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
 
-  console.log("courseData", courseData);
-
   return (
     <div className="flex-grow mt-8 p-4 max-w-screen-xl mx-auto w-full">
       <h1 className="text-3xl font-bold">Course Requirements Quick Check</h1>
       <div className="flex-auto">
         <h3 className="font-bold">Course Search</h3>
-        cmpt
         <input
           className="appearance-none bg-transparent border border-gray-500 text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none rounded"
           type="text"
-          placeholder="Enter your course number"
+          placeholder="Enter your course number (e.g., 225, 225W, 471)"
           value={inputValue}
           onChange={handleInputChange}
         />

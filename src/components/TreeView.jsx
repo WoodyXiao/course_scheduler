@@ -42,7 +42,7 @@ function TreeView({ data }) {
       .attr("d", d3.linkHorizontal().x(d => d.y).y(d => d.x))
       .attr("stroke", (d) => d.source.data.condition === "OR" ? "blue" : "red")
       .attr("fill", "none")
-      .attr("stroke-width", "1.5px");
+      .attr("stroke-width", "2px");
 
     const node = g.selectAll(".node")
       .data(treeData.descendants())
@@ -55,8 +55,8 @@ function TreeView({ data }) {
       });
 
     node.append("circle")
-      .attr("r", 8)
-      .style("fill", (d) => (d.children ? "#555" : "#999"))
+      .attr("r", 10)
+      .style("fill", (d) => (d.children ? "#888" : "#999"))
       .on("mouseover", function (event, d) {
         d3.select(this)
           .style("fill", "orange")
