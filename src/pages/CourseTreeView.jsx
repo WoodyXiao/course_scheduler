@@ -10,15 +10,15 @@ const CourseTreeView = () => {
   const [allCourses, setAllCourses] = useState([]);
   const extraInfoRef = useRef([]);
 
-  // 1. 加载并标准化所有课程，自动从 name 提取 subject 字段
+  // 1. Load and normalize all courses, take name from subject
   useEffect(() => {
     import("../assets/sfu_courses_2025/cmpt/sfu_cmpt_2025_spring.json")
       .then((data) => {
         const normalized = (data.default || []).map(item => {
-          // 先找现成的 subject/department/code，否则从 name 字段抽取
+          // Find subject/department/code, or extract from name.
           let subject = item.subject || item.department || item.code || item.subject_area || "";
           if (!subject && item.name) {
-            // 提取 "CMPT" from "CMPT 225 D100"
+            // Extract Course Name, e.g "CMPT" from "CMPT 225 D100"
             const match = item.name.match(/^([A-Z]+)\s/);
             if (match) subject = match[1];
           }
@@ -62,7 +62,7 @@ const CourseTreeView = () => {
     }
   }, [courseNumber, allCourses]);
 
-  // 3. 递归解析
+  // 3. Recursive.
   function parsePrerequisites(
     prerequisites,
     allCourses,
