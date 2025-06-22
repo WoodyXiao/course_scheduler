@@ -10,7 +10,7 @@ const CourseTreeView = () => {
   const [allCourses, setAllCourses] = useState([]);
   const extraInfoRef = useRef([]);
 
-  // 1. Load and normalize all courses, take name from subject
+  // 1. Load and normalize all cmpt courses, take name from subject
   useEffect(() => {
     import("../assets/sfu_courses_2025/cmpt/sfu_cmpt_2025_spring.json")
       .then((data) => {
@@ -28,13 +28,13 @@ const CourseTreeView = () => {
             subject: String(subject).toUpperCase()
           };
         });
-        console.log("标准化后的allCourses示例:", normalized[0]);
+        console.log("Standardlize allCourses example:", normalized[0]);
         setAllCourses(normalized);
       })
       .catch((error) => console.error("Failed to load course data", error));
   }, []);
 
-  // 2. 搜索和递归
+  // 2. Search and recursive
   useEffect(() => {
     if (courseNumber && allCourses.length > 0) {
       setCourseData(null);
@@ -44,7 +44,7 @@ const CourseTreeView = () => {
       const course = allCourses.find(
         (c) => (c.course_number || "") === inputNum
       );
-      console.log("[Search] 输入课号：", inputNum, " | 查找到课程：", course);
+      console.log("[Search] Input course number", inputNum, " | Searched Courses:", course);
 
       if (course && course.prerequisites) {
         const parsedData = parsePrerequisites(
@@ -133,7 +133,7 @@ const CourseTreeView = () => {
           const dept = splitToken[0];
           const num = splitToken[1];
           if (!dept || !num) {
-            console.error("非法token: ", token, "无法分割为 subject 和 course_number");
+            console.error("illegal token: ", token, "Can't split subject and course_number");
             current.children.push({ name: token, condition: "", children: [] });
             continue;
           }
@@ -152,16 +152,16 @@ const CourseTreeView = () => {
                 (c.subject || "") === dept.toUpperCase() &&
                 (c.course_number || "") === num.toUpperCase()
             );
-            console.log("查找课程key:", key, "，找到条数:", matched.length, matched);
+            console.log("Serch course key:", key, "result:", matched.length, matched);
 
             const found = matched[0];
             let childNode = { name: key, condition: "", children: [] };
             if (found && found.prerequisites && found.prerequisites.trim()) {
-              console.log("递归查找: ", key, "的先修:", found.prerequisites);
+              console.log("Recursively search: ", key, "pre:", found.prerequisites);
               const subTree = parsePrerequisites(
                 found.prerequisites,
                 allCourses,
-                new Set(visited), // 👈 传副本
+                new Set(visited), 
                 key
               );
               if (subTree && subTree.children && subTree.children.length > 0) {
@@ -176,7 +176,7 @@ const CourseTreeView = () => {
           continue;
         }
 
-        console.warn("遇到未知token:", token);
+        console.warn("This is unknown token:", token);
         current.children.push({ name: String(token), condition: "", children: [] });
       }
       return current.children.length === 1 ? current.children[0] : current;
