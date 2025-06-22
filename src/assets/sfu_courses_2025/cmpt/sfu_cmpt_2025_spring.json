@@ -7,7 +7,7 @@
   {
     "course_number": "120",
     "name": "CMPT 120 D100",
-    "prerequisites": "BC Math 12 or equivalent is recommended."
+    "prerequisites": "BC Math 12 (or equivalent is recommended )."
   },
   {
     "course_number": "125",
@@ -167,7 +167,7 @@
   {
     "course_number": "420",
     "name": "CMPT 420 D100",
-    "prerequisites": "CMPT 410 or CMPT 419 (Machine Learning), with a minimum grade of C-."
+    "prerequisites": "CMPT 410 or CMPT 419 , with a minimum grade of C-."
   },
   {
     "course_number": "426",

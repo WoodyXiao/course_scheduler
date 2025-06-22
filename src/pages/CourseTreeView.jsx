@@ -2,6 +2,15 @@ import React, { useState, useEffect, useRef } from "react";
 import TreeView from "../components/TreeView";
 import ActionButton from "../components/ActionButton";
 
+// 工具函数：兼容所有格式
+function parseCourseKey(token) {
+  // 兼容 "CMPT 125" / "CMPT125" / "CMPT125W" / "cmpt125"
+  token = token.toUpperCase().replace(/\s+/g, "");
+  const match = token.match(/^([A-Z]+)([0-9]{3,4}[A-Z]?)$/);
+  if (!match) return [null, null];
+  return [match[1], match[2]];
+}
+
 const CourseTreeView = () => {
   const [courseData, setCourseData] = useState(null);
   const [courseNumber, setCourseNumber] = useState("");
@@ -12,39 +21,77 @@ const CourseTreeView = () => {
 
   // 1. Load and normalize all cmpt courses, take name from subject
   useEffect(() => {
-    import("../assets/sfu_courses_2025/cmpt/sfu_cmpt_2025_spring.json")
-      .then((data) => {
-        const normalized = (data.default || []).map(item => {
-          // Find subject/department/code, or extract from name.
-          let subject = item.subject || item.department || item.code || item.subject_area || "";
+    Promise.all([
+      import("../assets/sfu_courses_2025/cmpt/sfu_cmpt_2025_spring.json"),
+      import("../assets/sfu_courses_2025/cmpt/sfu_cmpt_2025_summer.json"),
+      import("../assets/sfu_courses_2025/cmpt/sfu_cmpt_2025_fall.json"),
+      // import("../assets/sfu_courses_2025/math/sfu_math_2025_fall.json"),
+    ])
+      .then(([spring, summer, fall, math]) => {
+        // 合并所有term
+        const merged = [
+          ...(spring.default || []),
+          ...(summer.default || []),
+          ...(fall.default || []),
+          // ...(math.default || []),
+        ];
+
+        // 标准化，自动抽subject
+        const normalized = merged.map((item) => {
+          let subject =
+            item.subject ||
+            item.department ||
+            item.code ||
+            item.subject_area ||
+            "";
           if (!subject && item.name) {
-            // Extract Course Name, e.g "CMPT" from "CMPT 225 D100"
             const match = item.name.match(/^([A-Z]+)\s/);
             if (match) subject = match[1];
           }
           return {
             ...item,
             course_number: String(item.course_number).toUpperCase(),
-            subject: String(subject).toUpperCase()
+            subject: String(subject).toUpperCase(),
           };
         });
-        console.log("Standardlize allCourses example:", normalized[0]);
-        setAllCourses(normalized);
+
+        // 用 Map 去重，只保留每个 subject+course_number 的最新一项
+        const dedupedMap = new Map();
+        for (const course of normalized) {
+          // 以"CMPT 225"为key，后面遇到的会覆盖前面，或者你喜欢只保留第一次出现的可以加 if (!dedupedMap.has(key))
+          const key = `${course.subject} ${course.course_number}`;
+          dedupedMap.set(key, course);
+        }
+        const deduped = Array.from(dedupedMap.values());
+
+        console.log("去重后的allCourses示例:", deduped[0]);
+        setAllCourses(deduped);
       })
       .catch((error) => console.error("Failed to load course data", error));
   }, []);
-
+  console.log("allCourses:", allCourses);
   // 2. Search and recursive
   useEffect(() => {
     if (courseNumber && allCourses.length > 0) {
       setCourseData(null);
       extraInfoRef.current = [];
 
-      const inputNum = courseNumber.toUpperCase().trim();
+      // 拆分兼容格式，始终规范成 "CMPT 125"
+      const [subject, num] = parseCourseKey(courseNumber);
+      const inputNum =
+        subject && num
+          ? `${subject} ${num}`
+          : courseNumber.toUpperCase().trim();
+
       const course = allCourses.find(
-        (c) => (c.course_number || "") === inputNum
+        (c) => `${c.subject} ${c.course_number}` === inputNum
       );
-      console.log("[Search] Input course number", inputNum, " | Searched Courses:", course);
+      console.log(
+        "[Search] Input course number",
+        inputNum,
+        " | Searched Courses:",
+        course
+      );
 
       if (course && course.prerequisites) {
         const parsedData = parsePrerequisites(
@@ -93,7 +140,9 @@ const CourseTreeView = () => {
     );
     prerequisites = prerequisites.trim();
 
-    const tokens = prerequisites.match(/\(|\)|\w+ \d+[A-Z]?|and|or/gi) || [];
+    // 这里允许同时兼容有无空格格式
+    const tokens =
+      prerequisites.match(/\(|\)|[A-Z]+\s*[0-9]{3,4}[A-Z]?|and|or/gi) || [];
     let index = 0;
 
     function parseExpression() {
@@ -109,12 +158,19 @@ const CourseTreeView = () => {
           continue;
         }
 
-        if (token && (token.toUpperCase() === "AND" || token.toUpperCase() === "OR")) {
+        if (
+          token &&
+          (token.toUpperCase() === "AND" || token.toUpperCase() === "OR")
+        ) {
           if (current.name === "ROOT") {
             current.name = token.toUpperCase();
             current.condition = token.toUpperCase();
           } else {
-            let newNode = { name: token.toUpperCase(), condition: token.toUpperCase(), children: [] };
+            let newNode = {
+              name: token.toUpperCase(),
+              condition: token.toUpperCase(),
+              children: [],
+            };
             exprStack.push(current);
             current = newNode;
           }
@@ -128,40 +184,57 @@ const CourseTreeView = () => {
           continue;
         }
 
-        if (/^\w+ \d+[A-Z]?$/.test(token)) {
-          const splitToken = token.split(" ");
-          const dept = splitToken[0];
-          const num = splitToken[1];
+        // 新增：兼容无空格和有空格格式
+        if (/^[A-Z]+\s*[0-9]{3,4}[A-Z]?$/.test(token.toUpperCase())) {
+          const [dept, num] = parseCourseKey(token);
           if (!dept || !num) {
-            console.error("illegal token: ", token, "Can't split subject and course_number");
+            console.error(
+              "illegal token: ",
+              token,
+              "Can't split subject and course_number"
+            );
             current.children.push({ name: token, condition: "", children: [] });
             continue;
           }
-          const key = `${dept.toUpperCase()} ${num.toUpperCase()}`;
+          const key = `${dept} ${num}`;
           console.log(
-            "[token]=", token,
-            "| [dept]=", dept,
-            "| [num]=", num,
-            "| [key]=", key
+            "[token]=",
+            token,
+            "| [dept]=",
+            dept,
+            "| [num]=",
+            num,
+            "| [key]=",
+            key
           );
           if (!visited.has(key)) {
             visited.add(key);
 
             const matched = allCourses.filter(
               (c) =>
-                (c.subject || "") === dept.toUpperCase() &&
-                (c.course_number || "") === num.toUpperCase()
+                (c.subject || "") === dept && (c.course_number || "") === num
             );
-            console.log("Serch course key:", key, "result:", matched.length, matched);
+            console.log(
+              "Serch course key:",
+              key,
+              "result:",
+              matched.length,
+              matched
+            );
 
             const found = matched[0];
             let childNode = { name: key, condition: "", children: [] };
             if (found && found.prerequisites && found.prerequisites.trim()) {
-              console.log("Recursively search: ", key, "pre:", found.prerequisites);
+              console.log(
+                "Recursively search: ",
+                key,
+                "pre:",
+                found.prerequisites
+              );
               const subTree = parsePrerequisites(
                 found.prerequisites,
                 allCourses,
-                new Set(visited), 
+                new Set(visited),
                 key
               );
               if (subTree && subTree.children && subTree.children.length > 0) {
@@ -177,7 +250,11 @@ const CourseTreeView = () => {
         }
 
         console.warn("This is unknown token:", token);
-        current.children.push({ name: String(token), condition: "", children: [] });
+        current.children.push({
+          name: String(token),
+          condition: "",
+          children: [],
+        });
       }
       return current.children.length === 1 ? current.children[0] : current;
     }
@@ -189,8 +266,14 @@ const CourseTreeView = () => {
     };
   }
 
+  // 搜索框：自动兼容格式
   const handleSearch = () => {
-    setCourseNumber(inputValue.trim().toUpperCase());
+    const [subject, num] = parseCourseKey(inputValue.trim());
+    if (subject && num) {
+      setCourseNumber(`${subject} ${num}`);
+    } else {
+      setCourseNumber(inputValue.trim().toUpperCase());
+    }
   };
 
   const handleInputChange = (event) => {
