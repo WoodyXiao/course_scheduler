@@ -109,8 +109,17 @@ function Home() {
 
   // Handler for removing a course
   const handleRemoveCourse = (courseIndex) => {
+    // Check if the course exists before accessing its properties
+    if (!selectedCourses[courseIndex]) {
+      console.error('Course not found at index:', courseIndex);
+      return;
+    }
+
+    const course = selectedCourses[courseIndex];
+    const courseName = "1" in course ? course["1"].course : course["2"].course;
+    
     setFeedbackMessage(
-      `Successfully removed ${selectedCourses[courseIndex][assosiateNum].course} to the list.`
+      `Successfully removed ${courseName} from the list.`
     );
     setSelectedCourses(
       selectedCourses.filter((_, index) => index !== courseIndex)
@@ -122,6 +131,18 @@ function Home() {
   useEffect(() => {
     console.log("Selected Courses:", selectedCourses);
   }, [selectedCourses]);
+
+  const [accordionCloseCallback, setAccordionCloseCallback] = useState(null);
+
+  const handleGenerateSchedule = () => {
+    console.log('handleGenerateSchedule called');
+    if (accordionCloseCallback) {
+      console.log('Calling accordionCloseCallback');
+      accordionCloseCallback();
+    } else {
+      console.log('accordionCloseCallback is null');
+    }
+  };
 
   return (
     <main className="flex-grow mt-8 p-4 max-w-screen-xl mx-auto w-full">
@@ -206,10 +227,17 @@ function Home() {
         courses={selectedCourses}
         onRemoveCourse={handleRemoveCourse}
         assosiateNum={assosiateNum}
+        onGenerateSchedule={(callback) => {
+          console.log('Setting accordionCloseCallback in Home');
+          setAccordionCloseCallback(() => callback);
+        }}
       />
 
       {/* Component for generating the optimized courses schedule */}
-      <GenerateSchedule selectedCourses={selectedCourses} />
+      <GenerateSchedule 
+        selectedCourses={selectedCourses} 
+        onGenerateSchedule={handleGenerateSchedule}
+      />
     </main>
   );
 }

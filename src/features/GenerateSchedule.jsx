@@ -9,12 +9,15 @@ import {
 } from "../utils/utils.jsx";
 import Schedule from "../components/Schedule.jsx";
 import ActionButton from "../components/ActionButton.jsx";
+import LoadingSpinner from "../components/LoadingSpinner.jsx";
 
-const GenerateSchedule = ({ selectedCourses }) => {
+const GenerateSchedule = ({ selectedCourses, onGenerateSchedule }) => {
   const [selectedSchedule, setSelectedSchedule] = useState({
     schedule: [],
     totalPriority: 0,
   });
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [generationProgress, setGenerationProgress] = useState(0);
 
   // ---------------- Weighted Interval Scheduling Algorithm Implementation ---------------------
 
@@ -202,18 +205,94 @@ const GenerateSchedule = ({ selectedCourses }) => {
   };
 
   return (
-    <div>
+    <div className="relative">
       <h3 className="font-bold">3.Now generate a schedule</h3>
       <ActionButton
-        text={"Generate Schedule"}
-        onClick={() => {
-          const finalSelectedCourses = simplifySelectedCourses(
-            restructureSelectedCourses(selectedCourses)
-          );
-          console.log("Selected Courses:", finalSelectedCourses);
-          const newSelectedSchedule = scheduleCourses(finalSelectedCourses);
-          console.log("Selected Schedule:", newSelectedSchedule);
-          setSelectedSchedule(newSelectedSchedule);
+        text="Generate Schedule"
+        isLoading={isGenerating}
+        onClick={async () => {
+          if (onGenerateSchedule) {
+            onGenerateSchedule();
+          }
+          
+          setIsGenerating(true);
+          
+          try {
+            await new Promise(resolve => requestAnimationFrame(resolve));
+            await new Promise(resolve => requestAnimationFrame(resolve));
+            
+            let finalSelectedCourses;
+            let newSelectedSchedule;
+            
+            await new Promise(resolve => {
+              setTimeout(() => {
+                finalSelectedCourses = simplifySelectedCourses(
+                  restructureSelectedCourses(selectedCourses)
+                );
+                console.log("Selected Courses:", finalSelectedCourses);
+                resolve();
+              }, 50);
+            });
+            
+            setGenerationProgress(10);
+            await new Promise(resolve => setTimeout(resolve, 200));
+            
+            setGenerationProgress(30);
+            await new Promise(resolve => setTimeout(resolve, 200));
+            
+            setGenerationProgress(50);
+            await new Promise(resolve => {
+              setTimeout(() => {
+                try {
+
+                  const timeoutPromise = new Promise((_, reject) => {
+                    setTimeout(() => reject(new Error('Algorithm timeout')), 10000); // 10秒超时
+                  });
+                  
+                  const algorithmPromise = new Promise((resolve) => {
+                    newSelectedSchedule = scheduleCourses(finalSelectedCourses);
+                    resolve();
+                  });
+                  
+                  Promise.race([algorithmPromise, timeoutPromise])
+                    .then(() => {
+                      console.log("Selected Schedule:", newSelectedSchedule);
+                      resolve();
+                    })
+                    .catch((error) => {
+                      console.error("Algorithm error:", error);
+                      newSelectedSchedule = { schedule: [], totalPriority: 0 };
+                      resolve();
+                    });
+                } catch (error) {
+                  console.error("Algorithm error:", error);
+                  newSelectedSchedule = { schedule: [], totalPriority: 0 };
+                  resolve();
+                }
+              }, 200);
+            });
+            
+            setGenerationProgress(70);
+            await new Promise(resolve => setTimeout(resolve, 200));
+            
+            setGenerationProgress(90);
+            await new Promise(resolve => setTimeout(resolve, 200));
+            
+            await new Promise(resolve => {
+              setTimeout(() => {
+                setSelectedSchedule(newSelectedSchedule);
+                resolve();
+              }, 50);
+            });
+            
+            await new Promise(resolve => setTimeout(resolve, 1000));
+          } finally {
+            setGenerationProgress(100);
+            setTimeout(() => {
+              setIsGenerating(false);
+              setGenerationProgress(0);
+            }, 500);
+          }
         }}
       />
       {selectedSchedule.schedule.length !== 0 && (
@@ -232,6 +311,29 @@ const GenerateSchedule = ({ selectedCourses }) => {
             totalMaxPriority={selectedSchedule.totalPriority}
           />
         </>
+      )}
+      
+      {/* Loading Overlay */}
+      {isGenerating && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-8 shadow-lg flex flex-col items-center space-y-4 w-80">
+            <LoadingSpinner size="large" color="blue" />
+            <h3 className="text-lg font-semibold text-gray-800">Generating Schedule</h3>
+            <p className="text-sm text-gray-600 text-center">
+              Please wait while we optimize your course schedule...
+            </p>
+            <div className="w-full bg-gray-200 rounded-full h-3">
+              <div 
+                className="bg-blue-600 h-3 rounded-full transition-all duration-500 ease-out"
+                style={{ 
+                  width: `${generationProgress}%`,
+                  minWidth: generationProgress > 0 ? '4px' : '0px'
+                }}
+              />
+            </div>
+            <p className="text-xs text-gray-500">{generationProgress}%</p>
+          </div>
+        </div>
       )}
     </div>
   );
