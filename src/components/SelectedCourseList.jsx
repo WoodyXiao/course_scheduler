@@ -22,46 +22,67 @@ const SelectedCourseList = ({ courses, handleRemoveClick, isSimpleList = false }
         {courses.map((course, index) => {
           const courseName = "1" in course ? course["1"].course : course["2"].course;
           const lectureTitle = "1" in course ? course["1"].lecture.title : course["2"].course;
+          const priority = course.priority || 0;
+          
+          const progressColor = '#3B82F6';
+          const progressWidth = (priority / 10) * 100;
           
           return (
             <div
               key={index}
-              className="flex items-center justify-between p-3 bg-gray-50 border border-gray-200 rounded-lg hover:bg-gray-100 transition-colors"
+              className="relative flex items-center justify-between p-3 bg-gray-50 border border-gray-200 rounded-lg hover:shadow-md transition-all duration-200 overflow-hidden"
             >
-              <div className="flex items-center space-x-3">
-                <div className="flex items-center space-x-2">
-                  <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                  </svg>
-                  <div>
-                    <span className="font-medium text-gray-800">{courseName}</span>
-                    <span className="text-sm text-gray-500 ml-2">{lectureTitle}</span>
+              <div 
+                className="absolute inset-0 transition-all duration-300 ease-out"
+                style={{
+                  width: `${progressWidth}%`,
+                  backgroundColor: progressColor,
+                  opacity: 0.15
+                }}
+              />
+              
+              <div className="relative z-10 flex items-center justify-between w-full">
+                <div className="flex items-center space-x-3">
+                  <div className="flex items-center space-x-2">
+                    <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                    <div>
+                      <span className="font-medium text-gray-800">{courseName}</span>
+                      <span className="text-sm text-gray-500 ml-2">{lectureTitle}</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-              
-              <div className="flex items-center space-x-2">
-                <span className="bg-blue-100 text-blue-800 text-xs font-medium px-2 py-1 rounded-full">
-                  Priority: {course.priority}
-                </span>
-                <button
-                  className="p-1 text-gray-400 hover:text-red-500 transition-colors"
-                  onClick={() => handleRemoveClick(index)}
-                >
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+                
+                <div className="flex items-center space-x-2">
+                  <span 
+                    className="text-xs font-medium px-2 py-1 rounded-full text-white"
+                    style={{
+                      backgroundColor: progressColor,
+                      boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)'
+                    }}
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                    />
-                  </svg>
-                </button>
+                    Priority: {course.priority}
+                  </span>
+                  <button
+                    className="p-1 text-gray-400 hover:text-red-500 transition-colors"
+                    onClick={() => handleRemoveClick(index)}
+                  >
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                      />
+                    </svg>
+                  </button>
+                </div>
               </div>
             </div>
           );
