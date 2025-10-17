@@ -109,8 +109,17 @@ function Home() {
 
   // Handler for removing a course
   const handleRemoveCourse = (courseIndex) => {
+    // Check if the course exists before accessing its properties
+    if (!selectedCourses[courseIndex]) {
+      console.error('Course not found at index:', courseIndex);
+      return;
+    }
+
+    const course = selectedCourses[courseIndex];
+    const courseName = "1" in course ? course["1"].course : course["2"].course;
+    
     setFeedbackMessage(
-      `Successfully removed ${selectedCourses[courseIndex][assosiateNum].course} to the list.`
+      `Successfully removed ${courseName} from the list.`
     );
     setSelectedCourses(
       selectedCourses.filter((_, index) => index !== courseIndex)
