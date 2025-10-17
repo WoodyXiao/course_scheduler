@@ -132,6 +132,18 @@ function Home() {
     console.log("Selected Courses:", selectedCourses);
   }, [selectedCourses]);
 
+  const [accordionCloseCallback, setAccordionCloseCallback] = useState(null);
+
+  const handleGenerateSchedule = () => {
+    console.log('handleGenerateSchedule called');
+    if (accordionCloseCallback) {
+      console.log('Calling accordionCloseCallback');
+      accordionCloseCallback();
+    } else {
+      console.log('accordionCloseCallback is null');
+    }
+  };
+
   return (
     <main className="flex-grow mt-8 p-4 max-w-screen-xl mx-auto w-full">
       <h1 className="text-3xl font-bold">Welcome to SFU Courses Scheduler</h1>
@@ -215,10 +227,17 @@ function Home() {
         courses={selectedCourses}
         onRemoveCourse={handleRemoveCourse}
         assosiateNum={assosiateNum}
+        onGenerateSchedule={(callback) => {
+          console.log('Setting accordionCloseCallback in Home');
+          setAccordionCloseCallback(() => callback);
+        }}
       />
 
       {/* Component for generating the optimized courses schedule */}
-      <GenerateSchedule selectedCourses={selectedCourses} />
+      <GenerateSchedule 
+        selectedCourses={selectedCourses} 
+        onGenerateSchedule={handleGenerateSchedule}
+      />
     </main>
   );
 }

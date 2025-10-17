@@ -10,6 +10,7 @@ const SelectedCourses = ({
   courses,
   onRemoveCourse,
   assosiateNum,
+  onGenerateSchedule,
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -39,6 +40,20 @@ const SelectedCourses = ({
     });
     setSelectedCourses(sortedCourses);
   };
+
+  // 关闭手风琴的函数
+  const closeAccordion = React.useCallback(() => {
+    console.log('closeAccordion called, setting isExpanded to false');
+    setIsExpanded(false);
+  }, []);
+
+  // 当GenerateSchedule被调用时，自动关闭手风琴
+  React.useEffect(() => {
+    if (onGenerateSchedule) {
+      console.log('Setting accordionCloseCallback');
+      onGenerateSchedule(closeAccordion);
+    }
+  }, []); // 只在组件挂载时执行一次
 
   const handleRemoveClick = (courseIndex) => {
     // Check if the course exists before accessing its properties
