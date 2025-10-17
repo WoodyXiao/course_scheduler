@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 
-const SelectedCourseList = ({ courses, handleRemoveClick, isSimpleList = false }) => {
+const SelectedCourseList = ({ courses, handleRemoveClick, isSimpleList = false, onPriorityChange }) => {
   const [expandedItems, setExpandedItems] = useState(new Set());
+  const [editingPriority, setEditingPriority] = useState(null);
+  const [tempPriority, setTempPriority] = useState('');
 
   const toggleExpanded = (index) => {
     const newExpanded = new Set(expandedItems);
@@ -14,6 +16,33 @@ const SelectedCourseList = ({ courses, handleRemoveClick, isSimpleList = false }
   };
 
   const isExpanded = (index) => expandedItems.has(index);
+
+  const handlePriorityEdit = (index, currentPriority) => {
+    setEditingPriority(index);
+    setTempPriority(currentPriority.toString());
+  };
+
+  const handlePrioritySave = (index) => {
+    const newPriority = parseInt(tempPriority);
+    if (newPriority >= 1 && newPriority <= 10 && onPriorityChange) {
+      onPriorityChange(index, newPriority);
+    }
+    setEditingPriority(null);
+    setTempPriority('');
+  };
+
+  const handlePriorityCancel = () => {
+    setEditingPriority(null);
+    setTempPriority('');
+  };
+
+  const handlePriorityKeyPress = (e, index) => {
+    if (e.key === 'Enter') {
+      handlePrioritySave(index);
+    } else if (e.key === 'Escape') {
+      handlePriorityCancel();
+    }
+  };
 
   if (isSimpleList) {
     // Simple list mode for the big accordion - just a list, no accordion for individual courses
@@ -55,15 +84,52 @@ const SelectedCourseList = ({ courses, handleRemoveClick, isSimpleList = false }
                 </div>
                 
                 <div className="flex items-center space-x-2">
-                  <span 
-                    className="text-xs font-medium px-2 py-1 rounded-full text-white"
-                    style={{
-                      backgroundColor: progressColor,
-                      boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)'
-                    }}
-                  >
-                    Priority: {course.priority}
-                  </span>
+                  {editingPriority === index ? (
+                    <div className="flex items-center space-x-1">
+                      <input
+                        type="number"
+                        min="1"
+                        max="10"
+                        value={tempPriority}
+                        onChange={(e) => setTempPriority(e.target.value)}
+                        onKeyDown={(e) => handlePriorityKeyPress(e, index)}
+                        className="w-12 px-1 py-1 text-xs text-center border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        autoFocus
+                      />
+                      <button
+                        onClick={() => handlePrioritySave(index)}
+                        className="p-1 text-green-600 hover:text-green-800 transition-colors"
+                        title="Save"
+                      >
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </button>
+                      <button
+                        onClick={handlePriorityCancel}
+                        className="p-1 text-red-600 hover:text-red-800 transition-colors"
+                        title="Cancel"
+                      >
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="flex items-center space-x-1">
+                      <span 
+                        className="text-xs font-medium px-2 py-1 rounded-full text-white cursor-pointer hover:opacity-80 transition-opacity"
+                        style={{
+                          backgroundColor: progressColor,
+                          boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)'
+                        }}
+                        onClick={() => handlePriorityEdit(index, course.priority)}
+                        title="Click to edit priority"
+                      >
+                        Priority: {course.priority}
+                      </span>
+                    </div>
+                  )}
                   <button
                     className="p-1 text-gray-400 hover:text-red-500 transition-colors"
                     onClick={() => handleRemoveClick(index)}

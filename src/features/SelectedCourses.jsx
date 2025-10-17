@@ -13,6 +13,33 @@ const SelectedCourses = ({
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
+  const handlePriorityChange = (courseIndex, newPriority) => {
+    const updatedCourses = courses.map((course, index) => {
+      if (index === courseIndex) {
+        return {
+          ...course,
+          priority: newPriority
+        };
+      }
+      return course;
+    });
+    setSelectedCourses(updatedCourses);
+  };
+
+  const handleSortCourses = () => {
+    const sortedCourses = [...courses].sort((a, b) => {
+      // 首先按优先级从高到低排序
+      if (b.priority !== a.priority) {
+        return b.priority - a.priority;
+      }
+      // 如果优先级相同，按课程名称排序
+      const courseNameA = "1" in a ? a["1"].course : a["2"].course;
+      const courseNameB = "1" in b ? b["1"].course : b["2"].course;
+      return courseNameA.localeCompare(courseNameB);
+    });
+    setSelectedCourses(sortedCourses);
+  };
+
   const handleRemoveClick = (courseIndex) => {
     // Check if the course exists before accessing its properties
     if (!courses[courseIndex]) {
@@ -85,6 +112,24 @@ const SelectedCourses = ({
             
             <div className="flex items-center space-x-2">
               <button
+                className="flex items-center space-x-1 px-3 py-1 text-sm bg-blue-100 text-blue-700 hover:bg-blue-200 transition-colors rounded"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleSortCourses();
+                }}
+                title="Sort courses by priority (high to low), then by name"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12"
+                  />
+                </svg>
+                <span>Sorting</span>
+              </button>
+              <button
                 className="flex items-center space-x-1 px-3 py-1 text-sm bg-red-100 text-red-700 hover:bg-red-200 transition-colors rounded"
                 onClick={(e) => {
                   e.stopPropagation();
@@ -131,6 +176,7 @@ const SelectedCourses = ({
                 courses={courses}
                 handleRemoveClick={handleRemoveClick}
                 isSimpleList={true}
+                onPriorityChange={handlePriorityChange}
               />
             </div>
           </div>
