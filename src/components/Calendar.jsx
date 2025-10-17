@@ -1,212 +1,442 @@
-import React, { useRef, useEffect, useState } from "react";
-import { extractCourseNum } from "../utils/utils";
+import React, { useState, useMemo } from "react";
+import { Calendar as BigCalendar, momentLocalizer } from "react-big-calendar";
+import moment from "moment";
+import "react-big-calendar/lib/css/react-big-calendar.css";
+
+const customStyles = `
+  .rbc-toolbar {
+    display: none !important;
+  }
+  
+  .rbc-today {
+    background-color: transparent !important;
+  }
+  
+  /* 移除今天高亮线 */
+  .rbc-time-view .rbc-today {
+    background-color: transparent !important;
+  }
+  
+  .rbc-time-view .rbc-today .rbc-day-bg {
+    background-color: transparent !important;
+  }
+  
+  /* 移除当前时间线 */
+  .rbc-current-time-indicator {
+    display: none !important;
+  }
+  
+  .rbc-time-view .rbc-current-time-indicator {
+    display: none !important;
+  }
+  
+  .rbc-header {
+    background-color: #f8fafc !important;
+    color: #374151 !important;
+    font-weight: 600 !important;
+    font-size: 12px !important;
+    padding: 6px 4px !important;
+    border-bottom: 1px solid #e5e7eb !important;
+    border-right: 1px solid #e5e7eb !important;
+    text-align: center !important;
+    line-height: 1.1 !important;
+    height: 32px !important;
+    min-height: 32px !important;
+    max-height: 32px !important;
+  }
+  
+  .rbc-time-view .rbc-header {
+    background-color: #f8fafc !important;
+    color: #374151 !important;
+    border-right: 1px solid #e5e7eb !important;
+    height: 32px !important;
+    min-height: 32px !important;
+    max-height: 32px !important;
+  }
+
+  .rbc-time-view .rbc-header:last-child {
+    border-right: none !important;
+  }
+  
+  .rbc-time-slot {
+    color: #6b7280 !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+  }
+  
+  .rbc-time-content {
+    border-top: 1px solid #e5e7eb !important;
+  }
+
+  .rbc-time-view .rbc-timeslot-group {
+    border-bottom: 1px solid #f3f4f6 !important;
+  }
+  
+  .rbc-time-view .rbc-time-gutter {
+    background-color: #fafbfc !important;
+    border-right: 1px solid #e5e7eb !important;
+  }
+
+  .rbc-time-view .rbc-day-bg {
+    border-right: 1px solid #f3f4f6 !important;
+  }
+  
+  .rbc-time-view .rbc-day-bg:last-child {
+    border-right: none !important;
+  }
+
+  .rbc-time-view .rbc-header + .rbc-time-content {
+    border-top: 1px solid #e5e7eb !important;
+  }
+
+  .rbc-time-view .rbc-header-overlay {
+    height: 32px !important;
+    min-height: 32px !important;
+    max-height: 32px !important;
+  }
+
+  .rbc-time-view .rbc-time-content {
+    border-top: 1px solid #e5e7eb !important;
+    margin-top: 0 !important;
+  }
+
+  .rbc-time-view .rbc-time-gutter {
+    border-right: 1px solid #e5e7eb !important;
+    width: 60px !important;
+  }
+  
+  /* 自定义表头样式 */
+  .rbc-header .rbc-header-content {
+    font-weight: 600 !important;
+    font-size: 12px !important;
+    color: #374151 !important;
+    text-align: center !important;
+  }
+
+  .rbc-event-label {
+    display: none !important;
+  }
+  
+  .rbc-event-content {
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    padding: 4px 8px !important;
+  }
+  
+  .rbc-event-time {
+    display: none !important;
+  }
+  
+  .rbc-event .rbc-event-time {
+    display: none !important;
+  }
+  
+  .rbc-event .rbc-event-label {
+    display: none !important;
+  }
+  
+  .rbc-event:hover {
+    opacity: 0.9 !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  }
+  
+  .rbc-event {
+    transition: all 0.2s ease !important;
+    border-radius: 6px !important;
+    border: none !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08) !important;
+  }
+  
+  .rbc-calendar {
+    background: white !important;
+    border-radius: 8px !important;
+    border: 1px solid #e5e7eb !important;
+    overflow: hidden !important;
+  }
+  
+  .rbc-time-content::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .rbc-time-content::-webkit-scrollbar-track {
+    background: #f1f5f9;
+  }
+  
+  .rbc-time-content::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+  }
+  
+  .rbc-time-content::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+  
+  .rbc-timeslot-group {
+    min-height: 50px !important;
+  }
+  
+  .rbc-events-container {
+    margin-right: 0 !important;
+  }
+`;
+
+const localizer = momentLocalizer(moment);
+
+const EventComponent = ({ event }) => {
+  return (
+    <div className="rbc-event-content" style={{ 
+      fontSize: '12px', 
+      fontWeight: '600',
+      padding: '4px 8px',
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap',
+      color: '#ffffff',
+      textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)',
+      lineHeight: '1.2'
+    }}>
+      {event.title}
+    </div>
+  );
+};
+
+// 自定义表头组件，只显示星期几
+const CustomHeader = ({ date, localizer, label }) => {
+  const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const dayIndex = date.getDay();
+  return (
+    <div className="rbc-header-content">
+      {dayNames[dayIndex]}
+    </div>
+  );
+};
 
 const Calendar = ({ courseSchedule }) => {
-  const canvasRef = useRef(null);
-  const containerRef = useRef(null);
-  const [dimensions, setDimensions] = useState({ width: 700, height: 700 });
   const [selectedEvent, setSelectedEvent] = useState(null);
 
-  const getColorByCourse = (index) => {
-    if (index[index.length - 1] === "w") {
-      index = index.slice(0, -1);
-    }
-    const hue = index * 137.508;
-    return `hsl(${hue % 499}, 80%, 60%)`;
-  };
-
-  const events = courseSchedule.flatMap((course) => {
-    return course.scheduleEntries.map((entry) => ({
-      title: `${course.courseName} (${entry.type.toUpperCase()})`,
-      day: entry.day,
-      startTime: entry.startTime,
-      endTime: entry.endTime,
-      color: getColorByCourse(extractCourseNum(course.courseName)),
-      details: `Lecture: ${course.lecture}, Lab: ${course.lab}, Campus: ${entry.campus}`,
-    }));
-  });
-
-  const updateSize = () => {
-    if (containerRef.current) {
-      setDimensions({
-        width: containerRef.current.offsetWidth,
-        height: containerRef.current.offsetHeight,
-      });
-    }
-  };
-
-  const removeParentheses = (inputString) => {
-    return inputString.replace(/ \([^)]*\)/, "");
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", updateSize);
-    updateSize();
-    return () => window.removeEventListener("resize", updateSize);
-  }, []);
-  console.log("xxxxx", events);
-  const timeToYPosition = (
-    time,
-    startHour = 7,
-    hourHeight = dimensions.height / 13
-  ) => {
-    const [hours, minutes] = time.split(":").map(Number);
-    return ((hours - startHour) * 60 + minutes) * (hourHeight / 60);
-  };
-
-  const dayMap = {
-    Mo: "Monday",
-    Tu: "Tuesday",
-    We: "Wednesday",
-    Th: "Thursday",
-    Fr: "Friday",
-    Sa: "Saturday",
-    Su: "Sunday",
-  };
-
-  const handleCanvasClick = (e) => {
-    const rect = canvasRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const timeLabelWidth = 50;
-    const dayWidth = (dimensions.width - timeLabelWidth) / 5;
-    const headerHeight = 30;
-
+  const assignColorsToEvents = (events) => {
+    const softColors = [
+      '#6B73FF', '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', 
+      '#FFEAA7', '#DDA0DD', '#98D8C8', '#F7DC6F', '#BB8FCE',
+      '#85C1E9', '#F8C471', '#82E0AA', '#F1948A', '#85C1E9', '#D2B4DE'
+    ];
+    
+    const courseColorMap = new Map();
+    let colorIndex = 0;
+    
     events.forEach((event) => {
-      const dayIndex = [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-      ].indexOf(dayMap[event.day]);
-      if (dayIndex === -1) return; // skip if day is not a weekday
-      const startX = timeLabelWidth + dayWidth * dayIndex;
-      const startY = headerHeight + timeToYPosition(event.startTime);
-      const endY = headerHeight + timeToYPosition(event.endTime);
-      if (x >= startX && x <= startX + dayWidth && y >= startY && y <= endY) {
-        setSelectedEvent(event);
+      const courseName = event.title.split(' (')[0];
+      
+      if (!courseColorMap.has(courseName)) {
+        const assignedColor = softColors[colorIndex % softColors.length];
+        courseColorMap.set(courseName, assignedColor);
+        colorIndex++;
       }
+      
+      event.resource.color = courseColorMap.get(courseName);
     });
+    return events;
   };
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    const context = canvas.getContext("2d");
-    const { width, height } = dimensions;
-    const headerHeight = 30;
-    const hourHeight = (height - headerHeight) / 13;
-    const timeLabelWidth = 50;
-    const dayWidth = (width - timeLabelWidth) / 5;
 
-    canvas.width = width;
-    canvas.height = height;
+  const events = useMemo(() => {
+    if (!courseSchedule || !Array.isArray(courseSchedule)) {
+      return [];
+    }
 
-    context.clearRect(0, 0, width, height);
-    context.fillStyle = "white";
-    context.fillRect(0, 0, width, height);
-
-    context.fillStyle = "#f0f0f0";
-    context.fillRect(timeLabelWidth, 0, width - timeLabelWidth, headerHeight);
-
-    ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"].forEach(
-      (day, index) => {
-        context.fillStyle = "#000";
-        context.font = "14px Arial";
-        context.fillText(
-          day,
-          timeLabelWidth +
-            dayWidth * index +
-            dayWidth / 2 -
-            context.measureText(day).width / 2,
-          20
-        );
+    const rawEvents = courseSchedule.flatMap((course) => {
+      if (!course.scheduleEntries || !Array.isArray(course.scheduleEntries)) {
+        return [];
       }
-    );
 
-    context.beginPath();
-    context.moveTo(timeLabelWidth, 0);
-    context.lineTo(timeLabelWidth, height);
-    for (let i = 0; i < 5; i++) {
-      context.moveTo(timeLabelWidth + dayWidth * (i + 1), headerHeight);
-      context.lineTo(timeLabelWidth + dayWidth * (i + 1), height);
-    }
-    for (let i = 0; i <= 13; i++) {
-      context.moveTo(timeLabelWidth, headerHeight + i * hourHeight);
-      context.lineTo(width, headerHeight + i * hourHeight);
-    }
-    context.strokeStyle = "#ccc";
-    context.stroke();
+      return course.scheduleEntries.map((entry, index) => {
+        const startTime = entry.startTime || entry.start || entry.timeStart;
+        const endTime = entry.endTime || entry.end || entry.timeEnd;
+        
+        if (!startTime || !endTime) {
+          return null;
+        }
 
-    for (let i = 0; i <= 13; i++) {
-      context.fillStyle = "#000";
-      context.fillText(`${7 + i}:00`, 5, headerHeight + i * hourHeight + 5);
-    }
+        let startHour, startMin, endHour, endMin;
+        
+        try {
+          [startHour, startMin] = startTime.split(":").map(Number);
+          [endHour, endMin] = endTime.split(":").map(Number);
+        } catch (error) {
+          return null;
+        }
+        
+        const dayMap = {
+          Mo: 1, Tu: 2, We: 3, Th: 4, Fr: 5, Sa: 6, Su: 0
+        };
+        
+        const today = moment();
+        const startOfWeek = today.clone().startOf('week');
+        const eventDate = startOfWeek.clone().add(dayMap[entry.day], 'days');
+        
+        const startDateTime = eventDate.clone()
+          .hour(startHour)
+          .minute(startMin)
+          .second(0);
+        
+        const endDateTime = eventDate.clone()
+          .hour(endHour)
+          .minute(endMin)
+          .second(0);
 
-    events.forEach((event) => {
-      const dayIndex = [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-      ].indexOf(dayMap[event.day]);
-      if (dayIndex === -1) return; // skip if day is not a weekday
-      const startX = timeLabelWidth + dayWidth * dayIndex;
-      const startY =
-        headerHeight + timeToYPosition(event.startTime, 7, hourHeight);
-      const endY = headerHeight + timeToYPosition(event.endTime, 7, hourHeight);
-
-      context.fillStyle = event.color;
-      context.fillRect(startX, startY, dayWidth, endY - startY);
-      context.strokeStyle = "black";
-      context.strokeRect(startX, startY, dayWidth, endY - startY);
-
-      context.fillStyle = "black";
-      context.font = "12px Arial";
-      context.fillText(
-        removeParentheses(event.title),
-        startX + 5,
-        startY + 20,
-        dayWidth - 10
-      );
+        return {
+          id: `${course.courseName}-${entry.day}-${index}`,
+          title: `${course.courseName} (${entry.type?.toUpperCase() || 'COURSE'})`,
+          start: startDateTime.toDate(),
+          end: endDateTime.toDate(),
+          resource: {
+            course: course,
+            entry: entry,
+            color: '#3B82F6',
+            details: `Lecture: ${course.lecture || 'N/A'}, Lab: ${course.lab || 'N/A'}, Campus: ${entry.campus || 'N/A'}`
+          }
+        };
+      }).filter(Boolean);
     });
-  }, [dimensions, events]);
+
+    return assignColorsToEvents(rawEvents);
+  }, [courseSchedule]);
+
+  const eventStyleGetter = (event) => {
+    return {
+      style: {
+        backgroundColor: event.resource.color,
+        borderRadius: '8px',
+        border: 'none',
+        color: '#ffffff',
+        fontSize: '12px',
+        fontWeight: '600',
+        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+        opacity: '0.9',
+        transition: 'all 0.2s ease',
+        cursor: 'pointer'
+      }
+    };
+  };
+
+  const handleSelectEvent = (event) => {
+    setSelectedEvent(event);
+  };
+
+  const closeEventDetails = () => {
+    setSelectedEvent(null);
+  };
 
   return (
-    <div
-      ref={containerRef}
-      className="calendar-container w-full relative"
-      onClick={handleCanvasClick}
-    >
-      <canvas
-        ref={canvasRef}
-        style={{
-          width: `${dimensions.width}px`,
-          height: `${dimensions.height}px`,
+    <div className="calendar-container w-full" style={{ height: '400px', overflow: 'hidden' }}>
+      <style>{customStyles}</style>
+      <BigCalendar
+        localizer={localizer}
+        events={events}
+        startAccessor="start"
+        endAccessor="end"
+        style={{ height: '100%', overflow: 'hidden' }}
+        views={['week']}
+        defaultView="week"
+        step={30}
+        timeslots={2}
+        onSelectEvent={handleSelectEvent}
+        eventPropGetter={eventStyleGetter}
+        components={{
+          event: EventComponent,
+          header: CustomHeader
         }}
+        min={new Date(2024, 0, 1, 7, 0, 0)} // 7:00 AM
+        max={new Date(2024, 0, 1, 20, 0, 0)} // 8:00 PM
+        dayLayoutAlgorithm="no-overlap"
+        toolbar={false}
+        showMultiDayTimes={false}
+        showAllEvents={false}
+        popup={false}
+        doShowMoreDrillDown={false}
+        drilldownView={null}
+        onNavigate={() => {}}
+        onView={() => {}}
       />
+      
       {selectedEvent && (
-        <div
-          style={{
-            position: "absolute",
-            top: "30%",
-            left: "50%",
-            transform: "translateX(-50%)",
-            background: "white",
-            border: "1px solid black",
-            padding: "20px",
-            zIndex: 1000,
-          }}
-        >
-          <p>
-            <strong>{selectedEvent.title}</strong>
-          </p>
-          <p>
-            Time: {selectedEvent.startTime} - {selectedEvent.endTime}
-          </p>
-          <p>Details: {selectedEvent.details}</p>
-          <button onClick={() => setSelectedEvent(null)}>Close</button>
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div 
+            className="rounded-lg p-6 max-w-md w-full mx-4 shadow-lg text-white"
+            style={{ 
+              backgroundColor: selectedEvent.resource.color,
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)'
+            }}
+          >
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-bold text-white">{selectedEvent.title}</h3>
+              <button
+                onClick={closeEventDetails}
+                className="text-white hover:text-gray-200 transition-colors"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            
+            <div className="space-y-3">
+              <div className="flex items-center space-x-2">
+                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span className="text-white font-medium">
+                  {moment(selectedEvent.start).format('HH:mm')} - {moment(selectedEvent.end).format('HH:mm')}
+                </span>
+              </div>
+              
+              <div className="flex items-center space-x-2">
+                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                <span className="text-white font-medium">
+                  {moment(selectedEvent.start).format('dddd, MMMM Do')}
+                </span>
+              </div>
+              
+              <div className="bg-white bg-opacity-20 rounded p-3">
+                <p className="text-white text-sm">
+                  <strong>Details:</strong> {selectedEvent.resource.details}
+                </p>
+              </div>
+              
+              <div className="flex items-center justify-between bg-white bg-opacity-20 rounded p-3">
+                <div className="flex items-center space-x-2">
+                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                  </svg>
+                  <span className="text-white font-medium">Priority: {selectedEvent.resource.course.priority}</span>
+                </div>
+                <div className="flex space-x-1">
+                  {[...Array(10)].map((_, i) => (
+                    <div
+                      key={i}
+                      className={`w-2 h-2 rounded-full ${
+                        i < selectedEvent.resource.course.priority 
+                          ? 'bg-white' 
+                          : 'bg-white bg-opacity-30'
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+            
+            <div className="mt-4 flex justify-end">
+              <button
+                onClick={closeEventDetails}
+                className="bg-white bg-opacity-20 hover:bg-opacity-30 text-white px-4 py-2 rounded transition-all duration-200 font-medium"
+              >
+                Close
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>
