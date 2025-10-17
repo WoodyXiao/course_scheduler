@@ -16,7 +16,6 @@ const Schedule = ({ schedule, totalMaxPriority }) => {
         </div>
       </div>
 
-      {/* 新的日历组件 */}
       <div className="bg-white rounded-lg shadow-lg p-4 overflow-hidden">
         <h4 className="text-lg font-semibold mb-4 text-gray-800">Weekly Schedule</h4>
         <div className="border border-gray-200 rounded-lg overflow-hidden">
@@ -24,7 +23,6 @@ const Schedule = ({ schedule, totalMaxPriority }) => {
         </div>
       </div>
 
-      {/* 课程列表 */}
       <div className="bg-white rounded-lg shadow-lg p-6">
         <h4 className="text-xl font-semibold mb-4 text-gray-800">Course Details</h4>
         <div className="space-y-4">
