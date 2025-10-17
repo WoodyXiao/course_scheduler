@@ -12,6 +12,24 @@ const customStyles = `
     background-color: transparent !important;
   }
   
+  /* 移除今天高亮线 */
+  .rbc-time-view .rbc-today {
+    background-color: transparent !important;
+  }
+  
+  .rbc-time-view .rbc-today .rbc-day-bg {
+    background-color: transparent !important;
+  }
+  
+  /* 移除当前时间线 */
+  .rbc-current-time-indicator {
+    display: none !important;
+  }
+  
+  .rbc-time-view .rbc-current-time-indicator {
+    display: none !important;
+  }
+  
   .rbc-header {
     background-color: #f8fafc !important;
     color: #374151 !important;
@@ -85,6 +103,14 @@ const customStyles = `
   .rbc-time-view .rbc-time-gutter {
     border-right: 1px solid #e5e7eb !important;
     width: 60px !important;
+  }
+  
+  /* 自定义表头样式 */
+  .rbc-header .rbc-header-content {
+    font-weight: 600 !important;
+    font-size: 12px !important;
+    color: #374151 !important;
+    text-align: center !important;
   }
 
   .rbc-event-label {
@@ -171,6 +197,17 @@ const EventComponent = ({ event }) => {
       lineHeight: '1.2'
     }}>
       {event.title}
+    </div>
+  );
+};
+
+// 自定义表头组件，只显示星期几
+const CustomHeader = ({ date, localizer, label }) => {
+  const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const dayIndex = date.getDay();
+  return (
+    <div className="rbc-header-content">
+      {dayNames[dayIndex]}
     </div>
   );
 };
@@ -307,7 +344,8 @@ const Calendar = ({ courseSchedule }) => {
         onSelectEvent={handleSelectEvent}
         eventPropGetter={eventStyleGetter}
         components={{
-          event: EventComponent
+          event: EventComponent,
+          header: CustomHeader
         }}
         min={new Date(2024, 0, 1, 7, 0, 0)} // 7:00 AM
         max={new Date(2024, 0, 1, 20, 0, 0)} // 8:00 PM
