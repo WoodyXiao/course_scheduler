@@ -8,7 +8,6 @@ import {
   simplifySelectedCourses,
 } from "../utils/utils.jsx";
 import Schedule from "../components/Schedule.jsx";
-import Calendar from "../components/Calendar.jsx";
 import ActionButton from "../components/ActionButton.jsx";
 
 const GenerateSchedule = ({ selectedCourses }) => {

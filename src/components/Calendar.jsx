@@ -49,8 +49,7 @@ const customStyles = `
   .rbc-time-content {
     border-top: 1px solid #e5e7eb !important;
   }
-  
-  /* 网格线对齐 */
+
   .rbc-time-view .rbc-timeslot-group {
     border-bottom: 1px solid #f3f4f6 !important;
   }
@@ -59,8 +58,7 @@ const customStyles = `
     background-color: #fafbfc !important;
     border-right: 1px solid #e5e7eb !important;
   }
-  
-  /* 修复网格线对齐问题 */
+
   .rbc-time-view .rbc-day-bg {
     border-right: 1px solid #f3f4f6 !important;
   }
@@ -68,32 +66,27 @@ const customStyles = `
   .rbc-time-view .rbc-day-bg:last-child {
     border-right: none !important;
   }
-  
-  /* 确保表头与内容网格对齐 */
+
   .rbc-time-view .rbc-header + .rbc-time-content {
     border-top: 1px solid #e5e7eb !important;
   }
-  
-  /* 强制表头高度一致 */
+
   .rbc-time-view .rbc-header-overlay {
     height: 32px !important;
     min-height: 32px !important;
     max-height: 32px !important;
   }
-  
-  /* 修复表头与内容区域的边框对齐 */
+
   .rbc-time-view .rbc-time-content {
     border-top: 1px solid #e5e7eb !important;
     margin-top: 0 !important;
   }
-  
-  /* 确保网格线完美对齐 */
+
   .rbc-time-view .rbc-time-gutter {
     border-right: 1px solid #e5e7eb !important;
     width: 60px !important;
   }
-  
-  /* 事件样式 */
+
   .rbc-event-label {
     display: none !important;
   }
@@ -185,23 +178,18 @@ const EventComponent = ({ event }) => {
 const Calendar = ({ courseSchedule }) => {
   const [selectedEvent, setSelectedEvent] = useState(null);
 
-
-  // 智能颜色分配 - 相同课程相同颜色
   const assignColorsToEvents = (events) => {
-    // 柔和低饱和度颜色调色板
     const softColors = [
       '#6B73FF', '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', 
       '#FFEAA7', '#DDA0DD', '#98D8C8', '#F7DC6F', '#BB8FCE',
       '#85C1E9', '#F8C471', '#82E0AA', '#F1948A', '#85C1E9', '#D2B4DE'
     ];
     
-    // 为每个课程分配唯一颜色
     const courseColorMap = new Map();
     let colorIndex = 0;
     
     events.forEach((event) => {
-      // 提取课程名称（去掉类型标识）
-      const courseName = event.title.split(' (')[0]; // 例如 "CMPT 201 (LECTURE)" -> "CMPT 201"
+      const courseName = event.title.split(' (')[0];
       
       if (!courseColorMap.has(courseName)) {
         const assignedColor = softColors[colorIndex % softColors.length];
@@ -209,7 +197,6 @@ const Calendar = ({ courseSchedule }) => {
         colorIndex++;
       }
       
-      // 为相同课程分配相同颜色
       event.resource.color = courseColorMap.get(courseName);
     });
     return events;
@@ -331,11 +318,10 @@ const Calendar = ({ courseSchedule }) => {
         popup={false}
         doShowMoreDrillDown={false}
         drilldownView={null}
-        onNavigate={() => {}} // 禁用导航
-        onView={() => {}} // 禁用视图切换
+        onNavigate={() => {}}
+        onView={() => {}}
       />
       
-      {/* 事件详情弹窗 */}
       {selectedEvent && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div 
