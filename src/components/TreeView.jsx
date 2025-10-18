@@ -388,7 +388,11 @@ function TreeView({ data }) {
     const svg = d3.select(svgRef.current);
     const zoom = d3.zoom()
       .scaleExtent([0.1, 3])
-      .filter(event => event.shiftKey)  // Only zoom when Shift key is pressed
+      .filter(event => {
+        // On desktop: only zoom when Shift key is pressed
+        // On mobile/touch devices: allow pinch-to-zoom (event.type === 'touchstart')
+        return event.shiftKey || event.type === 'touchstart' || event.type === 'touchmove';
+      })
       .on("zoom", (event) => {
         d3.select(svgRef.current).select('g')
           .attr("transform", event.transform);
@@ -402,51 +406,52 @@ function TreeView({ data }) {
   }, [treeData, updateCounter, drawTree, setupZoom]);  // Update dependencies - add updateCounter
 
   return (
-    <div className="relative">
+    <div className="relative w-full">
       {/* Reset Button */}
-      <div className="mb-4 flex justify-end">
+      <div className="mb-3 sm:mb-4 flex justify-end px-2 sm:px-0">
         <button
           onClick={resetNodePositions}
-          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg flex items-center gap-2"
+          className="px-3 py-2 sm:px-4 text-sm sm:text-base bg-blue-600 text-white rounded-lg hover:bg-blue-700 active:bg-blue-800 transition-colors shadow-md hover:shadow-lg flex items-center gap-2 touch-manipulation"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 20 20" fill="currentColor">
             <path fillRule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clipRule="evenodd" />
           </svg>
-          Reset Positions
+          <span className="hidden sm:inline">Reset Positions</span>
+          <span className="sm:hidden">Reset</span>
         </button>
       </div>
       
       {/* Legend */}
-      <div className="mb-4 p-4 bg-gray-50 rounded-lg border">
-        <h4 className="text-sm font-semibold text-gray-700 mb-2">Legend:</h4>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-xs">
+      <div className="mb-3 sm:mb-4 p-3 sm:p-4 bg-gray-50 rounded-lg border mx-2 sm:mx-0">
+        <h4 className="text-xs sm:text-sm font-semibold text-gray-700 mb-2">Legend:</h4>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 text-xs">
           <div>
-            <p className="font-semibold text-gray-600 mb-2">Node Types:</p>
+            <p className="font-semibold text-gray-600 mb-1 sm:mb-2">Node Types:</p>
             <div className="space-y-1">
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600"></div>
-                <span>Course</span>
+                <div className="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex-shrink-0"></div>
+                <span className="text-xs">Course</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 rounded-full bg-gradient-to-br from-red-400 to-red-500"></div>
-                <span>AND Logic</span>
+                <div className="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-gradient-to-br from-red-400 to-red-500 flex-shrink-0"></div>
+                <span className="text-xs">AND Logic</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 rounded-full bg-gradient-to-br from-green-400 to-green-500"></div>
-                <span>OR Logic</span>
+                <div className="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-gradient-to-br from-green-400 to-green-500 flex-shrink-0"></div>
+                <span className="text-xs">OR Logic</span>
               </div>
             </div>
           </div>
           <div>
-            <p className="font-semibold text-gray-600 mb-2">Indicators:</p>
+            <p className="font-semibold text-gray-600 mb-1 sm:mb-2">Indicators:</p>
             <div className="space-y-1">
               <div className="flex items-center gap-2">
-                <div className="w-5 h-5 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold text-xs">+</div>
-                <span>Node is collapsed (has hidden children)</span>
+                <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">+</div>
+                <span className="text-xs">Collapsed (hidden children)</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-5 h-5 rounded-full border-2 border-gray-300 bg-white"></div>
-                <span>Node is expanded or has no children</span>
+                <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 border-gray-300 bg-white flex-shrink-0"></div>
+                <span className="text-xs">Expanded or no children</span>
               </div>
             </div>
           </div>
@@ -454,20 +459,30 @@ function TreeView({ data }) {
       </div>
 
       {/* Tree Container */}
-      <div className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
-        <svg
-          ref={svgRef}
-          width="1200"
-          height="1000"
-          className="w-full h-auto"
-        ></svg>
+      <div className="bg-white rounded-lg sm:rounded-xl shadow-lg border border-gray-200 overflow-x-auto overflow-y-hidden mx-2 sm:mx-0">
+        <div className="min-w-[800px]">
+          <svg
+            ref={svgRef}
+            width="1200"
+            height="1000"
+            className="w-full h-auto"
+            style={{ touchAction: 'pan-x pan-y' }}
+          ></svg>
+        </div>
+      </div>
+
+      {/* Mobile Tip */}
+      <div className="mt-3 p-3 bg-amber-50 border border-amber-200 rounded-lg mx-2 sm:mx-0 md:hidden">
+        <p className="text-xs text-amber-800">
+          <strong>💡 Mobile Tip:</strong> Swipe left/right to view the full tree. Tap nodes to expand/collapse.
+        </p>
       </div>
 
       {/* Selected Node Info */}
       {selectedNode && (
-        <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-          <h4 className="text-sm font-semibold text-blue-800 mb-2">Selected Node:</h4>
-          <p className="text-sm text-blue-700">
+        <div className="mt-3 sm:mt-4 p-3 sm:p-4 bg-blue-50 border border-blue-200 rounded-lg mx-2 sm:mx-0">
+          <h4 className="text-xs sm:text-sm font-semibold text-blue-800 mb-2">Selected Node:</h4>
+          <p className="text-xs sm:text-sm text-blue-700">
             <strong>Name:</strong> {selectedNode.name}<br/>
             <strong>Condition:</strong> {selectedNode.condition || "None"}
           </p>
@@ -475,20 +490,23 @@ function TreeView({ data }) {
       )}
 
       {/* Instructions */}
-      <div className="mt-4 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-200">
-        <h4 className="text-sm font-semibold text-blue-800 mb-2">🎮 Interactive Features:</h4>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-blue-700">
+      <div className="mt-3 sm:mt-4 p-3 sm:p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-200 mx-2 sm:mx-0">
+        <h4 className="text-xs sm:text-sm font-semibold text-blue-800 mb-2">🎮 Interactive Features:</h4>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-3 text-xs text-blue-700">
           <div className="space-y-1">
-            <p><strong>🖱️ Mouse Hover:</strong> Highlight connected paths</p>
+            <p className="hidden sm:block"><strong>🖱️ Mouse Hover:</strong> Highlight connected paths</p>
+            <p className="sm:hidden"><strong>👆 Tap:</strong> Highlight paths</p>
             <p><strong>🖱️ Click:</strong> Expand/collapse nodes</p>
-            <p><strong>🖱️ Drag:</strong> Move course nodes (purple circles only)</p>
-            <p><strong>🔒 Note:</strong> AND/OR nodes cannot be dragged</p>
+            <p className="hidden sm:block"><strong>🖱️ Drag:</strong> Move course nodes (purple circles only)</p>
+            <p className="sm:hidden"><strong>👆 Drag:</strong> Move course nodes</p>
+            <p className="hidden sm:block"><strong>🔒 Note:</strong> AND/OR nodes cannot be dragged</p>
           </div>
           <div className="space-y-1">
-            <p><strong>⌨️ Shift + Scroll:</strong> Zoom in/out</p>
+            <p className="hidden sm:block"><strong>⌨️ Shift + Scroll:</strong> Zoom in/out</p>
+            <p className="sm:hidden"><strong>👉 Pinch:</strong> Zoom in/out</p>
             <p><strong>✨ Animation:</strong> Smooth hover effects</p>
-            <p><strong>🎨 Colors:</strong> Blue=Course, Red=AND, Green=OR</p>
-            <p><strong>🔄 Reset:</strong> Click "Reset Positions" to restore layout</p>
+            <p><strong>🎨 Colors:</strong> Purple=Course, Red=AND, Green=OR</p>
+            <p><strong>🔄 Reset:</strong> Restore layout</p>
           </div>
         </div>
       </div>
