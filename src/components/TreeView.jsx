@@ -147,9 +147,17 @@ function TreeView({ data }) {
     const treeLayout = d3.tree().size([width, height]);
     treeLayout(treeData);
 
+    // Assign unique IDs to all nodes if not already present
+    let nodeIdCounter = 0;
+    treeData.descendants().forEach(d => {
+      if (!d.data.uniqueId) {
+        d.data.uniqueId = `node-${nodeIdCounter++}`;
+      }
+    });
+
     // Apply custom positions to nodes before drawing links
     treeData.descendants().forEach(d => {
-      const customPos = nodePositions[d.data.name];
+      const customPos = nodePositions[d.data.uniqueId];
       if (customPos) {
         d.x = customPos.x;
         d.y = customPos.y;
@@ -179,7 +187,10 @@ function TreeView({ data }) {
       .enter().append("g")
       .attr("class", "node")
       .attr("transform", d => `translate(${d.x},${d.y})`)
-      .style("cursor", "pointer")
+      .style("cursor", d => {
+        // Course nodes can be dragged, AND/OR nodes can only be clicked
+        return (d.data.condition === "AND" || d.data.condition === "OR") ? "pointer" : "grab";
+      })
       .on("mouseover", function(event, d) {
         highlightPath(d);
       })
@@ -188,7 +199,16 @@ function TreeView({ data }) {
       })
       .call(d3.drag()
         .clickDistance(10) // Allow clicks if mouse moves less than 10 pixels
+        .filter(function(event, d) {
+          // Only allow dragging for course nodes (not AND/OR nodes)
+          return d.data.condition !== "AND" && d.data.condition !== "OR";
+        })
         .on("start", function(event, d) {
+          // Only course nodes can be dragged
+          if (d.data.condition === "AND" || d.data.condition === "OR") {
+            return;
+          }
+          
           setDraggedNode(d);
           d3.select(this).raise();
           d3.select(this).style("cursor", "grabbing");
@@ -203,12 +223,17 @@ function TreeView({ data }) {
           d3.select(this).datum().wasDragged = false;
           
           // Add visual feedback for dragging
-          d3.select(this).select("rect")
+          d3.select(this).select("circle")
             .style("filter", "drop-shadow(0 8px 16px rgba(0,0,0,0.3))")
             .style("stroke", "#FBBF24")
             .style("stroke-width", "3px");
         })
         .on("drag", function(event, d) {
+          // Only course nodes can be dragged
+          if (d.data.condition === "AND" || d.data.condition === "OR") {
+            return;
+          }
+          
           // Mark as dragged if mouse moved significantly
           const dragDistance = Math.sqrt(
             Math.pow(event.x - d.dragOffsetX, 2) + 
@@ -263,40 +288,18 @@ function TreeView({ data }) {
           setDraggedNode(null);
           d3.select(this).style("cursor", "pointer");
           
-          // If actually dragged, save the new position
-          if (wasDragged) {
+          // If actually dragged, save the new position using unique ID
+          if (wasDragged && d.data.condition !== "AND" && d.data.condition !== "OR") {
             const newX = d.originalX + (event.x - d.dragOffsetX);
             const newY = d.originalY + (event.y - d.dragOffsetY);
             
-            // Update the node's position
-            d.x = newX;
-            d.y = newY;
-            
-            // Save position to state
+            // Save position to state using uniqueId - this will trigger a full redraw
             setNodePositions(prev => ({
               ...prev,
-              [d.data.name]: { x: newX, y: newY }
+              [d.data.uniqueId]: { x: newX, y: newY }
             }));
-            
-            // Keep node at new position
-            d3.select(this).attr("transform", `translate(${newX},${newY})`);
-            
-            // Update links to new positions (vertical layout)
-            g.selectAll(".link")
-              .filter(function(linkData) {
-                return linkData.source === d || linkData.target === d;
-              })
-              .attr("d", d3.linkVertical().x(d => d.x).y(d => d.y));
-          }
-          
-          // Reset visual feedback
-          d3.select(this).select("circle")
-            .style("filter", "drop-shadow(0 4px 8px rgba(0,0,0,0.15))")
-            .style("stroke", "#ffffff")
-            .style("stroke-width", "2px");
-          
-          // If not dragged (just clicked), toggle the node
-          if (!wasDragged) {
+          } else if (!wasDragged) {
+            // If not dragged (just clicked), toggle the node
             setSelectedNode(d.data);
             toggleChildren(d.data);
           }
@@ -478,12 +481,14 @@ function TreeView({ data }) {
           <div className="space-y-1">
             <p><strong>🖱️ Mouse Hover:</strong> Highlight connected paths</p>
             <p><strong>🖱️ Click:</strong> Expand/collapse nodes</p>
-            <p><strong>🖱️ Drag:</strong> Move nodes with connecting lines</p>
+            <p><strong>🖱️ Drag:</strong> Move course nodes (purple circles only)</p>
+            <p><strong>🔒 Note:</strong> AND/OR nodes cannot be dragged</p>
           </div>
           <div className="space-y-1">
             <p><strong>⌨️ Shift + Scroll:</strong> Zoom in/out</p>
             <p><strong>✨ Animation:</strong> Smooth hover effects</p>
             <p><strong>🎨 Colors:</strong> Blue=Course, Red=AND, Green=OR</p>
+            <p><strong>🔄 Reset:</strong> Click "Reset Positions" to restore layout</p>
           </div>
         </div>
       </div>
