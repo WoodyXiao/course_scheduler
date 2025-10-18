@@ -289,15 +289,16 @@ function TreeView({ data }) {
     });
 
     // Draw links (vertical layout) - use updated positions
+    // Red = required (default), Green = optional (OR nodes only)
     g.selectAll(".link")
       .data(treeData.links())
       .enter().append("path")
       .attr("class", "link")
       .attr("d", d3.linkVertical().x(d => d.x).y(d => d.y))
       .attr("stroke", (d) => {
-        if (d.source.data.condition === "AND") return "#EF4444";
-        if (d.source.data.condition === "OR") return "#10B981";
-        return "#6B7280";
+        // Green for OR nodes (choose one), Red for everything else (required)
+        if (d.source.data.condition === "OR") return "#10B981"; // Green - optional
+        return "#EF4444"; // Red - required (default for AND and course nodes)
       })
       .attr("fill", "none")
       .attr("stroke-width", "3px")
@@ -433,67 +434,100 @@ function TreeView({ data }) {
     // Create modern node containers
     const nodeContainers = node.append("g").attr("class", "node-container");
 
-    // Add node shapes - circles for courses, smaller circles for AND/OR
-    nodeContainers.append("circle")
+    // Add node shapes - circles for courses, squares for AND/OR
+    // First, add circles for course nodes only
+    nodeContainers
+      .filter(d => d.data.condition !== "AND" && d.data.condition !== "OR")
+      .append("circle")
       .attr("class", "node-circle")
       .attr("cx", 0)
       .attr("cy", 0)
-      .attr("r", (d) => {
-        // AND/OR nodes are smaller (18px), course nodes are larger (25px)
-        return (d.data.condition === "AND" || d.data.condition === "OR") ? 18 : 25;
-      })
+      .attr("r", 25) // Course nodes are 25px radius
       .style("fill", (d) => {
-        if (d.data.condition === "AND") return "url(#andGradient)";
-        if (d.data.condition === "OR") return "url(#orGradient)";
         // For course nodes, use department-specific gradient
         const dept = extractDepartment(d.data.name);
         return dept ? `url(#gradient-${dept})` : "url(#gradient-default)";
       })
       .style("filter", "drop-shadow(0 4px 8px rgba(0,0,0,0.15))")
       .style("stroke", "#ffffff")
-      .style("stroke-width", (d) => {
-        // Thinner stroke for AND/OR nodes
-        return (d.data.condition === "AND" || d.data.condition === "OR") ? "1.5px" : "2px";
-      })
-      .style("cursor", d => {
-        return (d.data.condition === "AND" || d.data.condition === "OR") ? "pointer" : "grab";
-      })
+      .style("stroke-width", "2px")
+      .style("cursor", "grab")
       .on("mouseover", function(event, d) {
         // Highlight path
         highlightPath(d);
-        
-        const isLogicNode = d.data.condition === "AND" || d.data.condition === "OR";
-        const hoverRadius = isLogicNode ? 20 : 28;
         
         d3.select(this)
           .style("filter", "drop-shadow(0 6px 12px rgba(0,0,0,0.25))")
           .transition()
           .duration(200)
-          .attr("r", hoverRadius);
+          .attr("r", 28); // Hover size
       })
       .on("mouseout", function(event, d) {
         // Clear highlight
         clearHighlight();
         
-        const isLogicNode = d.data.condition === "AND" || d.data.condition === "OR";
-        const baseRadius = isLogicNode ? 18 : 25;
+        d3.select(this)
+          .style("filter", "drop-shadow(0 4px 8px rgba(0,0,0,0.15))")
+          .transition()
+          .duration(200)
+          .attr("r", 25); // Base size
+      });
+
+    // Add squares for AND/OR logic nodes (smaller than circles: 36x36px square vs 50px diameter circle)
+    nodeContainers
+      .filter(d => d.data.condition === "AND" || d.data.condition === "OR")
+      .append("rect")
+      .attr("class", "node-square")
+      .attr("x", -18) // Center the square (36px width / 2)
+      .attr("y", -18) // Center the square (36px height / 2)
+      .attr("width", 36)
+      .attr("height", 36)
+      .attr("rx", 4) // Rounded corners
+      .attr("ry", 4)
+      .style("fill", (d) => {
+        if (d.data.condition === "AND") return "url(#andGradient)";
+        if (d.data.condition === "OR") return "url(#orGradient)";
+        return "url(#gradient-default)";
+      })
+      .style("filter", "drop-shadow(0 4px 8px rgba(0,0,0,0.15))")
+      .style("stroke", "#ffffff")
+      .style("stroke-width", "2px")
+      .style("cursor", "pointer")
+      .on("mouseover", function(event, d) {
+        // Highlight path
+        highlightPath(d);
+        
+        d3.select(this)
+          .style("filter", "drop-shadow(0 6px 12px rgba(0,0,0,0.25))")
+          .transition()
+          .duration(200)
+          .attr("width", 42) // Hover size (slightly larger)
+          .attr("height", 42)
+          .attr("x", -21) // Re-center
+          .attr("y", -21);
+      })
+      .on("mouseout", function(event, d) {
+        // Clear highlight
+        clearHighlight();
         
         d3.select(this)
           .style("filter", "drop-shadow(0 4px 8px rgba(0,0,0,0.15))")
           .transition()
           .duration(200)
-          .attr("r", baseRadius);
+          .attr("width", 36) // Base size
+          .attr("height", 36)
+          .attr("x", -18) // Re-center
+          .attr("y", -18);
       });
 
     // Add expand/collapse indicators - show when node has children (expanded or collapsed)
+    // Only for course nodes, not for AND/OR logic nodes
     // Invisible larger hit area for easier clicking (positioned on the right side of node)
-    nodeContainers.append("circle")
+    nodeContainers
+      .filter(d => d.data.condition !== "AND" && d.data.condition !== "OR")
+      .append("circle")
       .attr("class", "indicator-hitarea")
-      .attr("cx", (d) => {
-        // Position to the right of the node
-        const isLogicNode = d.data.condition === "AND" || d.data.condition === "OR";
-        return isLogicNode ? 28 : 35; // Right side of node
-      })
+      .attr("cx", 35) // Course nodes (25px + 10px)
       .attr("cy", 0) // Same vertical level as node center
       .attr("r", 12) // Medium hit area
       .style("fill", "transparent")
@@ -517,7 +551,7 @@ function TreeView({ data }) {
         toggleChildren(d.data);
       })
       .on("mouseover", function(event, d) {
-        event.stopPropagation(); // Prevent node circle hover
+        event.stopPropagation(); // Prevent node hover
         
         // Clear any existing highlight from node
         clearHighlight();
@@ -527,38 +561,26 @@ function TreeView({ data }) {
           .style("filter", "drop-shadow(0 3px 6px rgba(0,0,0,0.3))")
           .transition()
           .duration(150)
-          .attr("r", function(d) {
-            const isLogicNode = d.data.condition === "AND" || d.data.condition === "OR";
-            return isLogicNode ? 10 : 12;
-          });
+          .attr("r", 12); // Hover size
       })
       .on("mouseout", function(event, d) {
-        event.stopPropagation(); // Prevent node circle mouseout
+        event.stopPropagation(); // Prevent node mouseout
         
         d3.select(this.parentNode).select(".indicator-visible")
           .style("filter", "drop-shadow(0 2px 4px rgba(0,0,0,0.1))")
           .transition()
           .duration(150)
-          .attr("r", function(d) {
-            const isLogicNode = d.data.condition === "AND" || d.data.condition === "OR";
-            return isLogicNode ? 8 : 10;
-          });
+          .attr("r", 10); // Base size
       });
 
-    // Visible indicator (on the right side of node)
-    nodeContainers.append("circle")
+    // Visible indicator (on the right side of node) - only for course nodes
+    nodeContainers
+      .filter(d => d.data.condition !== "AND" && d.data.condition !== "OR")
+      .append("circle")
       .attr("class", "indicator-visible")
-      .attr("cx", (d) => {
-        // Position to the right of the node
-        const isLogicNode = d.data.condition === "AND" || d.data.condition === "OR";
-        return isLogicNode ? 28 : 35; // Right side of node
-      })
+      .attr("cx", 35) // Course nodes only
       .attr("cy", 0) // Same vertical level as node center
-      .attr("r", (d) => {
-        // Indicator size
-        const isLogicNode = d.data.condition === "AND" || d.data.condition === "OR";
-        return isLogicNode ? 8 : 10;
-      })
+      .attr("r", 10)
       .style("fill", (d) => {
         // Blue for collapsed, green for expanded
         return d._children ? "#3B82F6" : "#10B981";
@@ -577,19 +599,14 @@ function TreeView({ data }) {
       .style("pointer-events", "none"); // Don't capture events, let hitarea handle it
 
     // Add expand/collapse icons - "+" when collapsed, "-" when expanded (on the right)
-    nodeContainers.append("text")
-      .attr("x", (d) => {
-        // Position to the right of the node
-        const isLogicNode = d.data.condition === "AND" || d.data.condition === "OR";
-        return isLogicNode ? 28 : 35; // Right side of node
-      })
+    // Only for course nodes
+    nodeContainers
+      .filter(d => d.data.condition !== "AND" && d.data.condition !== "OR")
+      .append("text")
+      .attr("x", 35) // Course nodes only
       .attr("y", 4) // Slightly below center for vertical alignment
       .style("font-family", "Arial, sans-serif")
-      .style("font-size", (d) => {
-        // Icon text size
-        const isLogicNode = d.data.condition === "AND" || d.data.condition === "OR";
-        return isLogicNode ? "14px" : "16px";
-      })
+      .style("font-size", "16px")
       .style("font-weight", "bold")
       .style("text-anchor", "middle")
       .style("fill", "#ffffff")
@@ -605,16 +622,16 @@ function TreeView({ data }) {
       })
       .text((d) => d._children ? "+" : "−"); // Show "+" when collapsed, "−" when expanded
 
-    // Add course name label below the circle
+    // Add course name label below the node (circle or square)
     nodeContainers.append("text")
       .attr("dy", (d) => {
         // Adjust label position based on node size
         const isLogicNode = d.data.condition === "AND" || d.data.condition === "OR";
-        return isLogicNode ? 35 : 40;
+        return isLogicNode ? 32 : 40; // Logic nodes closer (18px + 14px), course nodes (25px + 15px)
       })
       .style("font-family", "Inter, -apple-system, BlinkMacSystemFont, sans-serif")
       .style("font-size", (d) => {
-        // Smaller font for logic nodes
+        // Slightly smaller font for logic nodes
         const isLogicNode = d.data.condition === "AND" || d.data.condition === "OR";
         return isLogicNode ? "9px" : "11px";
       })
@@ -783,27 +800,35 @@ function TreeView({ data }) {
             <p className="font-semibold text-gray-700 mb-2 text-xs">Logic Nodes:</p>
             <div className="space-y-1.5">
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 rounded-full bg-gradient-to-br from-red-400 to-red-500 flex-shrink-0 shadow-sm border border-white"></div>
-                <span className="text-xs text-gray-700"><strong>AND</strong> - All required</span>
+                <div className="w-4 h-4 rounded-sm bg-gradient-to-br from-red-400 to-red-500 flex-shrink-0 shadow-sm border border-white"></div>
+                <span className="text-xs text-gray-700"><strong>AND</strong> - All required (square)</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 rounded-full bg-gradient-to-br from-green-400 to-green-500 flex-shrink-0 shadow-sm border border-white"></div>
-                <span className="text-xs text-gray-700"><strong>OR</strong> - Any one required</span>
+                <div className="w-4 h-4 rounded-sm bg-gradient-to-br from-green-400 to-green-500 flex-shrink-0 shadow-sm border border-white"></div>
+                <span className="text-xs text-gray-700"><strong>OR</strong> - Any one required (square)</span>
               </div>
             </div>
           </div>
 
-          {/* Indicators */}
+          {/* Indicators & Lines */}
           <div>
-            <p className="font-semibold text-gray-700 mb-2 text-xs">Node Indicators:</p>
+            <p className="font-semibold text-gray-700 mb-2 text-xs">Indicators & Lines:</p>
             <div className="space-y-1.5">
               <div className="flex items-center gap-2">
                 <div className="w-5 h-5 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold text-xs flex-shrink-0 shadow-sm">+</div>
-                <span className="text-xs text-gray-700">Has hidden children</span>
+                <span className="text-xs text-gray-700">Collapsed (click to expand)</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-5 h-5 rounded-full bg-green-500 flex items-center justify-center text-white font-bold text-xs flex-shrink-0 shadow-sm">−</div>
-                <span className="text-xs text-gray-700">Showing all children</span>
+                <span className="text-xs text-gray-700">Expanded (click to collapse)</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-0.5 bg-red-500 flex-shrink-0 shadow-sm"></div>
+                <span className="text-xs text-gray-700"><strong>Red line</strong> - Required</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-0.5 bg-green-500 flex-shrink-0 shadow-sm"></div>
+                <span className="text-xs text-gray-700"><strong>Green line</strong> - Optional (choose one)</span>
               </div>
             </div>
           </div>
