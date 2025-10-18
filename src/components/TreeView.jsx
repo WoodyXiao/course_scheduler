@@ -6,9 +6,9 @@ function TreeView({ data }) {
   const [treeData, setTreeData] = useState(() => d3.hierarchy(data));
   const [updateCounter, setUpdateCounter] = useState(0);
   const [selectedNode, setSelectedNode] = useState(null);
-  const [tooltip, setTooltip] = useState({ show: false, x: 0, y: 0, content: "" });
   const [highlightedNodes, setHighlightedNodes] = useState(new Set());
   const [draggedNode, setDraggedNode] = useState(null);
+  const [nodePositions, setNodePositions] = useState({}); // Store custom positions
 
   useEffect(() => {
     // This effect runs when `data` prop changes.
@@ -77,10 +77,15 @@ function TreeView({ data }) {
     setHighlightedNodes(new Set());
   }, []);
 
+  const resetNodePositions = useCallback(() => {
+    setNodePositions({});
+    setUpdateCounter(prev => prev + 1);
+  }, []);
+
   const drawTree = useCallback(() => {
-    const margin = { top: 20, right: 20, bottom: 40, left: 80 };
+    const margin = { top: 40, right: 120, bottom: 40, left: 120 };
     const width = 1200 - margin.right - margin.left;
-    const height = 800 - margin.top - margin.bottom;
+    const height = 1000 - margin.top - margin.bottom;
 
     const svg = d3.select(svgRef.current);
     svg.selectAll("*").remove(); // Clear the SVG to redraw
@@ -104,23 +109,23 @@ function TreeView({ data }) {
       .attr("stop-color", "#7C3AED")
       .attr("stop-opacity", 1);
 
-    // Logic gradient
-    const logicGradient = defs.append("linearGradient")
-      .attr("id", "logicGradient")
+    // AND gradient (Red/Orange)
+    const andGradient = defs.append("linearGradient")
+      .attr("id", "andGradient")
       .attr("x1", "0%").attr("y1", "0%")
       .attr("x2", "100%").attr("y2", "100%");
     
-    logicGradient.append("stop")
+    andGradient.append("stop")
       .attr("offset", "0%")
-      .attr("stop-color", "#059669")
+      .attr("stop-color", "#F87171")
       .attr("stop-opacity", 1);
     
-    logicGradient.append("stop")
+    andGradient.append("stop")
       .attr("offset", "100%")
-      .attr("stop-color", "#047857")
+      .attr("stop-color", "#EF4444")
       .attr("stop-opacity", 1);
 
-    // OR gradient
+    // OR gradient (Green)
     const orGradient = defs.append("linearGradient")
       .attr("id", "orGradient")
       .attr("x1", "0%").attr("y1", "0%")
@@ -128,29 +133,38 @@ function TreeView({ data }) {
     
     orGradient.append("stop")
       .attr("offset", "0%")
-      .attr("stop-color", "#DC2626")
+      .attr("stop-color", "#34D399")
       .attr("stop-opacity", 1);
     
     orGradient.append("stop")
       .attr("offset", "100%")
-      .attr("stop-color", "#B91C1C")
+      .attr("stop-color", "#10B981")
       .attr("stop-opacity", 1);
 
     const g = svg.append("g")
       .attr("transform", `translate(${margin.left},${margin.top})`);
 
-    const treeLayout = d3.tree().size([height, width]);
+    const treeLayout = d3.tree().size([width, height]);
     treeLayout(treeData);
 
-    // Draw links
-    const links = g.selectAll(".link")
+    // Apply custom positions to nodes before drawing links
+    treeData.descendants().forEach(d => {
+      const customPos = nodePositions[d.data.name];
+      if (customPos) {
+        d.x = customPos.x;
+        d.y = customPos.y;
+      }
+    });
+
+    // Draw links (vertical layout) - use updated positions
+    g.selectAll(".link")
       .data(treeData.links())
       .enter().append("path")
       .attr("class", "link")
-      .attr("d", d3.linkHorizontal().x(d => d.y).y(d => d.x))
+      .attr("d", d3.linkVertical().x(d => d.x).y(d => d.y))
       .attr("stroke", (d) => {
-        if (d.source.data.condition === "OR") return "#EF4444";
-        if (d.source.data.condition === "AND") return "#10B981";
+        if (d.source.data.condition === "AND") return "#EF4444";
+        if (d.source.data.condition === "OR") return "#10B981";
         return "#6B7280";
       })
       .attr("fill", "none")
@@ -159,25 +173,18 @@ function TreeView({ data }) {
       .attr("opacity", 0.8)
       .style("filter", "drop-shadow(0 2px 4px rgba(0,0,0,0.1))");
 
-    // Draw nodes
+    // Draw nodes (vertical layout)
     const node = g.selectAll(".node")
       .data(treeData.descendants())
       .enter().append("g")
       .attr("class", "node")
-      .attr("transform", d => `translate(${d.y},${d.x})`)
+      .attr("transform", d => `translate(${d.x},${d.y})`)
       .style("cursor", "pointer")
       .on("mouseover", function(event, d) {
         highlightPath(d);
-        setTooltip({
-          show: true,
-          x: event.pageX,
-          y: event.pageY,
-          content: d.data.condition ? `${d.data.condition} Logic` : d.data.name
-        });
       })
       .on("mouseout", function() {
         clearHighlight();
-        setTooltip({ show: false, x: 0, y: 0, content: "" });
       })
       .call(d3.drag()
         .clickDistance(10) // Allow clicks if mouse moves less than 10 pixels
@@ -212,12 +219,12 @@ function TreeView({ data }) {
             d.wasDragged = true;
           }
           
-          // Calculate the new position by adding the drag delta to the original position
-          const newX = d.originalX + (event.y - d.dragOffsetY);
-          const newY = d.originalY + (event.x - d.dragOffsetX);
+          // Calculate the new position (for vertical layout)
+          const newX = d.originalX + (event.x - d.dragOffsetX);
+          const newY = d.originalY + (event.y - d.dragOffsetY);
           
           // Update the node position
-          d3.select(this).attr("transform", `translate(${newY},${newX})`);
+          d3.select(this).attr("transform", `translate(${newX},${newY})`);
           
           // Update only the links that are connected to this specific node
           g.selectAll(".link")
@@ -242,10 +249,10 @@ function TreeView({ data }) {
                 targetY = newY;
               }
               
-              // Return the updated link path
-              return d3.linkHorizontal()
-                .x(d => d.y)
-                .y(d => d.x)({
+              // Return the updated link path (vertical layout)
+              return d3.linkVertical()
+                .x(d => d.x)
+                .y(d => d.y)({
                   source: { x: sourceX, y: sourceY },
                   target: { x: targetX, y: targetY }
                 });
@@ -256,17 +263,37 @@ function TreeView({ data }) {
           setDraggedNode(null);
           d3.select(this).style("cursor", "pointer");
           
-          // Reset to original position
-          d3.select(this).attr("transform", `translate(${d.originalY},${d.originalX})`);
+          // If actually dragged, save the new position
+          if (wasDragged) {
+            const newX = d.originalX + (event.x - d.dragOffsetX);
+            const newY = d.originalY + (event.y - d.dragOffsetY);
+            
+            // Update the node's position
+            d.x = newX;
+            d.y = newY;
+            
+            // Save position to state
+            setNodePositions(prev => ({
+              ...prev,
+              [d.data.name]: { x: newX, y: newY }
+            }));
+            
+            // Keep node at new position
+            d3.select(this).attr("transform", `translate(${newX},${newY})`);
+            
+            // Update links to new positions (vertical layout)
+            g.selectAll(".link")
+              .filter(function(linkData) {
+                return linkData.source === d || linkData.target === d;
+              })
+              .attr("d", d3.linkVertical().x(d => d.x).y(d => d.y));
+          }
           
           // Reset visual feedback
-          d3.select(this).select("rect")
+          d3.select(this).select("circle")
             .style("filter", "drop-shadow(0 4px 8px rgba(0,0,0,0.15))")
             .style("stroke", "#ffffff")
             .style("stroke-width", "2px");
-          
-          // Reset all links to original positions
-          g.selectAll(".link").attr("d", d3.linkHorizontal().x(d => d.y).y(d => d.x));
           
           // If not dragged (just clicked), toggle the node
           if (!wasDragged) {
@@ -282,16 +309,13 @@ function TreeView({ data }) {
     // Create modern node containers
     const nodeContainers = node.append("g").attr("class", "node-container");
 
-    // Add background rectangles
-    nodeContainers.append("rect")
-      .attr("x", -60)
-      .attr("y", -25)
-      .attr("width", 120)
-      .attr("height", 50)
-      .attr("rx", 25)
-      .attr("ry", 25)
+    // Add circular background
+    nodeContainers.append("circle")
+      .attr("cx", 0)
+      .attr("cy", 0)
+      .attr("r", 25)
       .style("fill", (d) => {
-        if (d.data.condition === "AND") return "url(#logicGradient)";
+        if (d.data.condition === "AND") return "url(#andGradient)";
         if (d.data.condition === "OR") return "url(#orGradient)";
         return "url(#courseGradient)";
       })
@@ -303,27 +327,21 @@ function TreeView({ data }) {
           .style("filter", "drop-shadow(0 6px 12px rgba(0,0,0,0.25))")
           .transition()
           .duration(200)
-          .attr("width", 130)
-          .attr("height", 55)
-          .attr("x", -65)
-          .attr("y", -27.5);
+          .attr("r", 28);
       })
       .on("mouseout", function() {
         d3.select(this)
           .style("filter", "drop-shadow(0 4px 8px rgba(0,0,0,0.15))")
           .transition()
           .duration(200)
-          .attr("width", 120)
-          .attr("height", 50)
-          .attr("x", -60)
-          .attr("y", -25);
+          .attr("r", 25);
       });
 
-    // Add expand/collapse indicators - only show when node has hidden children
+    // Add expand/collapse indicators - only show when node has hidden children (at bottom)
     nodeContainers.append("circle")
-      .attr("cx", 50)
-      .attr("cy", 0)
-      .attr("r", 10)
+      .attr("cx", 0)
+      .attr("cy", 24)
+      .attr("r", 8)
       .style("fill", "#3B82F6") // Blue for collapsed (has hidden children)
       .style("stroke", "#ffffff")
       .style("stroke-width", "2px")
@@ -336,12 +354,12 @@ function TreeView({ data }) {
         toggleChildren(d.data);
       });
 
-    // Add expand/collapse icons - only show "+" when node is collapsed
+    // Add expand/collapse icons - only show "+" when node is collapsed (at bottom)
     nodeContainers.append("text")
-      .attr("x", 50)
-      .attr("y", 4)
+      .attr("x", 0)
+      .attr("y", 27)
       .style("font-family", "Arial, sans-serif")
-      .style("font-size", "14px")
+      .style("font-size", "12px")
       .style("font-weight", "bold")
       .style("text-anchor", "middle")
       .style("fill", "#ffffff")
@@ -350,26 +368,18 @@ function TreeView({ data }) {
       .style("display", (d) => d._children ? "block" : "none")
       .text((d) => d._children ? "+" : ""); // Show "+" when collapsed
 
-    // Add modern text styling
+    // Add course name label below the circle
     nodeContainers.append("text")
-      .attr("dy", "0.35em")
+      .attr("dy", "40")
       .style("font-family", "Inter, -apple-system, BlinkMacSystemFont, sans-serif")
-      .style("font-size", "13px")
+      .style("font-size", "11px")
       .style("font-weight", "600")
       .style("text-anchor", "middle")
-      .style("fill", "#ffffff")
+      .style("fill", "#374151")
       .style("pointer-events", "none")
-      .style("text-shadow", "0 1px 2px rgba(0,0,0,0.3)")
-      .text((d) => {
-        if (d.data.condition) {
-          return d.data.condition;
-        }
-        // Truncate long course names
-        const name = d.data.name;
-        return name.length > 15 ? name.substring(0, 12) + "..." : name;
-      });
+      .text((d) => d.data.name);
 
-  }, [treeData, toggleChildren, highlightPath, clearHighlight]);
+  }, [treeData, toggleChildren, highlightPath, clearHighlight, nodePositions]);
 
   const setupZoom = useCallback(() => {
     const svg = d3.select(svgRef.current);
@@ -390,6 +400,19 @@ function TreeView({ data }) {
 
   return (
     <div className="relative">
+      {/* Reset Button */}
+      <div className="mb-4 flex justify-end">
+        <button
+          onClick={resetNodePositions}
+          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg flex items-center gap-2"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fillRule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clipRule="evenodd" />
+          </svg>
+          Reset Positions
+        </button>
+      </div>
+      
       {/* Legend */}
       <div className="mb-4 p-4 bg-gray-50 rounded-lg border">
         <h4 className="text-sm font-semibold text-gray-700 mb-2">Legend:</h4>
@@ -402,11 +425,11 @@ function TreeView({ data }) {
                 <span>Course</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 rounded-full bg-gradient-to-br from-green-500 to-green-700"></div>
+                <div className="w-4 h-4 rounded-full bg-gradient-to-br from-red-400 to-red-500"></div>
                 <span>AND Logic</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 rounded-full bg-gradient-to-br from-red-500 to-red-700"></div>
+                <div className="w-4 h-4 rounded-full bg-gradient-to-br from-green-400 to-green-500"></div>
                 <span>OR Logic</span>
               </div>
             </div>
@@ -432,23 +455,10 @@ function TreeView({ data }) {
         <svg
           ref={svgRef}
           width="1200"
-          height="800"
+          height="1000"
           className="w-full h-auto"
         ></svg>
       </div>
-
-      {/* Tooltip */}
-      {tooltip.show && (
-        <div
-          className="fixed z-50 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg shadow-lg pointer-events-none"
-          style={{
-            left: tooltip.x + 10,
-            top: tooltip.y - 10,
-          }}
-        >
-          {tooltip.content}
-        </div>
-      )}
 
       {/* Selected Node Info */}
       {selectedNode && (
@@ -473,7 +483,7 @@ function TreeView({ data }) {
           <div className="space-y-1">
             <p><strong>⌨️ Shift + Scroll:</strong> Zoom in/out</p>
             <p><strong>✨ Animation:</strong> Smooth hover effects</p>
-            <p><strong>🎨 Colors:</strong> Blue=Course, Green=AND, Red=OR</p>
+            <p><strong>🎨 Colors:</strong> Blue=Course, Red=AND, Green=OR</p>
           </div>
         </div>
       </div>
