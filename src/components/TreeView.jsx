@@ -442,7 +442,7 @@ function TreeView({ data }) {
       .attr("class", "node-circle")
       .attr("cx", 0)
       .attr("cy", 0)
-      .attr("r", 25) // Course nodes are 25px radius
+      .attr("r", 20) // Course nodes are 20px radius (smaller)
       .style("fill", (d) => {
         // For course nodes, use department-specific gradient
         const dept = extractDepartment(d.data.name);
@@ -460,7 +460,7 @@ function TreeView({ data }) {
           .style("filter", "drop-shadow(0 6px 12px rgba(0,0,0,0.25))")
           .transition()
           .duration(200)
-          .attr("r", 28); // Hover size
+          .attr("r", 23); // Hover size (smaller)
       })
       .on("mouseout", function(event, d) {
         // Clear highlight
@@ -470,20 +470,20 @@ function TreeView({ data }) {
           .style("filter", "drop-shadow(0 4px 8px rgba(0,0,0,0.15))")
           .transition()
           .duration(200)
-          .attr("r", 25); // Base size
+          .attr("r", 20); // Base size (smaller)
       });
 
-    // Add squares for AND/OR logic nodes (smaller than circles: 36x36px square vs 50px diameter circle)
+    // Add squares for AND/OR logic nodes (smaller: 24x24px square, no hover effects)
     nodeContainers
       .filter(d => d.data.condition === "AND" || d.data.condition === "OR")
       .append("rect")
       .attr("class", "node-square")
-      .attr("x", -18) // Center the square (36px width / 2)
-      .attr("y", -18) // Center the square (36px height / 2)
-      .attr("width", 36)
-      .attr("height", 36)
-      .attr("rx", 4) // Rounded corners
-      .attr("ry", 4)
+      .attr("x", -12) // Center the square (24px width / 2)
+      .attr("y", -12) // Center the square (24px height / 2)
+      .attr("width", 24)
+      .attr("height", 24)
+      .attr("rx", 3) // Rounded corners (smaller)
+      .attr("ry", 3)
       .style("fill", (d) => {
         if (d.data.condition === "AND") return "url(#andGradient)";
         if (d.data.condition === "OR") return "url(#orGradient)";
@@ -491,34 +491,7 @@ function TreeView({ data }) {
       })
       .style("filter", "drop-shadow(0 4px 8px rgba(0,0,0,0.15))")
       .style("stroke", "#ffffff")
-      .style("stroke-width", "2px")
-      .style("cursor", "pointer")
-      .on("mouseover", function(event, d) {
-        // Highlight path
-        highlightPath(d);
-        
-        d3.select(this)
-          .style("filter", "drop-shadow(0 6px 12px rgba(0,0,0,0.25))")
-          .transition()
-          .duration(200)
-          .attr("width", 42) // Hover size (slightly larger)
-          .attr("height", 42)
-          .attr("x", -21) // Re-center
-          .attr("y", -21);
-      })
-      .on("mouseout", function(event, d) {
-        // Clear highlight
-        clearHighlight();
-        
-        d3.select(this)
-          .style("filter", "drop-shadow(0 4px 8px rgba(0,0,0,0.15))")
-          .transition()
-          .duration(200)
-          .attr("width", 36) // Base size
-          .attr("height", 36)
-          .attr("x", -18) // Re-center
-          .attr("y", -18);
-      });
+      .style("stroke-width", "1px"); // Thinner stroke
 
     // Add expand/collapse indicators - show when node has children (expanded or collapsed)
     // Only for course nodes, not for AND/OR logic nodes
@@ -527,9 +500,9 @@ function TreeView({ data }) {
       .filter(d => d.data.condition !== "AND" && d.data.condition !== "OR")
       .append("circle")
       .attr("class", "indicator-hitarea")
-      .attr("cx", 35) // Course nodes (25px + 10px)
+      .attr("cx", 30) // Course nodes (20px + 10px)
       .attr("cy", 0) // Same vertical level as node center
-      .attr("r", 12) // Medium hit area
+      .attr("r", 10) // Smaller hit area
       .style("fill", "transparent")
       .style("opacity", (d) => {
         const hasChildren = (d.children && d.children.length > 0) || (d._children && d._children.length > 0);
@@ -561,7 +534,7 @@ function TreeView({ data }) {
           .style("filter", "drop-shadow(0 3px 6px rgba(0,0,0,0.3))")
           .transition()
           .duration(150)
-          .attr("r", 12); // Hover size
+          .attr("r", 10); // Hover size (smaller)
       })
       .on("mouseout", function(event, d) {
         event.stopPropagation(); // Prevent node mouseout
@@ -570,7 +543,7 @@ function TreeView({ data }) {
           .style("filter", "drop-shadow(0 2px 4px rgba(0,0,0,0.1))")
           .transition()
           .duration(150)
-          .attr("r", 10); // Base size
+          .attr("r", 8); // Base size (smaller)
       });
 
     // Visible indicator (on the right side of node) - only for course nodes
@@ -578,9 +551,9 @@ function TreeView({ data }) {
       .filter(d => d.data.condition !== "AND" && d.data.condition !== "OR")
       .append("circle")
       .attr("class", "indicator-visible")
-      .attr("cx", 35) // Course nodes only
+      .attr("cx", 30) // Course nodes only (20px + 10px)
       .attr("cy", 0) // Same vertical level as node center
-      .attr("r", 10)
+      .attr("r", 8) // Smaller indicator
       .style("fill", (d) => {
         // Blue for collapsed, green for expanded
         return d._children ? "#3B82F6" : "#10B981";
@@ -603,10 +576,10 @@ function TreeView({ data }) {
     nodeContainers
       .filter(d => d.data.condition !== "AND" && d.data.condition !== "OR")
       .append("text")
-      .attr("x", 35) // Course nodes only
-      .attr("y", 4) // Slightly below center for vertical alignment
+      .attr("x", 30) // Course nodes only (20px + 10px)
+      .attr("y", 3) // Slightly below center for vertical alignment
       .style("font-family", "Arial, sans-serif")
-      .style("font-size", "16px")
+      .style("font-size", "14px") // Smaller font
       .style("font-weight", "bold")
       .style("text-anchor", "middle")
       .style("fill", "#ffffff")
@@ -627,13 +600,13 @@ function TreeView({ data }) {
       .attr("dy", (d) => {
         // Adjust label position based on node size
         const isLogicNode = d.data.condition === "AND" || d.data.condition === "OR";
-        return isLogicNode ? 32 : 40; // Logic nodes closer (18px + 14px), course nodes (25px + 15px)
+        return isLogicNode ? 26 : 35; // Logic nodes closer (12px + 14px), course nodes (20px + 15px)
       })
       .style("font-family", "Inter, -apple-system, BlinkMacSystemFont, sans-serif")
       .style("font-size", (d) => {
         // Slightly smaller font for logic nodes
         const isLogicNode = d.data.condition === "AND" || d.data.condition === "OR";
-        return isLogicNode ? "9px" : "11px";
+        return isLogicNode ? "8px" : "11px";
       })
       .style("font-weight", (d) => {
         // Normal weight for logic nodes, bold for courses
@@ -800,12 +773,12 @@ function TreeView({ data }) {
             <p className="font-semibold text-gray-700 mb-2 text-xs">Logic Nodes:</p>
             <div className="space-y-1.5">
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 rounded-sm bg-gradient-to-br from-red-400 to-red-500 flex-shrink-0 shadow-sm border border-white"></div>
-                <span className="text-xs text-gray-700"><strong>AND</strong> - All required (square)</span>
+                <div className="w-3 h-3 rounded-sm bg-gradient-to-br from-red-400 to-red-500 flex-shrink-0 shadow-sm border border-white"></div>
+                <span className="text-xs text-gray-700"><strong>AND</strong> - All required (small square)</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-4 h-4 rounded-sm bg-gradient-to-br from-green-400 to-green-500 flex-shrink-0 shadow-sm border border-white"></div>
-                <span className="text-xs text-gray-700"><strong>OR</strong> - Any one required (square)</span>
+                <div className="w-3 h-3 rounded-sm bg-gradient-to-br from-green-400 to-green-500 flex-shrink-0 shadow-sm border border-white"></div>
+                <span className="text-xs text-gray-700"><strong>OR</strong> - Any one required (small square)</span>
               </div>
             </div>
           </div>
