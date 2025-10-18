@@ -84,6 +84,64 @@ function TreeView({ data }) {
     setUpdateCounter(prev => prev + 1);
   }, []);
 
+  const captureScreenshot = useCallback(() => {
+    const svg = svgRef.current;
+    if (!svg) return;
+
+    // Get the SVG as a string
+    const svgData = new XMLSerializer().serializeToString(svg);
+    
+    // Create a canvas with extra height to avoid cutting off text
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    
+    // Set canvas size - increased height to 1200 to accommodate all content
+    canvas.width = 1200;
+    canvas.height = 1200;
+    
+    // Create an image from SVG
+    const img = new Image();
+    const svgBlob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
+    const url = URL.createObjectURL(svgBlob);
+    
+    img.onload = () => {
+      // Draw white background
+      ctx.fillStyle = 'white';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      // Draw the SVG image (scale to fit if needed)
+      ctx.drawImage(img, 0, 0, 1200, 1000);
+      
+      // Convert canvas to blob and download directly
+      canvas.toBlob((blob) => {
+        // Create download URL
+        const downloadUrl = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.download = `course-tree-${new Date().getTime()}.png`;
+        link.href = downloadUrl;
+        
+        // Append to body, click, and remove (ensures compatibility)
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        // Clean up URLs after a short delay
+        setTimeout(() => {
+          URL.revokeObjectURL(url);
+          URL.revokeObjectURL(downloadUrl);
+        }, 100);
+      }, 'image/png', 1.0); // Max quality
+    };
+    
+    img.onerror = (error) => {
+      console.error('Error capturing screenshot:', error);
+      alert('Failed to capture screenshot. Please try again.');
+      URL.revokeObjectURL(url);
+    };
+    
+    img.src = url;
+  }, []);
+
   const drawTree = useCallback(() => {
     const margin = { top: 40, right: 120, bottom: 40, left: 120 };
     const width = 1200 - margin.right - margin.left;
@@ -423,8 +481,19 @@ function TreeView({ data }) {
 
   return (
     <div className="relative w-full">
-      {/* Reset Button */}
-      <div className="mb-3 sm:mb-4 flex justify-end px-2 sm:px-0">
+      {/* Action Buttons */}
+      <div className="mb-3 sm:mb-4 flex justify-end gap-2 px-2 sm:px-0">
+        <button
+          onClick={captureScreenshot}
+          className="px-3 py-2 sm:px-4 text-sm sm:text-base bg-green-600 text-white rounded-lg hover:bg-green-700 active:bg-green-800 transition-colors shadow-md hover:shadow-lg flex items-center gap-2 touch-manipulation"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
+          </svg>
+          <span className="hidden sm:inline">Capture</span>
+          <span className="sm:hidden">📷</span>
+        </button>
+        
         <button
           onClick={resetNodePositions}
           className="px-3 py-2 sm:px-4 text-sm sm:text-base bg-blue-600 text-white rounded-lg hover:bg-blue-700 active:bg-blue-800 transition-colors shadow-md hover:shadow-lg flex items-center gap-2 touch-manipulation"
@@ -432,8 +501,8 @@ function TreeView({ data }) {
           <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 20 20" fill="currentColor">
             <path fillRule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clipRule="evenodd" />
           </svg>
-          <span className="hidden sm:inline">Reset Positions</span>
-          <span className="sm:hidden">Reset</span>
+          <span className="hidden sm:inline">Reset</span>
+          <span className="sm:hidden">🔄</span>
         </button>
       </div>
       
@@ -522,7 +591,8 @@ function TreeView({ data }) {
             <p className="sm:hidden"><strong>👉 Pinch:</strong> Zoom in/out</p>
             <p><strong>✨ Animation:</strong> Smooth hover effects</p>
             <p><strong>🎨 Colors:</strong> Purple=Course, Red=AND, Green=OR</p>
-            <p><strong>🔄 Reset:</strong> Restore layout</p>
+            <p><strong>📷 Capture:</strong> Save tree as image</p>
+            <p><strong>🔄 Reset:</strong> Restore layout & zoom</p>
           </div>
         </div>
       </div>
