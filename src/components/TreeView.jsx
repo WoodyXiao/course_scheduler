@@ -9,6 +9,7 @@ function TreeView({ data }) {
   const [highlightedNodes, setHighlightedNodes] = useState(new Set());
   const [draggedNode, setDraggedNode] = useState(null);
   const [nodePositions, setNodePositions] = useState({}); // Store custom positions
+  const zoomTransformRef = useRef(null); // Store zoom transform state
 
   useEffect(() => {
     // This effect runs when `data` prop changes.
@@ -79,6 +80,7 @@ function TreeView({ data }) {
 
   const resetNodePositions = useCallback(() => {
     setNodePositions({});
+    zoomTransformRef.current = null; // Reset zoom as well
     setUpdateCounter(prev => prev + 1);
   }, []);
 
@@ -142,6 +144,7 @@ function TreeView({ data }) {
       .attr("stop-opacity", 1);
 
     const g = svg.append("g")
+      .attr("class", "zoom-group")
       .attr("transform", `translate(${margin.left},${margin.top})`);
 
     const treeLayout = d3.tree().size([width, height]);
@@ -386,6 +389,11 @@ function TreeView({ data }) {
 
   const setupZoom = useCallback(() => {
     const svg = d3.select(svgRef.current);
+    const g = svg.select('.zoom-group');
+    
+    // Store the base transform (margin offset)
+    const baseTransform = g.attr("transform");
+    
     const zoom = d3.zoom()
       .scaleExtent([0.1, 3])
       .filter(event => {
@@ -394,11 +402,19 @@ function TreeView({ data }) {
         return event.shiftKey || event.type === 'touchstart' || event.type === 'touchmove';
       })
       .on("zoom", (event) => {
-        d3.select(svgRef.current).select('g')
-          .attr("transform", event.transform);
+        // Save the current transform
+        zoomTransformRef.current = event.transform;
+        // Apply zoom transform while preserving base transform
+        g.attr("transform", `${baseTransform} translate(${event.transform.x},${event.transform.y}) scale(${event.transform.k})`);
       });
+    
     svg.call(zoom);
-  }, [svgRef]);
+    
+    // Restore previous zoom transform if it exists
+    if (zoomTransformRef.current) {
+      svg.call(zoom.transform, zoomTransformRef.current);
+    }
+  }, []);
 
   useEffect(() => {
     drawTree();
@@ -474,7 +490,7 @@ function TreeView({ data }) {
       {/* Mobile Tip */}
       <div className="mt-3 p-3 bg-amber-50 border border-amber-200 rounded-lg mx-2 sm:mx-0 md:hidden">
         <p className="text-xs text-amber-800">
-          <strong>💡 Mobile Tip:</strong> Swipe left/right to view the full tree. Tap nodes to expand/collapse.
+          <strong>💡 Mobile Tip:</strong> Swipe left/right to view the full tree. Pinch to zoom (zoom is preserved). Tap nodes to expand/collapse.
         </p>
       </div>
 
