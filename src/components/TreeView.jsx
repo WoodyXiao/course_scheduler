@@ -1,6 +1,25 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import * as d3 from "d3";
 
+// Define color schemes for different departments (constant)
+// Avoiding red (AND nodes) and green (OR nodes) colors
+const departmentColors = {
+  'CMPT': { from: '#4F46E5', to: '#7C3AED', name: 'Computing Science' },  // Indigo/Purple
+  'MATH': { from: '#F97316', to: '#FB923C', name: 'Mathematics' },        // Orange (unified with MACM)
+  'MACM': { from: '#F97316', to: '#FB923C', name: 'Applied Math' },       // Orange (unified with MATH)
+  'STAT': { from: '#0891B2', to: '#06B6D4', name: 'Statistics' },         // Cyan
+  'PHYS': { from: '#F59E0B', to: '#FBBF24', name: 'Physics' },            // Amber/Yellow
+  'CHEM': { from: '#EA580C', to: '#F97316', name: 'Chemistry' },          // Deep Orange
+  'BIOL': { from: '#0D9488', to: '#14B8A6', name: 'Biology' },            // Teal
+  'ECON': { from: '#CA8A04', to: '#EAB308', name: 'Economics' },          // Yellow
+  'PSYC': { from: '#9333EA', to: '#C084FC', name: 'Psychology' },         // Purple/Violet
+  'ENGL': { from: '#06B6D4', to: '#22D3EE', name: 'English' },            // Cyan
+  'HIST': { from: '#92400E', to: '#B45309', name: 'History' },            // Brown
+  'PHIL': { from: '#4338CA', to: '#6366F1', name: 'Philosophy' },         // Indigo
+  'BUS': { from: '#DB2777', to: '#EC4899', name: 'Business' },            // Pink
+  'ENSC': { from: '#0284C7', to: '#0EA5E9', name: 'Engineering Science' }, // Sky Blue
+};
+
 function TreeView({ data }) {
   const svgRef = useRef();
   const [treeData, setTreeData] = useState(() => d3.hierarchy(data));
@@ -9,24 +28,28 @@ function TreeView({ data }) {
   const [highlightedNodes, setHighlightedNodes] = useState(new Set());
   const [draggedNode, setDraggedNode] = useState(null);
   const [nodePositions, setNodePositions] = useState({}); // Store custom positions
+  const [activeDepartments, setActiveDepartments] = useState([]); // Track departments in current tree
   const zoomTransformRef = useRef(null); // Store zoom transform state
 
   useEffect(() => {
     // This effect runs when `data` prop changes.
     setTreeData(d3.hierarchy(data));  // Recreate the hierarchy with the new data
+    // Clear previous node positions and zoom when switching to a new course
+    setNodePositions({});
+    zoomTransformRef.current = null;
   }, [data]);
 
   const toggleChildren = useCallback((nodeData) => {
     // Find the node in the tree hierarchy
     function findAndToggle(node) {
       if (node.data === nodeData) {
-        if (node.children) {
-          node._children = node.children;
-          node.children = null;
+    if (node.children) {
+      node._children = node.children;
+      node.children = null;
         } else if (node._children) {
-          node.children = node._children;
-          node._children = null;
-        }
+      node.children = node._children;
+      node._children = null;
+    }
         return true;
       }
       
@@ -142,6 +165,15 @@ function TreeView({ data }) {
     img.src = url;
   }, []);
 
+  // Function to extract department code from course name
+  const extractDepartment = useCallback((courseName) => {
+    if (!courseName) return null;
+    // Extract the first word (department code) from course name
+    // E.g., "CMPT 120 D100" -> "CMPT", "MATH 100 D100" -> "MATH"
+    const match = courseName.match(/^([A-Z]+)/);
+    return match ? match[1] : null;
+  }, []);
+
   const drawTree = useCallback(() => {
     const margin = { top: 40, right: 120, bottom: 40, left: 120 };
     const width = 1200 - margin.right - margin.left;
@@ -153,20 +185,51 @@ function TreeView({ data }) {
     // Add gradient definitions for better visual appeal
     const defs = svg.append("defs");
     
-    // Course gradient
-    const courseGradient = defs.append("linearGradient")
-      .attr("id", "courseGradient")
+    // Collect all unique departments from the tree
+    const departments = new Set();
+    treeData.descendants().forEach(d => {
+      if (!d.data.condition || (d.data.condition !== "AND" && d.data.condition !== "OR")) {
+        const dept = extractDepartment(d.data.name);
+        if (dept) departments.add(dept);
+      }
+    });
+
+    // Update active departments state for legend
+    setActiveDepartments(Array.from(departments).sort());
+
+    // Create gradients for each department found in the tree
+    departments.forEach(dept => {
+      const colors = departmentColors[dept] || { from: '#6B7280', to: '#9CA3AF' }; // Default gray
+      const gradient = defs.append("linearGradient")
+        .attr("id", `gradient-${dept}`)
+        .attr("x1", "0%").attr("y1", "0%")
+        .attr("x2", "100%").attr("y2", "100%");
+      
+      gradient.append("stop")
+        .attr("offset", "0%")
+        .attr("stop-color", colors.from)
+        .attr("stop-opacity", 1);
+      
+      gradient.append("stop")
+        .attr("offset", "100%")
+        .attr("stop-color", colors.to)
+        .attr("stop-opacity", 1);
+    });
+
+    // Default gradient for unknown departments
+    const defaultGradient = defs.append("linearGradient")
+      .attr("id", "gradient-default")
       .attr("x1", "0%").attr("y1", "0%")
       .attr("x2", "100%").attr("y2", "100%");
     
-    courseGradient.append("stop")
+    defaultGradient.append("stop")
       .attr("offset", "0%")
-      .attr("stop-color", "#4F46E5")
+      .attr("stop-color", "#6B7280")
       .attr("stop-opacity", 1);
     
-    courseGradient.append("stop")
+    defaultGradient.append("stop")
       .attr("offset", "100%")
-      .attr("stop-color", "#7C3AED")
+      .attr("stop-color", "#9CA3AF")
       .attr("stop-opacity", 1);
 
     // AND gradient (Red/Orange)
@@ -248,16 +311,6 @@ function TreeView({ data }) {
       .enter().append("g")
       .attr("class", "node")
       .attr("transform", d => `translate(${d.x},${d.y})`)
-      .style("cursor", d => {
-        // Course nodes can be dragged, AND/OR nodes can only be clicked
-        return (d.data.condition === "AND" || d.data.condition === "OR") ? "pointer" : "grab";
-      })
-      .on("mouseover", function(event, d) {
-        highlightPath(d);
-      })
-      .on("mouseout", function() {
-        clearHighlight();
-      })
       .call(d3.drag()
         .clickDistance(10) // Allow clicks if mouse moves less than 10 pixels
         .filter(function(event, d) {
@@ -272,19 +325,18 @@ function TreeView({ data }) {
           
           setDraggedNode(d);
           d3.select(this).raise();
-          d3.select(this).style("cursor", "grabbing");
           
           // Store the initial mouse position relative to the node
-          d3.select(this).datum().dragOffsetX = event.x;
-          d3.select(this).datum().dragOffsetY = event.y;
+          d.dragOffsetX = event.x;
+          d.dragOffsetY = event.y;
           // Store original position for reset
-          d3.select(this).datum().originalX = d.x;
-          d3.select(this).datum().originalY = d.y;
+          d.originalX = d.x;
+          d.originalY = d.y;
           // Track if actually dragged
-          d3.select(this).datum().wasDragged = false;
+          d.wasDragged = false;
           
           // Add visual feedback for dragging
-          d3.select(this).select("circle")
+          d3.select(this).select(".node-circle")
             .style("filter", "drop-shadow(0 8px 16px rgba(0,0,0,0.3))")
             .style("stroke", "#FBBF24")
             .style("stroke-width", "3px");
@@ -347,7 +399,12 @@ function TreeView({ data }) {
         .on("end", function(event, d) {
           const wasDragged = d.wasDragged;
           setDraggedNode(null);
-          d3.select(this).style("cursor", "pointer");
+          
+          // Reset visual feedback
+          d3.select(this).select(".node-circle")
+            .style("filter", "drop-shadow(0 4px 8px rgba(0,0,0,0.15))")
+            .style("stroke", "#ffffff")
+            .style("stroke-width", "2px");
           
           // If actually dragged, save the new position using unique ID
           if (wasDragged && d.data.condition !== "AND" && d.data.condition !== "OR") {
@@ -360,90 +417,222 @@ function TreeView({ data }) {
               [d.data.uniqueId]: { x: newX, y: newY }
             }));
           } else if (!wasDragged) {
-            // If not dragged (just clicked), toggle the node
+            // If not dragged (just clicked), select the node
             setSelectedNode(d.data);
-            toggleChildren(d.data);
           }
           
           // Clean up
           delete d.wasDragged;
+          delete d.dragOffsetX;
+          delete d.dragOffsetY;
+          delete d.originalX;
+          delete d.originalY;
         })
       );
 
     // Create modern node containers
     const nodeContainers = node.append("g").attr("class", "node-container");
 
-    // Add circular background
+    // Add node shapes - circles for courses, smaller circles for AND/OR
     nodeContainers.append("circle")
+      .attr("class", "node-circle")
       .attr("cx", 0)
       .attr("cy", 0)
-      .attr("r", 25)
+      .attr("r", (d) => {
+        // AND/OR nodes are smaller (18px), course nodes are larger (25px)
+        return (d.data.condition === "AND" || d.data.condition === "OR") ? 18 : 25;
+      })
       .style("fill", (d) => {
         if (d.data.condition === "AND") return "url(#andGradient)";
         if (d.data.condition === "OR") return "url(#orGradient)";
-        return "url(#courseGradient)";
+        // For course nodes, use department-specific gradient
+        const dept = extractDepartment(d.data.name);
+        return dept ? `url(#gradient-${dept})` : "url(#gradient-default)";
       })
       .style("filter", "drop-shadow(0 4px 8px rgba(0,0,0,0.15))")
       .style("stroke", "#ffffff")
-      .style("stroke-width", "2px")
-      .on("mouseover", function() {
+      .style("stroke-width", (d) => {
+        // Thinner stroke for AND/OR nodes
+        return (d.data.condition === "AND" || d.data.condition === "OR") ? "1.5px" : "2px";
+      })
+      .style("cursor", d => {
+        return (d.data.condition === "AND" || d.data.condition === "OR") ? "pointer" : "grab";
+      })
+      .on("mouseover", function(event, d) {
+        // Highlight path
+        highlightPath(d);
+        
+        const isLogicNode = d.data.condition === "AND" || d.data.condition === "OR";
+        const hoverRadius = isLogicNode ? 20 : 28;
+        
         d3.select(this)
           .style("filter", "drop-shadow(0 6px 12px rgba(0,0,0,0.25))")
           .transition()
           .duration(200)
-          .attr("r", 28);
+          .attr("r", hoverRadius);
       })
-      .on("mouseout", function() {
+      .on("mouseout", function(event, d) {
+        // Clear highlight
+        clearHighlight();
+        
+        const isLogicNode = d.data.condition === "AND" || d.data.condition === "OR";
+        const baseRadius = isLogicNode ? 18 : 25;
+        
         d3.select(this)
           .style("filter", "drop-shadow(0 4px 8px rgba(0,0,0,0.15))")
           .transition()
           .duration(200)
-          .attr("r", 25);
+          .attr("r", baseRadius);
       });
 
-    // Add expand/collapse indicators - only show when node has hidden children (at bottom)
+    // Add expand/collapse indicators - show when node has children (expanded or collapsed)
+    // Invisible larger hit area for easier clicking (positioned on the right side of node)
     nodeContainers.append("circle")
-      .attr("cx", 0)
-      .attr("cy", 24)
-      .attr("r", 8)
-      .style("fill", "#3B82F6") // Blue for collapsed (has hidden children)
-      .style("stroke", "#ffffff")
-      .style("stroke-width", "2px")
-      .style("opacity", (d) => d._children ? 1 : 0) // Only show when collapsed
-      .style("display", (d) => d._children ? "block" : "none")
-      .style("filter", "drop-shadow(0 2px 4px rgba(0,0,0,0.1))")
+      .attr("class", "indicator-hitarea")
+      .attr("cx", (d) => {
+        // Position to the right of the node
+        const isLogicNode = d.data.condition === "AND" || d.data.condition === "OR";
+        return isLogicNode ? 28 : 35; // Right side of node
+      })
+      .attr("cy", 0) // Same vertical level as node center
+      .attr("r", 12) // Medium hit area
+      .style("fill", "transparent")
+      .style("opacity", (d) => {
+        const hasChildren = (d.children && d.children.length > 0) || (d._children && d._children.length > 0);
+        return hasChildren ? 1 : 0;
+      })
+      .style("display", (d) => {
+        const hasChildren = (d.children && d.children.length > 0) || (d._children && d._children.length > 0);
+        return hasChildren ? "block" : "none";
+      })
       .style("cursor", "pointer")
+      .style("pointer-events", "all") // Ensure this captures events
+      .on("mousedown", function(event) {
+        // Prevent drag from starting on indicator
+        event.stopPropagation();
+      })
       .on("click", function(event, d) {
         event.stopPropagation();
+        setSelectedNode(d.data);
         toggleChildren(d.data);
+      })
+      .on("mouseover", function(event, d) {
+        event.stopPropagation(); // Prevent node circle hover
+        
+        // Clear any existing highlight from node
+        clearHighlight();
+        
+        // Highlight the visible indicator on hover
+        d3.select(this.parentNode).select(".indicator-visible")
+          .style("filter", "drop-shadow(0 3px 6px rgba(0,0,0,0.3))")
+          .transition()
+          .duration(150)
+          .attr("r", function(d) {
+            const isLogicNode = d.data.condition === "AND" || d.data.condition === "OR";
+            return isLogicNode ? 10 : 12;
+          });
+      })
+      .on("mouseout", function(event, d) {
+        event.stopPropagation(); // Prevent node circle mouseout
+        
+        d3.select(this.parentNode).select(".indicator-visible")
+          .style("filter", "drop-shadow(0 2px 4px rgba(0,0,0,0.1))")
+          .transition()
+          .duration(150)
+          .attr("r", function(d) {
+            const isLogicNode = d.data.condition === "AND" || d.data.condition === "OR";
+            return isLogicNode ? 8 : 10;
+          });
       });
 
-    // Add expand/collapse icons - only show "+" when node is collapsed (at bottom)
+    // Visible indicator (on the right side of node)
+    nodeContainers.append("circle")
+      .attr("class", "indicator-visible")
+      .attr("cx", (d) => {
+        // Position to the right of the node
+        const isLogicNode = d.data.condition === "AND" || d.data.condition === "OR";
+        return isLogicNode ? 28 : 35; // Right side of node
+      })
+      .attr("cy", 0) // Same vertical level as node center
+      .attr("r", (d) => {
+        // Indicator size
+        const isLogicNode = d.data.condition === "AND" || d.data.condition === "OR";
+        return isLogicNode ? 8 : 10;
+      })
+      .style("fill", (d) => {
+        // Blue for collapsed, green for expanded
+        return d._children ? "#3B82F6" : "#10B981";
+      })
+      .style("stroke", "#ffffff")
+      .style("stroke-width", "2px")
+      .style("opacity", (d) => {
+        const hasChildren = (d.children && d.children.length > 0) || (d._children && d._children.length > 0);
+        return hasChildren ? 1 : 0;
+      })
+      .style("display", (d) => {
+        const hasChildren = (d.children && d.children.length > 0) || (d._children && d._children.length > 0);
+        return hasChildren ? "block" : "none";
+      })
+      .style("filter", "drop-shadow(0 2px 4px rgba(0,0,0,0.1))")
+      .style("pointer-events", "none"); // Don't capture events, let hitarea handle it
+
+    // Add expand/collapse icons - "+" when collapsed, "-" when expanded (on the right)
     nodeContainers.append("text")
-      .attr("x", 0)
-      .attr("y", 27)
+      .attr("x", (d) => {
+        // Position to the right of the node
+        const isLogicNode = d.data.condition === "AND" || d.data.condition === "OR";
+        return isLogicNode ? 28 : 35; // Right side of node
+      })
+      .attr("y", 4) // Slightly below center for vertical alignment
       .style("font-family", "Arial, sans-serif")
-      .style("font-size", "12px")
+      .style("font-size", (d) => {
+        // Icon text size
+        const isLogicNode = d.data.condition === "AND" || d.data.condition === "OR";
+        return isLogicNode ? "14px" : "16px";
+      })
       .style("font-weight", "bold")
       .style("text-anchor", "middle")
       .style("fill", "#ffffff")
       .style("pointer-events", "none")
-      .style("opacity", (d) => d._children ? 1 : 0) // Only show when collapsed
-      .style("display", (d) => d._children ? "block" : "none")
-      .text((d) => d._children ? "+" : ""); // Show "+" when collapsed
+      .style("opacity", (d) => {
+        // Show if has children (expanded) or has _children (collapsed)
+        const hasChildren = (d.children && d.children.length > 0) || (d._children && d._children.length > 0);
+        return hasChildren ? 1 : 0;
+      })
+      .style("display", (d) => {
+        const hasChildren = (d.children && d.children.length > 0) || (d._children && d._children.length > 0);
+        return hasChildren ? "block" : "none";
+      })
+      .text((d) => d._children ? "+" : "−"); // Show "+" when collapsed, "−" when expanded
 
     // Add course name label below the circle
     nodeContainers.append("text")
-      .attr("dy", "40")
+      .attr("dy", (d) => {
+        // Adjust label position based on node size
+        const isLogicNode = d.data.condition === "AND" || d.data.condition === "OR";
+        return isLogicNode ? 35 : 40;
+      })
       .style("font-family", "Inter, -apple-system, BlinkMacSystemFont, sans-serif")
-      .style("font-size", "11px")
-      .style("font-weight", "600")
+      .style("font-size", (d) => {
+        // Smaller font for logic nodes
+        const isLogicNode = d.data.condition === "AND" || d.data.condition === "OR";
+        return isLogicNode ? "9px" : "11px";
+      })
+      .style("font-weight", (d) => {
+        // Normal weight for logic nodes, bold for courses
+        const isLogicNode = d.data.condition === "AND" || d.data.condition === "OR";
+        return isLogicNode ? "500" : "600";
+      })
       .style("text-anchor", "middle")
-      .style("fill", "#374151")
+      .style("fill", (d) => {
+        // Slightly lighter color for logic nodes
+        const isLogicNode = d.data.condition === "AND" || d.data.condition === "OR";
+        return isLogicNode ? "#6B7280" : "#374151";
+      })
       .style("pointer-events", "none")
       .text((d) => d.data.name);
 
-  }, [treeData, toggleChildren, highlightPath, clearHighlight, nodePositions]);
+  }, [treeData, toggleChildren, highlightPath, clearHighlight, nodePositions, extractDepartment]);
 
   const setupZoom = useCallback(() => {
     const svg = d3.select(svgRef.current);
@@ -505,54 +694,17 @@ function TreeView({ data }) {
           <span className="sm:hidden">🔄</span>
         </button>
       </div>
-      
-      {/* Legend */}
-      <div className="mb-3 sm:mb-4 p-3 sm:p-4 bg-gray-50 rounded-lg border mx-2 sm:mx-0">
-        <h4 className="text-xs sm:text-sm font-semibold text-gray-700 mb-2">Legend:</h4>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 text-xs">
-          <div>
-            <p className="font-semibold text-gray-600 mb-1 sm:mb-2">Node Types:</p>
-            <div className="space-y-1">
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex-shrink-0"></div>
-                <span className="text-xs">Course</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-gradient-to-br from-red-400 to-red-500 flex-shrink-0"></div>
-                <span className="text-xs">AND Logic</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-gradient-to-br from-green-400 to-green-500 flex-shrink-0"></div>
-                <span className="text-xs">OR Logic</span>
-              </div>
-            </div>
-          </div>
-          <div>
-            <p className="font-semibold text-gray-600 mb-1 sm:mb-2">Indicators:</p>
-            <div className="space-y-1">
-              <div className="flex items-center gap-2">
-                <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold text-xs flex-shrink-0">+</div>
-                <span className="text-xs">Collapsed (hidden children)</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 border-gray-300 bg-white flex-shrink-0"></div>
-                <span className="text-xs">Expanded or no children</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
       {/* Tree Container */}
       <div className="bg-white rounded-lg sm:rounded-xl shadow-lg border border-gray-200 overflow-x-auto overflow-y-hidden mx-2 sm:mx-0">
         <div className="min-w-[800px]">
-          <svg
-            ref={svgRef}
-            width="1200"
-            height="1000"
+    <svg
+      ref={svgRef}
+      width="1200"
+      height="1000"
             className="w-full h-auto"
             style={{ touchAction: 'pan-x pan-y' }}
-          ></svg>
+    ></svg>
         </div>
       </div>
 
@@ -581,8 +733,8 @@ function TreeView({ data }) {
           <div className="space-y-1">
             <p className="hidden sm:block"><strong>🖱️ Mouse Hover:</strong> Highlight connected paths</p>
             <p className="sm:hidden"><strong>👆 Tap:</strong> Highlight paths</p>
-            <p><strong>🖱️ Click:</strong> Expand/collapse nodes</p>
-            <p className="hidden sm:block"><strong>🖱️ Drag:</strong> Move course nodes (purple circles only)</p>
+            <p><strong>🔘 Click Indicator:</strong> Expand/collapse node (+/−)</p>
+            <p className="hidden sm:block"><strong>🖱️ Drag:</strong> Move course nodes (colored only)</p>
             <p className="sm:hidden"><strong>👆 Drag:</strong> Move course nodes</p>
             <p className="hidden sm:block"><strong>🔒 Note:</strong> AND/OR nodes cannot be dragged</p>
           </div>
@@ -590,9 +742,70 @@ function TreeView({ data }) {
             <p className="hidden sm:block"><strong>⌨️ Shift + Scroll:</strong> Zoom in/out</p>
             <p className="sm:hidden"><strong>👉 Pinch:</strong> Zoom in/out</p>
             <p><strong>✨ Animation:</strong> Smooth hover effects</p>
-            <p><strong>🎨 Colors:</strong> Purple=Course, Red=AND, Green=OR</p>
+            <p><strong>🎨 Colors:</strong> By department (see legend below)</p>
             <p><strong>📷 Capture:</strong> Save tree as image</p>
             <p><strong>🔄 Reset:</strong> Restore layout & zoom</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Legend - Department Colors & Node Types */}
+      <div className="mt-3 sm:mt-4 p-3 sm:p-4 bg-gradient-to-r from-gray-50 to-slate-50 rounded-lg border border-gray-300 mx-2 sm:mx-0">
+        <h4 className="text-xs sm:text-sm font-semibold text-gray-800 mb-3">📚 Legend:</h4>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {/* Department Colors */}
+          {activeDepartments.length > 0 && (
+            <div>
+              <p className="font-semibold text-gray-700 mb-2 text-xs">Course Departments:</p>
+              <div className="space-y-1.5">
+                {activeDepartments.map(dept => {
+                  const colors = departmentColors[dept] || { from: '#6B7280', to: '#9CA3AF', name: dept };
+                  return (
+                    <div key={dept} className="flex items-center gap-2">
+                      <div 
+                        className="w-4 h-4 rounded-full flex-shrink-0 shadow-sm border border-white"
+                        style={{ 
+                          background: `linear-gradient(135deg, ${colors.from}, ${colors.to})` 
+                        }}
+                      ></div>
+                      <span className="text-xs text-gray-700">
+                        <strong>{dept}</strong> - {colors.name}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* Logic Node Types */}
+          <div>
+            <p className="font-semibold text-gray-700 mb-2 text-xs">Logic Nodes:</p>
+            <div className="space-y-1.5">
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 rounded-full bg-gradient-to-br from-red-400 to-red-500 flex-shrink-0 shadow-sm border border-white"></div>
+                <span className="text-xs text-gray-700"><strong>AND</strong> - All required</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 rounded-full bg-gradient-to-br from-green-400 to-green-500 flex-shrink-0 shadow-sm border border-white"></div>
+                <span className="text-xs text-gray-700"><strong>OR</strong> - Any one required</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Indicators */}
+          <div>
+            <p className="font-semibold text-gray-700 mb-2 text-xs">Node Indicators:</p>
+            <div className="space-y-1.5">
+              <div className="flex items-center gap-2">
+                <div className="w-5 h-5 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold text-xs flex-shrink-0 shadow-sm">+</div>
+                <span className="text-xs text-gray-700">Has hidden children</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-5 h-5 rounded-full bg-green-500 flex items-center justify-center text-white font-bold text-xs flex-shrink-0 shadow-sm">−</div>
+                <span className="text-xs text-gray-700">Showing all children</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
