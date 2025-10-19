@@ -16,6 +16,7 @@ const CourseTreeView = () => {
   const [inputValue, setInputValue] = useState("");
   const [extraInfo, setExtraInfo] = useState([]);
   const [allCourses, setAllCourses] = useState([]);
+  const [hasSearched, setHasSearched] = useState(false); // Track if user has searched
   const extraInfoRef = useRef([]);
 
   // 1. Load and normalize all cmpt courses, take name from subject
@@ -72,6 +73,7 @@ const CourseTreeView = () => {
   // 2. Search and recursive
   useEffect(() => {
     if (courseNumber && allCourses.length > 0) {
+      setHasSearched(true); // Mark that a search has been performed
       setCourseData(null);
       extraInfoRef.current = [];
 
@@ -332,13 +334,28 @@ const CourseTreeView = () => {
       {/* Results Section */}
       {courseData ? (
         <TreeView data={courseData} />
+      ) : hasSearched ? (
+        // No results found after search
+        <div className="text-sm sm:text-base text-gray-600 p-6 sm:p-8 bg-gradient-to-br from-red-50 to-orange-50 rounded-xl border-2 border-dashed border-red-300 text-center">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 sm:h-16 sm:w-16 mx-auto mb-4 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+          <p className="text-lg font-semibold text-red-700 mb-2">No Results Found</p>
+          <p className="text-red-600 mb-3">
+            Course "<span className="font-semibold">{courseNumber}</span>" was not found or has no prerequisites.
+          </p>
+          <p className="text-sm text-gray-600">
+            Please check the course number and try again, or try a different course.
+          </p>
+        </div>
       ) : (
+        // Initial state - no search performed yet
         <div className="text-sm sm:text-base text-gray-600 p-6 sm:p-8 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl border-2 border-dashed border-gray-300 text-center">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 sm:h-16 sm:w-16 mx-auto mb-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
           </svg>
-          <p className="text-lg font-semibold text-gray-700 mb-2">No course selected</p>
-          <p className="text-gray-500">Enter a valid course number above to view its prerequisite tree</p>
+          <p className="text-lg font-semibold text-gray-700 mb-2">Ready to Explore</p>
+          <p className="text-gray-500">Enter a course number above to view its prerequisite tree</p>
         </div>
       )}
 
