@@ -1,0 +1,12 @@
+[
+    {
+        "course_number": "341",
+        "name": "NUSC 341 D100",
+        "prerequisites": "Completion of 45 units including one course of calculus (MATH 150, MATH 151, MATH 154, or MATH 157), plus one course of chemistry (CHEM 120 or CHEM 121) OR physics (PHYS 101, PHYS 120, PHYS 125, or PHYS 140)."
+    },
+    {
+        "course_number": "482",
+        "name": "NUSC 482 D001",
+        "prerequisites": "Permission of the Department."
+    }
+]

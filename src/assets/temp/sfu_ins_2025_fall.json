@@ -1,0 +1,62 @@
+[
+    {
+        "course_number": "887",
+        "name": "INS 887 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "888",
+        "name": "INS 888 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "890",
+        "name": "INS 890 G100",
+        "prerequisites": "Permission of the department."
+    },
+    {
+        "course_number": "891",
+        "name": "INS 891 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "892",
+        "name": "INS 892 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "893",
+        "name": "INS 893 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "894",
+        "name": "INS 894 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "895",
+        "name": "INS 895 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "896",
+        "name": "INS 896 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "897",
+        "name": "INS 897 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "898",
+        "name": "INS 898 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "899",
+        "name": "INS 899 G100",
+        "prerequisites": ""
+    }
+]

@@ -1,0 +1,12 @@
+[
+    {
+        "course_number": "502",
+        "name": "ONC 502 G100",
+        "prerequisites": "Enrollment in a participating graduate program. No specific courses are prerequisites."
+    },
+    {
+        "course_number": "510",
+        "name": "ONC 510 G100",
+        "prerequisites": "Enrollment in a participating graduate program. No specific courses are prerequisites."
+    }
+]

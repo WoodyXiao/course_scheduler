@@ -1,0 +1,12 @@
+[
+    {
+        "course_number": "100",
+        "name": "CHIN 100 B100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "330",
+        "name": "CHIN 330 B101",
+        "prerequisites": "CHIN 291 or permission of the instructor."
+    }
+]

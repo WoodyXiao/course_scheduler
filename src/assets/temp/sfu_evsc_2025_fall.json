@@ -1,0 +1,67 @@
+[
+    {
+        "course_number": "100",
+        "name": "EVSC 100 B100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "206",
+        "name": "EVSC 206 D100",
+        "prerequisites": "One of EASC 101, EVSC 100, GEOG 111, GEOG 118, or REM 100. Prerequisite or Corequisite: One of BISC 101, BISC 102, CHEM 121, PHYS 101, or PHYS 120; or permission of the instructor."
+    },
+    {
+        "course_number": "300",
+        "name": "EVSC 300 D100",
+        "prerequisites": "EVSC 201W."
+    },
+    {
+        "course_number": "305",
+        "name": "EVSC 305 D100",
+        "prerequisites": "EVSC 100 and 50 units."
+    },
+    {
+        "course_number": "391",
+        "name": "EVSC 391 D100",
+        "prerequisites": "60 units, 3.0 cumulative grade point average."
+    },
+    {
+        "course_number": "445",
+        "name": "EVSC 445 D100",
+        "prerequisites": "GEOG 251, or one of STAT 100, 201, 203, 205 or 270 or permission of the instructor."
+    },
+    {
+        "course_number": "489",
+        "name": "EVSC 489 D100",
+        "prerequisites": "EVSC 305, 90 units and consent of EVSC Director."
+    },
+    {
+        "course_number": "490w",
+        "name": "EVSC 490W D100",
+        "prerequisites": "EVSC 305, EVSC 489, 90 units and consent of EVSC Director."
+    },
+    {
+        "course_number": "491",
+        "name": "EVSC 491 D100",
+        "prerequisites": "60 units, 3.0 cumulative grade point average."
+    },
+    {
+        "course_number": "495",
+        "name": "EVSC 495 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "608",
+        "name": "EVSC 608 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "645",
+        "name": "EVSC 645 G100",
+        "prerequisites": "Enrollment in the ER MSc program, or permission of the instructor."
+    },
+    {
+        "course_number": "695",
+        "name": "EVSC 695 G100",
+        "prerequisites": ""
+    }
+]

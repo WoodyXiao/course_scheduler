@@ -1,0 +1,62 @@
+[
+    {
+        "course_number": "200",
+        "name": "PLCY 200 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "300",
+        "name": "PLCY 300 D100",
+        "prerequisites": "45 units."
+    },
+    {
+        "course_number": "400",
+        "name": "PLCY 400 D100",
+        "prerequisites": "PLCY 300 and 60 units."
+    },
+    {
+        "course_number": "800",
+        "name": "PLCY 800 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "801",
+        "name": "PLCY 801 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "803",
+        "name": "PLCY 803 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "805",
+        "name": "PLCY 805 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "812",
+        "name": "PLCY 812 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "813",
+        "name": "PLCY 813 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "817",
+        "name": "PLCY 817 G100",
+        "prerequisites": "Students approved for conducting MPP capstone research by the Graduate Program Committee."
+    },
+    {
+        "course_number": "818",
+        "name": "PLCY 818 G100",
+        "prerequisites": "PLCY 806 or equivalent with instructor's permission."
+    },
+    {
+        "course_number": "850",
+        "name": "PLCY 850 G100",
+        "prerequisites": ""
+    }
+]

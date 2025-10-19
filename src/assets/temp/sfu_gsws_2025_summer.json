@@ -1,0 +1,62 @@
+[
+    {
+        "course_number": "101",
+        "name": "GSWS 101 OL01",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "306",
+        "name": "GSWS 306 D100",
+        "prerequisites": "30 units including three units in GSWS or WS or GDST."
+    },
+    {
+        "course_number": "333",
+        "name": "GSWS 333 D100",
+        "prerequisites": "30 units including three units in GSWS or WS or GDST."
+    },
+    {
+        "course_number": "411",
+        "name": "GSWS 411 D100",
+        "prerequisites": "45 units, including six units in GSWS."
+    },
+    {
+        "course_number": "826",
+        "name": "GSWS 826 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "830",
+        "name": "GSWS 830 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "840",
+        "name": "GSWS 840 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "844",
+        "name": "GSWS 844 G100",
+        "prerequisites": "GSWS 822."
+    },
+    {
+        "course_number": "898",
+        "name": "GSWS 898 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "997",
+        "name": "GSWS 997 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "998",
+        "name": "GSWS 998 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "999",
+        "name": "GSWS 999 G100",
+        "prerequisites": "GSWS 822 and five graduate courses."
+    }
+]

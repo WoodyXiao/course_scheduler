@@ -1,0 +1,197 @@
+[
+    {
+        "course_number": "103",
+        "name": "MSE 103 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "112",
+        "name": "MSE 112 D100",
+        "prerequisites": "CMPT 130."
+    },
+    {
+        "course_number": "193",
+        "name": "MSE 193 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "210",
+        "name": "MSE 210 D100",
+        "prerequisites": "PHYS 141 or equivalent. MATH 150 or MATH 151."
+    },
+    {
+        "course_number": "220",
+        "name": "MSE 220 D100",
+        "prerequisites": "CHEM 120 or 121."
+    },
+    {
+        "course_number": "224",
+        "name": "MSE 224 D100",
+        "prerequisites": "MATH 152 and MSE 103."
+    },
+    {
+        "course_number": "250",
+        "name": "MSE 250 D100",
+        "prerequisites": "PHYS 141 or (PHYS 121 and 131), MSE 281 (or MATH 260), and MATH 232. MSE 281 (or MATH 260) may be taken concurrently."
+    },
+    {
+        "course_number": "281",
+        "name": "MSE 281 D100",
+        "prerequisites": "MATH 251, MSE 103, MSE 250. MSE 250 may be taken concurrently."
+    },
+    {
+        "course_number": "293",
+        "name": "MSE 293 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "294",
+        "name": "MSE 294 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "310",
+        "name": "MSE 310 D100",
+        "prerequisites": "MSE 221, MSE 222, MSE 251, MSE 280."
+    },
+    {
+        "course_number": "320",
+        "name": "MSE 320 D100",
+        "prerequisites": "MSE 100 or ENSC 104, MSE 220 or ENSC 231, MSE 221 or ENSC 281. MSE 100 may be taken concurrently."
+    },
+    {
+        "course_number": "321",
+        "name": "MSE 321 D100",
+        "prerequisites": "MATH 251 and MSE 223."
+    },
+    {
+        "course_number": "352",
+        "name": "MSE 352 D100",
+        "prerequisites": "CMPT 130 and either MSE 251 or ENSC 226."
+    },
+    {
+        "course_number": "380",
+        "name": "MSE 380 D100",
+        "prerequisites": "MSE 221 (or ENSC 281 or SEE 221), MSE 222 (or ENSC 282), MSE 280 (or ENSC 380 or SEE 341)."
+    },
+    {
+        "course_number": "393",
+        "name": "MSE 393 D100",
+        "prerequisites": "MSE 293 or 294."
+    },
+    {
+        "course_number": "394",
+        "name": "MSE 394 D100",
+        "prerequisites": "MSE 293 or 294 and approval of\r\ninternship co-ordinator required."
+    },
+    {
+        "course_number": "460",
+        "name": "MSE 460 D100",
+        "prerequisites": "MSE 310 and MSE 360."
+    },
+    {
+        "course_number": "486",
+        "name": "MSE 486 D100",
+        "prerequisites": "A minimum of 100 units and permission of the chair of the undergraduate curriculum committee."
+    },
+    {
+        "course_number": "487",
+        "name": "MSE 487 D100",
+        "prerequisites": "A minimum of 100 units and permission of the chair of the undergraduate curriculum committee."
+    },
+    {
+        "course_number": "489",
+        "name": "MSE 489 D100",
+        "prerequisites": "A minimum of 100 units and permission of the chair of the undergraduate curriculum committee."
+    },
+    {
+        "course_number": "490",
+        "name": "MSE 490 D100",
+        "prerequisites": "To be determined by the instructor subject to approval by the department\r\nchair."
+    },
+    {
+        "course_number": "491",
+        "name": "MSE 491 D100",
+        "prerequisites": "To be determined by instructor subject to approval by the department\r\nchair."
+    },
+    {
+        "course_number": "493",
+        "name": "MSE 493 D100",
+        "prerequisites": "MSE 393 or 394 and a minimum of 75 units."
+    },
+    {
+        "course_number": "494",
+        "name": "MSE 494 D100",
+        "prerequisites": "MSE 393 or 394, a minimum of 75 units and approval of internship co-ordinator required."
+    },
+    {
+        "course_number": "495",
+        "name": "MSE 495 D100",
+        "prerequisites": "Permission of the undergraduate\r\ncurriculum committee chair."
+    },
+    {
+        "course_number": "496",
+        "name": "MSE 496 D100",
+        "prerequisites": "Permission of the undergraduate\r\ncurriculum committee chair."
+    },
+    {
+        "course_number": "497",
+        "name": "MSE 497 D100",
+        "prerequisites": "Permission of the undergraduate\r\ncurriculum committee chair."
+    },
+    {
+        "course_number": "498",
+        "name": "MSE 498 D100",
+        "prerequisites": "At least 100 units or permission of the academic supervisor."
+    },
+    {
+        "course_number": "499",
+        "name": "MSE 499 D100",
+        "prerequisites": "MSE 498."
+    },
+    {
+        "course_number": "795",
+        "name": "MSE 795 G100",
+        "prerequisites": "12 units of MSE course work at the 700-level or higher with a minimum SFU CGPA of 3.0. Approval of supervisor and a GPC representative is required prior to applying for and accepting an internship."
+    },
+    {
+        "course_number": "804",
+        "name": "MSE 804 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "890",
+        "name": "MSE 890 G100",
+        "prerequisites": "PhD Students in the School of Mechatronic Systems Engineering (MSE)."
+    },
+    {
+        "course_number": "891",
+        "name": "MSE 891 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "892",
+        "name": "MSE 892 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "898",
+        "name": "MSE 898 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "899",
+        "name": "MSE 899 G100",
+        "prerequisites": "MSE 890."
+    },
+    {
+        "course_number": "910",
+        "name": "MSE 910 G100",
+        "prerequisites": "Recommended Prerequisite: MSE 310 or equivalent."
+    },
+    {
+        "course_number": "980",
+        "name": "MSE 980 G100",
+        "prerequisites": "Recommended Prerequisite: MSE 380 or equivalent."
+    }
+]

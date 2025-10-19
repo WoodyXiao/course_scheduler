@@ -1,0 +1,27 @@
+[
+    {
+        "course_number": "100",
+        "name": "COGS 100 D100",
+        "prerequisites": "Open to all students."
+    },
+    {
+        "course_number": "110",
+        "name": "COGS 110 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "200",
+        "name": "COGS 200 D100",
+        "prerequisites": "COGS 100."
+    },
+    {
+        "course_number": "310",
+        "name": "COGS 310 D100",
+        "prerequisites": "COGS 100 and 200 (or permission of the instructor)."
+    },
+    {
+        "course_number": "315",
+        "name": "COGS 315 D100",
+        "prerequisites": "One of: PHIL 110, 210, 310, 314, MACM 101, BUEC 232 or STAT 270."
+    }
+]

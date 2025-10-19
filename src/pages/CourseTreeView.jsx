@@ -1,5 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import TreeView from "../components/TreeView";
+import { parseWithAI, isComplexPrerequisite } from "../utils/aiParser";
+
+// ============================================================================
+// AI-ENHANCED PARSING TOGGLE
+// ============================================================================
+// Set to true to enable AI fallback for complex prerequisites
+// Set to false to use only local parsing (original behavior)
+const ENABLE_AI_FALLBACK = true;
 
 // 工具函数：兼容所有格式
 function parseCourseKey(token) {
@@ -99,19 +107,28 @@ const CourseTreeView = () => {
       );
 
       if (course && course.prerequisites) {
-        const parsedData = parsePrerequisites(
+        // Set loading state while AI is parsing
+        setCourseData({ loading: true });
+        
+        // AI-Enhanced parsing with smart fallback
+        parsePrerequisitesWithAI(
           course.prerequisites,
           allCourses,
-          new Set(),
           `${course.subject} ${course.course_number}`
-        );
-        setCourseData(parsedData);
-        setExtraInfo([...extraInfoRef.current]);
+        ).then((parsedData) => {
+          setCourseData(parsedData);
+          setExtraInfo([...extraInfoRef.current]);
+        }).catch((error) => {
+          console.error('AI parsing failed:', error);
+          setCourseData(null);
+          setExtraInfo([...extraInfoRef.current]);
+        });
       } else {
         setCourseData(null);
         setExtraInfo([]);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [courseNumber, allCourses]);
 
   // Close suggestions when clicking outside
@@ -131,7 +148,175 @@ const CourseTreeView = () => {
     }
   }, [showSuggestions]);
 
-  // 3. Recursive.
+  // Simple cache for AI parsing results
+  const aiCache = useRef(new Map());
+  
+  // Cache management functions
+  const clearCache = () => {
+    aiCache.current.clear();
+    console.log('💾 [Cache] Cache cleared');
+  };
+  
+  const getCacheInfo = () => {
+    const cacheSize = aiCache.current.size;
+    const cacheKeys = Array.from(aiCache.current.keys());
+    return { size: cacheSize, keys: cacheKeys };
+  };
+
+  // 2.5. AI-Enhanced Parsing (按需加载，不递归)
+  // 只解析当前课程，不递归解析前置课程
+  // 前置课程会在用户点击展开时才解析
+  async function parsePrerequisitesWithAI(prerequisites, allCourses, courseFullName) {
+    if (courseFullName === "") {
+      extraInfoRef.current = []; // Reset extra info only for top-level search
+    }
+    
+    // 所有非空 prerequisite 都使用 AI
+    const shouldUseAI = ENABLE_AI_FALLBACK && isComplexPrerequisite(prerequisites);
+    
+    if (shouldUseAI) {
+      // Check cache first
+      const cacheKey = `${courseFullName}:${prerequisites}`;
+      const cachedResult = aiCache.current.get(cacheKey);
+      
+      if (cachedResult) {
+        console.log(`💾 [Cache] Found cached result for ${courseFullName}`);
+        if (courseFullName) {
+          extraInfoRef.current.push(`💾 ${courseFullName} loaded from cache`);
+        } else {
+          extraInfoRef.current.push('💾 Loaded from cache');
+        }
+        
+        // 不递归！只标记哪些节点有前置课程（留待用户点击时加载）
+        const markedResult = markNodesWithPrerequisites(cachedResult, allCourses);
+        
+        // 保持正确的 root node 结构：搜索课程作为 root，AI 结果作为 children
+        return {
+          name: courseFullName || "",
+          condition: "",
+          children: [markedResult],
+          metadata: {
+            source: 'ai-cache',
+            originalText: prerequisites
+          }
+        };
+      }
+      
+      console.log(`🤖 [AI] Parsing ${courseFullName} with AI (non-recursive)...`);
+      
+      try {
+        const aiResult = await parseWithAI(prerequisites, courseFullName);
+        
+        if (aiResult) {
+          console.log(`✅ [AI] Successfully parsed ${courseFullName} with AI`);
+          if (courseFullName) {
+            extraInfoRef.current.push(`🤖 ${courseFullName} parsed with AI (Gemini)`);
+          } else {
+            extraInfoRef.current.push('🤖 Parsed with AI (Gemini) for better accuracy');
+          }
+          
+          // Store result in cache
+          const cacheKey = `${courseFullName}:${prerequisites}`;
+          aiCache.current.set(cacheKey, aiResult);
+          console.log(`💾 [Cache] Stored result for ${courseFullName}`);
+          
+          // 不递归！只标记哪些节点有前置课程（留待用户点击时加载）
+          const markedResult = markNodesWithPrerequisites(aiResult, allCourses);
+          
+          // 保持正确的 root node 结构：搜索课程作为 root，AI 结果作为 children
+          return {
+            name: courseFullName || "",
+            condition: "",
+            children: [markedResult],
+            metadata: {
+              source: 'ai',
+              originalText: prerequisites
+            }
+          };
+        } else {
+          console.log(`⚠️ [AI] AI parsing failed, falling back to local parser`);
+          extraInfoRef.current.push('⚠️ AI parsing unavailable, using local parser');
+        }
+      } catch (error) {
+        console.error(`❌ [AI] Error:`, error);
+        extraInfoRef.current.push('⚠️ AI parsing error, using local parser');
+      }
+    }
+    
+    // Fallback to local parsing (original logic - 也改为不递归)
+    console.log(`💻 [Local] Using local parser for ${courseFullName} (non-recursive)`);
+    return parsePrerequisitesNonRecursive(prerequisites, allCourses, courseFullName);
+  }
+  
+  // Helper: 标记所有课程节点为可加载（不管是否有前置课程）
+  // 递归处理所有层级的节点
+  function markNodesWithPrerequisites(node, allCourses) {
+    if (!node) return node;
+    
+    // 如果节点有 children 数组，递归处理
+    if (node.children && Array.isArray(node.children)) {
+      const markedChildren = node.children.map(child => {
+        // 先递归处理子节点
+        const processedChild = markNodesWithPrerequisites(child, allCourses);
+        
+        // 如果是课程节点（不是 AND/OR 节点）
+        if (processedChild.name && 
+            (!processedChild.condition || (processedChild.condition !== "AND" && processedChild.condition !== "OR"))) {
+          
+          const [dept, num] = parseCourseKey(processedChild.name);
+          if (dept && num) {
+            const course = allCourses.find(
+              (c) => (c.subject || "") === dept && (c.course_number || "") === num
+            );
+            
+            // 所有课程节点都标记为可加载，不管是否有 prerequisites
+            if (course) {
+              console.log(`✅ [Mark] ${processedChild.name} marked as expandable`);
+              return {
+                ...processedChild,
+                hasPrerequisites: true,  // 总是 true，让所有课程都显示提示器
+                prerequisiteText: course.prerequisites || '',  // 即使为空也保存
+              };
+            }
+          }
+        }
+        
+        return processedChild;
+      });
+      
+      return {
+        ...node,
+        children: markedChildren
+      };
+    }
+    
+    return node;
+  }
+  
+  // 非递归的本地解析（只解析第一层）
+  function parsePrerequisitesNonRecursive(prerequisites, allCourses, courseFullName) {
+    // 创建一个特殊的 visited set，预先包含所有可能的课程
+    // 这样在解析时，所有课程节点都会被认为"已访问"，从而阻止递归
+    const preventRecursionSet = new Set(
+      allCourses.map(c => `${c.subject} ${c.course_number}`)
+    );
+    
+    // 但我们仍然需要解析当前课程本身，所以从 set 中移除它
+    if (courseFullName) {
+      preventRecursionSet.delete(courseFullName);
+    }
+    
+    const result = parsePrerequisites(
+      prerequisites,
+      allCourses,
+      preventRecursionSet, // 传入"几乎所有"课程作为 visited
+      courseFullName
+    );
+    
+    return result;
+  }
+
+  // 3. Recursive (Local Parser - Original Logic).
   function parsePrerequisites(
     prerequisites,
     allCourses,
@@ -229,24 +414,36 @@ const CourseTreeView = () => {
             "| [key]=",
             key
           );
-          if (!visited.has(key)) {
+          
+          const matched = allCourses.filter(
+            (c) =>
+              (c.subject || "") === dept && (c.course_number || "") === num
+          );
+          console.log(
+            "Search course key:",
+            key,
+            "result:",
+            matched.length,
+            matched
+          );
+
+          const found = matched[0];
+          let childNode = { name: key, condition: "", children: [] };
+          
+          // 标记节点是否有前置课程（用于按需加载）
+          if (found && found.prerequisites && found.prerequisites.trim()) {
+            childNode.hasPrerequisites = true;
+            childNode.prerequisiteText = found.prerequisites;
+          }
+          
+          // 检查是否已访问过（防止循环）
+          const alreadyVisited = visited.has(key);
+          
+          if (!alreadyVisited) {
             visited.add(key);
-
-            const matched = allCourses.filter(
-              (c) =>
-                (c.subject || "") === dept && (c.course_number || "") === num
-            );
-            console.log(
-              "Serch course key:",
-              key,
-              "result:",
-              matched.length,
-              matched
-            );
-
-            const found = matched[0];
-            let childNode = { name: key, condition: "", children: [] };
-            if (found && found.prerequisites && found.prerequisites.trim()) {
+            
+            // 只有在有前置且不是"阻止递归"模式下才递归解析
+            if (childNode.hasPrerequisites) {
               console.log(
                 "Recursively search: ",
                 key,
@@ -264,10 +461,9 @@ const CourseTreeView = () => {
                 childNode.condition = subTree.condition || "";
               }
             }
-            current.children.push(childNode);
-          } else {
-            current.children.push({ name: key, condition: "", children: [] });
           }
+          
+          current.children.push(childNode);
           continue;
         }
 
@@ -457,21 +653,39 @@ const CourseTreeView = () => {
               {showSuggestions ? 'Use ↑↓ to navigate, Enter to select, Esc to close' : 'Start typing to see suggestions'}
             </p>
           </div>
-          <button
-            onClick={handleSearch}
-            className="px-6 h-[52px] bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2 active:scale-95 touch-manipulation whitespace-nowrap"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-            <span>Search</span>
-          </button>
+          <div className="flex gap-2">
+            <button
+              onClick={handleSearch}
+              className="px-6 h-[52px] bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2 active:scale-95 touch-manipulation whitespace-nowrap"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <span>Search</span>
+            </button>
+            
+            <button
+              onClick={clearCache}
+              className="px-4 h-[52px] bg-gradient-to-r from-gray-500 to-gray-600 hover:from-gray-600 hover:to-gray-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2 active:scale-95 touch-manipulation"
+              title={`Clear AI Cache (${getCacheInfo().size} items)`}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+              </svg>
+              <span className="hidden sm:inline">Clear Cache</span>
+              <span className="sm:hidden">🗑️</span>
+            </button>
+          </div>
         </div>
       </div>
 
       {/* Results Section */}
       {courseData ? (
-        <TreeView data={courseData} />
+        <TreeView 
+          data={courseData} 
+          allCourses={allCourses}
+          onLoadPrerequisites={parsePrerequisitesWithAI}
+        />
       ) : hasSearched ? (
         // No results found after search
         <div className="text-sm sm:text-base text-gray-600 p-6 sm:p-8 bg-gradient-to-br from-red-50 to-orange-50 rounded-xl border-2 border-dashed border-red-300 text-center">

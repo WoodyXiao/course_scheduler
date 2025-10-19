@@ -1,0 +1,32 @@
+[
+    {
+        "course_number": "101",
+        "name": "MACM 101 D100",
+        "prerequisites": "BC Math 12 (or equivalent), or any of MATH 100, 150, 151, 154, 157."
+    },
+    {
+        "course_number": "201",
+        "name": "MACM 201 D100",
+        "prerequisites": "MACM 101 or (ENSC 251 and one of MATH 232 or MATH 240)."
+    },
+    {
+        "course_number": "204",
+        "name": "MACM 204 D100",
+        "prerequisites": "One of CMPT 102, 120, 126, 128 or 130 and one of MATH 152, 155, or 158."
+    },
+    {
+        "course_number": "316",
+        "name": "MACM 316 D100",
+        "prerequisites": "MATH 152 or 155 or 158, and MATH 232 or 240, and computing experience."
+    },
+    {
+        "course_number": "409",
+        "name": "MACM 409 D100",
+        "prerequisites": "MATH 251, MACM 316, programming experience."
+    },
+    {
+        "course_number": "442",
+        "name": "MACM 442 D100",
+        "prerequisites": "(CMPT 201 or 225) and one of (MATH 340 or 332 or 342); or CMPT 405."
+    }
+]

@@ -1,0 +1,257 @@
+[
+    {
+        "course_number": "105",
+        "name": "BPK 105 OL01",
+        "prerequisites": "Recommended: Grade 11 Biology, Chemistry and Physics."
+    },
+    {
+        "course_number": "110",
+        "name": "BPK 110 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "140",
+        "name": "BPK 140 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "141",
+        "name": "BPK 141 OL01",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "142",
+        "name": "BPK 142 D100",
+        "prerequisites": "One of Grade 12 Anatomy and Physiology, Biology, Chemistry or Physics with a grade of B or better; or one of BPK 105, BPK 110, BPK 143, BISC 100, BISC 113 or HSCI 100 with a grade of C or better."
+    },
+    {
+        "course_number": "143",
+        "name": "BPK 143 D100",
+        "prerequisites": "Recommended: Medical clearance from a personal physician."
+    },
+    {
+        "course_number": "180w",
+        "name": "BPK 180W D100",
+        "prerequisites": "Grade 12 Biology or Physics, Grade 12 Math."
+    },
+    {
+        "course_number": "201",
+        "name": "BPK 201 D100",
+        "prerequisites": "MATH 150, 151 or 154, MATH 152 or 155 (may be taken concurrently), PHYS 101 (or 120 or 125 or 140), BPK 142."
+    },
+    {
+        "course_number": "205",
+        "name": "BPK 205 D100",
+        "prerequisites": "BISC 101, CHEM 281, PHYS 101 and 102."
+    },
+    {
+        "course_number": "207",
+        "name": "BPK 207 D100",
+        "prerequisites": "BPK 142 or permission of instructor."
+    },
+    {
+        "course_number": "241",
+        "name": "BPK 241 D100",
+        "prerequisites": "BPK 142."
+    },
+    {
+        "course_number": "301",
+        "name": "BPK 301 D100",
+        "prerequisites": "PHYS 102 (or 121 or 126 or 141), BPK 201."
+    },
+    {
+        "course_number": "303",
+        "name": "BPK 303 D100",
+        "prerequisites": "BPK 201, BPK 241 and STAT 201 or an equivalent statistics course."
+    },
+    {
+        "course_number": "304w",
+        "name": "BPK 304W D100",
+        "prerequisites": "BPK 142, STAT 201 and two of BPK 201, 205 and 207."
+    },
+    {
+        "course_number": "305",
+        "name": "BPK 305 D100",
+        "prerequisites": "BPK 205, MBB 231 (or 201), MATH 155 (or 152). Majors from outside BPK require BPK 205 (or BISC 305), MBB 231 (or 201), MATH 155 (or 152) plus permission of the instructor."
+    },
+    {
+        "course_number": "306",
+        "name": "BPK 306 D100",
+        "prerequisites": "BPK 207. Corequisite: BPK 305. Majors from outside BPK require BPK 205 (or BISC 305), MBB 231 (or 201), MATH 155 (or 152) plus permission of the instructor."
+    },
+    {
+        "course_number": "310",
+        "name": "BPK 310 D100",
+        "prerequisites": "BPK 205, MBB 201 (or 231). Recommended: BPK 201."
+    },
+    {
+        "course_number": "312",
+        "name": "BPK 312 E100",
+        "prerequisites": "BPK 105 (or 205), and 110."
+    },
+    {
+        "course_number": "326",
+        "name": "BPK 326 D100",
+        "prerequisites": "Admission to the major or honours program in Behavioural Neuroscience or Biomedical Physiology or Kinesiology. BPK 142, 201, 205 and at least 60 units. Behavioral Neuroscience Major and Honours students require BPK 142, 205, PSYC 280 and at least 60 units."
+    },
+    {
+        "course_number": "340",
+        "name": "BPK 340 D100",
+        "prerequisites": "BPK 142, STAT 201 (or PSYC 201). Recommended: BPK 140."
+    },
+    {
+        "course_number": "343",
+        "name": "BPK 343 D000",
+        "prerequisites": "BPK 142, 143 and 205; STAT 201 or an equivalent statistics course, BPK 340 (may be taken concurrently). Students must successfully complete a Criminal Record Check prior to enrolling."
+    },
+    {
+        "course_number": "351",
+        "name": "BPK 351 D100",
+        "prerequisites": "Students must complete Bridging Online (visit www.sfu.ca/coop/bol for further details) at least two terms before co-op placement. Students must then apply to the BPK co-op program by Week 1 of the term prior; a minimum of 45 units, BPK 142, plus at least two other BPK courses and have a minimum GPA of 2.50."
+    },
+    {
+        "course_number": "352",
+        "name": "BPK 352 D100",
+        "prerequisites": "BPK 351."
+    },
+    {
+        "course_number": "375",
+        "name": "BPK 375 OL01",
+        "prerequisites": "BPK 105 or 205, and 142."
+    },
+    {
+        "course_number": "381",
+        "name": "BPK 381 B100",
+        "prerequisites": "PSYC 210 or both of BPK 207 and STAT 201. Corequisite: STAT 201 may be taken concurrently. Recommended: BPK 180."
+    },
+    {
+        "course_number": "407",
+        "name": "BPK 407 D100",
+        "prerequisites": "BPK 304W, 305 and 306."
+    },
+    {
+        "course_number": "408w",
+        "name": "BPK 408W D100",
+        "prerequisites": "STAT 201, (BISC 205 or BPK 305), (MBB 201 or MBB 231), and one of (BISC 302W, BISC 303, BISC 357, or BPK 304W), all with a C- or better. Enrollment of non-BPK and non-BISC majors require permission of the instructor or advisor."
+    },
+    {
+        "course_number": "412",
+        "name": "BPK 412 D100",
+        "prerequisites": "BPK 305 or MBB 308."
+    },
+    {
+        "course_number": "420",
+        "name": "BPK 420 D100",
+        "prerequisites": "To be announced in the Undergraduate Schedule of Classes and Examinations found at go.sfu.ca."
+    },
+    {
+        "course_number": "421",
+        "name": "BPK 421 D100",
+        "prerequisites": "To be announced in the Undergraduate Schedule of Classes and Examinations found at go.sfu.ca."
+    },
+    {
+        "course_number": "426",
+        "name": "BPK 426 D100",
+        "prerequisites": "BPK 326. Corequisite: BPK 306. BPK 306 is recommended to be completed prior to enrolling in BPK 426."
+    },
+    {
+        "course_number": "447",
+        "name": "BPK 447 D100",
+        "prerequisites": "BPK 306 or BISC 305."
+    },
+    {
+        "course_number": "448",
+        "name": "BPK 448 D100",
+        "prerequisites": "BPK 201 or 207, and BPK 306, or for biomedical engineering students, BPK 201 and 208."
+    },
+    {
+        "course_number": "451",
+        "name": "BPK 451 D100",
+        "prerequisites": "BPK 352."
+    },
+    {
+        "course_number": "451w",
+        "name": "BPK 451W D100",
+        "prerequisites": "BPK 352."
+    },
+    {
+        "course_number": "452",
+        "name": "BPK 452 D100",
+        "prerequisites": "BPK 451."
+    },
+    {
+        "course_number": "453",
+        "name": "BPK 453 D100",
+        "prerequisites": "BPK 452."
+    },
+    {
+        "course_number": "457",
+        "name": "BPK 457 D100",
+        "prerequisites": "75 units, with a minimum CGPA of 3.00, PSYC 301 or BPK 304W with a minimum grade of B, and permission from one of the Co-chairs of the Behavioural Neuroscience Program Committee."
+    },
+    {
+        "course_number": "459",
+        "name": "BPK 459 D100",
+        "prerequisites": "A minimum grade of B in BPK 457. Corequisite: Must be enrolled in the Honours Program of the B.Sc. in Behavioural Neuroscience. Students must seek permission from their honours project supervisor to enroll in additional courses at the same time."
+    },
+    {
+        "course_number": "491",
+        "name": "BPK 491 D100",
+        "prerequisites": "90 units, BPK 304W (may be taken concurrently) and permission of the chair of the undergraduate program committee. A minimum grade of B in this course is needed to register in BPK 495 or BPK 499."
+    },
+    {
+        "course_number": "495",
+        "name": "BPK 495 D100",
+        "prerequisites": "BPK 491 (minimum grade of B). Corequisite: BPK 499. Only students in the honours program may enroll in BPK 495."
+    },
+    {
+        "course_number": "496",
+        "name": "BPK 496 D100",
+        "prerequisites": "BPK 304W (may be taken concurrently) or PSYC 210, and permission from the chair of the undergraduate program committee. Usually, upper level standing with at least 75 units in the Biomedical Physiology and Kinesiology program will be required."
+    },
+    {
+        "course_number": "498",
+        "name": "BPK 498 D100",
+        "prerequisites": "BPK 304W (may be taken concurrently) or PSYC 210, and permission from the chair of the undergraduate program committee. Usually, upper level standing with at least 75 units in the Biomedical Physiology and Kinesiology program will be required."
+    },
+    {
+        "course_number": "499",
+        "name": "BPK 499 D100",
+        "prerequisites": "BPK 491 (minimum grade of B). Corequisite: BPK 495. Only students in the honours program may enroll in BPK 499."
+    },
+    {
+        "course_number": "805",
+        "name": "BPK 805 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "812",
+        "name": "BPK 812 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "895",
+        "name": "BPK 895 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "896",
+        "name": "BPK 896 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "897",
+        "name": "BPK 897 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "898",
+        "name": "BPK 898 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "899",
+        "name": "BPK 899 G100",
+        "prerequisites": ""
+    }
+]

@@ -1,0 +1,12 @@
+[
+    {
+        "course_number": "522",
+        "name": "DMED 522 G100",
+        "prerequisites": "DMED 521 with a grade of B or higher."
+    },
+    {
+        "course_number": "540",
+        "name": "DMED 540 G100",
+        "prerequisites": ""
+    }
+]

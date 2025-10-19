@@ -1,0 +1,12 @@
+[
+    {
+        "course_number": "101",
+        "name": "MACM 101 D100",
+        "prerequisites": "BC Math 12 (or equivalent), or any of MATH 100, 150, 151, 154, 157."
+    },
+    {
+        "course_number": "316",
+        "name": "MACM 316 D100",
+        "prerequisites": "MATH 152 or 155 or 158, and MATH 232 or 240, and computing experience."
+    }
+]

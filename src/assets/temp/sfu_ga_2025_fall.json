@@ -1,0 +1,17 @@
+[
+    {
+        "course_number": "101",
+        "name": "GA 101 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "211",
+        "name": "GA 211 D100",
+        "prerequisites": "15 units."
+    },
+    {
+        "course_number": "301",
+        "name": "GA 301 D100",
+        "prerequisites": "45 units."
+    }
+]

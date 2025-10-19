@@ -1,0 +1,127 @@
+[
+    {
+        "course_number": "101",
+        "name": "FREN 101 OL01",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "102",
+        "name": "FREN 102 OL01",
+        "prerequisites": "FREN 101, FREN 120, or FREN 121 or consult with a French advisor."
+    },
+    {
+        "course_number": "201",
+        "name": "FREN 201 B100",
+        "prerequisites": "Grade 12 French or FREN 102 or FREN 122 or permission of the Department of French."
+    },
+    {
+        "course_number": "202",
+        "name": "FREN 202 B100",
+        "prerequisites": "FREN 201 or FREN 210 or permission of the Department of French."
+    },
+    {
+        "course_number": "203",
+        "name": "FREN 203 F100",
+        "prerequisites": "Grade 12 French Immersion or FREN 202 or FREN 221 or permission of the Department of French."
+    },
+    {
+        "course_number": "245",
+        "name": "FREN 245 D100",
+        "prerequisites": "Grade 12 French Immersion or FREN 202 or FREN 221 or permission of the Department of French."
+    },
+    {
+        "course_number": "275",
+        "name": "FREN 275 D100",
+        "prerequisites": "Grade 12 French Immersion or FREN 202 or FREN 221 or permission of the Department of French."
+    },
+    {
+        "course_number": "300",
+        "name": "FREN 300 D100",
+        "prerequisites": "Grade 12 French Immersion or FREN 202 or FREN 221 or permission of the Department of French."
+    },
+    {
+        "course_number": "301w",
+        "name": "FREN 301W D100",
+        "prerequisites": "Grade 12 French Immersion or FREN 202 or FREN 221 or permission of the Department of French."
+    },
+    {
+        "course_number": "302",
+        "name": "FREN 302 F100",
+        "prerequisites": "Grade 12 French Immersion or FREN 202 or FREN 221 or permission of the Department of French."
+    },
+    {
+        "course_number": "304",
+        "name": "FREN 304 D100",
+        "prerequisites": "Grade 12 French Immersion or FREN 202 or FREN 221 or permission of the Department of French."
+    },
+    {
+        "course_number": "331",
+        "name": "FREN 331 D100",
+        "prerequisites": "FREN 275 and FREN 301W."
+    },
+    {
+        "course_number": "341",
+        "name": "FREN 341 D100",
+        "prerequisites": "FREN 245 and FREN 301W."
+    },
+    {
+        "course_number": "351",
+        "name": "FREN 351 D100",
+        "prerequisites": "FREN 245, FREN 301W."
+    },
+    {
+        "course_number": "355",
+        "name": "FREN 355 D100",
+        "prerequisites": "FREN 245 and FREN 301W."
+    },
+    {
+        "course_number": "401",
+        "name": "FREN 401 D100",
+        "prerequisites": "Two 300-level FREN courses."
+    },
+    {
+        "course_number": "425",
+        "name": "FREN 425 D100",
+        "prerequisites": "FREN 275 and FREN 301W and at least one 300-level FREN linguistics course."
+    },
+    {
+        "course_number": "442",
+        "name": "FREN 442 D100",
+        "prerequisites": "FREN 230 or 240 or 245, FREN 301W, and at least one 300-level group B (lit.) course."
+    },
+    {
+        "course_number": "452",
+        "name": "FREN 452 D100",
+        "prerequisites": "Two 300-level FREN courses."
+    },
+    {
+        "course_number": "811",
+        "name": "FREN 811 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "825",
+        "name": "FREN 825 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "852",
+        "name": "FREN 852 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "896",
+        "name": "FREN 896 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "898",
+        "name": "FREN 898 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "998",
+        "name": "FREN 998 G100",
+        "prerequisites": ""
+    }
+]

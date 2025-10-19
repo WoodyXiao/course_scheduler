@@ -1,0 +1,47 @@
+[
+    {
+        "course_number": "101",
+        "name": "URB 101 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "423",
+        "name": "URB 423 E100",
+        "prerequisites": "30 units."
+    },
+    {
+        "course_number": "627",
+        "name": "URB 627 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "645",
+        "name": "URB 645 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "650",
+        "name": "URB 650 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "696",
+        "name": "URB 696 G100",
+        "prerequisites": "16 units of course work, including URB 670. If the grade received in URB 670 is lower than A-, supervisor permission is required. This may require completion of remedial work."
+    },
+    {
+        "course_number": "697",
+        "name": "URB 697 G100",
+        "prerequisites": "URB 696 with a grade of A- or higher. Students who receive a B+ in URB 696 may enroll for URB 697 with permission of the Graduate Program Committee."
+    },
+    {
+        "course_number": "701",
+        "name": "URB 701 G100",
+        "prerequisites": "Enrollment in the M.URB program with a CGPA of at least of 3.0."
+    },
+    {
+        "course_number": "702",
+        "name": "URB 702 G100",
+        "prerequisites": "Cooperative Education Practicum I and a CGPA of at least 3.0."
+    }
+]

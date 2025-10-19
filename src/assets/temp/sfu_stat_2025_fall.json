@@ -1,0 +1,197 @@
+[
+    {
+        "course_number": "100",
+        "name": "STAT 100 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "180",
+        "name": "STAT 180 E100",
+        "prerequisites": "Enrollment in the Statistics or Actuarial Science major or honours program, or STAT 270 with a minimum grade of C-."
+    },
+    {
+        "course_number": "201",
+        "name": "STAT 201 D100",
+        "prerequisites": "Recommended: 30 units."
+    },
+    {
+        "course_number": "203",
+        "name": "STAT 203 D900",
+        "prerequisites": "Recommended: 30 units including a research methods course such as SA 255, CRIM 220, POL 200W, or equivalent."
+    },
+    {
+        "course_number": "260",
+        "name": "STAT 260 D100",
+        "prerequisites": "One of STAT 201, STAT 203, STAT 205, STAT 270, BUS 232, ECON 233, or POL 201, with a grade of at least C- or permission of the instructor."
+    },
+    {
+        "course_number": "270",
+        "name": "STAT 270 D100",
+        "prerequisites": "or Corequisite: MATH 152 or 155 or 158, with a minimum grade of C-. Students wishing an intuitive appreciation of a broad range of statistical strategies may wish to take STAT 100 first."
+    },
+    {
+        "course_number": "271",
+        "name": "STAT 271 D100",
+        "prerequisites": "CMPT 210 with a minimum grade of C-."
+    },
+    {
+        "course_number": "285",
+        "name": "STAT 285 D100",
+        "prerequisites": "STAT 270 and one of MATH 152, MATH 155, or MATH 158, all with a minimum grade of C-."
+    },
+    {
+        "course_number": "302",
+        "name": "STAT 302 D100",
+        "prerequisites": "One of STAT 201, STAT 203, STAT 205, STAT 270, BUS 232, or ECON 233, with a minimum grade of C-."
+    },
+    {
+        "course_number": "310",
+        "name": "STAT 310 D100",
+        "prerequisites": "60 units in subjects outside of the Faculties of Science and Applied Sciences and one of STAT 201, STAT 203, STAT 205, STAT 270, BUS 232, ECON 233, or POL 201, with a minimum grade of C-."
+    },
+    {
+        "course_number": "330",
+        "name": "STAT 330 D100",
+        "prerequisites": "STAT 285, MATH 251, and one of MATH 232 or MATH 240, all with a minimum grade of C-."
+    },
+    {
+        "course_number": "336",
+        "name": "STAT 336 D100",
+        "prerequisites": "Students must apply and receive permission from the co-op co-ordinator at least one but preferably two terms in advance. They will normally be required to have completed 45 units with a GPA of 2.5 before they may take this practicum course."
+    },
+    {
+        "course_number": "337",
+        "name": "STAT 337 D100",
+        "prerequisites": "STAT 336 or Job Practicum I from another department. Students must apply and receive permission from the co-op co-ordinator at least one term in advance."
+    },
+    {
+        "course_number": "342",
+        "name": "STAT 342 D100",
+        "prerequisites": "STAT 285 or STAT 302 or STAT 305 or ECON 333, with a minimum grade of C-."
+    },
+    {
+        "course_number": "350",
+        "name": "STAT 350 D100",
+        "prerequisites": "STAT 260, STAT 285, MATH 251, and one of MATH 232 or MATH 240, all with a minimum grade of C-."
+    },
+    {
+        "course_number": "436",
+        "name": "STAT 436 D100",
+        "prerequisites": "STAT 337 or Job Practicum II from another department. Students must apply and receive permission from the co-op co-ordinator at least one term in advance."
+    },
+    {
+        "course_number": "437",
+        "name": "STAT 437 D100",
+        "prerequisites": "STAT 436 or Job Practicum III from another department. Students must apply and receive permission from the co-op co-ordinator at least one term in advance."
+    },
+    {
+        "course_number": "438",
+        "name": "STAT 438 D100",
+        "prerequisites": "STAT 437 or Job Practicum IV from another department. Students must apply and receive permission from the co-op co-ordinator at least one term in advance."
+    },
+    {
+        "course_number": "440",
+        "name": "STAT 440 D100",
+        "prerequisites": "90 units including STAT 350 with a minimum grade of C- and one of STAT 341, STAT 260, or CMPT 225, with a minimum grade of C- (STAT 240 is also recommended); OR data science majors with 90 units including STAT 302 or STAT 305, CMPT 225, STAT 260, and STAT 240, all with a minimum grade of C-."
+    },
+    {
+        "course_number": "450",
+        "name": "STAT 450 D100",
+        "prerequisites": "STAT 330 with a minimum grade of C-."
+    },
+    {
+        "course_number": "452",
+        "name": "STAT 452 D100",
+        "prerequisites": "STAT 260 and one of STAT 302 or STAT 305 or STAT 350 or ECON 333 or equivalent, with a minimum grade of C-."
+    },
+    {
+        "course_number": "460",
+        "name": "STAT 460 D100",
+        "prerequisites": "STAT 330 and 350, with a minimum grade of C-."
+    },
+    {
+        "course_number": "485",
+        "name": "STAT 485 E100",
+        "prerequisites": "STAT 260 and one of STAT 285 or STAT 302 or STAT 305 or ECON 333 or equivalent, with a minimum grade of C-."
+    },
+    {
+        "course_number": "604",
+        "name": "STAT 604 G100",
+        "prerequisites": "Any course in Statistics. Open only to students in departments other than Statistics and Actuarial Science."
+    },
+    {
+        "course_number": "642",
+        "name": "STAT 642 G100",
+        "prerequisites": "STAT 285 or STAT 302 or STAT 305 or STAT 604 or STAT 605 or ECON 333 or equivalent. Open only to students in departments other than Statistics and Actuarial Science."
+    },
+    {
+        "course_number": "652",
+        "name": "STAT 652 G100",
+        "prerequisites": "STAT 302 or STAT 305 or STAT 350 or STAT 604 or STAT 605 or ECON 333 or equivalent."
+    },
+    {
+        "course_number": "685",
+        "name": "STAT 685 G100",
+        "prerequisites": "STAT 302 or STAT 305 or STAT 350 or STAT 604 or STAT 605 or ECON 333 or permission of instructor. Open only to graduate students in departments other than Statistics and Actuarial Science."
+    },
+    {
+        "course_number": "811",
+        "name": "STAT 811 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "812",
+        "name": "STAT 812 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "830",
+        "name": "STAT 830 G100",
+        "prerequisites": "STAT 450 or permission of the instructor."
+    },
+    {
+        "course_number": "850",
+        "name": "STAT 850 G100",
+        "prerequisites": "STAT 350 or equivalent."
+    },
+    {
+        "course_number": "852",
+        "name": "STAT 852 G100",
+        "prerequisites": "STAT 830 and STAT 853 or permission of instructor."
+    },
+    {
+        "course_number": "880",
+        "name": "STAT 880 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "881",
+        "name": "STAT 881 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "882",
+        "name": "STAT 882 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "894",
+        "name": "STAT 894 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "895",
+        "name": "STAT 895 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "898",
+        "name": "STAT 898 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "899",
+        "name": "STAT 899 G100",
+        "prerequisites": ""
+    }
+]

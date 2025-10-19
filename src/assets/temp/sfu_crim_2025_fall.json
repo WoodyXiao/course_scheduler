@@ -1,0 +1,247 @@
+[
+    {
+        "course_number": "101",
+        "name": "CRIM 101 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "103",
+        "name": "CRIM 103 D100",
+        "prerequisites": "PSYC 100 and 102 are recommended."
+    },
+    {
+        "course_number": "104",
+        "name": "CRIM 104 D100",
+        "prerequisites": "SA 150 is recommended."
+    },
+    {
+        "course_number": "131",
+        "name": "CRIM 131 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "135",
+        "name": "CRIM 135 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "210",
+        "name": "CRIM 210 B100",
+        "prerequisites": "CRIM 101 and CRIM 131."
+    },
+    {
+        "course_number": "220",
+        "name": "CRIM 220 B200",
+        "prerequisites": "Any 100 division CRIM course is recommended."
+    },
+    {
+        "course_number": "230",
+        "name": "CRIM 230 B100",
+        "prerequisites": "CRIM 135."
+    },
+    {
+        "course_number": "241",
+        "name": "CRIM 241 D100",
+        "prerequisites": "CRIM 131."
+    },
+    {
+        "course_number": "300w",
+        "name": "CRIM 300W D100",
+        "prerequisites": "CRIM 101."
+    },
+    {
+        "course_number": "302",
+        "name": "CRIM 302 D100",
+        "prerequisites": "CRIM 101."
+    },
+    {
+        "course_number": "304",
+        "name": "CRIM 304 B100",
+        "prerequisites": "Any 100 division CRIM courses."
+    },
+    {
+        "course_number": "314",
+        "name": "CRIM 314 E100",
+        "prerequisites": "CRIM 101. Recommended: CRIM 131."
+    },
+    {
+        "course_number": "315",
+        "name": "CRIM 315 B100",
+        "prerequisites": "45 units."
+    },
+    {
+        "course_number": "316",
+        "name": "CRIM 316 D100",
+        "prerequisites": "CRIM 101 and 103."
+    },
+    {
+        "course_number": "318",
+        "name": "CRIM 318 B100",
+        "prerequisites": "CRIM 101."
+    },
+    {
+        "course_number": "319",
+        "name": "CRIM 319 D100",
+        "prerequisites": "CRIM 101."
+    },
+    {
+        "course_number": "320",
+        "name": "CRIM 320 D100",
+        "prerequisites": "CRIM 101; one of CRIM 120 or 220. CRIM 320 may be taken concurrently with CRIM 321."
+    },
+    {
+        "course_number": "321",
+        "name": "CRIM 321 D100",
+        "prerequisites": "CRIM 101; one of CRIM 120 or 220. This course may be taken concurrently with CRIM 320."
+    },
+    {
+        "course_number": "330",
+        "name": "CRIM 330 OL01",
+        "prerequisites": "CRIM 101 and 230."
+    },
+    {
+        "course_number": "332",
+        "name": "CRIM 332 OL01",
+        "prerequisites": "CRIM 101 and 135."
+    },
+    {
+        "course_number": "344",
+        "name": "CRIM 344 D100",
+        "prerequisites": "CRIM 101 and CRIM 135."
+    },
+    {
+        "course_number": "350",
+        "name": "CRIM 350 D100",
+        "prerequisites": "CRIM 101."
+    },
+    {
+        "course_number": "355",
+        "name": "CRIM 355 OL01",
+        "prerequisites": "45 units."
+    },
+    {
+        "course_number": "370",
+        "name": "CRIM 370 D100",
+        "prerequisites": "CRIM 320 and 330, and written application to the school no later than the last day of classes of the preceding term. CRIM 370 and 470 may not be taken concurrently."
+    },
+    {
+        "course_number": "380",
+        "name": "CRIM 380 D100",
+        "prerequisites": "CRIM 101."
+    },
+    {
+        "course_number": "416",
+        "name": "CRIM 416 D100",
+        "prerequisites": "CRIM 101."
+    },
+    {
+        "course_number": "417",
+        "name": "CRIM 417 D900",
+        "prerequisites": "CRIM 101."
+    },
+    {
+        "course_number": "419",
+        "name": "CRIM 419 D100",
+        "prerequisites": "CRIM 101 or FNST 101 or 201 or permission of the instructor."
+    },
+    {
+        "course_number": "433",
+        "name": "CRIM 433 B100",
+        "prerequisites": "CRIM 101."
+    },
+    {
+        "course_number": "451",
+        "name": "CRIM 451 D100",
+        "prerequisites": "CRIM 101. Recommended: CRIM 355."
+    },
+    {
+        "course_number": "470",
+        "name": "CRIM 470 D100",
+        "prerequisites": "CRIM 320, 321 and 330. Written application to the school no later than the last day of classes of the preceding term. Reserved for criminology honours and majors. Recommended: CRIM 370."
+    },
+    {
+        "course_number": "485",
+        "name": "CRIM 485 OL01",
+        "prerequisites": "Permission of the school, and minimum 90 units and CGPA of 2.75. Applicants must be declared criminology majors."
+    },
+    {
+        "course_number": "486",
+        "name": "CRIM 486 D100",
+        "prerequisites": "Permission of the school, and minimum 90 units and CGPA of 2.75. Applicants must be declared criminology majors and must be enrolled in or have completed CRIM 320, 321 and 485. Corequisite: CRIM 488. A criminal record check may be required dependent on agency."
+    },
+    {
+        "course_number": "487",
+        "name": "CRIM 487 D100",
+        "prerequisites": "CRIM 485, a minimum of 90 units and CGPA of 2.75, and/or permission of the school. Applicants must be declared criminology majors. Corequisite: CRIM 489. A criminal record check may be required dependent on agency."
+    },
+    {
+        "course_number": "488",
+        "name": "CRIM 488 D100",
+        "prerequisites": "Permission of the school, CRIM 485, a minimum of 90 units and CGPA of 2.75. Applicants must be declared criminology majors. Corequisite: CRIM 486. A criminal record check may be required dependent on agency."
+    },
+    {
+        "course_number": "489",
+        "name": "CRIM 489 D100",
+        "prerequisites": "CRIM 485, a minimum of 90 units and CGPA of 2.75, and/or permission of the school. Applicants must be declared criminology majors. Corequisite: CRIM 487. A criminal record check may be required dependent on agency."
+    },
+    {
+        "course_number": "490",
+        "name": "CRIM 490 D100",
+        "prerequisites": "Open only to students who have been admitted to the criminology honours program."
+    },
+    {
+        "course_number": "491",
+        "name": "CRIM 491 D100",
+        "prerequisites": "Open only to students who have been admitted to the criminology honours program."
+    },
+    {
+        "course_number": "800",
+        "name": "CRIM 800 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "860",
+        "name": "CRIM 860 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "865",
+        "name": "CRIM 865 G100",
+        "prerequisites": "CRIM 860 or permission of instructor."
+    },
+    {
+        "course_number": "870",
+        "name": "CRIM 870 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "871",
+        "name": "CRIM 871 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "873",
+        "name": "CRIM 873 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "890",
+        "name": "CRIM 890 G100",
+        "prerequisites": "CRIM 897."
+    },
+    {
+        "course_number": "897",
+        "name": "CRIM 897 G100",
+        "prerequisites": "Completion of all course work within the PhD program."
+    },
+    {
+        "course_number": "898",
+        "name": "CRIM 898 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "899",
+        "name": "CRIM 899 G100",
+        "prerequisites": ""
+    }
+]

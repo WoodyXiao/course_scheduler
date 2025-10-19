@@ -1,0 +1,12 @@
+[
+    {
+        "course_number": "603",
+        "name": "ALS 603 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "612",
+        "name": "ALS 612 G100",
+        "prerequisites": ""
+    }
+]

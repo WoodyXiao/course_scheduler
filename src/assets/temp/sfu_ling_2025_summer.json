@@ -1,0 +1,122 @@
+[
+    {
+        "course_number": "100",
+        "name": "LING 100 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "160",
+        "name": "LING 160 B100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "190",
+        "name": "LING 190 B100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "220",
+        "name": "LING 220 A010",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "309w",
+        "name": "LING 309W A320",
+        "prerequisites": "LING 282W. Recommended: LING 160."
+    },
+    {
+        "course_number": "315",
+        "name": "LING 315 D100",
+        "prerequisites": "LING 220."
+    },
+    {
+        "course_number": "321",
+        "name": "LING 321 B100",
+        "prerequisites": "LING 282W."
+    },
+    {
+        "course_number": "322",
+        "name": "LING 322 B100",
+        "prerequisites": "LING 282W."
+    },
+    {
+        "course_number": "324",
+        "name": "LING 324 A320",
+        "prerequisites": "LING 282W."
+    },
+    {
+        "course_number": "330",
+        "name": "LING 330 D100",
+        "prerequisites": "LING 282W."
+    },
+    {
+        "course_number": "362",
+        "name": "LING 362 B100",
+        "prerequisites": "LING 282W."
+    },
+    {
+        "course_number": "401",
+        "name": "LING 401 B100",
+        "prerequisites": "LING 330."
+    },
+    {
+        "course_number": "415",
+        "name": "LING 415 B100",
+        "prerequisites": "12 units of upper division linguistic courses."
+    },
+    {
+        "course_number": "491",
+        "name": "LING 491 D100",
+        "prerequisites": "LING 220, 60 units, and permission of the Undergraduate Committee Chair."
+    },
+    {
+        "course_number": "810",
+        "name": "LING 810 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "812",
+        "name": "LING 812 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "831",
+        "name": "LING 831 G110",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "834",
+        "name": "LING 834 G110",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "893",
+        "name": "LING 893 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "894",
+        "name": "LING 894 G100",
+        "prerequisites": "All PhD coursework in Linguistics."
+    },
+    {
+        "course_number": "895",
+        "name": "LING 895 G100",
+        "prerequisites": "All PhD coursework in Linguistics."
+    },
+    {
+        "course_number": "896",
+        "name": "LING 896 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "898",
+        "name": "LING 898 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "899",
+        "name": "LING 899 G100",
+        "prerequisites": ""
+    }
+]

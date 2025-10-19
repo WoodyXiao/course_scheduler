@@ -1,0 +1,72 @@
+[
+    {
+        "course_number": "101w",
+        "name": "HUM 101W D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "102w",
+        "name": "HUM 102W OL01",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "106",
+        "name": "HUM 106 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "121",
+        "name": "HUM 121 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "130",
+        "name": "HUM 130 OL01",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "277",
+        "name": "HUM 277 D100",
+        "prerequisites": "Recommended: HUM 110."
+    },
+    {
+        "course_number": "333w",
+        "name": "HUM 333W B100",
+        "prerequisites": "45 units."
+    },
+    {
+        "course_number": "340",
+        "name": "HUM 340 B100",
+        "prerequisites": "45 units."
+    },
+    {
+        "course_number": "382",
+        "name": "HUM 382 D100",
+        "prerequisites": "45 units."
+    },
+    {
+        "course_number": "390",
+        "name": "HUM 390 D100",
+        "prerequisites": "Two of any 300-division global humanities courses or permission of the chair plus permission of instructor. This course may be used only once for credit towards a degree and is reserved for global humanities major, joint major, extended minor, minor and PBD students."
+    },
+    {
+        "course_number": "800",
+        "name": "HUM 800 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "801",
+        "name": "HUM 801 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "803",
+        "name": "HUM 803 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "804",
+        "name": "HUM 804 G100",
+        "prerequisites": ""
+    }
+]

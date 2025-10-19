@@ -1,0 +1,17 @@
+[
+    {
+        "course_number": "507",
+        "name": "EDPR 507 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "536",
+        "name": "EDPR 536 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "539",
+        "name": "EDPR 539 G100",
+        "prerequisites": ""
+    }
+]

@@ -1,0 +1,72 @@
+[
+    {
+        "course_number": "101",
+        "name": "INDG 101 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "201w",
+        "name": "INDG 201W OL01",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "211",
+        "name": "INDG 211 B100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "250",
+        "name": "INDG 250 D100",
+        "prerequisites": "INDG 101."
+    },
+    {
+        "course_number": "286",
+        "name": "INDG 286 B900",
+        "prerequisites": "Recommended: INDG 101."
+    },
+    {
+        "course_number": "301",
+        "name": "INDG 301 D100",
+        "prerequisites": "One of INDG (or FNST) 101 or 201W and 111, or permission of the instructor."
+    },
+    {
+        "course_number": "305",
+        "name": "INDG 305 OL01",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "333",
+        "name": "INDG 333 OL01",
+        "prerequisites": "Either INDG (or FNST) 101 or 201W."
+    },
+    {
+        "course_number": "360",
+        "name": "INDG 360 B100",
+        "prerequisites": "45 units."
+    },
+    {
+        "course_number": "401",
+        "name": "INDG 401 D100",
+        "prerequisites": "45 units, INDG (or FNST) 101 and one of INDG (or FNST) 201W or 250, or permission of the instructor."
+    },
+    {
+        "course_number": "419",
+        "name": "INDG 419 D100",
+        "prerequisites": "INDG (or FNST) 101 or 201W, or CRIM 101, or permission of the instructor."
+    },
+    {
+        "course_number": "433",
+        "name": "INDG 433 D100",
+        "prerequisites": "45 units and one of INDG (or FNST) 101 or 201W, or permission of the instructor."
+    },
+    {
+        "course_number": "442",
+        "name": "INDG 442 D100",
+        "prerequisites": "15 units in Indigenous (or First Nations) studies. Corequisite: Permission of an instructor and department."
+    },
+    {
+        "course_number": "447",
+        "name": "INDG 447 D100",
+        "prerequisites": "15 units of INDG (or FNST) courses; permission of an instructor and department approval. Corequisite: Varies depending on topic."
+    }
+]

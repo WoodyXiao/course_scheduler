@@ -1,0 +1,657 @@
+[
+    {
+        "course_number": "200",
+        "name": "BUS 200 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "207",
+        "name": "BUS 207 D100",
+        "prerequisites": "ECON 103 or ECON 113, ECON 105 or ECON 115, MATH 157, all with a minimum grade of C-; 15 units."
+    },
+    {
+        "course_number": "217w",
+        "name": "BUS 217W D100",
+        "prerequisites": "BUS 201 with a minimum grade of C- and 15 units; OR 45 units and corequisite: BUS 202; OR business administration joint major, joint honours, or double degree students with 45 units; OR data science students with 15 units; OR actuarial science students with 15 units."
+    },
+    {
+        "course_number": "225",
+        "name": "BUS 225 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "232",
+        "name": "BUS 232 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "233",
+        "name": "BUS 233 D100",
+        "prerequisites": "12 units."
+    },
+    {
+        "course_number": "237",
+        "name": "BUS 237 D100",
+        "prerequisites": "12 units."
+    },
+    {
+        "course_number": "240",
+        "name": "BUS 240 D100",
+        "prerequisites": "12 units."
+    },
+    {
+        "course_number": "251",
+        "name": "BUS 251 D100",
+        "prerequisites": "12 units."
+    },
+    {
+        "course_number": "254",
+        "name": "BUS 254 D100",
+        "prerequisites": "BUS 251 with a minimum grade of C-; 15 units."
+    },
+    {
+        "course_number": "272",
+        "name": "BUS 272 D100",
+        "prerequisites": "12 units."
+    },
+    {
+        "course_number": "275",
+        "name": "BUS 275 D100",
+        "prerequisites": "12 units."
+    },
+    {
+        "course_number": "300",
+        "name": "BUS 300 E100",
+        "prerequisites": "This course is only open to approved business administration majors admitted to the faculty in Fall 2022 and onward. BUS 100 or BUS 203, with a P grade and BUS 217W with a minimum grade of C-; 45 units. Recommendation to take with BUS 360W."
+    },
+    {
+        "course_number": "303",
+        "name": "BUS 303 D100",
+        "prerequisites": "45 units."
+    },
+    {
+        "course_number": "311",
+        "name": "BUS 311 D100",
+        "prerequisites": "This course is only open to students admitted to the business administration minor between Fall 2012 - Summer 2016 and who have credit for BUS 251 with a minimum grade of C- and 45 units, OR to students admitted to the business administration minor Fall 2016 - onwards and who have credit for BUS 251 with a minimum grade of C-, 45 units, and corequisite: BUS 200."
+    },
+    {
+        "course_number": "312",
+        "name": "BUS 312 D100",
+        "prerequisites": "BUS 254 with a minimum grade of C- and 45 units; OR actuarial science students with BUS 254 with a minimum grade of C- and 45 units. Recommended: BUS 207 or ECON 201."
+    },
+    {
+        "course_number": "315",
+        "name": "BUS 315 D100",
+        "prerequisites": "BUS 312, BUS 336 and (BUS 207 or ECON 201), all with a minimum grade of C- and 45 units; OR actuarial science students with STAT 285 and BUS 312, both with a minimum grade of C- and 45 units."
+    },
+    {
+        "course_number": "316",
+        "name": "BUS 316 D100",
+        "prerequisites": "BUS 312 and BUS 336, both with a minimum grade of C- and 45 units; OR actuarial science students with STAT 285 and BUS 312, both with a minimum grade of C- and 45 units."
+    },
+    {
+        "course_number": "320",
+        "name": "BUS 320 D100",
+        "prerequisites": "BUS 251 with a minimum grade of C-; 45 units."
+    },
+    {
+        "course_number": "321",
+        "name": "BUS 321 D100",
+        "prerequisites": "BUS 320 with a minimum grade of C-; 45 units."
+    },
+    {
+        "course_number": "322",
+        "name": "BUS 322 D100",
+        "prerequisites": "BUS 254 with a minimum grade of C-, 45 units."
+    },
+    {
+        "course_number": "325",
+        "name": "BUS 325 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "326",
+        "name": "BUS 326 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "327",
+        "name": "BUS 327 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "330",
+        "name": "BUS 330 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "331",
+        "name": "BUS 331 D100",
+        "prerequisites": "BUS 330 (or BUS 329) with a minimum grade of C-, 45 units."
+    },
+    {
+        "course_number": "336",
+        "name": "BUS 336 D100",
+        "prerequisites": "MATH 150, MATH 151, MATH 154, or MATH 157, with a minimum grade of C-; BUS 232, ECON 233, STAT 270, or STAT 271, with a minimum grade of C-; 45 units."
+    },
+    {
+        "course_number": "340",
+        "name": "BUS 340 D100",
+        "prerequisites": "This course is only open to students admitted to the business administration minor between Fall 2012 - Summer 2016 and who have 45 units, OR to students admitted to the business administration minor Fall 2016 - onwards and who have 45 units, and corequisite: BUS 200."
+    },
+    {
+        "course_number": "341",
+        "name": "BUS 341 D100",
+        "prerequisites": "This course is only open to students admitted to the business administration minor between Fall 2012 - Summer 2016 and who have 45 units, OR to students admitted to the business administration minor Fall 2016 - onwards and who have 45 units, and corequisite: BUS 200."
+    },
+    {
+        "course_number": "343",
+        "name": "BUS 343 D100",
+        "prerequisites": "45 units."
+    },
+    {
+        "course_number": "345",
+        "name": "BUS 345 D100",
+        "prerequisites": "BUS 232 or ECON 233 or STAT 270 or STAT 271, and BUS 343, both with a minimum grade of C- and 45 units; OR data science majors with BUS 343 with a minimum grade of C- and 45 units."
+    },
+    {
+        "course_number": "346",
+        "name": "BUS 346 D100",
+        "prerequisites": "45 units."
+    },
+    {
+        "course_number": "347",
+        "name": "BUS 347 D100",
+        "prerequisites": "BUS 343 with a minimum grade of C-; 45 units."
+    },
+    {
+        "course_number": "360w",
+        "name": "BUS 360W D100",
+        "prerequisites": "This course is open to students admitted prior to Fall 2014 to the business administration major, honours, or second degree program and who have 45 units, OR to students admitted Fall 2014 - Summer 2017 to the business administration major, honours, or second degree program and who have 45 units and BUS 130 or (BUS 201 or BUS 202) or BUS 301, with a minimum grade of C-, OR to students admitted Fall 2017 – Summer 2022 to the business administration major, honours, or second degree program and who have 45 units and BUS 130 or (BUS 201 or BUS 202) or BUS 301, and BUS 217W, both with a minimum grade of C-, OR to students admitted Fall 2022 onwards to the business administration major, honours, or second degree program, and who have 45 units; BUS 217W and (BUS 201 or BUS 202), both with a minimum grade of C-; and BUS 300, OR to business administration joint major or joint honours students with BUS 217W with a minimum grade of C- and 45 units, OR to business and economics joint major students with ECON 220W with a minimum grade of C- and 45 units, OR to mechatronic systems engineering and business administration double degree students with 45 units, OR to management systems science or actuarial science majors with 45 units OR to data science major with BUS 217W with a minimum grade of C- and 45 units."
+    },
+    {
+        "course_number": "361",
+        "name": "BUS 361 D100",
+        "prerequisites": "45 units."
+    },
+    {
+        "course_number": "362",
+        "name": "BUS 362 D100",
+        "prerequisites": "BUS 237 with a minimum grade of C-; 45 units; OR Data Science majors with 45 units."
+    },
+    {
+        "course_number": "373",
+        "name": "BUS 373 D100",
+        "prerequisites": "BUS 232, ECON 233, STAT 270, or STAT 271, with a minimum grade of C-; 45 units."
+    },
+    {
+        "course_number": "381",
+        "name": "BUS 381 D100",
+        "prerequisites": "BUS 272 with a minimum grade of C-; 45 units."
+    },
+    {
+        "course_number": "393",
+        "name": "BUS 393 D100",
+        "prerequisites": "45 units."
+    },
+    {
+        "course_number": "401",
+        "name": "BUS 401 D100",
+        "prerequisites": "BUS 311 (or BUS 254 and BUS 312), BUS 340, BUS 341, all with a minimum grade of C-; 60 units. The course is only open to students in the business minor program."
+    },
+    {
+        "course_number": "410",
+        "name": "BUS 410 D100",
+        "prerequisites": "BUS 315, 316, 360W, all with a minimum grade of C-; 60 units."
+    },
+    {
+        "course_number": "411",
+        "name": "BUS 411 D100",
+        "prerequisites": "BUS 315 and BUS 360W, both with a minimum grade of C-; 60 units."
+    },
+    {
+        "course_number": "413",
+        "name": "BUS 413 D100",
+        "prerequisites": "BUS 312, BUS 315, and BUS 360W, all with a minimum grade of C-; 60 units."
+    },
+    {
+        "course_number": "417",
+        "name": "BUS 417 D100",
+        "prerequisites": "BUS 315, 360W, both with a minimum grade of C-; 60 units."
+    },
+    {
+        "course_number": "418",
+        "name": "BUS 418 D100",
+        "prerequisites": "BUS 315, 316, 360W, all with a minimum grade of C-; 60 units."
+    },
+    {
+        "course_number": "420",
+        "name": "BUS 420 D100",
+        "prerequisites": "BUS 321, 360W, both with a minimum grade of C-; 60 units."
+    },
+    {
+        "course_number": "421",
+        "name": "BUS 421 D100",
+        "prerequisites": "BUS 321 and BUS 360W, both with a minimum grade of C-; 60 units."
+    },
+    {
+        "course_number": "424",
+        "name": "BUS 424 D100",
+        "prerequisites": "BUS 322 and BUS 360W, both with a minimum grade of C-; 60 units."
+    },
+    {
+        "course_number": "425",
+        "name": "BUS 425 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "426",
+        "name": "BUS 426 D100",
+        "prerequisites": "BUS 321, 360W, both with a minimum grade of C-; 60 units."
+    },
+    {
+        "course_number": "430",
+        "name": "BUS 430 D100",
+        "prerequisites": "BUS 360W with a minimum grade of C-; 60 units. Recommended: BUS 346."
+    },
+    {
+        "course_number": "434",
+        "name": "BUS 434 D100",
+        "prerequisites": "BUS 360W with a minimum grade of C-; 60 units. Recommended: BUS 346."
+    },
+    {
+        "course_number": "437",
+        "name": "BUS 437 D100",
+        "prerequisites": "BUS 336, 360W, both with a minimum grade of C-; 60 units; OR Data Science majors with BUS 360W with a minimum grade of C- and 60 units."
+    },
+    {
+        "course_number": "444",
+        "name": "BUS 444 D100",
+        "prerequisites": "BUS 343, 360W, both with a minimum grade of C-; 60 units."
+    },
+    {
+        "course_number": "445",
+        "name": "BUS 445 D100",
+        "prerequisites": "BUS 343, 336, 360W, all with a minimum grade of C-, 60 units; OR Data Science majors with BUS 343, 360W, both with a minimum grade of C-, and 60 units."
+    },
+    {
+        "course_number": "447",
+        "name": "BUS 447 D100",
+        "prerequisites": "BUS 343, 360W, both with a minimum grade of C-; 60 units. Recommended: BUS 346."
+    },
+    {
+        "course_number": "462",
+        "name": "BUS 462 D100",
+        "prerequisites": "BUS 336, BUS 360W, BUS 362, all with a minimum grade of C-; 60 units. Corequisite: BUS 336 can be taken concurrently."
+    },
+    {
+        "course_number": "466",
+        "name": "BUS 466 D100",
+        "prerequisites": "BUS 237, BUS 360W, BUS 362, all with a minimum grade of C-; 60 units."
+    },
+    {
+        "course_number": "468",
+        "name": "BUS 468 D100",
+        "prerequisites": "BUS 237, BUS 360W, BUS 362, all with a minimum grade of C-; 90 units."
+    },
+    {
+        "course_number": "473",
+        "name": "BUS 473 D100",
+        "prerequisites": "Students admitted prior to Fall 2023 with (BUS 373 or BUS 336) and BUS 360W, or students admitted Fall 2023 onward with BUS 373 and BUS 360W; both with a minimum grade of C-; 60 units."
+    },
+    {
+        "course_number": "474",
+        "name": "BUS 474 D100",
+        "prerequisites": "Students admitted prior to Fall 2023 with (BUS 373 or BUS 336) and BUS 360W, or students admitted Fall 2023 onward with BUS 373 and BUS 360W; both with a minimum grade of C-; 60 units."
+    },
+    {
+        "course_number": "475",
+        "name": "BUS 475 D100",
+        "prerequisites": "BUS 360W or corporate environmental and social sustainability certificate students with an upper division Writing (W) course, with a minimum grade of C-; 60 units."
+    },
+    {
+        "course_number": "478",
+        "name": "BUS 478 D100",
+        "prerequisites": "BUS 207 (or ECON 201 or ECON 301), BUS 312, 343, 360W and either BUS 374 or 381, all with a minimum grade of C-; 90 units."
+    },
+    {
+        "course_number": "481",
+        "name": "BUS 481 D100",
+        "prerequisites": "BUS 381 and 360W, with a minimum grade of C-; 60 units."
+    },
+    {
+        "course_number": "485",
+        "name": "BUS 485 D100",
+        "prerequisites": "BUS 272, 360W, and either 374 or 381, all with a minimum grade of C-; 60 units."
+    },
+    {
+        "course_number": "489",
+        "name": "BUS 489 D100",
+        "prerequisites": "(BUS 374 or BUS 381) and BUS 360W, or corporate environmental and social sustainability certificate students with an upper division Writing (W) course, all with a minimum grade of C-; 60 units."
+    },
+    {
+        "course_number": "492",
+        "name": "BUS 492 D900",
+        "prerequisites": "As stated by the faculty at the time of offering and BUS 360W with a minimum grade of C-; 60 units."
+    },
+    {
+        "course_number": "496",
+        "name": "BUS 496 E100",
+        "prerequisites": "This course is only open to approved business administration majors admitted to the faculty in Fall 2022 and onward, BUS 300 with a P grade and BUS 360W with a minimum grade of C-; 95 units."
+    },
+    {
+        "course_number": "510",
+        "name": "BUS 510 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "511",
+        "name": "BUS 511 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "553",
+        "name": "BUS 553 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "555",
+        "name": "BUS 555 G300",
+        "prerequisites": "BUS 510 or equivalent."
+    },
+    {
+        "course_number": "556",
+        "name": "BUS 556 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "557",
+        "name": "BUS 557 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "561",
+        "name": "BUS 561 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "579",
+        "name": "BUS 579 G200",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "603",
+        "name": "BUS 603 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "605",
+        "name": "BUS 605 G100",
+        "prerequisites": "Enrollment in the Americas stream of the EMBA."
+    },
+    {
+        "course_number": "607",
+        "name": "BUS 607 G200",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "609",
+        "name": "BUS 609 G500",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "613",
+        "name": "BUS 613 G400",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "621",
+        "name": "BUS 621 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "630",
+        "name": "BUS 630 G400",
+        "prerequisites": "Only for students in the IBL EMBA program."
+    },
+    {
+        "course_number": "632",
+        "name": "BUS 632 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "641",
+        "name": "BUS 641 G200",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "655",
+        "name": "BUS 655 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "668",
+        "name": "BUS 668 G400",
+        "prerequisites": "Only for students in the IBL EMBA program."
+    },
+    {
+        "course_number": "675",
+        "name": "BUS 675 G400",
+        "prerequisites": "Only for students in Indigenous Business Leadership."
+    },
+    {
+        "course_number": "695",
+        "name": "BUS 695 G100",
+        "prerequisites": "BUS 694."
+    },
+    {
+        "course_number": "703",
+        "name": "BUS 703 G500",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "709",
+        "name": "BUS 709 G500",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "711",
+        "name": "BUS 711 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "714",
+        "name": "BUS 714 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "715",
+        "name": "BUS 715 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "718",
+        "name": "BUS 718 G100",
+        "prerequisites": "30 units of course work in the MBA program."
+    },
+    {
+        "course_number": "727",
+        "name": "BUS 727 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "730",
+        "name": "BUS 730 G100",
+        "prerequisites": "BUS 741."
+    },
+    {
+        "course_number": "733",
+        "name": "BUS 733 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "735",
+        "name": "BUS 735 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "737",
+        "name": "BUS 737 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "739",
+        "name": "BUS 739 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "741",
+        "name": "BUS 741 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "742",
+        "name": "BUS 742 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "753",
+        "name": "BUS 753 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "758",
+        "name": "BUS 758 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "759",
+        "name": "BUS 759 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "774",
+        "name": "BUS 774 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "783",
+        "name": "BUS 783 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "794",
+        "name": "BUS 794 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "795",
+        "name": "BUS 795 G100",
+        "prerequisites": "Bus 792 Financial Literacy for Entrepreneurs."
+    },
+    {
+        "course_number": "796",
+        "name": "BUS 796 G100",
+        "prerequisites": "BUS 790 Lab to Market, BUS 791 Opportunity Identification and Assessment"
+    },
+    {
+        "course_number": "797",
+        "name": "BUS 797 G100",
+        "prerequisites": "BUS 790 Lab to Market; BUS 791 Opportunity Identification & Assessment; BUS 792 Financial Literacy for Entrepreneurs; BUS 793 Business Models; BUS 796 Business Plan I."
+    },
+    {
+        "course_number": "829",
+        "name": "BUS 829 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "830",
+        "name": "BUS 830 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "831",
+        "name": "BUS 831 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "832",
+        "name": "BUS 832 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "838",
+        "name": "BUS 838 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "840",
+        "name": "BUS 840 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "841",
+        "name": "BUS 841 G100",
+        "prerequisites": "BUS 831."
+    },
+    {
+        "course_number": "842",
+        "name": "BUS 842 G100",
+        "prerequisites": "BUS 832."
+    },
+    {
+        "course_number": "844",
+        "name": "BUS 844 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "880",
+        "name": "BUS 880 G100",
+        "prerequisites": "BUS 881 or Academic Director approval."
+    },
+    {
+        "course_number": "888",
+        "name": "BUS 888 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "890",
+        "name": "BUS 890 G100",
+        "prerequisites": "Students need permission from academic unit."
+    },
+    {
+        "course_number": "965",
+        "name": "BUS 965 G100",
+        "prerequisites": "BUS 890 or equivalent."
+    },
+    {
+        "course_number": "984",
+        "name": "BUS 984 G100",
+        "prerequisites": "Enrollment in PhD program."
+    },
+    {
+        "course_number": "985",
+        "name": "BUS 985 G100",
+        "prerequisites": "Enrollment in PhD program."
+    },
+    {
+        "course_number": "990",
+        "name": "BUS 990 G100",
+        "prerequisites": "Enrollment in PhD program."
+    },
+    {
+        "course_number": "991",
+        "name": "BUS 991 G100",
+        "prerequisites": "Enrollment in PhD program."
+    },
+    {
+        "course_number": "992",
+        "name": "BUS 992 G100",
+        "prerequisites": "Enrollment in PhD program."
+    },
+    {
+        "course_number": "993",
+        "name": "BUS 993 G100",
+        "prerequisites": ""
+    }
+]

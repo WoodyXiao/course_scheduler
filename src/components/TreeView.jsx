@@ -20,7 +20,7 @@ const departmentColors = {
   'ENSC': { from: '#4F46E5', to: '#7C3AED', name: 'Engineering Science' }, // Sky Blue
 };
 
-function TreeView({ data }) {
+function TreeView({ data, allCourses, onLoadPrerequisites }) {
   const svgRef = useRef();
   const [treeData, setTreeData] = useState(() => d3.hierarchy(data));
   const [updateCounter, setUpdateCounter] = useState(0);
@@ -30,6 +30,8 @@ function TreeView({ data }) {
   const [nodePositions, setNodePositions] = useState({}); // Store custom positions
   const [activeDepartments, setActiveDepartments] = useState([]); // Track departments in current tree
   const zoomTransformRef = useRef(null); // Store zoom transform state
+  const [loadingNodes, setLoadingNodes] = useState(new Set()); // Track which nodes are loading prerequisites
+  const [loadedNodes, setLoadedNodes] = useState(new Set()); // Track which nodes have already loaded
   
   // Plan Mode states
   const [planMode, setPlanMode] = useState(false); // Whether in Plan mode
@@ -37,13 +39,21 @@ function TreeView({ data }) {
 
   useEffect(() => {
     // This effect runs when `data` prop changes.
-    setTreeData(d3.hierarchy(data));  // Recreate the hierarchy with the new data
+    if (data && !data.loading) {
+      setTreeData(d3.hierarchy(data));  // Recreate the hierarchy with the new data
+    } else {
+      setTreeData(null);  // Clear tree data for loading or null states
+    }
+    
     // Clear previous node positions and zoom when switching to a new course
     setNodePositions({});
     zoomTransformRef.current = null;
     // Reset plan mode states when switching courses
     setPlanMode(false);
     setCheckedNodes(new Set());
+    // Reset lazy loading tracking
+    setLoadingNodes(new Set());
+    setLoadedNodes(new Set());
   }, [data]);
 
   // Calculate if a node's prerequisites are satisfied based on checked nodes
@@ -111,10 +121,141 @@ function TreeView({ data }) {
     return node.children.every(child => isNodeSatisfied(child));
   }, [planMode, isNodeSatisfied]);
 
-  const toggleChildren = useCallback((nodeData) => {
-    // Find the node in the tree hierarchy
-    function findAndToggle(node) {
-      if (node.data === nodeData) {
+  const toggleChildren = useCallback(async (nodeData) => {
+    console.log(`🔄 [Toggle] Toggle called for ${nodeData.name}`);
+    console.log(`🔄 [Toggle] Node data:`, nodeData);
+    console.log(`🔄 [Toggle] Has children:`, !!nodeData.children);
+    console.log(`🔄 [Toggle] Children length:`, nodeData.children ? nodeData.children.length : 0);
+    console.log(`🔄 [Toggle] Has _children:`, !!nodeData._children);
+    console.log(`🔄 [Toggle] Has prerequisites:`, !!nodeData.hasPrerequisites);
+    console.log(`🔄 [Toggle] Is loaded:`, loadedNodes.has(nodeData.uniqueId));
+    console.log(`🔄 [Toggle] All courses available:`, !!allCourses);
+    console.log(`🔄 [Toggle] OnLoadPrerequisites available:`, !!onLoadPrerequisites);
+    
+    // 检查是否是课程节点且第一次展开且有前置课程需要加载
+    const isFirstExpand = (!nodeData.children || nodeData.children.length === 0) && 
+                          !nodeData._children && 
+                          nodeData.hasPrerequisites && 
+                          !loadedNodes.has(nodeData.uniqueId);
+    
+    console.log(`🔄 [Toggle] Is first expand:`, isFirstExpand);
+    
+    if (isFirstExpand && allCourses && onLoadPrerequisites) {
+      console.log(`🔄 [Lazy Load] First expand of ${nodeData.name}, loading prerequisites...`);
+      
+      // 标记为加载中
+      setLoadingNodes(prev => new Set(prev).add(nodeData.uniqueId));
+      
+      try {
+        // 调用 AI 解析前置课程
+        const parsedPrereq = await onLoadPrerequisites(
+          nodeData.prerequisiteText,
+          allCourses,
+          nodeData.name
+        );
+        
+        console.log(`✅ [Lazy Load] Loaded prerequisites for ${nodeData.name}`);
+        console.log(`🔍 [Debug] Parsed result:`, parsedPrereq);
+        console.log(`🔍 [Debug] Has children:`, !!parsedPrereq.children);
+        console.log(`🔍 [Debug] Children length:`, parsedPrereq.children ? parsedPrereq.children.length : 0);
+        console.log(`🔍 [Debug] Parsed result name:`, parsedPrereq.name);
+        console.log(`🔍 [Debug] Parsed result condition:`, parsedPrereq.condition);
+        
+        // 标记为已加载
+        setLoadedNodes(prev => new Set(prev).add(nodeData.uniqueId));
+        
+        // 将解析结果插入到节点的 children
+        if (parsedPrereq && parsedPrereq.children && parsedPrereq.children.length > 0) {
+          // 找到节点并添加 children
+          function findAndAddChildren(node) {
+            if (node.data === nodeData) {
+              // 恢复使用 children[0]，因为 AI 结果被包装在正确的结构中
+              const childrenData = parsedPrereq.children[0];
+              
+              if (childrenData) {
+                // 递归创建 D3 hierarchy 节点
+                const createHierarchy = (dataNode, parentNode) => {
+                  const uniqueId = `${parentNode.data.uniqueId || 'root'}-${dataNode.name}-${Math.random()}`;
+                  console.log(`🔍 [CreateHierarchy] Creating node:`, dataNode.name, 'condition:', dataNode.condition);
+                  const newNode = d3.hierarchy({
+                    ...dataNode,
+                    uniqueId: uniqueId,
+                    hasPrerequisites: dataNode.hasPrerequisites,
+                    prerequisiteText: dataNode.prerequisiteText
+                  });
+                  newNode.parent = parentNode;
+                  newNode.depth = parentNode.depth + 1;
+                  
+                  // 递归处理子节点
+                  if (dataNode.children && dataNode.children.length > 0) {
+                    newNode.children = dataNode.children.map(child => createHierarchy(child, newNode));
+                  }
+                  
+                  return newNode;
+                };
+                
+                // 将整个 childrenData（如 OR 节点）作为一个子节点添加到当前节点
+                const newChild = createHierarchy(childrenData, node);
+                
+                // 设置为展开状态，自动显示加载的子节点
+                node.children = [newChild];
+                node._children = null;
+              }
+              
+              return true;
+            }
+            
+            if (node.children) {
+              for (let child of node.children) {
+                if (findAndAddChildren(child)) return true;
+              }
+            }
+            
+            if (node._children) {
+              for (let child of node._children) {
+                if (findAndAddChildren(child)) return true;
+              }
+            }
+            
+            return false;
+          }
+          
+          findAndAddChildren(treeData);
+          
+          // 重新计算整个树的布局
+          console.log(`🔄 [Layout] Recalculating tree layout after adding children to ${nodeData.name}`);
+          
+          // 重新计算树布局
+          const margin = { top: 40, right: 120, bottom: 40, left: 120 };
+          const width = 1200 - margin.right - margin.left;
+          const height = 1000 - margin.top - margin.bottom;
+          const treeLayout = d3.tree()
+            .size([width, height])
+            .separation((a, b) => {
+              // 增加兄弟节点之间的间距
+              return (a.parent === b.parent ? 1.5 : 2) / a.depth;
+            });
+          treeLayout(treeData);
+          
+          // 重新设置 treeData 以触发重新渲染
+          // 使用 updateCounter 来触发重新渲染，而不是尝试深拷贝 D3 节点对象
+          setUpdateCounter(prev => prev + 1);
+        }
+        
+      } catch (error) {
+        console.error(`❌ [Lazy Load] Failed to load prerequisites for ${nodeData.name}:`, error);
+      } finally {
+        // 移除加载中状态
+        setLoadingNodes(prev => {
+          const newSet = new Set(prev);
+          newSet.delete(nodeData.uniqueId);
+          return newSet;
+        });
+      }
+    } else {
+      // 普通的展开/收起逻辑（已经加载过的节点）
+      function findAndToggle(node) {
+        if (node.data === nodeData) {
     if (node.children) {
       node._children = node.children;
       node.children = null;
@@ -141,9 +282,11 @@ function TreeView({ data }) {
     }
     
     findAndToggle(treeData);
-    // Force re-render by updating counter
+  }
+    
+    // Trigger re-render by updating the counter
     setUpdateCounter(prev => prev + 1);
-  }, [treeData]);
+  }, [treeData, allCourses, onLoadPrerequisites, loadedNodes]);
 
   const highlightPath = useCallback((node) => {
     const path = new Set();
@@ -329,6 +472,12 @@ function TreeView({ data }) {
   }, []);
 
   const drawTree = useCallback(() => {
+    // Early return if treeData is null or invalid
+    if (!treeData) {
+      console.log('TreeView: treeData is null, skipping drawTree');
+      return;
+    }
+
     const margin = { top: 40, right: 120, bottom: 40, left: 120 };
     const width = 1200 - margin.right - margin.left;
     const height = 1000 - margin.top - margin.bottom;
@@ -422,7 +571,12 @@ function TreeView({ data }) {
       .attr("class", "zoom-group")
       .attr("transform", `translate(${margin.left},${margin.top})`);
 
-    const treeLayout = d3.tree().size([width, height]);
+    const treeLayout = d3.tree()
+      .size([width, height])
+      .separation((a, b) => {
+        // 增加兄弟节点之间的间距
+        return (a.parent === b.parent ? 1.5 : 2) / a.depth;
+      });
     treeLayout(treeData);
 
     // Assign unique IDs to all nodes if not already present
@@ -680,32 +834,47 @@ function TreeView({ data }) {
       .style("stroke-width", "1px"); // Thinner stroke
 
     // Add expand/collapse indicators - show when node has children (expanded or collapsed)
-    // Only for course nodes, not for AND/OR logic nodes
-    // Invisible larger hit area for easier clicking (positioned on the right side of node)
+    // Search hit area (for loading prerequisites) - only for course nodes
     nodeContainers
       .filter(d => d.data.condition !== "AND" && d.data.condition !== "OR")
       .append("circle")
-      .attr("class", "indicator-hitarea")
+      .attr("class", "search-hitarea")
       .attr("cx", 30) // Course nodes (20px + 10px)
       .attr("cy", 0) // Same vertical level as node center
       .attr("r", 10) // Smaller hit area
       .style("fill", "transparent")
       .style("opacity", (d) => {
-        const hasChildren = (d.children && d.children.length > 0) || (d._children && d._children.length > 0);
-        return hasChildren ? 1 : 0;
+        const hasPrerequisites = d.data.hasPrerequisites && !loadedNodes.has(d.data.uniqueId);
+        const isLoading = loadingNodes.has(d.data.uniqueId);
+        if (!(hasPrerequisites || isLoading)) return 0;
+        // Reduce opacity in plan mode to indicate disabled state
+        return planMode ? 0.3 : 1;
       })
       .style("display", (d) => {
-        const hasChildren = (d.children && d.children.length > 0) || (d._children && d._children.length > 0);
-        return hasChildren ? "block" : "none";
+        const hasPrerequisites = d.data.hasPrerequisites && !loadedNodes.has(d.data.uniqueId);
+        const isLoading = loadingNodes.has(d.data.uniqueId);
+        return (hasPrerequisites || isLoading) ? "block" : "none";
       })
-      .style("cursor", "pointer")
+      .style("cursor", (d) => planMode ? "not-allowed" : "pointer")
       .style("pointer-events", "all") // Ensure this captures events
       .on("mousedown", function(event) {
         // Prevent drag from starting on indicator
         event.stopPropagation();
       })
       .on("click", function(event, d) {
+        event.preventDefault();
         event.stopPropagation();
+        
+        // Disable search in plan mode
+        if (planMode) {
+          console.log(`🚫 [Search] Search disabled in plan mode`);
+          return;
+        }
+        
+        console.log(`🔍 [Search] Search indicator clicked for ${d.data.name}`);
+        console.log(`🔍 [Search] Node data:`, d.data);
+        console.log(`🔍 [Search] Has prerequisites:`, d.data.hasPrerequisites);
+        console.log(`🔍 [Search] Loaded nodes:`, loadedNodes);
         setSelectedNode(d.data);
         toggleChildren(d.data);
       })
@@ -715,8 +884,8 @@ function TreeView({ data }) {
         // Clear any existing highlight from node
         clearHighlight();
         
-        // Highlight the visible indicator on hover
-        d3.select(this.parentNode).select(".indicator-visible")
+        // Highlight the search indicator on hover
+        d3.select(this.parentNode).select(".search-indicator")
           .style("filter", "drop-shadow(0 3px 6px rgba(0,0,0,0.3))")
           .transition()
           .duration(150)
@@ -725,30 +894,129 @@ function TreeView({ data }) {
       .on("mouseout", function(event, d) {
         event.stopPropagation(); // Prevent node mouseout
         
-        d3.select(this.parentNode).select(".indicator-visible")
+        d3.select(this.parentNode).select(".search-indicator")
           .style("filter", "drop-shadow(0 2px 4px rgba(0,0,0,0.1))")
           .transition()
           .duration(150)
           .attr("r", 8); // Base size (smaller)
       });
 
-    // Visible indicator (on the right side of node) - only for course nodes
+    // Expand/collapse hit area (for existing children) - only for course nodes
     nodeContainers
       .filter(d => d.data.condition !== "AND" && d.data.condition !== "OR")
       .append("circle")
-      .attr("class", "indicator-visible")
+      .attr("class", "expand-hitarea")
+      .attr("cx", 45) // Further to the right (30px + 15px)
+      .attr("cy", 0) // Same vertical level as node center
+      .attr("r", 10) // Smaller hit area
+      .style("fill", "transparent")
+      .style("opacity", (d) => {
+        const hasChildren = (d.children && d.children.length > 0) || (d._children && d._children.length > 0);
+        if (!hasChildren) return 0;
+        // Reduce opacity in plan mode to indicate disabled state
+        return planMode ? 0.3 : 1;
+      })
+      .style("display", (d) => {
+        const hasChildren = (d.children && d.children.length > 0) || (d._children && d._children.length > 0);
+        return hasChildren ? "block" : "none";
+      })
+      .style("cursor", (d) => planMode ? "not-allowed" : "pointer")
+      .style("pointer-events", "all") // Ensure this captures events
+      .on("mousedown", function(event) {
+        // Prevent drag from starting on indicator
+        event.stopPropagation();
+      })
+      .on("click", function(event, d) {
+        event.stopPropagation();
+        
+        // Disable expand/collapse in plan mode
+        if (planMode) {
+          console.log(`🚫 [Expand] Expand/collapse disabled in plan mode`);
+          return;
+        }
+        
+        console.log(`➕ [Expand] Expand indicator clicked for ${d.data.name}`);
+        setSelectedNode(d.data);
+        toggleChildren(d.data);
+      })
+      .on("mouseover", function(event, d) {
+        event.stopPropagation(); // Prevent node hover
+        
+        // Clear any existing highlight from node
+        clearHighlight();
+        
+        // Highlight the expand indicator on hover
+        d3.select(this.parentNode).select(".expand-indicator")
+          .style("filter", "drop-shadow(0 3px 6px rgba(0,0,0,0.3))")
+          .transition()
+          .duration(150)
+          .attr("r", 10); // Hover size (smaller)
+      })
+      .on("mouseout", function(event, d) {
+        event.stopPropagation(); // Prevent node mouseout
+        
+        d3.select(this.parentNode).select(".expand-indicator")
+          .style("filter", "drop-shadow(0 2px 4px rgba(0,0,0,0.1))")
+          .transition()
+          .duration(150)
+          .attr("r", 8); // Base size (smaller)
+      });
+
+    // Search indicator (for loading prerequisites) - only for course nodes
+    nodeContainers
+      .filter(d => d.data.condition !== "AND" && d.data.condition !== "OR")
+      .append("circle")
+      .attr("class", "search-indicator")
       .attr("cx", 30) // Course nodes only (20px + 10px)
       .attr("cy", 0) // Same vertical level as node center
       .attr("r", 8) // Smaller indicator
       .style("fill", (d) => {
-        // Blue for collapsed, green for expanded
+        // 加载中 = 黄色，可搜索 = 紫色，已加载 = 透明（隐藏）
+        if (loadingNodes.has(d.data.uniqueId)) {
+          return "#F59E0B"; // Amber/Yellow for loading
+        }
+        // 如果还没加载过，显示紫色表示可以搜索
+        if (d.data.hasPrerequisites && !loadedNodes.has(d.data.uniqueId)) {
+          return "#8B5CF6"; // Purple for searchable
+        }
+        return "transparent"; // Hidden if already loaded
+      })
+      .style("stroke", "#ffffff")
+      .style("stroke-width", "2px")
+      .style("opacity", (d) => {
+        const hasPrerequisites = d.data.hasPrerequisites && !loadedNodes.has(d.data.uniqueId);
+        const isLoading = loadingNodes.has(d.data.uniqueId);
+        if (!(hasPrerequisites || isLoading)) return 0;
+        // Reduce opacity in plan mode to indicate disabled state
+        return planMode ? 0.3 : 1;
+      })
+      .style("display", (d) => {
+        const hasPrerequisites = d.data.hasPrerequisites && !loadedNodes.has(d.data.uniqueId);
+        const isLoading = loadingNodes.has(d.data.uniqueId);
+        return (hasPrerequisites || isLoading) ? "block" : "none";
+      })
+      .style("filter", "drop-shadow(0 2px 4px rgba(0,0,0,0.1))")
+      .style("pointer-events", "none"); // Don't capture events, let hitarea handle it
+
+    // Expand/collapse indicator (for existing children) - only for course nodes
+    nodeContainers
+      .filter(d => d.data.condition !== "AND" && d.data.condition !== "OR")
+      .append("circle")
+      .attr("class", "expand-indicator")
+      .attr("cx", 45) // Further to the right (30px + 15px)
+      .attr("cy", 0) // Same vertical level as node center
+      .attr("r", 8) // Smaller indicator
+      .style("fill", (d) => {
+        // 已收起 = 蓝色，已展开 = 绿色
         return d._children ? "#3B82F6" : "#10B981";
       })
       .style("stroke", "#ffffff")
       .style("stroke-width", "2px")
       .style("opacity", (d) => {
         const hasChildren = (d.children && d.children.length > 0) || (d._children && d._children.length > 0);
-        return hasChildren ? 1 : 0;
+        if (!hasChildren) return 0;
+        // Reduce opacity in plan mode to indicate disabled state
+        return planMode ? 0.3 : 1;
       })
       .style("display", (d) => {
         const hasChildren = (d.children && d.children.length > 0) || (d._children && d._children.length > 0);
@@ -757,21 +1025,52 @@ function TreeView({ data }) {
       .style("filter", "drop-shadow(0 2px 4px rgba(0,0,0,0.1))")
       .style("pointer-events", "none"); // Don't capture events, let hitarea handle it
 
-    // Add expand/collapse icons - "+" when collapsed, "-" when expanded (on the right)
-    // Only for course nodes
+    // Search icon (🔍) for loading prerequisites - only for course nodes
     nodeContainers
       .filter(d => d.data.condition !== "AND" && d.data.condition !== "OR")
       .append("text")
+      .attr("class", "search-icon")
       .attr("x", 30) // Course nodes only (20px + 10px)
       .attr("y", 3) // Slightly below center for vertical alignment
       .style("font-family", "Arial, sans-serif")
-      .style("font-size", "14px") // Smaller font
+      .style("font-size", "12px") // Smaller font
       .style("font-weight", "bold")
       .style("text-anchor", "middle")
       .style("fill", "#ffffff")
       .style("pointer-events", "none")
       .style("opacity", (d) => {
-        // Show if has children (expanded) or has _children (collapsed)
+        const hasPrerequisites = d.data.hasPrerequisites && !loadedNodes.has(d.data.uniqueId);
+        const isLoading = loadingNodes.has(d.data.uniqueId);
+        return (hasPrerequisites || isLoading) ? 1 : 0;
+      })
+      .style("display", (d) => {
+        const hasPrerequisites = d.data.hasPrerequisites && !loadedNodes.has(d.data.uniqueId);
+        const isLoading = loadingNodes.has(d.data.uniqueId);
+        return (hasPrerequisites || isLoading) ? "block" : "none";
+      })
+      .text((d) => {
+        // Loading = "⋯", Searchable = "🔍"
+        if (loadingNodes.has(d.data.uniqueId)) {
+          return "⋯"; // Loading indicator
+        }
+        return "🔍"; // Search icon
+      })
+
+    // Expand/collapse icons - "+" when collapsed, "-" when expanded
+    // Only for course nodes with existing children
+    nodeContainers
+      .filter(d => d.data.condition !== "AND" && d.data.condition !== "OR")
+      .append("text")
+      .attr("class", "expand-icon")
+      .attr("x", 45) // Further to the right (30px + 15px)
+      .attr("y", 3) // Slightly below center for vertical alignment
+      .style("font-family", "Arial, sans-serif")
+      .style("font-size", "12px") // Smaller font
+      .style("font-weight", "bold")
+      .style("text-anchor", "middle")
+      .style("fill", "#ffffff")
+      .style("pointer-events", "none")
+      .style("opacity", (d) => {
         const hasChildren = (d.children && d.children.length > 0) || (d._children && d._children.length > 0);
         return hasChildren ? 1 : 0;
       })
@@ -779,7 +1078,10 @@ function TreeView({ data }) {
         const hasChildren = (d.children && d.children.length > 0) || (d._children && d._children.length > 0);
         return hasChildren ? "block" : "none";
       })
-      .text((d) => d._children ? "+" : "−"); // Show "+" when collapsed, "−" when expanded
+      .text((d) => {
+        // Collapsed = "+", Expanded = "−"
+        return d._children ? "+" : "−";
+      })
 
     // Add course name label below the node (circle or square)
     nodeContainers.append("text")
@@ -916,11 +1218,17 @@ function TreeView({ data }) {
         .text("✓");
     }
 
-  }, [treeData, toggleChildren, highlightPath, clearHighlight, nodePositions, extractDepartment, planMode, checkedNodes, isNodeSatisfied, handleCheckboxChange, canCheckNode]);
+  }, [treeData, toggleChildren, highlightPath, clearHighlight, nodePositions, extractDepartment, planMode, checkedNodes, isNodeSatisfied, handleCheckboxChange, canCheckNode, loadingNodes, loadedNodes]);
 
   const setupZoom = useCallback(() => {
     const svg = d3.select(svgRef.current);
     const g = svg.select('.zoom-group');
+    
+    // Early return if zoom-group doesn't exist (e.g., during loading)
+    if (g.empty()) {
+      console.log('TreeView: zoom-group not found, skipping setupZoom');
+      return;
+    }
     
     // Store the base transform (margin offset)
     const baseTransform = g.attr("transform");
@@ -948,9 +1256,27 @@ function TreeView({ data }) {
   }, []);
 
   useEffect(() => {
-    drawTree();
-    setupZoom();
-  }, [treeData, updateCounter, planMode, checkedNodes, drawTree, setupZoom]);  // Update dependencies - add planMode and checkedNodes
+    // Only draw tree and setup zoom if we have valid data (not loading)
+    if (data && !data.loading) {
+      drawTree();
+      setupZoom();
+    }
+  }, [treeData, updateCounter, planMode, checkedNodes, loadingNodes, loadedNodes, drawTree, setupZoom, data]);  // Update dependencies
+
+  // Check if we have valid data or loading state
+  if (!data || (data && data.loading)) {
+    return (
+      <div className="relative w-full">
+        <div className="flex items-center justify-center h-64 bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg border border-gray-200">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto mb-4"></div>
+            <p className="text-gray-600 font-medium">Loading course prerequisites...</p>
+            <p className="text-gray-500 text-sm mt-1">AI is analyzing the course requirements</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="relative w-full">
@@ -1138,6 +1464,14 @@ function TreeView({ data }) {
           <div>
             <p className="font-semibold text-gray-700 mb-2 text-xs">Indicators & Lines:</p>
             <div className="space-y-1.5">
+              <div className="flex items-center gap-2">
+                <div className="w-5 h-5 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold text-xs flex-shrink-0 shadow-sm">🔍</div>
+                <span className="text-xs text-gray-700">Search prerequisites (AI)</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-5 h-5 rounded-full bg-amber-500 flex items-center justify-center text-white font-bold text-xs flex-shrink-0 shadow-sm">⋯</div>
+                <span className="text-xs text-gray-700">Loading prerequisites (AI)...</span>
+              </div>
               <div className="flex items-center gap-2">
                 <div className="w-5 h-5 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold text-xs flex-shrink-0 shadow-sm">+</div>
                 <span className="text-xs text-gray-700">Collapsed (click to expand)</span>

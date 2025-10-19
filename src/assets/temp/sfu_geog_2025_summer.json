@@ -1,0 +1,82 @@
+[
+    {
+        "course_number": "100",
+        "name": "GEOG 100 OL01",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "104",
+        "name": "GEOG 104 OL01",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "150",
+        "name": "GEOG 150 OL01",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "312",
+        "name": "GEOG 312 OL01",
+        "prerequisites": "One of GEOG 100, 104 or 111 or one of EASC 101 or 104."
+    },
+    {
+        "course_number": "404",
+        "name": "GEOG 404 D100",
+        "prerequisites": "Permission to enter directed readings courses requires written consent of both the faculty member willing to supervise the research, and the chair of the department."
+    },
+    {
+        "course_number": "405",
+        "name": "GEOG 405 D100",
+        "prerequisites": "Permission to enter directed readings courses requires written consent of both the faculty member willing to supervise the research, and the chair of the department."
+    },
+    {
+        "course_number": "432",
+        "name": "GEOG 432 D100",
+        "prerequisites": "60 units including eight of upper division geography."
+    },
+    {
+        "course_number": "491",
+        "name": "GEOG 491 D100",
+        "prerequisites": "105 units and consent of supervisor. See a departmental academic advisor for details."
+    },
+    {
+        "course_number": "671",
+        "name": "GEOG 671 G100",
+        "prerequisites": "GEOG 600."
+    },
+    {
+        "course_number": "677",
+        "name": "GEOG 677 G100",
+        "prerequisites": "GEOG 600, GEOG 601 and GEOG 606."
+    },
+    {
+        "course_number": "678",
+        "name": "GEOG 678 G100",
+        "prerequisites": "GEOG 600, GEOG 601 and GEOG 603."
+    },
+    {
+        "course_number": "679",
+        "name": "GEOG 679 G100",
+        "prerequisites": "GEOG 600 and GEOG 671."
+    },
+    {
+        "course_number": "691",
+        "name": "GEOG 691 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "697",
+        "name": "GEOG 697 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "698",
+        "name": "GEOG 698 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "699",
+        "name": "GEOG 699 G100",
+        "prerequisites": ""
+    }
+]

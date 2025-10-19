@@ -1,0 +1,87 @@
+[
+    {
+        "course_number": "130",
+        "name": "INLG 130 A100",
+        "prerequisites": "Students in the Indigenous Studies program should complete INLG 133 before INLG 130."
+    },
+    {
+        "course_number": "133",
+        "name": "INLG 133 A100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "134",
+        "name": "INLG 134 A100",
+        "prerequisites": "INLG (or FNLG) 133."
+    },
+    {
+        "course_number": "158",
+        "name": "INLG 158 A100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "200",
+        "name": "INLG 200 A390",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "233",
+        "name": "INLG 233 A310",
+        "prerequisites": "INLG (or FNLG) 134."
+    },
+    {
+        "course_number": "234",
+        "name": "INLG 234 A300",
+        "prerequisites": "INLG (or FNLG) 233."
+    },
+    {
+        "course_number": "258",
+        "name": "INLG 258 A300",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "300",
+        "name": "INLG 300 A100",
+        "prerequisites": "Completion of Certificate in Indigenous Language Proficiency offered in the same language as INLG (or FNLG) 300, including INLG (or FNLG) 200 or LING 220; or with permission of instructor."
+    },
+    {
+        "course_number": "333",
+        "name": "INLG 333 A100",
+        "prerequisites": "Completion of Certificate in Indigenous Language Proficiency; or with permission of instructor."
+    },
+    {
+        "course_number": "334",
+        "name": "INLG 334 A320",
+        "prerequisites": "Completion of Certificate in Indigenous Language Proficiency including INLG (or FNLG) 333 (or as corequisite); or permission of instructor."
+    },
+    {
+        "course_number": "335",
+        "name": "INLG 335 A100",
+        "prerequisites": "INLG (or FNLG) 130, INLG (or FNLG) 133, INLG (or FNLG) 233 or permission of instructor. Recommended: LING 360."
+    },
+    {
+        "course_number": "358",
+        "name": "INLG 358 A320",
+        "prerequisites": "Completion of Certificate in Indigenous Language Proficiency including INLG (or FNLG) 258; or permission of instructor."
+    },
+    {
+        "course_number": "433",
+        "name": "INLG 433 A100",
+        "prerequisites": "INLG (or FNLG) 332 or permission of course supervisor."
+    },
+    {
+        "course_number": "434",
+        "name": "INLG 434 A100",
+        "prerequisites": "INLG (or FNLG) 433 or permission of course supervisor. Recommended: LING 431 and 432."
+    },
+    {
+        "course_number": "435",
+        "name": "INLG 435 A315",
+        "prerequisites": "LING 220, INLG (or FNLG) 332 or permission of instructor. Recommended: LING 360, 431 and 432."
+    },
+    {
+        "course_number": "458",
+        "name": "INLG 458 A200",
+        "prerequisites": "Completion of Certificate in Indigenous Language Proficiency including INLG (or FNLG) 358; or permission of instructor."
+    }
+]

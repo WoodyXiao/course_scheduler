@@ -1,0 +1,52 @@
+[
+    {
+        "course_number": "101",
+        "name": "RISK 101 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "231",
+        "name": "RISK 231 D100",
+        "prerequisites": "BC Mathematics 12 (or equivalent) or any 100-level MATH course with a minimum grade of C."
+    },
+    {
+        "course_number": "311",
+        "name": "RISK 311 D100",
+        "prerequisites": "One of RISK (or ACMA) 101 or RISK 102, and all of RISK (or ACMA) 201, RISK (or ACMA) 231 and STAT 270, all with a minimum grade of C."
+    },
+    {
+        "course_number": "321",
+        "name": "RISK 321 D100",
+        "prerequisites": "RISK (or ACMA) 101 or RISK 102, with a minimum grade of C. Corequisite: STAT 330, RISK 231."
+    },
+    {
+        "course_number": "336",
+        "name": "RISK 336 D100",
+        "prerequisites": "Students must apply and receive permission from the co-op coordinator at least one but preferably two terms in advance. They will normally be required to have completed 45 units with a GPA of 2.50 before they may take this practicum course."
+    },
+    {
+        "course_number": "337",
+        "name": "RISK 337 D100",
+        "prerequisites": "RISK (or ACMA) 336 or Job Practicum I from another department. Students must apply and receive permission from the co-op coordinator at least one term in advance."
+    },
+    {
+        "course_number": "412",
+        "name": "RISK 412 D100",
+        "prerequisites": "RISK 311 or ACMA 301, with a minimum grade of C. Corequisite: RISK 441 or ACMA 340, with a minimum grade of C."
+    },
+    {
+        "course_number": "436",
+        "name": "RISK 436 D100",
+        "prerequisites": "RISK (or ACMA) 337 or Job Practicum II from another department. Students must apply and receive permission from the co-op coordinator at least one term in advance."
+    },
+    {
+        "course_number": "437",
+        "name": "RISK 437 D100",
+        "prerequisites": "RISK (or ACMA) 436 or Job Practicum III from another department. Students must apply and receive permission from the co-op coordinator at least one term in advance."
+    },
+    {
+        "course_number": "438",
+        "name": "RISK 438 D100",
+        "prerequisites": "RISK (or ACMA) 437 or Job Practicum IV from another department. Students must apply and receive permission from the co-op coordinator at least one term in advance."
+    }
+]

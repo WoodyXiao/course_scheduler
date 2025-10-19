@@ -1,0 +1,147 @@
+[
+    {
+        "course_number": "135",
+        "name": "CA 135 E100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "140",
+        "name": "CA 140 OL01",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "142",
+        "name": "CA 142 OL01",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "149",
+        "name": "CA 149 OL01",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "216",
+        "name": "CA 216 E100",
+        "prerequisites": "One of CA 135, 136, 137, 186, 235, 236, 316 (or 337), 318 (or 335), 416 (or 436), or 30 units."
+    },
+    {
+        "course_number": "305",
+        "name": "CA 305 D100",
+        "prerequisites": "30 units in CA."
+    },
+    {
+        "course_number": "306",
+        "name": "CA 306 D100",
+        "prerequisites": "45 units including CA 304 and permission of Internship Coordinator."
+    },
+    {
+        "course_number": "307",
+        "name": "CA 307 D100",
+        "prerequisites": "45 units including CA 304 and permission of Internship Coordinator."
+    },
+    {
+        "course_number": "308",
+        "name": "CA 308 D100",
+        "prerequisites": "A minimum of 30 units and approval of Field School Director."
+    },
+    {
+        "course_number": "309",
+        "name": "CA 309 D100",
+        "prerequisites": "A minimum of 30 units and permission of Field School Director."
+    },
+    {
+        "course_number": "316",
+        "name": "CA 316 E100",
+        "prerequisites": "Nine units in CA courses including CA 136 or 137."
+    },
+    {
+        "course_number": "386",
+        "name": "CA 386 OL01",
+        "prerequisites": "60 units."
+    },
+    {
+        "course_number": "400",
+        "name": "CA 400 D100",
+        "prerequisites": "60 units plus a minimum standing of completion of second year in any of the programs offered in the School for the Contemporary Arts, and prior approval."
+    },
+    {
+        "course_number": "401",
+        "name": "CA 401 D100",
+        "prerequisites": "60 units plus a minimum standing of completion of second year in any of the programs offered in the School for the Contemporary Arts, and prior approval."
+    },
+    {
+        "course_number": "405",
+        "name": "CA 405 D100",
+        "prerequisites": "30 units in CA."
+    },
+    {
+        "course_number": "406",
+        "name": "CA 406 D100",
+        "prerequisites": "60 units including CA 304 and permission of Internship Coordinator."
+    },
+    {
+        "course_number": "407",
+        "name": "CA 407 D100",
+        "prerequisites": "60 units including CA 304 and permission of Internship Coordinator."
+    },
+    {
+        "course_number": "408",
+        "name": "CA 408 D100",
+        "prerequisites": "A minimum of 30 units and approval of Field School Director."
+    },
+    {
+        "course_number": "409",
+        "name": "CA 409 D100",
+        "prerequisites": "A minimum of 30 units and approval of Field School Director."
+    },
+    {
+        "course_number": "485",
+        "name": "CA 485 D100",
+        "prerequisites": "One CA studio course at the upper level, a CGPA of 3.0 and an overall average of 3.5 in CA courses."
+    },
+    {
+        "course_number": "827",
+        "name": "CA 827 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "829",
+        "name": "CA 829 G100",
+        "prerequisites": "CA (or FPA) 821 and two of the following: CA (or FPA) 823, 824, 825, 826, or 828."
+    },
+    {
+        "course_number": "830",
+        "name": "CA 830 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "887",
+        "name": "CA 887 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "889",
+        "name": "CA 889 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "892",
+        "name": "CA 892 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "895",
+        "name": "CA 895 G100",
+        "prerequisites": "CA 892."
+    },
+    {
+        "course_number": "898",
+        "name": "CA 898 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "899",
+        "name": "CA 899 G100",
+        "prerequisites": "CA 895."
+    }
+]

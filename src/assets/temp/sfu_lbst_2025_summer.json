@@ -1,0 +1,27 @@
+[
+    {
+        "course_number": "101",
+        "name": "LBST 101 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "301w",
+        "name": "LBST 301W D100",
+        "prerequisites": "LBST 100 or LBST 101 or on permission of instructor."
+    },
+    {
+        "course_number": "311",
+        "name": "LBST 311 D100",
+        "prerequisites": "30 units. Strongly Recommended: LBST 101."
+    },
+    {
+        "course_number": "330",
+        "name": "LBST 330 D100",
+        "prerequisites": "Strongly Recommended: LBST 101 and/or 301."
+    },
+    {
+        "course_number": "490",
+        "name": "LBST 490 D100",
+        "prerequisites": "45 units including nine units of lower division labour studies. Recommended: At least three upper division courses in labour studies."
+    }
+]

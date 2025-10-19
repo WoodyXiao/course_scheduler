@@ -1,0 +1,132 @@
+[
+    {
+        "course_number": "100",
+        "name": "ARCH 100 OL01",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "101",
+        "name": "ARCH 101 OL01",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "131",
+        "name": "ARCH 131 OL01",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "226",
+        "name": "ARCH 226 OL01",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "282",
+        "name": "ARCH 282 D100",
+        "prerequisites": "ARCH 101 or ARCH 201."
+    },
+    {
+        "course_number": "286",
+        "name": "ARCH 286 D100",
+        "prerequisites": "30 units including one of ARCH 100, ARCH 101, ARCH 201, EVSC 100, GEOG 100, or REM 100."
+    },
+    {
+        "course_number": "301",
+        "name": "ARCH 301 OL01",
+        "prerequisites": "45 credit hours."
+    },
+    {
+        "course_number": "322",
+        "name": "ARCH 322 D100",
+        "prerequisites": "ARCH 131."
+    },
+    {
+        "course_number": "390",
+        "name": "ARCH 390 D100",
+        "prerequisites": "ARCH 101 or ARCH 201 and either ARCH 272/272W or 273."
+    },
+    {
+        "course_number": "433",
+        "name": "ARCH 433 D100",
+        "prerequisites": "ARCH 282 or 372 and permission of the department. Normally taken concurrently with ARCH 434 and 435."
+    },
+    {
+        "course_number": "434",
+        "name": "ARCH 434 D100",
+        "prerequisites": "ARCH 282 or 372 and permission of the department. Normally taken concurrently with ARCH 433 and 435."
+    },
+    {
+        "course_number": "435",
+        "name": "ARCH 435 D100",
+        "prerequisites": "ARCH 282 or 372 and permission of the department. Normally taken concurrently with ARCH 433 and 434."
+    },
+    {
+        "course_number": "479",
+        "name": "ARCH 479 D100",
+        "prerequisites": "45 units, including ARCH 282 or 372, and permission of the department."
+    },
+    {
+        "course_number": "480",
+        "name": "ARCH 480 D100",
+        "prerequisites": "45 units, including ARCH 282 or 372, and permission of the department."
+    },
+    {
+        "course_number": "498",
+        "name": "ARCH 498 D100",
+        "prerequisites": "Permission of the department."
+    },
+    {
+        "course_number": "499",
+        "name": "ARCH 499 D100",
+        "prerequisites": "Permission of the department."
+    },
+    {
+        "course_number": "591",
+        "name": "ARCH 591 G100",
+        "prerequisites": "10 units, consent of supervising faculty member, and approval of the director of the HRM program."
+    },
+    {
+        "course_number": "874",
+        "name": "ARCH 874 G100",
+        "prerequisites": "Only available to students in the Archaeology PhD program."
+    },
+    {
+        "course_number": "875",
+        "name": "ARCH 875 G100",
+        "prerequisites": "Only available to students in the Archaeology PhD program."
+    },
+    {
+        "course_number": "892",
+        "name": "ARCH 892 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "893",
+        "name": "ARCH 893 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "894",
+        "name": "ARCH 894 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "895",
+        "name": "ARCH 895 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "896",
+        "name": "ARCH 896 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "898",
+        "name": "ARCH 898 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "899",
+        "name": "ARCH 899 G100",
+        "prerequisites": ""
+    }
+]

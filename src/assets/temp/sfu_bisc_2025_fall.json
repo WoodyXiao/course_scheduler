@@ -1,0 +1,257 @@
+[
+    {
+        "course_number": "101",
+        "name": "BISC 101 D100",
+        "prerequisites": "Biology 12 (or equivalent) with a minimum grade of C (or BISC 100 with a minimum grade of C-, or BISC 113 with a minimum grade of C+, or BPK 105 with a minimum grade of C+, or HSCI 100 with a minimum grade of C+); and Chemistry 12 (or equivalent) with a minimum grade of C (or CHEM 111 with a minimum grade of C-)."
+    },
+    {
+        "course_number": "102",
+        "name": "BISC 102 D100",
+        "prerequisites": "Biology 12 (or equivalent) with a minimum grade of C (or BISC 100 with a minimum grade of C-, or BISC 113 with a minimum grade of C+, or BPK 105 with a minimum grade of C+, or HSCI 100 with a minimum grade of C+)."
+    },
+    {
+        "course_number": "113",
+        "name": "BISC 113 OL01",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "171",
+        "name": "BISC 171 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "202",
+        "name": "BISC 202 D100",
+        "prerequisites": "BISC 101 and 102, both with a minimum grade of C-."
+    },
+    {
+        "course_number": "204",
+        "name": "BISC 204 D100",
+        "prerequisites": "BISC 101 and 102, both with a minimum grade of C-."
+    },
+    {
+        "course_number": "205",
+        "name": "BISC 205 D100",
+        "prerequisites": "BISC 101, BISC 102, and PHYS 101, all with a minimum grade of C-."
+    },
+    {
+        "course_number": "298",
+        "name": "BISC 298 D001",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "300",
+        "name": "BISC 300 D100",
+        "prerequisites": "BISC 202 with a minimum grade of C-. Recommended: BISC 204."
+    },
+    {
+        "course_number": "303",
+        "name": "BISC 303 D100",
+        "prerequisites": "BISC 102, MBB 222, and MBB 231, all with a minimum grade of C-."
+    },
+    {
+        "course_number": "316",
+        "name": "BISC 316 D100",
+        "prerequisites": "BISC 101 and 102, both with a minimum grade of C-."
+    },
+    {
+        "course_number": "317",
+        "name": "BISC 317 D100",
+        "prerequisites": "BISC 101 and 102, both with a minimum grade of C-."
+    },
+    {
+        "course_number": "327",
+        "name": "BISC 327 D100",
+        "prerequisites": "BISC 101 and 102, both with a minimum grade of C-."
+    },
+    {
+        "course_number": "341",
+        "name": "BISC 341 D100",
+        "prerequisites": "Acceptance in the Biological Sciences Co-operative Education Program."
+    },
+    {
+        "course_number": "342",
+        "name": "BISC 342 D100",
+        "prerequisites": "BISC 341 and readmission to the Science Co-op Education Program."
+    },
+    {
+        "course_number": "357",
+        "name": "BISC 357 D100",
+        "prerequisites": "BISC 202, MBB 222, and MBB 231, all with a minimum grade of C-. Recommended: MBB 331."
+    },
+    {
+        "course_number": "360w",
+        "name": "BISC 360W D100",
+        "prerequisites": "BISC 202, (BISC 204 or GEOG 215), and STAT 201, all with a minimum grade of C-."
+    },
+    {
+        "course_number": "414",
+        "name": "BISC 414 D100",
+        "prerequisites": "BISC 204 or GEOG 215, with a minimum grade of C-."
+    },
+    {
+        "course_number": "420",
+        "name": "BISC 420 D100",
+        "prerequisites": "BISC 204 or GEOG 215, with a minimum grade of C-."
+    },
+    {
+        "course_number": "430",
+        "name": "BISC 430 D100",
+        "prerequisites": "MBB 231 and (BISC 303, or BISC 328, or BISC 337, or BISC 366), both with a minimum grade of C-."
+    },
+    {
+        "course_number": "433",
+        "name": "BISC 433 D100",
+        "prerequisites": "MBB 222, MBB 231, and BISC 303, all with a minimum grade of C-."
+    },
+    {
+        "course_number": "443",
+        "name": "BISC 443 D100",
+        "prerequisites": "BISC 342 and readmission to the Science Co-op Education Program."
+    },
+    {
+        "course_number": "444",
+        "name": "BISC 444 D100",
+        "prerequisites": "BISC 443 and re-admission to the science co-operative education program."
+    },
+    {
+        "course_number": "445",
+        "name": "BISC 445 D100",
+        "prerequisites": "BISC 205 and MBB 231, both with a minimum grade of C-."
+    },
+    {
+        "course_number": "446",
+        "name": "BISC 446 D100",
+        "prerequisites": "BISC 444 and readmission to the Science Co-op Education Program."
+    },
+    {
+        "course_number": "475",
+        "name": "BISC 475 D100",
+        "prerequisites": "To be announced."
+    },
+    {
+        "course_number": "490",
+        "name": "BISC 490 D001",
+        "prerequisites": "Completion of all lower division biological sciences courses, plus upper division BISC courses appropriate to the subject of the intended research as determined by the departmental undergraduate curriculum committee; completion of all physics, chemistry and mathematics requirements for the major or honours program."
+    },
+    {
+        "course_number": "491",
+        "name": "BISC 491 D001",
+        "prerequisites": "Completion of all lower division biological sciences courses, plus upper division BISC courses appropriate to the subject of the intended research as determined by the departmental undergraduate curriculum committee; completion of all physics, chemistry and mathematics requirements for the major or honours program; at the time of application, students will normally have a CGPA of 3.00 (B standing). Corequisite: BISC 490 and 492."
+    },
+    {
+        "course_number": "492w",
+        "name": "BISC 492W D001",
+        "prerequisites": "Completion of all lower division biological sciences courses, plus upper division BISC courses appropriate to the subject of the intended research as determined by the departmental undergraduate curriculum committee; completion of all physics, chemistry and mathematics requirements for the major or honours program; at the time of application, students will normally have a CGPA of 3.00 (B standing). Corequisite: BISC 490 and BISC 491."
+    },
+    {
+        "course_number": "497w",
+        "name": "BISC 497W D001",
+        "prerequisites": "Completion of lower division course\r\nrequirements."
+    },
+    {
+        "course_number": "498",
+        "name": "BISC 498 D001",
+        "prerequisites": "Completion of lower division course requirements."
+    },
+    {
+        "course_number": "499",
+        "name": "BISC 499 D001",
+        "prerequisites": "Completion of lower division course requirements."
+    },
+    {
+        "course_number": "633",
+        "name": "BISC 633 G100",
+        "prerequisites": "BISC 303, or an equivalent introductory microbiology course (or permission from the instructor)."
+    },
+    {
+        "course_number": "650",
+        "name": "BISC 650 G100",
+        "prerequisites": "BISC 313."
+    },
+    {
+        "course_number": "651",
+        "name": "BISC 651 G100",
+        "prerequisites": "BISC 313."
+    },
+    {
+        "course_number": "656",
+        "name": "BISC 656 G100",
+        "prerequisites": "Acceptance into the environmental toxicology program."
+    },
+    {
+        "course_number": "800",
+        "name": "BISC 800 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "830",
+        "name": "BISC 830 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "831",
+        "name": "BISC 831 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "832",
+        "name": "BISC 832 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "833",
+        "name": "BISC 833 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "849",
+        "name": "BISC 849 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "855",
+        "name": "BISC 855 G100",
+        "prerequisites": "BISC 313."
+    },
+    {
+        "course_number": "883",
+        "name": "BISC 883 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "887",
+        "name": "BISC 887 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "888",
+        "name": "BISC 888 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "889",
+        "name": "BISC 889 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "890",
+        "name": "BISC 890 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "892",
+        "name": "BISC 892 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "898",
+        "name": "BISC 898 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "899",
+        "name": "BISC 899 G100",
+        "prerequisites": ""
+    }
+]

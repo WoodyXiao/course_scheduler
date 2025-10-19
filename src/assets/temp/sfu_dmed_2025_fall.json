@@ -1,0 +1,37 @@
+[
+    {
+        "course_number": "500",
+        "name": "DMED 500 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "502",
+        "name": "DMED 502 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "503",
+        "name": "DMED 503 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "520",
+        "name": "DMED 520 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "530",
+        "name": "DMED 530 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "560",
+        "name": "DMED 560 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "561",
+        "name": "DMED 561 G100",
+        "prerequisites": ""
+    }
+]

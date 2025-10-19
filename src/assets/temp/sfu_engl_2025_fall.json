@@ -1,0 +1,192 @@
+[
+    {
+        "course_number": "111w",
+        "name": "ENGL 111W D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "114w",
+        "name": "ENGL 114W D900",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "115w",
+        "name": "ENGL 115W D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "199w",
+        "name": "ENGL 199W D100",
+        "prerequisites": "12 units."
+    },
+    {
+        "course_number": "202",
+        "name": "ENGL 202 B100",
+        "prerequisites": "12 units or one 100-division English course."
+    },
+    {
+        "course_number": "211",
+        "name": "ENGL 211 D100",
+        "prerequisites": "12 units or one 100-division English course."
+    },
+    {
+        "course_number": "213",
+        "name": "ENGL 213 D100",
+        "prerequisites": "12 units or one 100-division English course."
+    },
+    {
+        "course_number": "272",
+        "name": "ENGL 272 D100",
+        "prerequisites": "ENGL 111W, 112W, 113W, 114W, or 115W; or WL 105W; or PUB 101."
+    },
+    {
+        "course_number": "300",
+        "name": "ENGL 300 D100",
+        "prerequisites": "30 units or two 200-division English courses."
+    },
+    {
+        "course_number": "304",
+        "name": "ENGL 304 D100",
+        "prerequisites": "30 units or two 200-division English courses."
+    },
+    {
+        "course_number": "310",
+        "name": "ENGL 310 D100",
+        "prerequisites": "30 units or two 200-division English courses."
+    },
+    {
+        "course_number": "312",
+        "name": "ENGL 312 D100",
+        "prerequisites": "30 units or two 200-division English courses."
+    },
+    {
+        "course_number": "355",
+        "name": "ENGL 355 E100",
+        "prerequisites": "30 units or two 200-division English courses."
+    },
+    {
+        "course_number": "363",
+        "name": "ENGL 363 D100",
+        "prerequisites": "30 units or two 200-division English courses."
+    },
+    {
+        "course_number": "372",
+        "name": "ENGL 372 E100",
+        "prerequisites": "30 units; or two 200-division English courses; or formal declaration in the creative writing minor and ENGL 272."
+    },
+    {
+        "course_number": "375",
+        "name": "ENGL 375 E100",
+        "prerequisites": "30 units or two 200-division English courses. Recommended: One of English 199, 199W, or 214."
+    },
+    {
+        "course_number": "385",
+        "name": "ENGL 385 D100",
+        "prerequisites": "30 units or two 200-division English courses."
+    },
+    {
+        "course_number": "411w",
+        "name": "ENGL 411W E100",
+        "prerequisites": "45 units or two 300-division English courses."
+    },
+    {
+        "course_number": "413w",
+        "name": "ENGL 413W D100",
+        "prerequisites": "45 units or two 300-division English courses."
+    },
+    {
+        "course_number": "418w",
+        "name": "ENGL 418W E100",
+        "prerequisites": "Reserved for English honours, major, joint major and minor students."
+    },
+    {
+        "course_number": "437w",
+        "name": "ENGL 437W D100",
+        "prerequisites": "45 units or two 300-division English courses."
+    },
+    {
+        "course_number": "470w",
+        "name": "ENGL 470W D100",
+        "prerequisites": "45 units including at least one upper division English course, or permission of instructor. Reserved for English honours, major, joint major and minor students."
+    },
+    {
+        "course_number": "490",
+        "name": "ENGL 490 E100",
+        "prerequisites": "Two 100-division English courses, two 200-division English courses and two 300-division English courses. Reserved for English honours, major, joint major and minor students. Admission is by permission of the instructor and the department."
+    },
+    {
+        "course_number": "491",
+        "name": "ENGL 491 D100",
+        "prerequisites": "Two 100-division English courses, two 200-division English courses and two 300-division English courses. Reserved for English honours, major, joint major and minor students. Admission is by permission of the instructor and the department."
+    },
+    {
+        "course_number": "493w",
+        "name": "ENGL 493W E100",
+        "prerequisites": "45 units or two 300-division English courses."
+    },
+    {
+        "course_number": "494",
+        "name": "ENGL 494 D100",
+        "prerequisites": "Permission of the department, plus normally a minimum of 90 units, including credit or standing in two 100-division English courses, two 200-division English courses, and four 300 or 400-division English courses, one of which must be ENGL 364."
+    },
+    {
+        "course_number": "496",
+        "name": "ENGL 496 D100",
+        "prerequisites": "Lower division requirements for the English major. Open only to students who have been accepted into the English honours program, and who have completed ENGL 494."
+    },
+    {
+        "course_number": "820",
+        "name": "ENGL 820 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "834",
+        "name": "ENGL 834 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "850",
+        "name": "ENGL 850 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "860",
+        "name": "ENGL 860 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "880",
+        "name": "ENGL 880 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "882",
+        "name": "ENGL 882 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "891",
+        "name": "ENGL 891 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "892",
+        "name": "ENGL 892 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "893",
+        "name": "ENGL 893 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "894",
+        "name": "ENGL 894 G100",
+        "prerequisites": "ENGL 892 and ENGL 893."
+    },
+    {
+        "course_number": "899",
+        "name": "ENGL 899 G100",
+        "prerequisites": ""
+    }
+]

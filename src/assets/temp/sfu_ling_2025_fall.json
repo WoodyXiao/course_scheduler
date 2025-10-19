@@ -1,0 +1,117 @@
+[
+    {
+        "course_number": "100",
+        "name": "LING 100 B100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "111",
+        "name": "LING 111 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "160",
+        "name": "LING 160 B100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "190",
+        "name": "LING 190 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "220",
+        "name": "LING 220 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "250",
+        "name": "LING 250 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "282w",
+        "name": "LING 282W A320",
+        "prerequisites": "LING 220."
+    },
+    {
+        "course_number": "321",
+        "name": "LING 321 B100",
+        "prerequisites": "LING 220."
+    },
+    {
+        "course_number": "323",
+        "name": "LING 323 D100",
+        "prerequisites": "LING 220."
+    },
+    {
+        "course_number": "324",
+        "name": "LING 324 A320",
+        "prerequisites": "LING 220."
+    },
+    {
+        "course_number": "350",
+        "name": "LING 350 B100",
+        "prerequisites": "LING 220."
+    },
+    {
+        "course_number": "360",
+        "name": "LING 360 B100",
+        "prerequisites": "LING 220."
+    },
+    {
+        "course_number": "380",
+        "name": "LING 380 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "415",
+        "name": "LING 415 B100",
+        "prerequisites": "12 units of upper division linguistic courses."
+    },
+    {
+        "course_number": "481",
+        "name": "LING 481 D100",
+        "prerequisites": "Requirements will vary according to the topic offered."
+    },
+    {
+        "course_number": "801",
+        "name": "LING 801 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "804",
+        "name": "LING 804 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "830",
+        "name": "LING 830 G110",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "880",
+        "name": "LING 880 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "890",
+        "name": "LING 890 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "896",
+        "name": "LING 896 G110",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "898",
+        "name": "LING 898 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "899",
+        "name": "LING 899 G100",
+        "prerequisites": ""
+    }
+]

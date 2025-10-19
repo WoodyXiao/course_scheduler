@@ -1,0 +1,222 @@
+[
+    {
+        "course_number": "110",
+        "name": "MBB 110 D100",
+        "prerequisites": "BISC 101; MATH 12 or equivalent is recommended."
+    },
+    {
+        "course_number": "151",
+        "name": "MBB 151 D100",
+        "prerequisites": "Acceptance in the Science Co-operative Education Program."
+    },
+    {
+        "course_number": "201",
+        "name": "MBB 201 D100",
+        "prerequisites": "BISC 101; CHEM 281 as prerequisite or corequisite."
+    },
+    {
+        "course_number": "222",
+        "name": "MBB 222 D100",
+        "prerequisites": "or Corequisite CHEM 281."
+    },
+    {
+        "course_number": "229",
+        "name": "MBB 229 LA01",
+        "prerequisites": "or Corequisite: MBB 222 with a minimum grade of C- or better."
+    },
+    {
+        "course_number": "231",
+        "name": "MBB 231 D100",
+        "prerequisites": "MBB 222, BISC 101, CHEM 281 with grades of C- or better. Corequisite or Prerequisite: CHEM 282 or CHEM 283."
+    },
+    {
+        "course_number": "251",
+        "name": "MBB 251 D100",
+        "prerequisites": "Acceptance in the Science Co-operative Education Program."
+    },
+    {
+        "course_number": "309w",
+        "name": "MBB 309W D100",
+        "prerequisites": "MBB 231 with a minimum grade of C."
+    },
+    {
+        "course_number": "321",
+        "name": "MBB 321 D100",
+        "prerequisites": "MBB 231, with a minimum grade of C."
+    },
+    {
+        "course_number": "322",
+        "name": "MBB 322 D100",
+        "prerequisites": "MBB 231, with a minimum grade of C."
+    },
+    {
+        "course_number": "324",
+        "name": "MBB 324 D100",
+        "prerequisites": "MBB 222 with a minimum grade of C."
+    },
+    {
+        "course_number": "326",
+        "name": "MBB 326 D100",
+        "prerequisites": "MBB 231 with a minimum grade of C."
+    },
+    {
+        "course_number": "331",
+        "name": "MBB 331 D100",
+        "prerequisites": "MBB 231, and BISC 202, with a minimum grade of C."
+    },
+    {
+        "course_number": "342",
+        "name": "MBB 342 D100",
+        "prerequisites": "MBB 231, BISC 202 and either MBB 110 or three units of CMPT or equivalent, all with a minimum grade of C. Recommended: STAT 201 (or an equivalent statistics course) or STAT 270."
+    },
+    {
+        "course_number": "351",
+        "name": "MBB 351 D100",
+        "prerequisites": "Acceptance in the Science Co-operative Education Program."
+    },
+    {
+        "course_number": "402",
+        "name": "MBB 402 D100",
+        "prerequisites": "MBB 322 or BISC 302W or BISC 333, with a minimum grade of C."
+    },
+    {
+        "course_number": "421",
+        "name": "MBB 421 D100",
+        "prerequisites": "MBB 331 with a minimum grade of C."
+    },
+    {
+        "course_number": "448",
+        "name": "MBB 448 D100",
+        "prerequisites": "(MBB 326 or HSCI 326) and MBB 322, both with a minimum grade of C."
+    },
+    {
+        "course_number": "451",
+        "name": "MBB 451 D100",
+        "prerequisites": "Acceptance in the Science Co-operative Education Program."
+    },
+    {
+        "course_number": "452",
+        "name": "MBB 452 D100",
+        "prerequisites": "Acceptance in the Science Co-operative Education Program."
+    },
+    {
+        "course_number": "462",
+        "name": "MBB 462 D100",
+        "prerequisites": "MBB 331 and MBB 342, with a minimum grade of C."
+    },
+    {
+        "course_number": "478",
+        "name": "MBB 478 D100",
+        "prerequisites": "HSCI 326 or MBB 326 or MBB 331, with a minimum grade of C, or HSCI 338 with a minimum grade of C-."
+    },
+    {
+        "course_number": "481",
+        "name": "MBB 481 D001",
+        "prerequisites": "MBB 308, MBB 309W and MBB 331, enrollment in the MBB or Biological Physics Honours Program, a minimum 3.0 CGPA and 3.0 UDGPA and permission of the MBB department. Corequisite: MBB 482 and MBB 483."
+    },
+    {
+        "course_number": "482",
+        "name": "MBB 482 D001",
+        "prerequisites": "MBB 308, MBB 309W and MBB 331, enrollment in the MBB or Biological Physics Honours Program, a minimum 3.0 CGPA and 3.0 UDGPA and permission of the MBB department. Corequisite: MBB 481 and MBB 483."
+    },
+    {
+        "course_number": "483",
+        "name": "MBB 483 D001",
+        "prerequisites": "MBB 308, MBB 309W and MBB 331, enrollment in the MBB or Biological Physics Honours Program, a minimum 3.0 CGPA and 3.0 UDGPA and permission of the MBB department. Corequisite: MBB 481 and MBB 482."
+    },
+    {
+        "course_number": "490",
+        "name": "MBB 490 D001",
+        "prerequisites": "MBB 231, with a minimum grade of C, and permission of the molecular biology and biochemistry department. Usually, upper level standing with at least 60 units in a Biochemistry major, minor or honours program will be required."
+    },
+    {
+        "course_number": "491",
+        "name": "MBB 491 D001",
+        "prerequisites": "MBB 308 or MBB 309W and permission of the MBB department. Upper level standing in an MBB major, minor or honours program is required."
+    },
+    {
+        "course_number": "492",
+        "name": "MBB 492 D001",
+        "prerequisites": "MBB 491, MBB 308, MBB 309W and MBB 331, enrollment in the MBB honours program, a minimum 3.0 CGPA and 3.0 UDGPA and permission of the department."
+    },
+    {
+        "course_number": "496",
+        "name": "MBB 496 D001",
+        "prerequisites": "75 units and upper division standing in MBB-BUS or MBB-CS Joint Honours program, and MBB 308 or 309W with a minimum grade of C."
+    },
+    {
+        "course_number": "498",
+        "name": "MBB 498 D001",
+        "prerequisites": "MBB 308 or 309W; Students may not take MBB 498 concurrently with MBB 481, 482, 483, 491 or 492 or BISC 490, 491, 492W, 498 or 499."
+    },
+    {
+        "course_number": "659",
+        "name": "MBB 659 G100",
+        "prerequisites": "MBB 441 or 741; or CMPT 341 or 881."
+    },
+    {
+        "course_number": "702",
+        "name": "MBB 702 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "721",
+        "name": "MBB 721 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "762",
+        "name": "MBB 762 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "778",
+        "name": "MBB 778 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "801",
+        "name": "MBB 801 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "803",
+        "name": "MBB 803 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "806",
+        "name": "MBB 806 G100",
+        "prerequisites": "Permission of the student's supervisory committee."
+    },
+    {
+        "course_number": "821",
+        "name": "MBB 821 G100",
+        "prerequisites": "BISC 331/MBB 331 or equivalent."
+    },
+    {
+        "course_number": "871",
+        "name": "MBB 871 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "872",
+        "name": "MBB 872 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "873",
+        "name": "MBB 873 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "898",
+        "name": "MBB 898 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "899",
+        "name": "MBB 899 G100",
+        "prerequisites": ""
+    }
+]

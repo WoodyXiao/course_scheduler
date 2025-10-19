@@ -1,0 +1,182 @@
+[
+    {
+        "course_number": "100",
+        "name": "PHYS 100 D100",
+        "prerequisites": "BC Pre-Calculus 12 (or equivalent) or MATH 100, with a minimum grade of C-. BC Physics 11 (or equivalent) is recommended."
+    },
+    {
+        "course_number": "101",
+        "name": "PHYS 101 D100",
+        "prerequisites": "BC Principles of Physics 12 or PHYS 100 or equivalent, with a minimum grade of C-. This prerequisite may be waived, at the discretion of the department, as determined by the student's performance on a regularly scheduled PHYS 100 final exam. Please consult the physics advisor for further details. Corequisite: MATH 150 or 151 or 154 or 157; BISC 100 or 101 or 102. Recommended Corequisite: PHYS 132."
+    },
+    {
+        "course_number": "102",
+        "name": "PHYS 102 D100",
+        "prerequisites": "PHYS 101 or 120 or 125 or 140; MATH 150 or 151 or 154 or 157; both with a minimum grade of C-. Corequisite: BISC 100 or 101 or 102. Recommended Corequisites: MATH 152, 155 or 158; PHYS 133."
+    },
+    {
+        "course_number": "120",
+        "name": "PHYS 120 D100",
+        "prerequisites": "BC Principles of Physics 12 or PHYS 100 or equivalent, with a minimum grade of C-. This prerequisite may be waived, at the discretion of the department, as determined by the student's performance on a regularly scheduled PHYS 100 final exam. Please consult the physics advisor for further details. Corequisite: MATH 150 or 151 or 154. Recommended Corequisite: PHYS 132."
+    },
+    {
+        "course_number": "125",
+        "name": "PHYS 125 D100",
+        "prerequisites": "Permission of the department. Corequisite: MATH 151. Recommended Corequisite: PHYS 132."
+    },
+    {
+        "course_number": "132",
+        "name": "PHYS 132 LA01",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "140",
+        "name": "PHYS 140 D100",
+        "prerequisites": "BC Principles of Physics 12, or PHYS 100 or equivalent, with a minimum grade of C-. Corequisite: MATH 150 or 151 or 154."
+    },
+    {
+        "course_number": "190",
+        "name": "PHYS 190 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "201",
+        "name": "PHYS 201 D100",
+        "prerequisites": "PHYS 121 or PHYS 126 or PHYS 141, with a minimum grade of C-, or PHYS 102 with a minimum grade of B."
+    },
+    {
+        "course_number": "233",
+        "name": "PHYS 233 D100",
+        "prerequisites": "PHYS 133 or PHYS 141 or ENSC 120, with a minimum grade of C-. Recommended Prerequisite: CMPT 120."
+    },
+    {
+        "course_number": "255",
+        "name": "PHYS 255 D100",
+        "prerequisites": "PHYS 126 or PHYS 121 or PHYS 141, with a minimum grade of C-, or PHYS 102 with a minimum grade of B. Corequisite: MATH 251; MATH 232 or MATH 240. Recommended Corequisite: MATH 260 or MATH 310."
+    },
+    {
+        "course_number": "335",
+        "name": "PHYS 335 D100",
+        "prerequisites": "Completion of 30 units, with a minimum GPA of 2.75 in the physics program. Students should apply to the department at least one term in advance."
+    },
+    {
+        "course_number": "336",
+        "name": "PHYS 336 D100",
+        "prerequisites": "PHYS 335 followed by 12 units. A minimum cumulative GPA of 2.75. Students should apply to the department at least one term in advance."
+    },
+    {
+        "course_number": "344",
+        "name": "PHYS 344 D100",
+        "prerequisites": "PHYS 121 or PHYS 126 or PHYS 141 (or PHYS 102 with a minimum grade of B); MATH 251; both with a minimum grade of C-."
+    },
+    {
+        "course_number": "384",
+        "name": "PHYS 384 D100",
+        "prerequisites": "MATH 252 or 254; MATH 260 or MATH 310; PHYS 211; PHYS 255 or ENSC 320. All prerequisite courses require a minimum grade of C-."
+    },
+    {
+        "course_number": "385",
+        "name": "PHYS 385 D100",
+        "prerequisites": "MATH 251; MATH 260; PHYS 255 or ENSC 380; PHYS 285 or CHEM 260. All prerequisite courses require a minimum grade of C-. Recommended Prerequisite: PHYS 211."
+    },
+    {
+        "course_number": "413",
+        "name": "PHYS 413 D100",
+        "prerequisites": "PHYS 384 or permission of the department. Non-physics majors may enter with MATH 252; MATH 260 or MATH 310; PHYS 211. All prerequisite courses require a minimum grade of C-."
+    },
+    {
+        "course_number": "421",
+        "name": "PHYS 421 D100",
+        "prerequisites": "PHYS 321 (no substitution); PHYS 255 or ENSC 380; both with a minimum grade of C-."
+    },
+    {
+        "course_number": "432",
+        "name": "PHYS 432 D100",
+        "prerequisites": "All students interested in taking this course must consult with their faculty supervisor regarding prerequisites."
+    },
+    {
+        "course_number": "435",
+        "name": "PHYS 435 D100",
+        "prerequisites": "PHYS 336 and 60 units with a minimum cumulative GPA of 2.75."
+    },
+    {
+        "course_number": "436",
+        "name": "PHYS 436 D100",
+        "prerequisites": "PHYS 435 followed by 12 units. A minimum cumulative GPA of 2.75."
+    },
+    {
+        "course_number": "437",
+        "name": "PHYS 437 D100",
+        "prerequisites": "PHYS 436 and a minimum cumulative GPA of 2.75. Students should apply to the department at least one term in advance."
+    },
+    {
+        "course_number": "455",
+        "name": "PHYS 455 D200",
+        "prerequisites": "PHYS 321 with a minimum grade of C-. Corequisite: PHYS 385."
+    },
+    {
+        "course_number": "465",
+        "name": "PHYS 465 D100",
+        "prerequisites": "PHYS 385 or CHEM 364, with a minimum grade of C-."
+    },
+    {
+        "course_number": "484",
+        "name": "PHYS 484 D100",
+        "prerequisites": "PHYS 384 with a minimum grade of C- or permission of the department."
+    },
+    {
+        "course_number": "492",
+        "name": "PHYS 492 D200",
+        "prerequisites": "Permission of the department."
+    },
+    {
+        "course_number": "801",
+        "name": "PHYS 801 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "802",
+        "name": "PHYS 802 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "810",
+        "name": "PHYS 810 G100",
+        "prerequisites": "PHYS 415, or equivalent."
+    },
+    {
+        "course_number": "813",
+        "name": "PHYS 813 G100",
+        "prerequisites": "PHYS 384 or permission of the department."
+    },
+    {
+        "course_number": "822",
+        "name": "PHYS 822 G100",
+        "prerequisites": "PHYS 421 or equivalent."
+    },
+    {
+        "course_number": "855",
+        "name": "PHYS 855 G200",
+        "prerequisites": "Permission of the instructor."
+    },
+    {
+        "course_number": "882",
+        "name": "PHYS 882 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "891",
+        "name": "PHYS 891 G200",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "898",
+        "name": "PHYS 898 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "899",
+        "name": "PHYS 899 G100",
+        "prerequisites": ""
+    }
+]

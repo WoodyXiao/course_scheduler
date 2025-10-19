@@ -1,0 +1,12 @@
+[
+    {
+        "course_number": "809",
+        "name": "PLCY 809 G100",
+        "prerequisites": "Open only to students enrolled in the MPP program."
+    },
+    {
+        "course_number": "850",
+        "name": "PLCY 850 G100",
+        "prerequisites": ""
+    }
+]

@@ -1,0 +1,142 @@
+[
+    {
+        "course_number": "100",
+        "name": "REM 100 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "202w",
+        "name": "REM 202W D100",
+        "prerequisites": "One of REM 100, GEOG 100, GEOG 111, or EVSC 100."
+    },
+    {
+        "course_number": "211",
+        "name": "REM 211 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "311",
+        "name": "REM 311 D100",
+        "prerequisites": "REM 100 or EVSC 100; BISC 204 or GEOG 215 or REM 211; STAT 201 or STAT 203 or STAT 205 or GEOG 251 or equivalent. Recommended: REM 225."
+    },
+    {
+        "course_number": "321",
+        "name": "REM 321 D100",
+        "prerequisites": "45 units."
+    },
+    {
+        "course_number": "350",
+        "name": "REM 350 E100",
+        "prerequisites": "45 units."
+    },
+    {
+        "course_number": "355",
+        "name": "REM 355 D100",
+        "prerequisites": "45 units or permission of instructor."
+    },
+    {
+        "course_number": "356w",
+        "name": "REM 356W D100",
+        "prerequisites": "One of REM 100, GEOG 100, GEOG 111, or EVSC 100; and 45 units."
+    },
+    {
+        "course_number": "357",
+        "name": "REM 357 D100",
+        "prerequisites": "45 units."
+    },
+    {
+        "course_number": "388",
+        "name": "REM 388 D100",
+        "prerequisites": "45 units."
+    },
+    {
+        "course_number": "412",
+        "name": "REM 412 D100",
+        "prerequisites": "REM 100 or EVSC 100; BISC 204 or GEOG 215 or REM 211; STAT 201 or STAT 203 or STAT 205 or GEOG 251 or equivalent; and 60 units. Recommended: REM 225."
+    },
+    {
+        "course_number": "471",
+        "name": "REM 471 D100",
+        "prerequisites": "One of REM 100, or GEOG 100 or 111, or EVSC 100 or BISC 102; and 45 units."
+    },
+    {
+        "course_number": "499",
+        "name": "REM 499 D100",
+        "prerequisites": "90 units and permission of the REM Undergraduate Program Chair."
+    },
+    {
+        "course_number": "602",
+        "name": "REM 602 G100",
+        "prerequisites": "Enrollment in REM MRM (Planning)."
+    },
+    {
+        "course_number": "612",
+        "name": "REM 612 G100",
+        "prerequisites": "REM 611 or permission of the instructor."
+    },
+    {
+        "course_number": "621",
+        "name": "REM 621 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "631",
+        "name": "REM 631 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "643",
+        "name": "REM 643 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "644",
+        "name": "REM 644 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "662",
+        "name": "REM 662 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "664",
+        "name": "REM 664 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "665",
+        "name": "REM 665 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "697",
+        "name": "REM 697 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "698",
+        "name": "REM 698 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "699",
+        "name": "REM 699 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "801",
+        "name": "REM 801 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "898",
+        "name": "REM 898 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "899",
+        "name": "REM 899 G100",
+        "prerequisites": ""
+    }
+]

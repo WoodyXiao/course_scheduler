@@ -1,0 +1,72 @@
+[
+    {
+        "course_number": "100w",
+        "name": "PHIL 100W D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "105",
+        "name": "PHIL 105 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "110",
+        "name": "PHIL 110 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "120w",
+        "name": "PHIL 120W D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "321",
+        "name": "PHIL 321 E100",
+        "prerequisites": "One of PHIL 120, 120W, 121, 220, 221, 270, SDA 270, ENV 320W, or REM 320W."
+    },
+    {
+        "course_number": "331",
+        "name": "PHIL 331 B100",
+        "prerequisites": "As stated by department at time of offering."
+    },
+    {
+        "course_number": "343",
+        "name": "PHIL 343 B100",
+        "prerequisites": "Either one of: PHIL 201 or 203; or both of PHIL 100, 100W, or 300, and COGS 200."
+    },
+    {
+        "course_number": "435",
+        "name": "PHIL 435 E100",
+        "prerequisites": "Two 300-level PHIL courses."
+    },
+    {
+        "course_number": "467w",
+        "name": "PHIL 467W D100",
+        "prerequisites": "15 upper division PHIL units or permission from the instructor. Students not in a philosophy major, philosophy honours, or joint major program can take PHIL 467W only with special permission from the instructor."
+    },
+    {
+        "course_number": "479",
+        "name": "PHIL 479 D100",
+        "prerequisites": "Enrolled in the philosophy honours program."
+    },
+    {
+        "course_number": "804",
+        "name": "PHIL 804 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "814",
+        "name": "PHIL 814 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "854",
+        "name": "PHIL 854 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "899",
+        "name": "PHIL 899 G100",
+        "prerequisites": ""
+    }
+]

@@ -1,0 +1,32 @@
+[
+    {
+        "course_number": "100",
+        "name": "FASS 100 D900",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "201",
+        "name": "FASS 201 D100",
+        "prerequisites": "Open only to students accepted to the FASS Co-op Program."
+    },
+    {
+        "course_number": "301",
+        "name": "FASS 301 D100",
+        "prerequisites": "Open only to students accepted to the FASS Co-op Program."
+    },
+    {
+        "course_number": "302",
+        "name": "FASS 302 D100",
+        "prerequisites": "Open only to students accepted to the FASS Co-op Program."
+    },
+    {
+        "course_number": "401",
+        "name": "FASS 401 D100",
+        "prerequisites": "Open only to students accepted to the FASS Co-op Program."
+    },
+    {
+        "course_number": "402",
+        "name": "FASS 402 D100",
+        "prerequisites": "Open only to students accepted to the FASS Co-op Program."
+    }
+]

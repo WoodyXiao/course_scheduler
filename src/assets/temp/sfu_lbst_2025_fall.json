@@ -1,0 +1,42 @@
+[
+    {
+        "course_number": "100",
+        "name": "LBST 100 B100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "101",
+        "name": "LBST 101 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "201",
+        "name": "LBST 201 D100",
+        "prerequisites": "Strongly Recommended: LBST 101."
+    },
+    {
+        "course_number": "202",
+        "name": "LBST 202 D100",
+        "prerequisites": "LBST 100 or LBST 101 or with permission of instructor."
+    },
+    {
+        "course_number": "305",
+        "name": "LBST 305 OL01",
+        "prerequisites": "30 units including LBST 100 or three units in GSWS or WS or GDST."
+    },
+    {
+        "course_number": "307",
+        "name": "LBST 307 D100",
+        "prerequisites": "Strongly Recommended: LBST 101."
+    },
+    {
+        "course_number": "313",
+        "name": "LBST 313 E100",
+        "prerequisites": "Strongly Recommended: LBST 101."
+    },
+    {
+        "course_number": "330",
+        "name": "LBST 330 D100",
+        "prerequisites": "Strongly Recommended: LBST 101 and/or 301."
+    }
+]

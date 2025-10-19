@@ -1,0 +1,72 @@
+[
+    {
+        "course_number": "101",
+        "name": "FREN 101 OL01",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "102",
+        "name": "FREN 102 OL01",
+        "prerequisites": "FREN 101, FREN 120, or FREN 121 or consult with a French advisor."
+    },
+    {
+        "course_number": "201",
+        "name": "FREN 201 OL01",
+        "prerequisites": "Grade 12 French or FREN 102 or FREN 122 or consult with the French advisor."
+    },
+    {
+        "course_number": "245",
+        "name": "FREN 245 D100",
+        "prerequisites": "Grade 12 French Immersion or FREN 202 with a minimum grade of C+ or permission of the Department of French."
+    },
+    {
+        "course_number": "301w",
+        "name": "FREN 301W D100",
+        "prerequisites": "Grade 12 French Immersion or FREN 202 with a minimum grade of C+ or permission of the Department of French."
+    },
+    {
+        "course_number": "330",
+        "name": "FREN 330 D100",
+        "prerequisites": "FREN 222 or permission of instructor."
+    },
+    {
+        "course_number": "350",
+        "name": "FREN 350 D100",
+        "prerequisites": "FREN 245."
+    },
+    {
+        "course_number": "420",
+        "name": "FREN 420 D100",
+        "prerequisites": "FREN 270 or 275 or LING 222, FREN 301W, and at least one 300-level group A (ling.) course."
+    },
+    {
+        "course_number": "444",
+        "name": "FREN 444 D100",
+        "prerequisites": "FREN 230 or 240 or 245, FREN 301W, and at least one 300-level group B (lit.) course."
+    },
+    {
+        "course_number": "820",
+        "name": "FREN 820 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "825",
+        "name": "FREN 825 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "896",
+        "name": "FREN 896 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "898",
+        "name": "FREN 898 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "998",
+        "name": "FREN 998 G100",
+        "prerequisites": ""
+    }
+]

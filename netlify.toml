@@ -1,0 +1,23 @@
+# Netlify Configuration
+[build]
+  # React build command
+  command = "npm run build"
+  # Build output directory
+  publish = "build"
+  # Functions directory
+  functions = "netlify/functions"
+
+# Redirect rules for React Router (if needed)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Environment variables (set these in Netlify dashboard)
+# GEMINI_API_KEY = "your_key_here" (set in Netlify UI)
+
+# Function settings
+[functions]
+  # Increase timeout for AI requests (default is 10s, max is 26s for free tier)
+  included_files = ["node_modules/@google/generative-ai/**"]
+

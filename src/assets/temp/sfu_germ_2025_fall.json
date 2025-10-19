@@ -1,0 +1,17 @@
+[
+    {
+        "course_number": "100",
+        "name": "GERM 100 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "110",
+        "name": "GERM 110 D100",
+        "prerequisites": "GERM 100 (or GERM 102) or equivalent."
+    },
+    {
+        "course_number": "200",
+        "name": "GERM 200 D100",
+        "prerequisites": "GERM 110 (or GERM 103) or equivalent."
+    }
+]

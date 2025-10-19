@@ -1,0 +1,177 @@
+[
+    {
+        "course_number": "100",
+        "name": "ARCH 100 OL01",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "101",
+        "name": "ARCH 101 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "131",
+        "name": "ARCH 131 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "226",
+        "name": "ARCH 226 OL01",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "252",
+        "name": "ARCH 252 E100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "271",
+        "name": "ARCH 271 D100",
+        "prerequisites": "ARCH 101 or ARCH 201."
+    },
+    {
+        "course_number": "272w",
+        "name": "ARCH 272W D100",
+        "prerequisites": "ARCH 100, 101, or 201."
+    },
+    {
+        "course_number": "286",
+        "name": "ARCH 286 BLS1",
+        "prerequisites": "30 units including one of ARCH 100, ARCH 101, ARCH 201, EVSC 100, GEOG 100, or REM 100."
+    },
+    {
+        "course_number": "301",
+        "name": "ARCH 301 OL01",
+        "prerequisites": "45 credit hours."
+    },
+    {
+        "course_number": "312",
+        "name": "ARCH 312 D100",
+        "prerequisites": "One of the following courses: ARCH 100, ARCH 101, ARCH 201, HS 100, HS 231, HS 232, HS 277, HIST 277 or by permission of the instructor."
+    },
+    {
+        "course_number": "323",
+        "name": "ARCH 323 D100",
+        "prerequisites": "ARCH 131 or any lower division biology course."
+    },
+    {
+        "course_number": "349",
+        "name": "ARCH 349 D100",
+        "prerequisites": "ARCH 101 or ARCH 201, and 45 units."
+    },
+    {
+        "course_number": "363",
+        "name": "ARCH 363 D100",
+        "prerequisites": "ARCH 100 or ARCH 101 or ARCH 201, and 45 units."
+    },
+    {
+        "course_number": "365",
+        "name": "ARCH 365 D100",
+        "prerequisites": "ARCH 101 or ARCH 201; or any two of ARCH 100, REM 100, GEOG 100, EVSC 100; and 45 units."
+    },
+    {
+        "course_number": "373",
+        "name": "ARCH 373 D100",
+        "prerequisites": "ARCH 131 or any lower division ARCH, BISC, HSCI, or BPK course."
+    },
+    {
+        "course_number": "374",
+        "name": "ARCH 374 D100",
+        "prerequisites": "ARCH 101 (or ARCH 201). Recommended: ARCH 282 (or ARCH 372) and ARCH 271."
+    },
+    {
+        "course_number": "378",
+        "name": "ARCH 378 D100",
+        "prerequisites": "ARCH 273."
+    },
+    {
+        "course_number": "383",
+        "name": "ARCH 383 D100",
+        "prerequisites": "Any lower division ARCH, BISC, BPK, CHEM, CRIM or HSCI course."
+    },
+    {
+        "course_number": "479",
+        "name": "ARCH 479 D100",
+        "prerequisites": "45 units, including ARCH 282 or 372, and permission of the department."
+    },
+    {
+        "course_number": "480",
+        "name": "ARCH 480 D100",
+        "prerequisites": "45 units, including ARCH 282 or 372, and permission of the department."
+    },
+    {
+        "course_number": "483",
+        "name": "ARCH 483 D100",
+        "prerequisites": "ARCH 383 or approval by the instructor after the interview."
+    },
+    {
+        "course_number": "498",
+        "name": "ARCH 498 D100",
+        "prerequisites": "Permission of the department."
+    },
+    {
+        "course_number": "499",
+        "name": "ARCH 499 D100",
+        "prerequisites": "Permission of the department."
+    },
+    {
+        "course_number": "591",
+        "name": "ARCH 591 G200",
+        "prerequisites": "10 units, consent of supervising faculty member, and approval of the director of the HRM program."
+    },
+    {
+        "course_number": "871",
+        "name": "ARCH 871 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "872",
+        "name": "ARCH 872 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "874",
+        "name": "ARCH 874 G100",
+        "prerequisites": "Only available to students in the Archaeology PhD program."
+    },
+    {
+        "course_number": "875",
+        "name": "ARCH 875 G100",
+        "prerequisites": "Only available to students in the Archaeology PhD program."
+    },
+    {
+        "course_number": "892",
+        "name": "ARCH 892 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "893",
+        "name": "ARCH 893 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "894",
+        "name": "ARCH 894 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "895",
+        "name": "ARCH 895 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "896",
+        "name": "ARCH 896 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "898",
+        "name": "ARCH 898 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "899",
+        "name": "ARCH 899 G100",
+        "prerequisites": ""
+    }
+]

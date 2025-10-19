@@ -1,0 +1,42 @@
+[
+    {
+        "course_number": "100",
+        "name": "WL 100 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "101w",
+        "name": "WL 101W D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "104w",
+        "name": "WL 104W D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "200",
+        "name": "WL 200 D100",
+        "prerequisites": "six units in World Literature, including one W course."
+    },
+    {
+        "course_number": "202",
+        "name": "WL 202 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "306",
+        "name": "WL 306 D100",
+        "prerequisites": "45 units."
+    },
+    {
+        "course_number": "309",
+        "name": "WL 309 D100",
+        "prerequisites": "45 units."
+    },
+    {
+        "course_number": "410",
+        "name": "WL 410 D100",
+        "prerequisites": "45 units including two 300-level courses in world literature, English, and/or humanities."
+    }
+]

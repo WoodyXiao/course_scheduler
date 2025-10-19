@@ -1,0 +1,82 @@
+[
+    {
+        "course_number": "101",
+        "name": "PUB 101 B100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "131",
+        "name": "PUB 131 B100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "331",
+        "name": "PUB 331 D100",
+        "prerequisites": "PUB 231."
+    },
+    {
+        "course_number": "375",
+        "name": "PUB 375 B100",
+        "prerequisites": "60 units."
+    },
+    {
+        "course_number": "448",
+        "name": "PUB 448 B100",
+        "prerequisites": "60 units."
+    },
+    {
+        "course_number": "456",
+        "name": "PUB 456 D100",
+        "prerequisites": "75 units."
+    },
+    {
+        "course_number": "600",
+        "name": "PUB 600 G100",
+        "prerequisites": "Admittance to the program."
+    },
+    {
+        "course_number": "601",
+        "name": "PUB 601 G100",
+        "prerequisites": "Admittance to the program."
+    },
+    {
+        "course_number": "603",
+        "name": "PUB 603 G100",
+        "prerequisites": "Admission to the program."
+    },
+    {
+        "course_number": "648",
+        "name": "PUB 648 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "656",
+        "name": "PUB 656 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "800",
+        "name": "PUB 800 G100",
+        "prerequisites": "Admittance to the program."
+    },
+    {
+        "course_number": "890",
+        "name": "PUB 890 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "899",
+        "name": "PUB 899 G100",
+        "prerequisites": "PUB 600, PUB 800, PUB 801, PUB 802, PUB 890, and PUB 891."
+    },
+    {
+        "course_number": "900",
+        "name": "PUB 900 G100",
+        "prerequisites": "PUB 600, PUB 800, PUB 801, PUB 802, PUB 890, and PUB 891."
+    },
+    {
+        "course_number": "901",
+        "name": "PUB 901 G100",
+        "prerequisites": "PUB 600, PUB 800, PUB 801, PUB 802, PUB 890, and PUB 891."
+    }
+]

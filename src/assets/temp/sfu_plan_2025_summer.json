@@ -1,0 +1,27 @@
+[
+    {
+        "course_number": "100",
+        "name": "PLAN 100 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "302",
+        "name": "PLAN 302 D100",
+        "prerequisites": "PLAN 100 or PLAN 200; one of PLAN 300 or PLAN 319, or REM 319; and permission of department. Student must be enrolled in the bachelor of environment in resource and environmental management planning stream."
+    },
+    {
+        "course_number": "319",
+        "name": "PLAN 319 D100",
+        "prerequisites": "45 units."
+    },
+    {
+        "course_number": "408",
+        "name": "PLAN 408 D100",
+        "prerequisites": "PLAN 100 or PLAN 200; and 60 units."
+    },
+    {
+        "course_number": "443",
+        "name": "PLAN 443 D100",
+        "prerequisites": "PLAN 100 or PLAN 200; and 60 units."
+    }
+]

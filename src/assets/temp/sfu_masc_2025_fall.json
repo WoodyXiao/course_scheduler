@@ -1,0 +1,27 @@
+[
+    {
+        "course_number": "401",
+        "name": "MASC 401 D100",
+        "prerequisites": "Prerequisites are set by Bamfield Marine Science Centre, and normally include completion of lower division core courses."
+    },
+    {
+        "course_number": "415",
+        "name": "MASC 415 D100",
+        "prerequisites": "Prerequisites are set by Bamfield Marine Science Centre, and normally include completion of lower division core courses."
+    },
+    {
+        "course_number": "425",
+        "name": "MASC 425 D100",
+        "prerequisites": "Prerequisites are set by Bamfield Marine Science Centre, and normally include completion of lower division core courses."
+    },
+    {
+        "course_number": "436",
+        "name": "MASC 436 D100",
+        "prerequisites": "Prerequisites are set by Bamfield Marine Science Centre, and normally include completion of lower division core courses."
+    },
+    {
+        "course_number": "437",
+        "name": "MASC 437 D100",
+        "prerequisites": "Prerequisites are set by Bamfield Marine Science Centre, and normally include completion of lower division core courses."
+    }
+]

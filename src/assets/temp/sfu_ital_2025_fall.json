@@ -1,0 +1,17 @@
+[
+    {
+        "course_number": "100",
+        "name": "ITAL 100 B100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "110",
+        "name": "ITAL 110 B100",
+        "prerequisites": "ITAL 100 or equivalent."
+    },
+    {
+        "course_number": "200",
+        "name": "ITAL 200 D100",
+        "prerequisites": "ITAL 110 (or ITAL 101) or equivalent."
+    }
+]

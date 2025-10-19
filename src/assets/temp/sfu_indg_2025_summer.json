@@ -1,0 +1,42 @@
+[
+    {
+        "course_number": "101",
+        "name": "INDG 101 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "201w",
+        "name": "INDG 201W OL01",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "305",
+        "name": "INDG 305 OL01",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "332",
+        "name": "INDG 332 A100",
+        "prerequisites": "INDG (or FNST) 101 or INDG (or FNST) 201W."
+    },
+    {
+        "course_number": "422",
+        "name": "INDG 422 BLS1",
+        "prerequisites": "Will vary according to the topic."
+    },
+    {
+        "course_number": "435",
+        "name": "INDG 435 D100",
+        "prerequisites": "INDG 101 or INDG 201W, and permission of the instructor. Students must successfully complete a Criminal Record Check."
+    },
+    {
+        "course_number": "442",
+        "name": "INDG 442 D100",
+        "prerequisites": "15 units in Indigenous (or First Nations) studies. Corequisite: Permission of an instructor and department."
+    },
+    {
+        "course_number": "447",
+        "name": "INDG 447 D100",
+        "prerequisites": "15 units of INDG (or FNST) courses; permission of an instructor and department approval. Corequisite: Varies depending on topic."
+    }
+]
