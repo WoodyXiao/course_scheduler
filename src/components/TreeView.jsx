@@ -4,7 +4,7 @@ import * as d3 from "d3";
 // Define color schemes for different departments (constant)
 // Avoiding red (AND nodes) and green (OR nodes) colors
 const departmentColors = {
-  'CMPT': { from: '#4F46E5', to: '#7C3AED', name: 'Computing Science' },  // Indigo/Purple
+  'CMPT': { from: '#0284C7', to: '#0EA5E9', name: 'Computing Science' },  // Indigo/Purple
   'MATH': { from: '#F97316', to: '#FB923C', name: 'Mathematics' },        // Orange (unified with MACM)
   'MACM': { from: '#F97316', to: '#FB923C', name: 'Applied Math' },       // Orange (unified with MATH)
   'STAT': { from: '#0891B2', to: '#06B6D4', name: 'Statistics' },         // Cyan
@@ -17,7 +17,7 @@ const departmentColors = {
   'HIST': { from: '#92400E', to: '#B45309', name: 'History' },            // Brown
   'PHIL': { from: '#4338CA', to: '#6366F1', name: 'Philosophy' },         // Indigo
   'BUS': { from: '#DB2777', to: '#EC4899', name: 'Business' },            // Pink
-  'ENSC': { from: '#0284C7', to: '#0EA5E9', name: 'Engineering Science' }, // Sky Blue
+  'ENSC': { from: '#4F46E5', to: '#7C3AED', name: 'Engineering Science' }, // Sky Blue
 };
 
 function TreeView({ data }) {
