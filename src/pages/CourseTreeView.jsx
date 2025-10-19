@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import TreeView from "../components/TreeView";
-import ActionButton from "../components/ActionButton";
 
 // 工具函数：兼容所有格式
 function parseCourseKey(token) {
@@ -281,34 +280,89 @@ const CourseTreeView = () => {
   };
 
   return (
-    <div className="flex-grow mt-8 p-4 max-w-screen-xl mx-auto w-full">
-      <h1 className="text-3xl font-bold">Course Requirements Quick Check</h1>
-      <div className="flex-auto">
-        <h3 className="font-bold">Course Search</h3>
-        <input
-          className="appearance-none bg-transparent border border-gray-500 text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none rounded"
-          type="text"
-          placeholder="Enter your course number (e.g., 225, 225W, 471)"
-          value={inputValue}
-          onChange={handleInputChange}
-        />
-        <ActionButton text={"Search"} onClick={handleSearch} />
+    <div className="flex-grow mt-4 sm:mt-8 p-3 sm:p-4 max-w-screen-xl mx-auto w-full">
+      {/* Page Header */}
+      <div className="mb-6 sm:mb-8">
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-2">
+          Course Prerequisite Tree Viewer
+        </h1>
+        <p className="text-sm sm:text-base text-gray-600">
+          Visualize course prerequisites in an interactive tree structure
+        </p>
       </div>
+
+      {/* Search Section */}
+      <div className="mb-6 sm:mb-8 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl shadow-md border border-blue-200 p-4 sm:p-6">
+        <div className="flex items-center gap-2 mb-3">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 sm:h-6 sm:w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          <h3 className="font-bold text-base sm:text-lg text-gray-800">Course Search</h3>
+        </div>
+        
+        <div className="flex flex-col sm:flex-row gap-3">
+          <div className="flex-1">
+            <input
+              className="w-full px-4 py-3 text-sm sm:text-base bg-white border-2 border-gray-300 rounded-lg text-gray-700 placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all shadow-sm"
+              type="text"
+              placeholder="Enter course number (e.g., 225, CMPT 225, 471W)"
+              value={inputValue}
+              onChange={handleInputChange}
+              onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
+            />
+            <p className="mt-2 text-xs sm:text-sm text-gray-600 flex items-center gap-1">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              Press Enter or click Search to view prerequisites
+            </p>
+          </div>
+          <button
+            onClick={handleSearch}
+            className="px-6 h-[52px] bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2 active:scale-95 touch-manipulation whitespace-nowrap"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            <span>Search</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Results Section */}
       {courseData ? (
         <TreeView data={courseData} />
       ) : (
-        <div>No course data found. Please enter a valid course number.</div>
+        <div className="text-sm sm:text-base text-gray-600 p-6 sm:p-8 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl border-2 border-dashed border-gray-300 text-center">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 sm:h-16 sm:w-16 mx-auto mb-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+          </svg>
+          <p className="text-lg font-semibold text-gray-700 mb-2">No course selected</p>
+          <p className="text-gray-500">Enter a valid course number above to view its prerequisite tree</p>
+        </div>
       )}
-      {courseData && (
-        <h1 className="font-bold">Extra notes ({courseData.name}):</h1>
+
+      {/* Extra Info Section */}
+      {courseData && extraInfo.length > 0 && (
+        <div className="mt-6 sm:mt-8 p-4 sm:p-6 bg-amber-50 rounded-xl border border-amber-200 shadow-sm">
+          <div className="flex items-center gap-2 mb-3">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 sm:h-6 sm:w-6 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <h2 className="font-bold text-base sm:text-lg text-amber-900">
+              Additional Notes for {courseData.name}
+            </h2>
+          </div>
+          <ul className="space-y-2 text-sm sm:text-base">
+            {extraInfo.map((text, index) => (
+              <li key={index} className="text-amber-800 pl-2 flex gap-2">
+                <span className="font-semibold text-amber-900">{index + 1}.</span>
+                <span>{text}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
-      <ul>
-        {extraInfo.map((text, index) => (
-          <li key={index}>
-            {index + 1}. {text}
-          </li>
-        ))}
-      </ul>
     </div>
   );
 };
