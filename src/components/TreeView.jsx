@@ -190,6 +190,53 @@ function TreeView({ data }) {
     });
   }, []);
 
+  // Find all nodes that depend on a given node (for cascading uncheck)
+  const findDependentNodes = useCallback((targetNode, currentNode = treeData) => {
+    const dependents = [];
+    
+    // Helper function to check if a node depends on the target
+    const dependsOn = (node, target) => {
+      if (!node) return false;
+      
+      // Get all children (visible and collapsed)
+      const allChildren = node.children || node._children;
+      if (!allChildren || allChildren.length === 0) return false;
+      
+      // Check if target is a direct child
+      for (const child of allChildren) {
+        if (child.data.uniqueId === target.data.uniqueId) {
+          return true;
+        }
+        // Recursively check descendants
+        if (dependsOn(child, target)) {
+          return true;
+        }
+      }
+      return false;
+    };
+    
+    // Traverse the tree to find all nodes that depend on targetNode
+    const traverse = (node) => {
+      if (!node) return;
+      
+      // If this is a course node (not logic node) and it depends on target
+      if ((!node.data.condition || (node.data.condition !== "AND" && node.data.condition !== "OR")) &&
+          node.data.uniqueId !== targetNode.data.uniqueId &&
+          dependsOn(node, targetNode)) {
+        dependents.push(node.data.uniqueId);
+      }
+      
+      // Traverse children
+      const allChildren = node.children || node._children;
+      if (allChildren) {
+        allChildren.forEach(child => traverse(child));
+      }
+    };
+    
+    traverse(currentNode);
+    return dependents;
+  }, [treeData]);
+
   const handleCheckboxChange = useCallback((node, isChecked) => {
     // If trying to check (not uncheck), verify prerequisites are met
     if (isChecked && !canCheckNode(node)) {
@@ -203,11 +250,16 @@ function TreeView({ data }) {
       if (isChecked) {
         newSet.add(node.data.uniqueId);
       } else {
+        // Unchecking: remove this node and all dependent nodes
         newSet.delete(node.data.uniqueId);
+        
+        // Find and uncheck all nodes that depend on this one
+        const dependents = findDependentNodes(node);
+        dependents.forEach(depId => newSet.delete(depId));
       }
       return newSet;
     });
-  }, [canCheckNode]);
+  }, [canCheckNode, findDependentNodes]);
 
   const captureScreenshot = useCallback(() => {
     const svg = svgRef.current;
@@ -757,26 +809,22 @@ function TreeView({ data }) {
       .text((d) => d.data.name);
 
     // Add checkboxes in Plan Mode (only for course nodes, positioned on the left)
+    // Using a similar approach to indicators: hitarea + visible checkbox
     if (planMode) {
+      // Invisible hit area for easier clicking (prevents drag conflict)
       nodeContainers
         .filter(d => d.data.condition !== "AND" && d.data.condition !== "OR")
-        .append("foreignObject")
-        .attr("x", -40) // Position to the left of the node
-        .attr("y", -10)
-        .attr("width", 20)
-        .attr("height", 20)
-        .append("xhtml:input")
-        .attr("type", "checkbox")
-        .attr("class", (d) => {
-          const canCheck = canCheckNode(d);
-          return canCheck ? "cursor-pointer" : "cursor-not-allowed";
+        .append("circle")
+        .attr("class", "checkbox-hitarea")
+        .attr("cx", -30) // Position to the left of the node
+        .attr("cy", 0)
+        .attr("r", 12) // Larger hit area
+        .style("fill", "transparent")
+        .style("cursor", (d) => {
+          if (checkedNodes.has(d.data.uniqueId)) return "pointer"; // Can always uncheck
+          return canCheckNode(d) ? "pointer" : "not-allowed";
         })
-        .style("width", "18px")
-        .style("height", "18px")
-        .style("cursor", (d) => canCheckNode(d) ? "pointer" : "not-allowed")
-        .style("opacity", (d) => canCheckNode(d) ? "1" : "0.5")
-        .property("checked", d => checkedNodes.has(d.data.uniqueId))
-        .property("disabled", d => !canCheckNode(d) && !checkedNodes.has(d.data.uniqueId)) // Can always uncheck
+        .style("pointer-events", "all")
         .attr("title", (d) => {
           if (checkedNodes.has(d.data.uniqueId)) {
             return "Click to uncheck";
@@ -785,10 +833,87 @@ function TreeView({ data }) {
             ? "Click to check as completed" 
             : "Prerequisites not met - complete required courses first";
         })
-        .on("change", function(event, d) {
+        .on("mousedown", function(event) {
+          // Prevent drag from starting on checkbox
           event.stopPropagation();
-          handleCheckboxChange(d, event.target.checked);
+        })
+        .on("click", function(event, d) {
+          event.stopPropagation();
+          
+          const isCurrentlyChecked = checkedNodes.has(d.data.uniqueId);
+          const newCheckedState = !isCurrentlyChecked;
+          
+          // If trying to check, verify prerequisites
+          if (newCheckedState && !canCheckNode(d)) {
+            alert(`Cannot check ${d.data.name}!\n\nPrerequisites not satisfied. Please complete the required prerequisite courses first.`);
+            return;
+          }
+          
+          handleCheckboxChange(d, newCheckedState);
+        })
+        .on("mouseover", function(event, d) {
+          event.stopPropagation(); // Prevent node hover
+          
+          // Clear any existing highlight from node
+          clearHighlight();
+          
+          // Highlight the visible checkbox on hover
+          d3.select(this.parentNode).select(".checkbox-visible")
+            .style("filter", "drop-shadow(0 3px 6px rgba(0,0,0,0.3))")
+            .transition()
+            .duration(150)
+            .attr("r", 11);
+        })
+        .on("mouseout", function(event, d) {
+          event.stopPropagation(); // Prevent node mouseout
+          
+          d3.select(this.parentNode).select(".checkbox-visible")
+            .style("filter", "drop-shadow(0 2px 4px rgba(0,0,0,0.1))")
+            .transition()
+            .duration(150)
+            .attr("r", 9);
         });
+
+      // Visible checkbox circle
+      nodeContainers
+        .filter(d => d.data.condition !== "AND" && d.data.condition !== "OR")
+        .append("circle")
+        .attr("class", "checkbox-visible")
+        .attr("cx", -30)
+        .attr("cy", 0)
+        .attr("r", 9)
+        .style("fill", (d) => {
+          if (checkedNodes.has(d.data.uniqueId)) {
+            return "#10B981"; // Green when checked
+          }
+          return canCheckNode(d) ? "#E5E7EB" : "#F3F4F6"; // Light gray when unchecked
+        })
+        .style("stroke", (d) => {
+          if (checkedNodes.has(d.data.uniqueId)) {
+            return "#059669";
+          }
+          return canCheckNode(d) ? "#9CA3AF" : "#D1D5DB";
+        })
+        .style("stroke-width", "2px")
+        .style("opacity", (d) => canCheckNode(d) || checkedNodes.has(d.data.uniqueId) ? "1" : "0.5")
+        .style("filter", "drop-shadow(0 2px 4px rgba(0,0,0,0.1))")
+        .style("pointer-events", "none"); // Don't capture events, let hitarea handle it
+
+      // Checkmark icon when checked
+      nodeContainers
+        .filter(d => d.data.condition !== "AND" && d.data.condition !== "OR")
+        .append("text")
+        .attr("class", "checkbox-checkmark")
+        .attr("x", -30)
+        .attr("y", 4)
+        .style("font-family", "Arial, sans-serif")
+        .style("font-size", "12px")
+        .style("font-weight", "bold")
+        .style("text-anchor", "middle")
+        .style("fill", "#ffffff")
+        .style("pointer-events", "none")
+        .style("opacity", (d) => checkedNodes.has(d.data.uniqueId) ? 1 : 0)
+        .text("✓");
     }
 
   }, [treeData, toggleChildren, highlightPath, clearHighlight, nodePositions, extractDepartment, planMode, checkedNodes, isNodeSatisfied, handleCheckboxChange, canCheckNode]);
