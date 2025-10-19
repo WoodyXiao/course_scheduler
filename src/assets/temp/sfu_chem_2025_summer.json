@@ -1,0 +1,167 @@
+[
+    {
+        "course_number": "110",
+        "name": "CHEM 110 OL01",
+        "prerequisites": "Pre-Calculus 12 (or equivalent), MATH 100 (may be taken concurrently), or permission of the department. No previous training in chemistry is required for this course."
+    },
+    {
+        "course_number": "111",
+        "name": "CHEM 111 B100",
+        "prerequisites": "Pre-Calculus 12 (or equivalent), MATH 100 (may be taken concurrently), or permission of the department. No previous training in chemistry is required for this course."
+    },
+    {
+        "course_number": "120",
+        "name": "CHEM 120 D100",
+        "prerequisites": "Chemistry 12 with a minimum grade of B, or CHEM 110 or 111 with a minimum grade of C-."
+    },
+    {
+        "course_number": "121",
+        "name": "CHEM 121 D100",
+        "prerequisites": "Chemistry 12 with a minimum grade of B, or CHEM 109 or 111 with a minimum grade of C-."
+    },
+    {
+        "course_number": "122",
+        "name": "CHEM 122 D100",
+        "prerequisites": "CHEM 120 or 121 with a minimum grade of C-."
+    },
+    {
+        "course_number": "125",
+        "name": "CHEM 125 LB03",
+        "prerequisites": "Chemistry 12 with a minimum grade of C, or CHEM 109 or CHEM 111 with a minimum grade of C-. Corequisite: CHEM 120."
+    },
+    {
+        "course_number": "126",
+        "name": "CHEM 126 LA03",
+        "prerequisites": "CHEM 121 with a minimum grade of C-. Corequisite: CHEM 122."
+    },
+    {
+        "course_number": "210",
+        "name": "CHEM 210 D100",
+        "prerequisites": "CHEM 122 with a minimum grade of C-."
+    },
+    {
+        "course_number": "216",
+        "name": "CHEM 216 LA01",
+        "prerequisites": "CHEM 122 and CHEM 126, both with a minimum grade of C-. Corequisite: CHEM 210."
+    },
+    {
+        "course_number": "230",
+        "name": "CHEM 230 D100",
+        "prerequisites": "CHEM 122 with a minimum grade of C-. Students who expect to take further courses in inorganic chemistry should take CHEM 230 concurrently with CHEM 236W."
+    },
+    {
+        "course_number": "236w",
+        "name": "CHEM 236W D101",
+        "prerequisites": "CHEM 126 with a minimum grade of C-. Corequisite: CHEM 230."
+    },
+    {
+        "course_number": "281",
+        "name": "CHEM 281 D100",
+        "prerequisites": "CHEM 121 with a minimum grade of C-. Corequisite: CHEM 122."
+    },
+    {
+        "course_number": "282",
+        "name": "CHEM 282 D100",
+        "prerequisites": "CHEM 281 with a minimum grade of C-."
+    },
+    {
+        "course_number": "283",
+        "name": "CHEM 283 D100",
+        "prerequisites": "CHEM 281 with a minimum grade of C-."
+    },
+    {
+        "course_number": "284",
+        "name": "CHEM 284 D100",
+        "prerequisites": "CHEM 282 with a minimum of C+, or permission of the Department."
+    },
+    {
+        "course_number": "285",
+        "name": "CHEM 285 LB04",
+        "prerequisites": "CHEM 120 and CHEM 125, both with a minimum grade of C-, or CHEM 121 with a minimum grade of C-. Corequisite: CHEM 122 and CHEM 280."
+    },
+    {
+        "course_number": "286",
+        "name": "CHEM 286 LA01",
+        "prerequisites": "CHEM 281 with a minimum grade of C-. Corequisite: CHEM 282 or 283."
+    },
+    {
+        "course_number": "296",
+        "name": "CHEM 296 D001",
+        "prerequisites": "30 units, including five units of 2nd year CHEM courses. A student may enroll in this course only with prior written agreement of a faculty member to act as a research supervisor."
+    },
+    {
+        "course_number": "306",
+        "name": "CHEM 306 D100",
+        "prerequisites": "Completion of 28 units in a science program, including first-year calculus, chemistry and physics. Minimum CGPA 2.67 (or permission of co-op co-ordinator)."
+    },
+    {
+        "course_number": "307",
+        "name": "CHEM 307 D100",
+        "prerequisites": "CHEM 306 and completion of 42 units toward a BSc degree. Minimum CGPA 2.67 (or permission of co-op co-ordinator)."
+    },
+    {
+        "course_number": "360",
+        "name": "CHEM 360 D100",
+        "prerequisites": "CHEM 260 with a minimum grade of C-. Recommended: MATH 251."
+    },
+    {
+        "course_number": "366w",
+        "name": "CHEM 366W D100",
+        "prerequisites": "CHEM 266 with a minimum grade of C-. Corequisite: CHEM 360."
+    },
+    {
+        "course_number": "391",
+        "name": "CHEM 391 D100",
+        "prerequisites": "CHEM 230 and 282 (or 283), both with a minimum grade of C-, or permission of the department."
+    },
+    {
+        "course_number": "396",
+        "name": "CHEM 396 D001",
+        "prerequisites": "50 units, including one 3rd year CHEM core course (CHEM 316, 332, 336, 360, 366, 380 or NUSC 341). A student may enroll in this course only with prior written agreement of a faculty member to act as a research supervisor."
+    },
+    {
+        "course_number": "406",
+        "name": "CHEM 406 D100",
+        "prerequisites": "CHEM 307 and completion of 56 units toward a BSc degree. Minimum CGPA of 2.67 (or permission of co-op co-ordinator)."
+    },
+    {
+        "course_number": "407",
+        "name": "CHEM 407 D100",
+        "prerequisites": "CHEM 406. Minimum CGPA of 2.67 (or permission of co-op co-ordinator)."
+    },
+    {
+        "course_number": "408",
+        "name": "CHEM 408 D100",
+        "prerequisites": "CHEM 407."
+    },
+    {
+        "course_number": "481",
+        "name": "CHEM 481 D001",
+        "prerequisites": "Permission of the Department; knowledge of chemistry at an advanced level. Normally taken after completion of 300-level course requirements."
+    },
+    {
+        "course_number": "482",
+        "name": "CHEM 482 D001",
+        "prerequisites": "Permission of the Department. Normally taken during the fourth year of study."
+    },
+    {
+        "course_number": "483",
+        "name": "CHEM 483 D001",
+        "prerequisites": "CHEM 481 and permission of the Department. This course cannot be counted towards the 400-level CHEM unit requirement for the Chemistry Majors program."
+    },
+    {
+        "course_number": "484",
+        "name": "CHEM 484 D001",
+        "prerequisites": "Permission of the Department; knowledge of chemistry at an advanced level. Normally taken after completion of 300-level course requirements."
+    },
+    {
+        "course_number": "898",
+        "name": "CHEM 898 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "899",
+        "name": "CHEM 899 G100",
+        "prerequisites": ""
+    }
+]

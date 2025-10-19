@@ -1,0 +1,17 @@
+[
+    {
+        "course_number": "100",
+        "name": "SCI 100 D100",
+        "prerequisites": "Only Faculty of Science students may take this course."
+    },
+    {
+        "course_number": "130",
+        "name": "SCI 130 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "300",
+        "name": "SCI 300 B100",
+        "prerequisites": "60 units."
+    }
+]

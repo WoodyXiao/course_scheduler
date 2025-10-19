@@ -1,0 +1,377 @@
+[
+    {
+        "course_number": "100",
+        "name": "PSYC 100 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "102",
+        "name": "PSYC 102 D100",
+        "prerequisites": "Recommended: PSYC 100."
+    },
+    {
+        "course_number": "201w",
+        "name": "PSYC 201W D100",
+        "prerequisites": "PSYC 100 or 102."
+    },
+    {
+        "course_number": "210",
+        "name": "PSYC 210 D100",
+        "prerequisites": "BC high school Math 12 with a minimum grade of C (2.0) or BC high school Math 11 with a minimum grade of B- (2.67) or any level MATH or STAT course with a C- (1.67) or FAN X99 taken at SFU with a minimum grade of C (2.00) or achieving a satisfactory grade on the Simon Fraser University Quantitative Placement Test. Corequisite: PSYC 201W, but prior completion recommended."
+    },
+    {
+        "course_number": "221",
+        "name": "PSYC 221 D100",
+        "prerequisites": "PSYC 100."
+    },
+    {
+        "course_number": "241",
+        "name": "PSYC 241 D100",
+        "prerequisites": "PSYC 102."
+    },
+    {
+        "course_number": "250",
+        "name": "PSYC 250 E100",
+        "prerequisites": "PSYC 102."
+    },
+    {
+        "course_number": "260",
+        "name": "PSYC 260 OL01",
+        "prerequisites": "PSYC 102."
+    },
+    {
+        "course_number": "268",
+        "name": "PSYC 268 D100",
+        "prerequisites": "PSYC 102."
+    },
+    {
+        "course_number": "280",
+        "name": "PSYC 280 D100",
+        "prerequisites": "PSYC 100. Recommended: BISC 101."
+    },
+    {
+        "course_number": "300w",
+        "name": "PSYC 300W D100",
+        "prerequisites": "PSYC 201W."
+    },
+    {
+        "course_number": "301",
+        "name": "PSYC 301 D100",
+        "prerequisites": "PSYC 201 and 210 and a minimum CGPA of 2.67."
+    },
+    {
+        "course_number": "303",
+        "name": "PSYC 303 D100",
+        "prerequisites": "PSYC 201 and 221 (or 335)."
+    },
+    {
+        "course_number": "330",
+        "name": "PSYC 330 D100",
+        "prerequisites": "PSYC 201 and 221."
+    },
+    {
+        "course_number": "352",
+        "name": "PSYC 352 B100",
+        "prerequisites": "PSYC 201 and PSYC 250."
+    },
+    {
+        "course_number": "359",
+        "name": "PSYC 359 OL01",
+        "prerequisites": "PSYC 201 and PSYC 250 (or PSYC 241)."
+    },
+    {
+        "course_number": "362",
+        "name": "PSYC 362 D100",
+        "prerequisites": "PSYC 201 and 260."
+    },
+    {
+        "course_number": "363",
+        "name": "PSYC 363 D100",
+        "prerequisites": "PSYC 201 and 260."
+    },
+    {
+        "course_number": "365",
+        "name": "PSYC 365 D100",
+        "prerequisites": "PSYC 201."
+    },
+    {
+        "course_number": "367",
+        "name": "PSYC 367 OL01",
+        "prerequisites": "PSYC 201, PSYC 260, PSYC 362."
+    },
+    {
+        "course_number": "371",
+        "name": "PSYC 371 D100",
+        "prerequisites": "PSYC 201 and 241."
+    },
+    {
+        "course_number": "376",
+        "name": "PSYC 376 OL01",
+        "prerequisites": "PSYC 201W and PSYC 268. Recommended: PSYC 210."
+    },
+    {
+        "course_number": "385",
+        "name": "PSYC 385 E100",
+        "prerequisites": "PSYC 201W."
+    },
+    {
+        "course_number": "386",
+        "name": "PSYC 386 D100",
+        "prerequisites": "PSYC 201 and 280."
+    },
+    {
+        "course_number": "388",
+        "name": "PSYC 388 D100",
+        "prerequisites": "PSYC 201 and 280."
+    },
+    {
+        "course_number": "391",
+        "name": "PSYC 391 D100",
+        "prerequisites": "PSYC 201. Other prerequisites vary by topic offering."
+    },
+    {
+        "course_number": "393",
+        "name": "PSYC 393 D100",
+        "prerequisites": "PSYC 201, 60 units, a UDGPA of at least 2.5, and permission of the department. Tri-council ethics certificate."
+    },
+    {
+        "course_number": "410",
+        "name": "PSYC 410 D100",
+        "prerequisites": "PSYC 201, 210, 301, 60 units, and a CGPA of 3.0."
+    },
+    {
+        "course_number": "441",
+        "name": "PSYC 441 D100",
+        "prerequisites": "PSYC 201, 210, 241, and 60 units, and a CGPA of 3.0. Other prerequisites vary by topic offering."
+    },
+    {
+        "course_number": "450",
+        "name": "PSYC 450 D100",
+        "prerequisites": "PSYC 201, 210, 250 and 60 units, and a CGPA of 3.0. Other prerequisites vary by topic offering."
+    },
+    {
+        "course_number": "457",
+        "name": "PSYC 457 D100",
+        "prerequisites": "75 units, including PSYC 301 with a minimum grade of B and permission of a Co-Chair of the Behavioural Neuroscience Program Committee."
+    },
+    {
+        "course_number": "461",
+        "name": "PSYC 461 D100",
+        "prerequisites": "PSYC 201, 210, 260, 60 units, and a CGPA of 3.0. Other prerequisites vary by topic offering."
+    },
+    {
+        "course_number": "476",
+        "name": "PSYC 476 D100",
+        "prerequisites": "PSYC 201, 210, 268, 60 units, and a CGPA of 3.0. Other prerequisites vary by topic offering."
+    },
+    {
+        "course_number": "480",
+        "name": "PSYC 480 D100",
+        "prerequisites": "PSYC 201, 210, 280, 60 units, and a CGPA of 3.0. Other prerequisites vary by topic offering."
+    },
+    {
+        "course_number": "490",
+        "name": "PSYC 490 D100",
+        "prerequisites": "75 units, PSYC 300 and 301, both with a minimum grade of 3.0, CGPA 3.33, and permission of the department."
+    },
+    {
+        "course_number": "493",
+        "name": "PSYC 493 D100",
+        "prerequisites": "PSYC 201, 210, 60 units, a UDGPA of at least 3.0, and permission of the department."
+    },
+    {
+        "course_number": "494",
+        "name": "PSYC 494 D100",
+        "prerequisites": "PSYC 201, 210, 60 units, a UDGPA of at least 3.0, and permission of the department."
+    },
+    {
+        "course_number": "495",
+        "name": "PSYC 495 D300",
+        "prerequisites": "PSYC 201, 210, 60 units, a UDGPA of at least 3.0, and permission of the department."
+    },
+    {
+        "course_number": "499",
+        "name": "PSYC 499 D100",
+        "prerequisites": "PSYC 490."
+    },
+    {
+        "course_number": "600",
+        "name": "PSYC 600 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "744",
+        "name": "PSYC 744 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "790",
+        "name": "PSYC 790 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "819",
+        "name": "PSYC 819 G100",
+        "prerequisites": "Graduate program standing."
+    },
+    {
+        "course_number": "820a",
+        "name": "PSYC 820A G100",
+        "prerequisites": "Admission to the Clinical Psychology Graduate Program."
+    },
+    {
+        "course_number": "821a",
+        "name": "PSYC 821A G100",
+        "prerequisites": "Admission to the Clinical Psychology Graduate Program. Corequisite: Enrollment in PSYC 820A. Students must successfully complete a Criminal Record Check."
+    },
+    {
+        "course_number": "822",
+        "name": "PSYC 822 G100",
+        "prerequisites": "Admission to the Clinical Psychology Graduate Program."
+    },
+    {
+        "course_number": "825",
+        "name": "PSYC 825 G100",
+        "prerequisites": "Admission to Clinical Psychology Graduate Program. Students must successfully complete a Criminal Record Check."
+    },
+    {
+        "course_number": "880",
+        "name": "PSYC 880 G100",
+        "prerequisites": "PSYC 744, 820B, 821B, 910, 911. Students must successfully complete a Criminal Record Check."
+    },
+    {
+        "course_number": "881",
+        "name": "PSYC 881 G100",
+        "prerequisites": "Admission to the doctoral clinical program. Students must successfully complete a Criminal Record Check."
+    },
+    {
+        "course_number": "882",
+        "name": "PSYC 882 G100",
+        "prerequisites": "Admission to the clinical program with a specialization in neuropsychology. Students must successfully complete a Criminal Record Check."
+    },
+    {
+        "course_number": "886",
+        "name": "PSYC 886 G100",
+        "prerequisites": "Equivalent of the MA clinical program, three PhD level courses, successful completion of the PhD comprehensive examinations, and successful defense of the PhD research proposal. Students must successfully complete a Criminal Record Check."
+    },
+    {
+        "course_number": "890",
+        "name": "PSYC 890 G100",
+        "prerequisites": "PSYC 790 or PSYC 791, and PSYC 836. Students must successfully complete a Criminal Record Check."
+    },
+    {
+        "course_number": "892",
+        "name": "PSYC 892 G200",
+        "prerequisites": "PSYC 790 or PSYC 791. Students must successfully complete a Criminal Record Check."
+    },
+    {
+        "course_number": "895",
+        "name": "PSYC 895 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "896",
+        "name": "PSYC 896 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "897",
+        "name": "PSYC 897 G100",
+        "prerequisites": "PSYC 790 or PSYC 791."
+    },
+    {
+        "course_number": "898",
+        "name": "PSYC 898 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "899",
+        "name": "PSYC 899 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "910",
+        "name": "PSYC 910 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "912",
+        "name": "PSYC 912 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "913",
+        "name": "PSYC 913 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "914",
+        "name": "PSYC 914 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "916",
+        "name": "PSYC 916 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "917",
+        "name": "PSYC 917 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "918",
+        "name": "PSYC 918 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "925",
+        "name": "PSYC 925 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "950",
+        "name": "PSYC 950 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "960",
+        "name": "PSYC 960 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "990",
+        "name": "PSYC 990 G100",
+        "prerequisites": "PSYC 790 or PSYC 791."
+    },
+    {
+        "course_number": "991",
+        "name": "PSYC 991 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "992",
+        "name": "PSYC 992 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "993",
+        "name": "PSYC 993 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "997",
+        "name": "PSYC 997 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "998",
+        "name": "PSYC 998 G100",
+        "prerequisites": "Admission to the masters or doctoral program."
+    },
+    {
+        "course_number": "999",
+        "name": "PSYC 999 G100",
+        "prerequisites": "Admission to Clinical Psychology Graduate Program."
+    }
+]

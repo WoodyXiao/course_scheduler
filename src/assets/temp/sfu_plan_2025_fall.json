@@ -1,0 +1,37 @@
+[
+    {
+        "course_number": "100",
+        "name": "PLAN 100 OL01",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "300",
+        "name": "PLAN 300 D100",
+        "prerequisites": "PLAN 100 or PLAN 200."
+    },
+    {
+        "course_number": "302",
+        "name": "PLAN 302 D100",
+        "prerequisites": "PLAN 100 or PLAN 200; one of PLAN 300 or PLAN 319, or REM 319; and permission of department. Student must be enrolled in the bachelor of environment in resource and environmental management planning stream."
+    },
+    {
+        "course_number": "400",
+        "name": "PLAN 400 D100",
+        "prerequisites": "PLAN 100 or PLAN 200; and 60 units."
+    },
+    {
+        "course_number": "402",
+        "name": "PLAN 402 D100",
+        "prerequisites": "PLAN 302 and permission of department. Student must be enrolled in the bachelor of environment in resource and environmental management planning stream."
+    },
+    {
+        "course_number": "404",
+        "name": "PLAN 404 D100",
+        "prerequisites": "PLAN 100 or PLAN 200; REM 207 or any INDG course; and 75 units. Recommended: REM 319 or PLAN 319."
+    },
+    {
+        "course_number": "443",
+        "name": "PLAN 443 D100",
+        "prerequisites": "PLAN 100 or PLAN 200; and 60 units."
+    }
+]

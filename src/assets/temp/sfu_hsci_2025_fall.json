@@ -1,0 +1,347 @@
+[
+    {
+        "course_number": "100",
+        "name": "HSCI 100 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "130",
+        "name": "HSCI 130 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "160",
+        "name": "HSCI 160 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "180",
+        "name": "HSCI 180 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "206",
+        "name": "HSCI 206 D100",
+        "prerequisites": "HSCI 130 with a minimum grade of C-."
+    },
+    {
+        "course_number": "207",
+        "name": "HSCI 207 D100",
+        "prerequisites": "HSCI 130 with a minimum grade of C-. Corequisite: STAT 201 or 203 or 205."
+    },
+    {
+        "course_number": "214",
+        "name": "HSCI 214 D100",
+        "prerequisites": "HSCI 100 or BISC 101, HSCI 130, all with a minimum grade of C-."
+    },
+    {
+        "course_number": "220",
+        "name": "HSCI 220 D100",
+        "prerequisites": "HSCI 130 with a minimum grade of C- or permission of the instructor."
+    },
+    {
+        "course_number": "230",
+        "name": "HSCI 230 D100",
+        "prerequisites": "30 units, including HSCI 130 with a minimum grade of C-, or permission of the instructor."
+    },
+    {
+        "course_number": "305",
+        "name": "HSCI 305 OL01",
+        "prerequisites": "60 units, including nine HSCI units with a minimum grade of C-."
+    },
+    {
+        "course_number": "319w",
+        "name": "HSCI 319W D100",
+        "prerequisites": "75 units including nine HSCI units with a minimum grade of C-, one of which must be a 200-division course."
+    },
+    {
+        "course_number": "324",
+        "name": "HSCI 324 D100",
+        "prerequisites": "BISC 202 with a minimum grade of C-."
+    },
+    {
+        "course_number": "326",
+        "name": "HSCI 326 D100",
+        "prerequisites": "MBB 231 with a minimum grade of C-."
+    },
+    {
+        "course_number": "336",
+        "name": "HSCI 336 D100",
+        "prerequisites": "MBB 231 with a minimum grade of C-."
+    },
+    {
+        "course_number": "338",
+        "name": "HSCI 338 D100",
+        "prerequisites": "MBB 222 with a minimum grade of C- or permission of the instructor. Corequisite: BISC 303."
+    },
+    {
+        "course_number": "340",
+        "name": "HSCI 340 D100",
+        "prerequisites": "60 units and two HSCI 200-level courses with a minimum grade of C-, one of which may be taken concurrently."
+    },
+    {
+        "course_number": "350",
+        "name": "HSCI 350 D100",
+        "prerequisites": "Students must be accepted into the health sciences co-op program."
+    },
+    {
+        "course_number": "351",
+        "name": "HSCI 351 D100",
+        "prerequisites": "Completion of HSCI 350 Co-op Practicum I."
+    },
+    {
+        "course_number": "372",
+        "name": "HSCI 372 D100",
+        "prerequisites": "Will vary according to topic."
+    },
+    {
+        "course_number": "402",
+        "name": "HSCI 402 D100",
+        "prerequisites": "HSCI 214 with a minimum grade of C-."
+    },
+    {
+        "course_number": "410",
+        "name": "HSCI 410 D100",
+        "prerequisites": "STAT 302 or STAT 305, with a minimum grade of C-. Recommended: HSCI 230."
+    },
+    {
+        "course_number": "412",
+        "name": "HSCI 412 D100",
+        "prerequisites": "HSCI 312 and two HSCI 200-level courses, with a minimum grade of C-."
+    },
+    {
+        "course_number": "416",
+        "name": "HSCI 416 D100",
+        "prerequisites": "STAT 302 or STAT 305, and HSCI 207 (or 307) or HSCI 230 (or 330), all with a minimum grade of C-."
+    },
+    {
+        "course_number": "418",
+        "name": "HSCI 418 D100",
+        "prerequisites": "90 units, two 200-level HSCI courses with a minimum grade of C-, or permission of the instructor."
+    },
+    {
+        "course_number": "424",
+        "name": "HSCI 424 D100",
+        "prerequisites": "A minimum of 60 units and HSCI 230 (or 330) with a minimum grade of C- and one of STAT 302 or STAT 305, with a minimum grade of C-."
+    },
+    {
+        "course_number": "431",
+        "name": "HSCI 431 D100",
+        "prerequisites": "60 units including either HSCI 212 or 230 (or 330), with a minimum grade of C-."
+    },
+    {
+        "course_number": "440",
+        "name": "HSCI 440 D100",
+        "prerequisites": "HSCI 321, HSCI 323, and one of BISC 357, MBB 308, or MBB 309W, all with a minimum grade of C-."
+    },
+    {
+        "course_number": "442",
+        "name": "HSCI 442 D100",
+        "prerequisites": "HSCI 326 or MBB 326, and one of BISC 303, BISC 357, MBB 308, or MBB 309W, all with a minimum grade of C-."
+    },
+    {
+        "course_number": "449",
+        "name": "HSCI 449 D100",
+        "prerequisites": "90 units including HSCI 312 with a minimum grade of C- and HSCI 319 or 327, with a minimum grade of C-. Students may be required to successfully complete a Criminal Record Check."
+    },
+    {
+        "course_number": "450",
+        "name": "HSCI 450 D100",
+        "prerequisites": "Completion of HSCI 351 Co-op Practicum II."
+    },
+    {
+        "course_number": "451",
+        "name": "HSCI 451 D100",
+        "prerequisites": "Completion of HSCI 450 Co-op Practicum III."
+    },
+    {
+        "course_number": "452",
+        "name": "HSCI 452 D100",
+        "prerequisites": "Completion of HSCI 451 Co-op Practicum IV."
+    },
+    {
+        "course_number": "471",
+        "name": "HSCI 471 D100",
+        "prerequisites": "Will vary according to topic."
+    },
+    {
+        "course_number": "474",
+        "name": "HSCI 474 D100",
+        "prerequisites": "HSCI 323 and either HSCI 321 or MBB 331, all with a minimum grade of C-."
+    },
+    {
+        "course_number": "476",
+        "name": "HSCI 476 D100",
+        "prerequisites": "HSCI 323 and MBB 331, with a minimum grade of C- or permission of the instructor."
+    },
+    {
+        "course_number": "477",
+        "name": "HSCI 477 D100",
+        "prerequisites": "HSCI 326 or MBB 326 or HSCI 338, with a minimum grade or C- or permission of the instructor."
+    },
+    {
+        "course_number": "478",
+        "name": "HSCI 478 D100",
+        "prerequisites": "MBB 331 or HSCI 326 or MBB 326, with a minimum grade of C, or HSCI 338 with a minimum grade of C-."
+    },
+    {
+        "course_number": "481",
+        "name": "HSCI 481 D100",
+        "prerequisites": "90 units, including at least 15 upper division HSCI units with a minimum grade of C-. Other prerequisites may vary according to topic."
+    },
+    {
+        "course_number": "484",
+        "name": "HSCI 484 D100",
+        "prerequisites": "90 units, including HSCI 230 (or 330) with a minimum grade of C- and either STAT 302 or STAT 305, with a minimum grade of C-."
+    },
+    {
+        "course_number": "485",
+        "name": "HSCI 485 D100",
+        "prerequisites": "90 units, including at least 15 upper division HSCI units with a minimum grade of C-. Other prerequisites may vary according to topic."
+    },
+    {
+        "course_number": "486",
+        "name": "HSCI 486 D100",
+        "prerequisites": "90 units, including at least 15 upper division HSCI units with a minimum grade of C-. Other prerequisites may vary according to topic."
+    },
+    {
+        "course_number": "488",
+        "name": "HSCI 488 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "489",
+        "name": "HSCI 489 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "490",
+        "name": "HSCI 490 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "491",
+        "name": "HSCI 491 D100",
+        "prerequisites": "HSCI 490 with a minimum grade of C-."
+    },
+    {
+        "course_number": "492",
+        "name": "HSCI 492 D100",
+        "prerequisites": "One of HSCI 491, HSCI 493, HSCI 494, with a minimum grade of C-."
+    },
+    {
+        "course_number": "493",
+        "name": "HSCI 493 D100",
+        "prerequisites": "HSCI 490 with a minimum grade of C-."
+    },
+    {
+        "course_number": "494",
+        "name": "HSCI 494 D100",
+        "prerequisites": "HSCI 490 with a minimum grade of C-."
+    },
+    {
+        "course_number": "774",
+        "name": "HSCI 774 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "776",
+        "name": "HSCI 776 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "778",
+        "name": "HSCI 778 G100",
+        "prerequisites": "BISC 303, 330, MBB 331, or permission from the instructor."
+    },
+    {
+        "course_number": "801",
+        "name": "HSCI 801 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "802",
+        "name": "HSCI 802 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "835",
+        "name": "HSCI 835 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "845",
+        "name": "HSCI 845 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "855",
+        "name": "HSCI 855 G100",
+        "prerequisites": "HSCI 901."
+    },
+    {
+        "course_number": "880",
+        "name": "HSCI 880 G100",
+        "prerequisites": "HSCI 801, 802, 803, 901."
+    },
+    {
+        "course_number": "886",
+        "name": "HSCI 886 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "887",
+        "name": "HSCI 887 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "890",
+        "name": "HSCI 890 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "891",
+        "name": "HSCI 891 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "893",
+        "name": "HSCI 893 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "894",
+        "name": "HSCI 894 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "897",
+        "name": "HSCI 897 G100",
+        "prerequisites": "HSCI 880."
+    },
+    {
+        "course_number": "898",
+        "name": "HSCI 898 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "900",
+        "name": "HSCI 900 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "902",
+        "name": "HSCI 902 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "983",
+        "name": "HSCI 983 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "990",
+        "name": "HSCI 990 G100",
+        "prerequisites": ""
+    }
+]

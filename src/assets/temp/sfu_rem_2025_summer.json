@@ -1,0 +1,67 @@
+[
+    {
+        "course_number": "100",
+        "name": "REM 100 OL01",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "319",
+        "name": "REM 319 D100",
+        "prerequisites": "45 units."
+    },
+    {
+        "course_number": "320w",
+        "name": "REM 320W E100",
+        "prerequisites": "45 units. Philosophy Majors and Minors may not take this course for credit towards their major or minor degree."
+    },
+    {
+        "course_number": "463",
+        "name": "REM 463 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "491",
+        "name": "REM 491 D100",
+        "prerequisites": "90 units."
+    },
+    {
+        "course_number": "499",
+        "name": "REM 499 D100",
+        "prerequisites": "90 units and permission of the REM Undergraduate Program Chair."
+    },
+    {
+        "course_number": "663",
+        "name": "REM 663 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "664",
+        "name": "REM 664 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "665",
+        "name": "REM 665 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "697",
+        "name": "REM 697 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "699",
+        "name": "REM 699 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "898",
+        "name": "REM 898 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "899",
+        "name": "REM 899 G100",
+        "prerequisites": ""
+    }
+]

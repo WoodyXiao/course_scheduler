@@ -1,0 +1,152 @@
+[
+    {
+        "course_number": "101",
+        "name": "HIST 101 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "102w",
+        "name": "HIST 102W F100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "111",
+        "name": "HIST 111 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "115",
+        "name": "HIST 115 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "130",
+        "name": "HIST 130 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "135",
+        "name": "HIST 135 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "151",
+        "name": "HIST 151 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "185",
+        "name": "HIST 185 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "200",
+        "name": "HIST 200 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "243",
+        "name": "HIST 243 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "254",
+        "name": "HIST 254 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "300",
+        "name": "HIST 300 D100",
+        "prerequisites": "45 units, including six units of lower division history."
+    },
+    {
+        "course_number": "332",
+        "name": "HIST 332 D100",
+        "prerequisites": "45 units, including six units of lower division history."
+    },
+    {
+        "course_number": "334",
+        "name": "HIST 334 D100",
+        "prerequisites": "45 units, including six units of lower division history. Recommended: HIST 106."
+    },
+    {
+        "course_number": "354",
+        "name": "HIST 354 D100",
+        "prerequisites": "45 units, including six units of lower division history. Recommended: one of HIST 151, 249."
+    },
+    {
+        "course_number": "355",
+        "name": "HIST 355 D100",
+        "prerequisites": "45 units, including six units of lower division history. Recommended: one of HIST 151, 249."
+    },
+    {
+        "course_number": "373",
+        "name": "HIST 373 BLS1",
+        "prerequisites": "45 units including six units of lower division History and one of HIST 101, 104, or 212, or permission of the department."
+    },
+    {
+        "course_number": "382",
+        "name": "HIST 382 B100",
+        "prerequisites": "45 units including 9 units of lower division History."
+    },
+    {
+        "course_number": "390",
+        "name": "HIST 390 D100",
+        "prerequisites": "45 units, including six units of lower division history."
+    },
+    {
+        "course_number": "400",
+        "name": "HIST 400 D100",
+        "prerequisites": "Admission to the honours program in history."
+    },
+    {
+        "course_number": "401",
+        "name": "HIST 401 D100",
+        "prerequisites": "45 units, including nine units of lower division history and one of HIST 224, 225, 332 or permission of the department."
+    },
+    {
+        "course_number": "419w",
+        "name": "HIST 419W E100",
+        "prerequisites": "45 units including nine units of lower division history. Recommended: HIST 224 or 225."
+    },
+    {
+        "course_number": "435",
+        "name": "HIST 435 D100",
+        "prerequisites": "45 units including nine units of lower division history, or permission of the department."
+    },
+    {
+        "course_number": "438w",
+        "name": "HIST 438W D100",
+        "prerequisites": "45 units including 9 units of lower division history."
+    },
+    {
+        "course_number": "457",
+        "name": "HIST 457 D100",
+        "prerequisites": "45 units including nine units of lower division history. Recommended: HIST 151 and 249."
+    },
+    {
+        "course_number": "464",
+        "name": "HIST 464 D100",
+        "prerequisites": "45 units including nine units of lower division history."
+    },
+    {
+        "course_number": "465",
+        "name": "HIST 465 D100",
+        "prerequisites": "45 units including nine units of lower division history and one of HIST 151, 249, 350, 354, 355 or permission of the department."
+    },
+    {
+        "course_number": "485",
+        "name": "HIST 485 D100",
+        "prerequisites": "45 units including nine units of lower division history."
+    },
+    {
+        "course_number": "814",
+        "name": "HIST 814 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "815",
+        "name": "HIST 815 G100",
+        "prerequisites": ""
+    }
+]

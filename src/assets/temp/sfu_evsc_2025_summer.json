@@ -1,0 +1,32 @@
+[
+    {
+        "course_number": "100",
+        "name": "EVSC 100 B100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "391",
+        "name": "EVSC 391 D100",
+        "prerequisites": "60 units, 3.0 cumulative grade point average."
+    },
+    {
+        "course_number": "489",
+        "name": "EVSC 489 D100",
+        "prerequisites": "EVSC 305, 90 units and consent of EVSC Director."
+    },
+    {
+        "course_number": "490w",
+        "name": "EVSC 490W D100",
+        "prerequisites": "EVSC 305, EVSC 489, 90 units and consent of EVSC Director."
+    },
+    {
+        "course_number": "491",
+        "name": "EVSC 491 D100",
+        "prerequisites": "60 units, 3.0 cumulative grade point average."
+    },
+    {
+        "course_number": "691",
+        "name": "EVSC 691 G100",
+        "prerequisites": ""
+    }
+]

@@ -1,0 +1,32 @@
+[
+    {
+        "course_number": "201",
+        "name": "ACMA 201 D100",
+        "prerequisites": "MATH 152 with a minimum grade of C; or MATH 155 or MATH 158, with a grade of at least B."
+    },
+    {
+        "course_number": "336",
+        "name": "ACMA 336 D100",
+        "prerequisites": "Students must apply and receive permission from the co-op coordinator at least one but preferably two terms in advance. They will normally be required to have completed 45 units with a GPA of 2.50 before they may take this practicum course."
+    },
+    {
+        "course_number": "337",
+        "name": "ACMA 337 D100",
+        "prerequisites": "ACMA 336 or Job Practicum I from another department. Students must apply and receive permission from the co-op coordinator at least one term in advance."
+    },
+    {
+        "course_number": "436",
+        "name": "ACMA 436 D100",
+        "prerequisites": "ACMA 337 or Job Practicum II from another department. Students must apply and receive permission from the co-op coordinator at least one term in advance."
+    },
+    {
+        "course_number": "437",
+        "name": "ACMA 437 D100",
+        "prerequisites": "ACMA 436 or Job Practicum III from another department. Students must apply and receive permission from the co-op coordinator at least one term in advance."
+    },
+    {
+        "course_number": "438",
+        "name": "ACMA 438 D100",
+        "prerequisites": "ACMA 437 or Job Practicum IV from another department. Students must apply and receive permission from the co-op coordinator at least one term in advance."
+    }
+]

@@ -1,0 +1,12 @@
+[
+    {
+        "course_number": "100",
+        "name": "GERM 100 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "300",
+        "name": "GERM 300 D100",
+        "prerequisites": "GERM 202 or consent of the instructor."
+    }
+]

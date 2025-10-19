@@ -1,0 +1,12 @@
+[
+    {
+        "course_number": "100",
+        "name": "SD 100 OL01",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "381",
+        "name": "SD 381 E100",
+        "prerequisites": "One of PLAN 100, PLAN 200, REM 100, or SD 281; and 45 units."
+    }
+]

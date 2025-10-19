@@ -1,0 +1,177 @@
+[
+    {
+        "course_number": "100",
+        "name": "POL 100 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "141",
+        "name": "POL 141 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "150",
+        "name": "POL 150 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "151",
+        "name": "POL 151 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "200w",
+        "name": "POL 200W D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "201",
+        "name": "POL 201 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "210",
+        "name": "POL 210 D100",
+        "prerequisites": "POL 100 or permission of department."
+    },
+    {
+        "course_number": "221",
+        "name": "POL 221 D100",
+        "prerequisites": "POL 100 or 151 or permission of department."
+    },
+    {
+        "course_number": "318",
+        "name": "POL 318 D100",
+        "prerequisites": "Six lower division units in Political Science or permission of the department."
+    },
+    {
+        "course_number": "325",
+        "name": "POL 325 D100",
+        "prerequisites": "Six lower division units in political science or permission of the department."
+    },
+    {
+        "course_number": "339",
+        "name": "POL 339 D100",
+        "prerequisites": "Six lower division units in political science or permission of the department."
+    },
+    {
+        "course_number": "340",
+        "name": "POL 340 D100",
+        "prerequisites": "Six lower division units in Political Science or permission of the department."
+    },
+    {
+        "course_number": "347",
+        "name": "POL 347 F100",
+        "prerequisites": "Six lower division units in political science or permission of the department."
+    },
+    {
+        "course_number": "445w",
+        "name": "POL 445W D100",
+        "prerequisites": "Eight upper division units in Political Science or permission of the department."
+    },
+    {
+        "course_number": "446w",
+        "name": "POL 446W D100",
+        "prerequisites": "Eight upper division units in political science or permission of the department."
+    },
+    {
+        "course_number": "448",
+        "name": "POL 448 D100",
+        "prerequisites": "Eight upper division units in political science or permission of the department."
+    },
+    {
+        "course_number": "452w",
+        "name": "POL 452W D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "460",
+        "name": "POL 460 D100",
+        "prerequisites": "Eight upper division units in political science or permission of the department."
+    },
+    {
+        "course_number": "463",
+        "name": "POL 463 F100",
+        "prerequisites": "Eight upper division units in political science or permission of the department."
+    },
+    {
+        "course_number": "490",
+        "name": "POL 490 D100",
+        "prerequisites": "Permission of the department."
+    },
+    {
+        "course_number": "496",
+        "name": "POL 496 D100",
+        "prerequisites": "90 units. By application to the undergraduate chair."
+    },
+    {
+        "course_number": "498",
+        "name": "POL 498 D100",
+        "prerequisites": "Permission of the department. Students may count only one readings course as credit towards their upper division political science requirements."
+    },
+    {
+        "course_number": "800",
+        "name": "POL 800 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "841",
+        "name": "POL 841 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "854",
+        "name": "POL 854 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "855",
+        "name": "POL 855 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "890",
+        "name": "POL 890 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "891",
+        "name": "POL 891 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "892",
+        "name": "POL 892 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "893",
+        "name": "POL 893 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "894",
+        "name": "POL 894 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "896",
+        "name": "POL 896 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "897",
+        "name": "POL 897 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "898",
+        "name": "POL 898 G100",
+        "prerequisites": "To enroll in POL 898, students must have completed a minimum of four courses while in the MA program, one of which must be POL 800, and must have a minimum CGPA of 3.67."
+    },
+    {
+        "course_number": "899",
+        "name": "POL 899 G100",
+        "prerequisites": ""
+    }
+]

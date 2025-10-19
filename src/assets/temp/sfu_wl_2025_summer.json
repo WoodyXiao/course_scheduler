@@ -1,0 +1,17 @@
+[
+    {
+        "course_number": "103w",
+        "name": "WL 103W D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "320",
+        "name": "WL 320 D100",
+        "prerequisites": "45 units."
+    },
+    {
+        "course_number": "360",
+        "name": "WL 360 D100",
+        "prerequisites": "45 units or permission of the department."
+    }
+]

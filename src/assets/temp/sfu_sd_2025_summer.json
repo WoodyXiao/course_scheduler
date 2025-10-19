@@ -1,0 +1,17 @@
+[
+    {
+        "course_number": "381",
+        "name": "SD 381 D100",
+        "prerequisites": "One of PLAN 100, PLAN 200, REM 100, or SD 281; and 45 units."
+    },
+    {
+        "course_number": "401",
+        "name": "SD 401 E100",
+        "prerequisites": "SD 281 and 60 units."
+    },
+    {
+        "course_number": "491",
+        "name": "SD 491 D200",
+        "prerequisites": "60 units and permission of the department."
+    }
+]

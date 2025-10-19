@@ -1,0 +1,417 @@
+[
+    {
+        "course_number": "105w",
+        "name": "CMPT 105W D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "120",
+        "name": "CMPT 120 D100",
+        "prerequisites": "BC Math 12 or equivalent is recommended."
+    },
+    {
+        "course_number": "125",
+        "name": "CMPT 125 D100",
+        "prerequisites": "CMPT 120 or CMPT 130, with a minimum grade of C-."
+    },
+    {
+        "course_number": "130",
+        "name": "CMPT 130 D100",
+        "prerequisites": "BC Math 12 (or equivalent, or any of MATH 100, 150, 151, 154, or 157, with a minimum grade of C-)."
+    },
+    {
+        "course_number": "201",
+        "name": "CMPT 201 D100",
+        "prerequisites": "(CMPT 125 or CMPT 135) and MACM 101, both with a minimum grade of C-."
+    },
+    {
+        "course_number": "210",
+        "name": "CMPT 210 D100",
+        "prerequisites": "MACM 101, MATH 152, CMPT 125 or CMPT 135, and (MATH 240 or MATH 232), all with a minimum grade of C-."
+    },
+    {
+        "course_number": "213",
+        "name": "CMPT 213 D100",
+        "prerequisites": "CMPT 225 with a minimum grade of C-."
+    },
+    {
+        "course_number": "225",
+        "name": "CMPT 225 D100",
+        "prerequisites": "(MACM 101 and (CMPT 125, CMPT 129 or CMPT 135)) or (ENSC 251 and ENSC 252), all with a minimum grade of C-."
+    },
+    {
+        "course_number": "263",
+        "name": "CMPT 263 D100",
+        "prerequisites": "CMPT 125 or CMPT 135, with a minimum grade of C-."
+    },
+    {
+        "course_number": "276",
+        "name": "CMPT 276 D100",
+        "prerequisites": "One W course, CMPT 225, (MACM 101 or (ENSC 251 and ENSC 252)) and (MATH 151 or MATH 150), all with a minimum grade of C-. MATH 154 or MATH 157 with at least a B+ may be substituted for MATH 151 or MATH 150."
+    },
+    {
+        "course_number": "295",
+        "name": "CMPT 295 D100",
+        "prerequisites": "Either (MACM 101 and (CMPT 125 or CMPT 135)) or (MATH 151 and CMPT 102 for students in an Applied Physics program), all with a minimum grade of C-."
+    },
+    {
+        "course_number": "307",
+        "name": "CMPT 307 D100",
+        "prerequisites": "CMPT 225, (MACM 201 or CMPT 210), (MATH 150 or MATH 151), and (MATH 232 or MATH 240), all with a minimum grade of C-. MATH 154 or MATH 157 with a grade of at least B+ may be substituted for MATH 150 or MATH 151."
+    },
+    {
+        "course_number": "308",
+        "name": "CMPT 308 D100",
+        "prerequisites": "(MACM 201 or CMPT 210) with a minimum grade of C-."
+    },
+    {
+        "course_number": "310",
+        "name": "CMPT 310 D100",
+        "prerequisites": "CMPT 225 and STAT 271, all with a minimum grade of C-. Recommended: MATH 251."
+    },
+    {
+        "course_number": "340",
+        "name": "CMPT 340 OL01",
+        "prerequisites": "Completion of 60 units including one of CMPT 125, 126, 128, 135, with a minimum grade of C- or CMPT 102 with a grade of B or higher."
+    },
+    {
+        "course_number": "354",
+        "name": "CMPT 354 D100",
+        "prerequisites": "CMPT 225 and (MACM 101 or (ENSC 251 and ENSC 252)), all with a minimum grade of C-."
+    },
+    {
+        "course_number": "361",
+        "name": "CMPT 361 D100",
+        "prerequisites": "CMPT 225 and STAT 271, both with a minimum grade of C-. Recommended: MATH 251."
+    },
+    {
+        "course_number": "362",
+        "name": "CMPT 362 D100",
+        "prerequisites": "CMPT 225 with a minimum grade of C-."
+    },
+    {
+        "course_number": "365",
+        "name": "CMPT 365 D100",
+        "prerequisites": "CMPT 225 with a minimum grade of C-."
+    },
+    {
+        "course_number": "371",
+        "name": "CMPT 371 D100",
+        "prerequisites": "CMPT 225 and (MATH 151 or MATH 150), with a minimum grade of C-. MATH 154 or MATH 157 with a grade of at least B+ may be substituted for MATH 151 (MATH 150)."
+    },
+    {
+        "course_number": "373",
+        "name": "CMPT 373 D100",
+        "prerequisites": "CMPT 276 or 275, with a minimum grade of C-."
+    },
+    {
+        "course_number": "376w",
+        "name": "CMPT 376W D100",
+        "prerequisites": "CMPT 105W and (CMPT 275 or CMPT 276), with a minimum grade of C-."
+    },
+    {
+        "course_number": "383",
+        "name": "CMPT 383 D100",
+        "prerequisites": "CMPT 225 and (MACM 101 or (ENSC 251 and ENSC 252)), all with a minimum grade of C-."
+    },
+    {
+        "course_number": "403",
+        "name": "CMPT 403 D100",
+        "prerequisites": "CMPT 201 or CMPT 300, with a minimum grade of C-."
+    },
+    {
+        "course_number": "405",
+        "name": "CMPT 405 D100",
+        "prerequisites": "CMPT 307 with a minimum grade of C-."
+    },
+    {
+        "course_number": "409",
+        "name": "CMPT 409 D100",
+        "prerequisites": "CMPT 307 with a minimum grade of C-."
+    },
+    {
+        "course_number": "410",
+        "name": "CMPT 410 D100",
+        "prerequisites": "CMPT 310 and MACM 316, both with a minimum grade of C-."
+    },
+    {
+        "course_number": "413",
+        "name": "CMPT 413 D100",
+        "prerequisites": "Completion of nine units in Computing Science upper division courses or, in exceptional cases, permission of the instructor."
+    },
+    {
+        "course_number": "415",
+        "name": "CMPT 415 D100",
+        "prerequisites": "Permission of Instructor and School."
+    },
+    {
+        "course_number": "416",
+        "name": "CMPT 416 D100",
+        "prerequisites": "Permission of the department."
+    },
+    {
+        "course_number": "417",
+        "name": "CMPT 417 D100",
+        "prerequisites": "CMPT 225 with a minimum grade of C-."
+    },
+    {
+        "course_number": "419",
+        "name": "CMPT 419 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "426",
+        "name": "CMPT 426 D100",
+        "prerequisites": "Students must complete Bridging Online (visit www.sfu.ca/coop/bol for further details) at least two terms before their anticipated co-op placement. Students must then enroll with the co-op program by the second week of the term preceding the work term. Normally, students will have completed a minimum of 45 units by the end of the term of application, CMPT 275 or 276, and have a minimum CGPA of 2.50."
+    },
+    {
+        "course_number": "427",
+        "name": "CMPT 427 D100",
+        "prerequisites": "CMPT 426, CGPA of 2.50."
+    },
+    {
+        "course_number": "428",
+        "name": "CMPT 428 D100",
+        "prerequisites": "CMPT 427, CGPA of 2.50."
+    },
+    {
+        "course_number": "429",
+        "name": "CMPT 429 D100",
+        "prerequisites": "CMPT 428, CGPA of 2.50."
+    },
+    {
+        "course_number": "430",
+        "name": "CMPT 430 D100",
+        "prerequisites": "CMPT 429, CGPA of 2.50."
+    },
+    {
+        "course_number": "431",
+        "name": "CMPT 431 D100",
+        "prerequisites": "(CMPT 201 or CMPT 300) and CMPT 371, both with a minimum grade of C-."
+    },
+    {
+        "course_number": "441",
+        "name": "CMPT 441 E100",
+        "prerequisites": "CMPT 307 with a minimum grade of C-."
+    },
+    {
+        "course_number": "454",
+        "name": "CMPT 454 D100",
+        "prerequisites": "(CMPT 201 or CMPT 300) and CMPT 354, with a minimum grade of C-."
+    },
+    {
+        "course_number": "459",
+        "name": "CMPT 459 D100",
+        "prerequisites": "CMPT 354 with a minimum grade of C-."
+    },
+    {
+        "course_number": "464",
+        "name": "CMPT 464 D100",
+        "prerequisites": "CMPT 361, MACM 316, both with a minimum grade of C-."
+    },
+    {
+        "course_number": "469",
+        "name": "CMPT 469 D100",
+        "prerequisites": "CMPT 361 with a minimum grade of C-."
+    },
+    {
+        "course_number": "477",
+        "name": "CMPT 477 D100",
+        "prerequisites": "CMPT 275 or 276, with a minimum grade of C-."
+    },
+    {
+        "course_number": "479",
+        "name": "CMPT 479 D100",
+        "prerequisites": "CMPT 201 or CMPT 300, with a minimum grade of C-."
+    },
+    {
+        "course_number": "489",
+        "name": "CMPT 489 D100",
+        "prerequisites": "CMPT 383 with a minimum grade of C-."
+    },
+    {
+        "course_number": "494",
+        "name": "CMPT 494 D100",
+        "prerequisites": "Students must have completed at least 15 units of upper division CMPT courses. Successful Capstone Project Proposal."
+    },
+    {
+        "course_number": "495",
+        "name": "CMPT 495 D100",
+        "prerequisites": "CMPT 494 with a minimum grade of C-. CMPT 495 must be taken in the term immediately following the successful completion of CMPT 494 and must be for the same project and faculty supervisor."
+    },
+    {
+        "course_number": "496",
+        "name": "CMPT 496 D100",
+        "prerequisites": "Students must have completed 90 units, including 15 units of upper division CMPT courses, and have a GPA of at least 3.00. The proposal must be submitted to the undergraduate chair at least 15 days in advance of the term. The proposal must be signed by the supervisor(s) and the undergraduate chair."
+    },
+    {
+        "course_number": "497",
+        "name": "CMPT 497 D100",
+        "prerequisites": "Submission of a satisfactory capstone project proposal."
+    },
+    {
+        "course_number": "498",
+        "name": "CMPT 498 D100",
+        "prerequisites": "Students must have completed 90 units, including 15 units of upper division CMPT courses, and have a GPA of at least 3.00. The proposal must be submitted to the Undergraduate Chair at least 15 days in advance of the term. The proposal must be signed by the supervisor(s) and the undergraduate chair."
+    },
+    {
+        "course_number": "626",
+        "name": "CMPT 626 G300",
+        "prerequisites": "12 units of CMPT coursework at the 700-level or higher with a CGPA of at least 3.0. Department Consent is required for enrollment."
+    },
+    {
+        "course_number": "627",
+        "name": "CMPT 627 G300",
+        "prerequisites": "CMPT 626 and a CGPA of at least 3.0. Department Consent is required for enrollment."
+    },
+    {
+        "course_number": "701",
+        "name": "CMPT 701 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "705",
+        "name": "CMPT 705 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "711",
+        "name": "CMPT 711 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "713",
+        "name": "CMPT 713 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "726",
+        "name": "CMPT 726 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "729",
+        "name": "CMPT 729 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "732",
+        "name": "CMPT 732 G100",
+        "prerequisites": "This course is only available to students enrolled in the master of science in big data program."
+    },
+    {
+        "course_number": "740",
+        "name": "CMPT 740 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "742",
+        "name": "CMPT 742 G100",
+        "prerequisites": "This course is only available to students enrolled in the master of visual computing program."
+    },
+    {
+        "course_number": "762",
+        "name": "CMPT 762 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "764",
+        "name": "CMPT 764 G100",
+        "prerequisites": "Recommended: CMPT 361 and MACM 316."
+    },
+    {
+        "course_number": "766",
+        "name": "CMPT 766 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "777",
+        "name": "CMPT 777 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "782",
+        "name": "CMPT 782 G100",
+        "prerequisites": "This course is only available to students enrolled in the master of cybersecurity program."
+    },
+    {
+        "course_number": "785",
+        "name": "CMPT 785 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "786",
+        "name": "CMPT 786 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "789",
+        "name": "CMPT 789 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "827",
+        "name": "CMPT 827 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "894",
+        "name": "CMPT 894 G010",
+        "prerequisites": "Permission of the department."
+    },
+    {
+        "course_number": "895",
+        "name": "CMPT 895 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "896",
+        "name": "CMPT 896 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "897",
+        "name": "CMPT 897 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "898",
+        "name": "CMPT 898 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "899",
+        "name": "CMPT 899 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "980",
+        "name": "CMPT 980 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "981",
+        "name": "CMPT 981 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "982",
+        "name": "CMPT 982 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "983",
+        "name": "CMPT 983 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "984",
+        "name": "CMPT 984 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "985",
+        "name": "CMPT 985 G100",
+        "prerequisites": ""
+    }
+]

@@ -1,0 +1,127 @@
+[
+    {
+        "course_number": "100",
+        "name": "POL 100 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "200w",
+        "name": "POL 200W D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "201",
+        "name": "POL 201 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "315",
+        "name": "POL 315 B100",
+        "prerequisites": "POL 201 or permission of instructor."
+    },
+    {
+        "course_number": "346",
+        "name": "POL 346 D100",
+        "prerequisites": "Six lower division units in political science or permission of the department."
+    },
+    {
+        "course_number": "350",
+        "name": "POL 350 D100",
+        "prerequisites": "30 units."
+    },
+    {
+        "course_number": "421w",
+        "name": "POL 421W D100",
+        "prerequisites": "Eight upper division units in political science or permission of the department."
+    },
+    {
+        "course_number": "447",
+        "name": "POL 447 D100",
+        "prerequisites": "Eight upper division units in political science or permission of the department."
+    },
+    {
+        "course_number": "448",
+        "name": "POL 448 D100",
+        "prerequisites": "Eight upper division units in political science or permission of the department."
+    },
+    {
+        "course_number": "460",
+        "name": "POL 460 D100",
+        "prerequisites": "Eight upper division units in political science or permission of the department."
+    },
+    {
+        "course_number": "484",
+        "name": "POL 484 D100",
+        "prerequisites": "Completed minimum 30 units of University courses and GPA of 2.50."
+    },
+    {
+        "course_number": "496",
+        "name": "POL 496 D100",
+        "prerequisites": "90 units. By application to the undergraduate chair."
+    },
+    {
+        "course_number": "498",
+        "name": "POL 498 D100",
+        "prerequisites": "Permission of the department. Students may count only one readings course as credit towards their upper division political science requirements."
+    },
+    {
+        "course_number": "844",
+        "name": "POL 844 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "856",
+        "name": "POL 856 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "880",
+        "name": "POL 880 G100",
+        "prerequisites": "Admitted graduate student in Canadian University Political Science Program."
+    },
+    {
+        "course_number": "890",
+        "name": "POL 890 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "891",
+        "name": "POL 891 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "892",
+        "name": "POL 892 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "893",
+        "name": "POL 893 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "894",
+        "name": "POL 894 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "896",
+        "name": "POL 896 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "897",
+        "name": "POL 897 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "898",
+        "name": "POL 898 G100",
+        "prerequisites": "To enroll in POL 898, students must have completed a minimum of four courses while in the MA program, one of which must be POL 800, and must have a minimum CGPA of 3.67."
+    },
+    {
+        "course_number": "899",
+        "name": "POL 899 G100",
+        "prerequisites": ""
+    }
+]

@@ -1,0 +1,207 @@
+[
+    {
+        "course_number": "112",
+        "name": "MSE 112 D100",
+        "prerequisites": "CMPT 130."
+    },
+    {
+        "course_number": "193",
+        "name": "MSE 193 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "293",
+        "name": "MSE 293 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "294",
+        "name": "MSE 294 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "300",
+        "name": "MSE 300 D100",
+        "prerequisites": "More than 65 units."
+    },
+    {
+        "course_number": "311",
+        "name": "MSE 311 D100",
+        "prerequisites": "MSE 222 (or ENSC 282), MSE 251 (or ENSC 226)."
+    },
+    {
+        "course_number": "312",
+        "name": "MSE 312 D100",
+        "prerequisites": "MSE 110 (or ENSC 182), MSE 320\r\n(or ENSC 382), MSE 381 (or ENSC 383). MSE 381 may be taken concurrently."
+    },
+    {
+        "course_number": "353",
+        "name": "MSE 353 D100",
+        "prerequisites": "MSE 251 (previously ENSC 226)."
+    },
+    {
+        "course_number": "381",
+        "name": "MSE 381 D100",
+        "prerequisites": "MSE 280 (or ENSC 380)."
+    },
+    {
+        "course_number": "393",
+        "name": "MSE 393 D100",
+        "prerequisites": "MSE 293 or 294."
+    },
+    {
+        "course_number": "394",
+        "name": "MSE 394 D100",
+        "prerequisites": "MSE 293 or 294 and approval of\r\ninternship co-ordinator required."
+    },
+    {
+        "course_number": "405w",
+        "name": "MSE 405W D100",
+        "prerequisites": "MSE 300. MSE 300 may be taken concurrently."
+    },
+    {
+        "course_number": "411",
+        "name": "MSE 411 D100",
+        "prerequisites": "MSE 410. Must not be taken concurrently with MSE 493 or MSE 494."
+    },
+    {
+        "course_number": "426",
+        "name": "MSE 426 D100",
+        "prerequisites": "Math 232, MATH 251, MSE 320 or ENSC 382 and a minimum of 80 credits."
+    },
+    {
+        "course_number": "429",
+        "name": "MSE 429 D100",
+        "prerequisites": "MSE 222 and minimum of 80 units."
+    },
+    {
+        "course_number": "450",
+        "name": "MSE 450 E100",
+        "prerequisites": "MSE 352, MSE 381 (or ENSC 383), and completion of 80 units."
+    },
+    {
+        "course_number": "452",
+        "name": "MSE 452 D100",
+        "prerequisites": "MSE 353."
+    },
+    {
+        "course_number": "454",
+        "name": "MSE 454 D100",
+        "prerequisites": "80 units."
+    },
+    {
+        "course_number": "486",
+        "name": "MSE 486 D100",
+        "prerequisites": "A minimum of 100 units and permission of the chair of the undergraduate curriculum committee."
+    },
+    {
+        "course_number": "487",
+        "name": "MSE 487 D100",
+        "prerequisites": "A minimum of 100 units and permission of the chair of the undergraduate curriculum committee."
+    },
+    {
+        "course_number": "489",
+        "name": "MSE 489 D100",
+        "prerequisites": "A minimum of 100 units and permission of the chair of the undergraduate curriculum committee."
+    },
+    {
+        "course_number": "493",
+        "name": "MSE 493 D100",
+        "prerequisites": "MSE 393 or 394 and a minimum of 75 units."
+    },
+    {
+        "course_number": "494",
+        "name": "MSE 494 D100",
+        "prerequisites": "MSE 393 or 394, a minimum of 75 units and approval of internship co-ordinator required."
+    },
+    {
+        "course_number": "496",
+        "name": "MSE 496 D100",
+        "prerequisites": "Permission of the undergraduate\r\ncurriculum committee chair."
+    },
+    {
+        "course_number": "497",
+        "name": "MSE 497 D100",
+        "prerequisites": "Permission of the undergraduate\r\ncurriculum committee chair."
+    },
+    {
+        "course_number": "498",
+        "name": "MSE 498 D100",
+        "prerequisites": "At least 100 units or permission of the academic supervisor."
+    },
+    {
+        "course_number": "499",
+        "name": "MSE 499 D100",
+        "prerequisites": "MSE 498."
+    },
+    {
+        "course_number": "711",
+        "name": "MSE 711 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "726",
+        "name": "MSE 726 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "750",
+        "name": "MSE 750 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "754",
+        "name": "MSE 754 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "795",
+        "name": "MSE 795 G100",
+        "prerequisites": "12 units of MSE course work at the 700-level or higher with a minimum SFU CGPA of 3.0. Approval of supervisor and a GPC representative is required prior to applying for and accepting an internship."
+    },
+    {
+        "course_number": "890",
+        "name": "MSE 890 G100",
+        "prerequisites": "PhD Students in the School of Mechatronic Systems Engineering (MSE)."
+    },
+    {
+        "course_number": "891",
+        "name": "MSE 891 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "892",
+        "name": "MSE 892 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "893",
+        "name": "MSE 893 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "894",
+        "name": "MSE 894 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "898",
+        "name": "MSE 898 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "899",
+        "name": "MSE 899 G100",
+        "prerequisites": "MSE 890."
+    },
+    {
+        "course_number": "924",
+        "name": "MSE 924 G100",
+        "prerequisites": "MSE 923. Recommended Prerequisite: MSE 353 (or equivalent)."
+    },
+    {
+        "course_number": "981",
+        "name": "MSE 981 G100",
+        "prerequisites": ""
+    }
+]

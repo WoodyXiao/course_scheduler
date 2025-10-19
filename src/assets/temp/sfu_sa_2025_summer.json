@@ -1,0 +1,112 @@
+[
+    {
+        "course_number": "101",
+        "name": "SA 101 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "150",
+        "name": "SA 150 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "201w",
+        "name": "SA 201W OL01",
+        "prerequisites": "Recommended: SA 101."
+    },
+    {
+        "course_number": "250",
+        "name": "SA 250 D100",
+        "prerequisites": "SA 150."
+    },
+    {
+        "course_number": "275",
+        "name": "SA 275 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "321",
+        "name": "SA 321 D100",
+        "prerequisites": "SA 101 or 150 or 201W."
+    },
+    {
+        "course_number": "322",
+        "name": "SA 322 E100",
+        "prerequisites": "SA 101 or 150 or 201W."
+    },
+    {
+        "course_number": "337",
+        "name": "SA 337 OL01",
+        "prerequisites": "SA 101 or 150 or 201W."
+    },
+    {
+        "course_number": "350",
+        "name": "SA 350 D100",
+        "prerequisites": "SA 250."
+    },
+    {
+        "course_number": "356w",
+        "name": "SA 356W D100",
+        "prerequisites": "SA 255."
+    },
+    {
+        "course_number": "360",
+        "name": "SA 360 D100",
+        "prerequisites": "SA 101 or 150 or 201W."
+    },
+    {
+        "course_number": "366",
+        "name": "SA 366 D100",
+        "prerequisites": "SA 101 or 150 or 201W."
+    },
+    {
+        "course_number": "442",
+        "name": "SA 442 D100",
+        "prerequisites": "Minimum of 72 units including either SA 101 or SA 150."
+    },
+    {
+        "course_number": "443",
+        "name": "SA 443 E100",
+        "prerequisites": "Minimum of 72 units including either SA 101 or SA 150."
+    },
+    {
+        "course_number": "499",
+        "name": "SA 499 D100",
+        "prerequisites": "SA 495, permission from the SA department, and prior agreement from an SA faculty member who has agreed to supervise the honours essay."
+    },
+    {
+        "course_number": "853",
+        "name": "SA 853 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "854",
+        "name": "SA 854 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "871",
+        "name": "SA 871 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "872",
+        "name": "SA 872 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "897",
+        "name": "SA 897 G100",
+        "prerequisites": "All PhD course requirements, with the exception of SA 857 must be completed before student may enroll in SA 897."
+    },
+    {
+        "course_number": "898",
+        "name": "SA 898 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "899",
+        "name": "SA 899 G100",
+        "prerequisites": ""
+    }
+]

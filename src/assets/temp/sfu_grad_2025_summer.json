@@ -1,0 +1,22 @@
+[
+    {
+        "course_number": "700",
+        "name": "GRAD 700 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "720",
+        "name": "GRAD 720 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "800",
+        "name": "GRAD 800 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "850",
+        "name": "GRAD 850 G100",
+        "prerequisites": ""
+    }
+]

@@ -1,0 +1,102 @@
+[
+    {
+        "course_number": "100",
+        "name": "STAT 100 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "201",
+        "name": "STAT 201 D100",
+        "prerequisites": "Recommended: 30 units."
+    },
+    {
+        "course_number": "203",
+        "name": "STAT 203 E100",
+        "prerequisites": "Recommended: 30 units including a research methods course such as SA 255, CRIM 220, POL 200W, or equivalent."
+    },
+    {
+        "course_number": "270",
+        "name": "STAT 270 OL01",
+        "prerequisites": "or Corequisite: MATH 152 or 155 or 158, with a minimum grade of C-. Students wishing an intuitive appreciation of a broad range of statistical strategies may wish to take STAT 100 first."
+    },
+    {
+        "course_number": "302",
+        "name": "STAT 302 OL01",
+        "prerequisites": "One of STAT 201, STAT 203, STAT 205, STAT 270, BUS 232, or ECON 233, with a minimum grade of C-."
+    },
+    {
+        "course_number": "305",
+        "name": "STAT 305 D100",
+        "prerequisites": "One of STAT 201, STAT 203, STAT 205, STAT 270, BUS 232, or ECON 233, with a minimum grade of C-."
+    },
+    {
+        "course_number": "336",
+        "name": "STAT 336 D100",
+        "prerequisites": "Students must apply and receive permission from the co-op co-ordinator at least one but preferably two terms in advance. They will normally be required to have completed 45 units with a GPA of 2.5 before they may take this practicum course."
+    },
+    {
+        "course_number": "337",
+        "name": "STAT 337 D100",
+        "prerequisites": "STAT 336 or Job Practicum I from another department. Students must apply and receive permission from the co-op co-ordinator at least one term in advance."
+    },
+    {
+        "course_number": "436",
+        "name": "STAT 436 D100",
+        "prerequisites": "STAT 337 or Job Practicum II from another department. Students must apply and receive permission from the co-op co-ordinator at least one term in advance."
+    },
+    {
+        "course_number": "437",
+        "name": "STAT 437 D100",
+        "prerequisites": "STAT 436 or Job Practicum III from another department. Students must apply and receive permission from the co-op co-ordinator at least one term in advance."
+    },
+    {
+        "course_number": "438",
+        "name": "STAT 438 D100",
+        "prerequisites": "STAT 437 or Job Practicum IV from another department. Students must apply and receive permission from the co-op co-ordinator at least one term in advance."
+    },
+    {
+        "course_number": "605",
+        "name": "STAT 605 G100",
+        "prerequisites": "Any course in Statistics. Open only to students in departments other than Statistics and Actuarial Science."
+    },
+    {
+        "course_number": "880",
+        "name": "STAT 880 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "881",
+        "name": "STAT 881 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "882",
+        "name": "STAT 882 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "894",
+        "name": "STAT 894 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "895",
+        "name": "STAT 895 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "897",
+        "name": "STAT 897 G100",
+        "prerequisites": "STAT PhD students."
+    },
+    {
+        "course_number": "898",
+        "name": "STAT 898 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "899",
+        "name": "STAT 899 G100",
+        "prerequisites": ""
+    }
+]

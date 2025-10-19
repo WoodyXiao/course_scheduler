@@ -1,0 +1,37 @@
+[
+    {
+        "course_number": "100",
+        "name": "CHIN 100 B100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "110",
+        "name": "CHIN 110 B100",
+        "prerequisites": "CHIN 100 or equivalent."
+    },
+    {
+        "course_number": "180",
+        "name": "CHIN 180 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "181",
+        "name": "CHIN 181 D100",
+        "prerequisites": "CHIN 180, CHIN 100 or equivalent. Corequisite: This course may be taken concurrently with CHIN 180."
+    },
+    {
+        "course_number": "200",
+        "name": "CHIN 200 B100",
+        "prerequisites": "CHIN 110 (or CHIN 101) or equivalent."
+    },
+    {
+        "course_number": "290",
+        "name": "CHIN 290 B100",
+        "prerequisites": "CHIN 191 or equivalent. This course is for students of Chinese origin who have near native speaking ability in Chinese (Mandarin or other dialects), but basic knowledge of written Chinese."
+    },
+    {
+        "course_number": "460",
+        "name": "CHIN 460 B100",
+        "prerequisites": "CHIN 330, CHIN 390 or equivalent."
+    }
+]

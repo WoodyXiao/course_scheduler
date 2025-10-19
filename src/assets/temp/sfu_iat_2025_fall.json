@@ -1,0 +1,272 @@
+[
+    {
+        "course_number": "100",
+        "name": "IAT 100 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "102",
+        "name": "IAT 102 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "103w",
+        "name": "IAT 103W D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "106",
+        "name": "IAT 106 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "110",
+        "name": "IAT 110 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "111",
+        "name": "IAT 111 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "167",
+        "name": "IAT 167 E100",
+        "prerequisites": "CMPT 120 (or equivalent first year programming course such as CMPT 102, 125, 126, 128, 130, 135, or 166) with a minimum grade of C-."
+    },
+    {
+        "course_number": "201",
+        "name": "IAT 201 B100",
+        "prerequisites": "Completion of 21 units, including at least one lower division \"W\" course."
+    },
+    {
+        "course_number": "202",
+        "name": "IAT 202 B100",
+        "prerequisites": "IAT 100 with a minimum grade of C- and a minimum of 21 units."
+    },
+    {
+        "course_number": "206w",
+        "name": "IAT 206W D100",
+        "prerequisites": "IAT 103W with a minimum grade of C- and completion of 21 units."
+    },
+    {
+        "course_number": "210",
+        "name": "IAT 210 OL01",
+        "prerequisites": "Completion of 21 units."
+    },
+    {
+        "course_number": "222",
+        "name": "IAT 222 D100",
+        "prerequisites": "Completion of 21 units."
+    },
+    {
+        "course_number": "233",
+        "name": "IAT 233 D100",
+        "prerequisites": "Completion of 21 units, IAT 102, and IAT 106, both with a minimum grade of C-."
+    },
+    {
+        "course_number": "235",
+        "name": "IAT 235 D100",
+        "prerequisites": "Completion of 21 units and IAT 102 with a minimum grade of C-."
+    },
+    {
+        "course_number": "238",
+        "name": "IAT 238 D100",
+        "prerequisites": "Completion of 21 units including IAT 102."
+    },
+    {
+        "course_number": "265",
+        "name": "IAT 265 D100",
+        "prerequisites": "Completion of 21 units and IAT 167 with a minimum grade of C- and one of MATH 130, MACM 101, MATH 150, MATH 151, MATH 154, or MATH 157, with a minimum grade of C-."
+    },
+    {
+        "course_number": "271",
+        "name": "IAT 271 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "272",
+        "name": "IAT 272 D100",
+        "prerequisites": "IAT 271 (or WKTM 100)."
+    },
+    {
+        "course_number": "309w",
+        "name": "IAT 309W D100",
+        "prerequisites": "IAT 206W with a minimum grade of C- and completion of 48 units."
+    },
+    {
+        "course_number": "312",
+        "name": "IAT 312 D100",
+        "prerequisites": "Completion of 48 units, including IAT 265 with a minimum grade of C-."
+    },
+    {
+        "course_number": "313",
+        "name": "IAT 313 D100",
+        "prerequisites": "Completion of 48 units."
+    },
+    {
+        "course_number": "333",
+        "name": "IAT 333 D100",
+        "prerequisites": "Completion of 48 units, including IAT 238 with a minimum grade of C- or IAT 235 with a minimum grade of C- completed before the Spring 2025 term."
+    },
+    {
+        "course_number": "334",
+        "name": "IAT 334 D100",
+        "prerequisites": "Completion of 48 units, including IAT 235 with a minimum grade of C-."
+    },
+    {
+        "course_number": "336",
+        "name": "IAT 336 D100",
+        "prerequisites": "Completion of 48 units, including IAT 102 and IAT 106, both with a minimum grade of C-."
+    },
+    {
+        "course_number": "339",
+        "name": "IAT 339 E100",
+        "prerequisites": "IAT 235 and IAT 265, with a minimum grade of C-."
+    },
+    {
+        "course_number": "340",
+        "name": "IAT 340 BLS1",
+        "prerequisites": "Completion of 24 units. Recommended: IAT 202 New Media Images."
+    },
+    {
+        "course_number": "343",
+        "name": "IAT 343 D100",
+        "prerequisites": "Minimum of 24 units, including MATH 130 or MACM 101 or MATH 150 or MATH 151 or MATH 154 or MATH 157, with a minimum grade of C-."
+    },
+    {
+        "course_number": "344",
+        "name": "IAT 344 D100",
+        "prerequisites": "Minimum of 48 units and IAT 202 with a minimum grade of C-."
+    },
+    {
+        "course_number": "351",
+        "name": "IAT 351 B100",
+        "prerequisites": "Completion of 48 units, including IAT 201 with a minimum grade of C-."
+    },
+    {
+        "course_number": "355",
+        "name": "IAT 355 BLS1",
+        "prerequisites": "IAT 201 and IAT 267 and either IAT 265 or CMPT 225, all with a minimum grade of C-. Recommended: IAT 235."
+    },
+    {
+        "course_number": "359",
+        "name": "IAT 359 D100",
+        "prerequisites": "Completion of 48 units, including IAT 265 with a minimum grade of C-."
+    },
+    {
+        "course_number": "360",
+        "name": "IAT 360 B100",
+        "prerequisites": "CMPT 120, IAT 265, and IAT 267, all with a minimum grade of C-."
+    },
+    {
+        "course_number": "373",
+        "name": "IAT 373 D100",
+        "prerequisites": "IAT 272 (or WKTM 200)."
+    },
+    {
+        "course_number": "374",
+        "name": "IAT 374 D100",
+        "prerequisites": "IAT 373 (or WKTM 300)."
+    },
+    {
+        "course_number": "375",
+        "name": "IAT 375 D100",
+        "prerequisites": "IAT 374 (or WKTM 400)."
+    },
+    {
+        "course_number": "386",
+        "name": "IAT 386 D100",
+        "prerequisites": "Completion of 45 units, and permission of the instructor and of the School is required. No more than six units of Directed Studies may be taken."
+    },
+    {
+        "course_number": "387",
+        "name": "IAT 387 D100",
+        "prerequisites": "Completion of 45 units, and permission of the School and the instructor is required. No more than six units of Directed Studies may be taken."
+    },
+    {
+        "course_number": "431",
+        "name": "IAT 431 D100",
+        "prerequisites": "Completion of 60 units, including IAT 309W and IAT 333, with a minimum grade of C-."
+    },
+    {
+        "course_number": "432",
+        "name": "IAT 432 E100",
+        "prerequisites": "IAT 334 with a minimum grade of C- and completion of 60 units. Recommended: IAT 201 and 235."
+    },
+    {
+        "course_number": "443",
+        "name": "IAT 443 D100",
+        "prerequisites": "Completion of 60 units, including IAT 313, IAT 340, and IAT 344, with a minimum grade of C-."
+    },
+    {
+        "course_number": "445",
+        "name": "IAT 445 D100",
+        "prerequisites": "Completion of 60 units, including IAT 343 with a minimum grade of C-."
+    },
+    {
+        "course_number": "486",
+        "name": "IAT 486 D100",
+        "prerequisites": "Completion of 69 units, and permission of the instructor and School are required. No more than six units of Directed Studies may be taken."
+    },
+    {
+        "course_number": "487",
+        "name": "IAT 487 D100",
+        "prerequisites": "Completion of 69 units, and permission of the instructor and School are required. No more than six units of Directed Studies may be taken."
+    },
+    {
+        "course_number": "488",
+        "name": "IAT 488 D200",
+        "prerequisites": "Completion of 69 units. No more than six units of Directed Studies may be taken, and permission of the instructor and school are required."
+    },
+    {
+        "course_number": "804",
+        "name": "IAT 804 G100",
+        "prerequisites": "SIAT Graduate Student."
+    },
+    {
+        "course_number": "805",
+        "name": "IAT 805 G100",
+        "prerequisites": "Enrollment in the SIAT graduate program."
+    },
+    {
+        "course_number": "806",
+        "name": "IAT 806 G100",
+        "prerequisites": "SIAT Graduate Student."
+    },
+    {
+        "course_number": "848",
+        "name": "IAT 848 G100",
+        "prerequisites": "IAT 806 and one of IAT 801 or 802 or 804 or 834 or permission of the instructor."
+    },
+    {
+        "course_number": "871",
+        "name": "IAT 871 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "888",
+        "name": "IAT 888 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "890",
+        "name": "IAT 890 G100",
+        "prerequisites": "Enrollment in SIAT PhD Program and completion of Annotated Bibliography."
+    },
+    {
+        "course_number": "897",
+        "name": "IAT 897 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "898",
+        "name": "IAT 898 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "899",
+        "name": "IAT 899 G100",
+        "prerequisites": ""
+    }
+]

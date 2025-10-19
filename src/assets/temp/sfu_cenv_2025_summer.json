@@ -1,0 +1,37 @@
+[
+    {
+        "course_number": "302",
+        "name": "CENV 302 D100",
+        "prerequisites": "Admission into Environment Co-operative Education Program."
+    },
+    {
+        "course_number": "303",
+        "name": "CENV 303 D100",
+        "prerequisites": "Readmission into Environment Co-operative Education Program."
+    },
+    {
+        "course_number": "402",
+        "name": "CENV 402 D100",
+        "prerequisites": "Readmission into Environment Co-operative Education Program."
+    },
+    {
+        "course_number": "403",
+        "name": "CENV 403 D100",
+        "prerequisites": "Readmission into Environment Co-operative Education Program."
+    },
+    {
+        "course_number": "404",
+        "name": "CENV 404 D100",
+        "prerequisites": "Readmission into Environment Co-operative Education Program."
+    },
+    {
+        "course_number": "690",
+        "name": "CENV 690 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "691",
+        "name": "CENV 691 G100",
+        "prerequisites": "Students must have completed at least one term's courses and permission of REM's co-op co-ordinator."
+    }
+]

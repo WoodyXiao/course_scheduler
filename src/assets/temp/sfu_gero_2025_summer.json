@@ -1,0 +1,62 @@
+[
+    {
+        "course_number": "101",
+        "name": "GERO 101 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "300",
+        "name": "GERO 300 OL01",
+        "prerequisites": "60 units."
+    },
+    {
+        "course_number": "850",
+        "name": "GERO 850 G100",
+        "prerequisites": "MA in Gerontology students in good academic standing who have successfully completed a Criminal Record Check."
+    },
+    {
+        "course_number": "889",
+        "name": "GERO 889 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "896",
+        "name": "GERO 896 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "897",
+        "name": "GERO 897 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "898",
+        "name": "GERO 898 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "899",
+        "name": "GERO 899 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "994",
+        "name": "GERO 994 G100",
+        "prerequisites": "All coursework towards the PhD in Gerontology."
+    },
+    {
+        "course_number": "995",
+        "name": "GERO 995 G100",
+        "prerequisites": "All coursework towards the PhD in Gerontology."
+    },
+    {
+        "course_number": "996",
+        "name": "GERO 996 G100",
+        "prerequisites": "GERO 994 and GERO 995."
+    },
+    {
+        "course_number": "998",
+        "name": "GERO 998 G100",
+        "prerequisites": ""
+    }
+]

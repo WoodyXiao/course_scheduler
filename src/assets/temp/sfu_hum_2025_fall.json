@@ -1,0 +1,87 @@
+[
+    {
+        "course_number": "101w",
+        "name": "HUM 101W D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "102w",
+        "name": "HUM 102W OL01",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "110",
+        "name": "HUM 110 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "130",
+        "name": "HUM 130 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "150",
+        "name": "HUM 150 D900",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "222",
+        "name": "HUM 222 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "275",
+        "name": "HUM 275 D100",
+        "prerequisites": "Recommended: HUM 110."
+    },
+    {
+        "course_number": "305",
+        "name": "HUM 305 B100",
+        "prerequisites": "45 units."
+    },
+    {
+        "course_number": "309",
+        "name": "HUM 309 D100",
+        "prerequisites": "45 units."
+    },
+    {
+        "course_number": "314",
+        "name": "HUM 314 D100",
+        "prerequisites": "One of the following courses: ARCH 100, ARCH 201, HUM 110, HUM 231, HUM 232, HUM 277, or by permission of the instructor."
+    },
+    {
+        "course_number": "318",
+        "name": "HUM 318 B100",
+        "prerequisites": "45 units."
+    },
+    {
+        "course_number": "319",
+        "name": "HUM 319 B100",
+        "prerequisites": "45 units."
+    },
+    {
+        "course_number": "321w",
+        "name": "HUM 321W B100",
+        "prerequisites": "45 units."
+    },
+    {
+        "course_number": "325",
+        "name": "HUM 325 B100",
+        "prerequisites": "45 units."
+    },
+    {
+        "course_number": "335",
+        "name": "HUM 335 B100",
+        "prerequisites": "45 units."
+    },
+    {
+        "course_number": "360",
+        "name": "HUM 360 B100",
+        "prerequisites": "45 units."
+    },
+    {
+        "course_number": "387",
+        "name": "HUM 387 B100",
+        "prerequisites": "45 units."
+    }
+]

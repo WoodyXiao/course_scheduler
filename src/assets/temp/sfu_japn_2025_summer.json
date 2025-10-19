@@ -1,0 +1,12 @@
+[
+    {
+        "course_number": "100",
+        "name": "JAPN 100 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "110",
+        "name": "JAPN 110 B100",
+        "prerequisites": "JAPN 100 or equivalent. Students who took Japanese courses in secondary school and/or with previous knowledge of Japanese may need to be evaluated for placement into JAPN 110 or higher level of courses and are required to contact the instructor before enrollment."
+    }
+]

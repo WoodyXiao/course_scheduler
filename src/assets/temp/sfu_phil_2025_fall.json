@@ -1,0 +1,117 @@
+[
+    {
+        "course_number": "100w",
+        "name": "PHIL 100W D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "105",
+        "name": "PHIL 105 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "110",
+        "name": "PHIL 110 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "120w",
+        "name": "PHIL 120W D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "150",
+        "name": "PHIL 150 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "203",
+        "name": "PHIL 203 B100",
+        "prerequisites": "One of PHIL 100, 100W, 120, 120W, 121, 144, 150, 151, 300, or COGS 100."
+    },
+    {
+        "course_number": "302",
+        "name": "PHIL 302 B100",
+        "prerequisites": "PHIL 201 or 203."
+    },
+    {
+        "course_number": "315",
+        "name": "PHIL 315 D100",
+        "prerequisites": "One of: PHIL 110, 210, 310, 314, MACM 101, BUEC 232, BUS 232, or STAT 270."
+    },
+    {
+        "course_number": "320",
+        "name": "PHIL 320 D100",
+        "prerequisites": "One of PHIL 120, 120W, 121, 220, 221, 270, SDA 270, ENV 320W, or REM 320W."
+    },
+    {
+        "course_number": "322",
+        "name": "PHIL 322 D100",
+        "prerequisites": "One of PHIL 120, 120W, 121, 150, 151, 220, 221, 270, SDA 270, ENV 320W, or REM 320W."
+    },
+    {
+        "course_number": "326",
+        "name": "PHIL 326 D100",
+        "prerequisites": "One of PHIL 120, 120W, 121, 220, 221, 270, SDA 270, ENV 320W, or REM 320W."
+    },
+    {
+        "course_number": "329",
+        "name": "PHIL 329 B100",
+        "prerequisites": "One of PHIL 120, 120W, 121, 220, 221, 270, SDA 270, ENV 320W, or REM 320W."
+    },
+    {
+        "course_number": "331",
+        "name": "PHIL 331 D100",
+        "prerequisites": "As stated by department at time of offering."
+    },
+    {
+        "course_number": "332",
+        "name": "PHIL 332 D100",
+        "prerequisites": "As stated by department at time of offering."
+    },
+    {
+        "course_number": "342",
+        "name": "PHIL 342 D100",
+        "prerequisites": "One prior philosophy course (not including PHIL 110, PHIL 105, PHIL 310, PHIL 314, or PHIL 315). (This prerequisite may be waived in some cases, at the discretion of the instructor.)"
+    },
+    {
+        "course_number": "352",
+        "name": "PHIL 352 D100",
+        "prerequisites": "One prior philosophy course (not including PHIL 105, PHIL 110, PHIL 310, PHIL 314, or PHIL 315)."
+    },
+    {
+        "course_number": "421",
+        "name": "PHIL 421 D100",
+        "prerequisites": "Nine upper division PHIL units. It is strongly recommended that students in PHIL 421 have taken prior courses in moral theory (e.g., PHIL 120W, PHIL 221, PHIL 270, PHIL 320, PHIL 321, PHIL 322, PHIL 326, or PHIL 329)."
+    },
+    {
+        "course_number": "467w",
+        "name": "PHIL 467W D100",
+        "prerequisites": "15 upper division PHIL units or permission from the instructor. Students not in a philosophy major, philosophy honours, or joint major program can take PHIL 467W only with special permission from the instructor."
+    },
+    {
+        "course_number": "479",
+        "name": "PHIL 479 D100",
+        "prerequisites": "Enrolled in the philosophy honours program."
+    },
+    {
+        "course_number": "824",
+        "name": "PHIL 824 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "826",
+        "name": "PHIL 826 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "880",
+        "name": "PHIL 880 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "899",
+        "name": "PHIL 899 G100",
+        "prerequisites": ""
+    }
+]

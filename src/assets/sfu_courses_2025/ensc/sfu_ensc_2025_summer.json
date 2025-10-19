@@ -1,0 +1,212 @@
+[
+    {
+        "course_number": "151",
+        "name": "ENSC 151 D100",
+        "prerequisites": "BC Math 12 (or equivalent, or any of MATH 100, 150, 151, 154, or 157, with a minimum grade of C-)."
+    },
+    {
+        "course_number": "194",
+        "name": "ENSC 194 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "195",
+        "name": "ENSC 195 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "196",
+        "name": "ENSC 196 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "220",
+        "name": "ENSC 220 D100",
+        "prerequisites": "(PHYS 121 or PHYS 126 or PHYS 141), ENSC 120, MATH 232 and (MATH 260 or MATH 310), all with a minimum grade of C-. MATH 260 may be taken concurrently."
+    },
+    {
+        "course_number": "225",
+        "name": "ENSC 225 D100",
+        "prerequisites": "(ENSC 220 or MSE 250), MATH 232, and (MATH 260 or MATH 310), all with a minimum grade of C-."
+    },
+    {
+        "course_number": "251",
+        "name": "ENSC 251 D100",
+        "prerequisites": "ENSC 151 or CMPT 135 or (CMPT 125 and CMPT 127), all with a minimum grade of C-."
+    },
+    {
+        "course_number": "252",
+        "name": "ENSC 252 D100",
+        "prerequisites": "ENSC 151 or CMPT 125 or CMPT 126 or CMPT 135, with a minimum grade of C-. ENSC 252 is a required course for all engineering science majors and honours students (no course substitutions are permitted)."
+    },
+    {
+        "course_number": "254",
+        "name": "ENSC 254 E100",
+        "prerequisites": "ENSC 251 and ENSC 252, both with a minimum grade of C-."
+    },
+    {
+        "course_number": "280",
+        "name": "ENSC 280 D100",
+        "prerequisites": "((PHYS 121 and ENSC 120) or PHYS 141) and (MATH 251 and MATH 232), all with a minimum grade of C-. MATH 251 and/or MATH 232 may be taken concurrently with ENSC 280. Engineering Science Majors and Honours students are required to take ENSC 280 (no course substitutions will be accepted)."
+    },
+    {
+        "course_number": "295",
+        "name": "ENSC 295 D100",
+        "prerequisites": "ENSC 195 or 196."
+    },
+    {
+        "course_number": "296",
+        "name": "ENSC 296 D100",
+        "prerequisites": "ENSC 195 or 196 and approval of internship co-ordinator required."
+    },
+    {
+        "course_number": "320",
+        "name": "ENSC 320 E100",
+        "prerequisites": "(ENSC 220 or MSE 250), MATH 232, and (MATH 260 or MATH 310), all with a minimum grade of C-."
+    },
+    {
+        "course_number": "395",
+        "name": "ENSC 395 D100",
+        "prerequisites": "ENSC 295 or 296 and a minimum of 75 units."
+    },
+    {
+        "course_number": "396",
+        "name": "ENSC 396 D100",
+        "prerequisites": "ENSC 295 or 296, a minimum of 75 units and approval of internship co-ordinator required."
+    },
+    {
+        "course_number": "405w",
+        "name": "ENSC 405W E100",
+        "prerequisites": "(ENSC 105W or MSE 101W), ENSC 204, all with a minimum grade of C-, completion of a minimum of 22 units of required upper division ENSC courses, and completion of (or concurrent enrollment in) two upper division technical electives meeting the requirements of the program. Students are required to complete at least two co-ops before enrolling in ENSC 440 Capstone B. Capstone B must be taken in the term immediately following Capstone A. Enrollment into Capstone A is by approval of the department via Capstone application form."
+    },
+    {
+        "course_number": "406",
+        "name": "ENSC 406 E100",
+        "prerequisites": "100 units including one of ENSC 100, ENSC 106, CMPT 106, or MSE 102, with a minimum grade of C-."
+    },
+    {
+        "course_number": "425",
+        "name": "ENSC 425 D100",
+        "prerequisites": "ENSC 320, ENSC 325, (ENSC 380 or MSE 280), all with a minimum grade of C- and a minimum of 80 units."
+    },
+    {
+        "course_number": "426",
+        "name": "ENSC 426 D100",
+        "prerequisites": "Completion of 80 units including (ENSC 416 or PHYS 421) and ENSC 325, with a minimum grade of C-."
+    },
+    {
+        "course_number": "428",
+        "name": "ENSC 428 D100",
+        "prerequisites": "(ENSC 380 or MSE 280 or SEE 341) and ENSC 280, all with a minimum grade of C-. Students who completed STAT 270 prior to Spring 2015 may use STAT 270 instead of ENSC 280."
+    },
+    {
+        "course_number": "429",
+        "name": "ENSC 429 D100",
+        "prerequisites": "(ENSC 327 or ENSC 328), (ENSC 380 or MSE 280), all with a minimum grade of C- and a minimum of 80 units."
+    },
+    {
+        "course_number": "440",
+        "name": "ENSC 440 E100",
+        "prerequisites": "ENSC 405W with a minimum grade of C-. Students will be automatically enrolled in ENSC 440 in the term immediately following successful completion of ENSC 405W."
+    },
+    {
+        "course_number": "470",
+        "name": "ENSC 470 D100",
+        "prerequisites": "Completion of 80 units including (PHYS 121 or 126 or 141) and (MATH 260 or MATH 310), with a minimum grade of C-."
+    },
+    {
+        "course_number": "482",
+        "name": "ENSC 482 D100",
+        "prerequisites": "MATH 232, MACM 316, (ENSC 280 or MSE 210 or PHYS 231), all with a minimum grade of C- and a minimum of 80 units."
+    },
+    {
+        "course_number": "483",
+        "name": "ENSC 483 D100",
+        "prerequisites": "ENSC 383 or MSE 381, with a minimum grade of C- and a minimum of 80 units."
+    },
+    {
+        "course_number": "498",
+        "name": "ENSC 498 D100",
+        "prerequisites": "At least 115 units or permission of the academic supervisor."
+    },
+    {
+        "course_number": "499",
+        "name": "ENSC 499 D100",
+        "prerequisites": "ENSC 498 with a minimum grade of P."
+    },
+    {
+        "course_number": "704",
+        "name": "ENSC 704 G100",
+        "prerequisites": "12 units of ENSC course work at the 800-level or higher with an SFU CGPA of at least 3.0. Approval of supervisor and a GPC representative is required prior to applying for, and accepting an internship."
+    },
+    {
+        "course_number": "803",
+        "name": "ENSC 803 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "805",
+        "name": "ENSC 805 G100",
+        "prerequisites": "Recommended: ENSC 380 or equivalent, ENSC 280 or equivalent."
+    },
+    {
+        "course_number": "820",
+        "name": "ENSC 820 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "861",
+        "name": "ENSC 861 G100",
+        "prerequisites": "ENSC 429 or equivalent."
+    },
+    {
+        "course_number": "870",
+        "name": "ENSC 870 G100",
+        "prerequisites": "Students may only register for the ENSC 870-0 during their final term."
+    },
+    {
+        "course_number": "880",
+        "name": "ENSC 880 G100",
+        "prerequisites": "ENSC PhD student."
+    },
+    {
+        "course_number": "890",
+        "name": "ENSC 890 G100",
+        "prerequisites": "Introductory course in robotics (ENSC 488) or permission of the instructor."
+    },
+    {
+        "course_number": "891",
+        "name": "ENSC 891 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "892",
+        "name": "ENSC 892 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "894",
+        "name": "ENSC 894 G300",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "896",
+        "name": "ENSC 896 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "897",
+        "name": "ENSC 897 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "898",
+        "name": "ENSC 898 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "899",
+        "name": "ENSC 899 G100",
+        "prerequisites": ""
+    }
+]

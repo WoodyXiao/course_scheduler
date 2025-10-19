@@ -1,0 +1,112 @@
+[
+    {
+        "course_number": "135",
+        "name": "HIST 135 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "220",
+        "name": "HIST 220 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "224",
+        "name": "HIST 224 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "252",
+        "name": "HIST 252 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "315",
+        "name": "HIST 315 OL01",
+        "prerequisites": "45 units, including six units of lower division history."
+    },
+    {
+        "course_number": "330w",
+        "name": "HIST 330W D100",
+        "prerequisites": "45 units, including six units of lower division history."
+    },
+    {
+        "course_number": "358",
+        "name": "HIST 358 D100",
+        "prerequisites": "45 units, including six units of lower division history."
+    },
+    {
+        "course_number": "371",
+        "name": "HIST 371 D100",
+        "prerequisites": "45 units, including six units of lower division history. Recommended: at least one course on modern Japan."
+    },
+    {
+        "course_number": "432",
+        "name": "HIST 432 D100",
+        "prerequisites": "45 units including nine units of lower division history."
+    },
+    {
+        "course_number": "463w",
+        "name": "HIST 463W D100",
+        "prerequisites": "45 units including nine units of lower division history."
+    },
+    {
+        "course_number": "468w",
+        "name": "HIST 468W D100",
+        "prerequisites": "45 units, including nine units of lower division history."
+    },
+    {
+        "course_number": "472w",
+        "name": "HIST 472W D100",
+        "prerequisites": "45 units including nine units of lower division history."
+    },
+    {
+        "course_number": "489",
+        "name": "HIST 489 D100",
+        "prerequisites": "45 units including nine units of lower division history. Recommended: at least three upper division courses in history."
+    },
+    {
+        "course_number": "490",
+        "name": "HIST 490 D100",
+        "prerequisites": "45 units including nine units of lower division history. Recommended: at least three upper division courses in history."
+    },
+    {
+        "course_number": "810",
+        "name": "HIST 810 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "860",
+        "name": "HIST 860 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "861",
+        "name": "HIST 861 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "862",
+        "name": "HIST 862 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "879",
+        "name": "HIST 879 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "897",
+        "name": "HIST 897 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "898",
+        "name": "HIST 898 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "899",
+        "name": "HIST 899 G100",
+        "prerequisites": ""
+    }
+]

@@ -1,0 +1,12 @@
+[
+    {
+        "course_number": "100",
+        "name": "SDA 100 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "250",
+        "name": "SDA 250 D100",
+        "prerequisites": ""
+    }
+]

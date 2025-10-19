@@ -1,0 +1,107 @@
+[
+    {
+        "course_number": "104",
+        "name": "CRIM 104 D100",
+        "prerequisites": "SA 150 is recommended."
+    },
+    {
+        "course_number": "135",
+        "name": "CRIM 135 B100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "330",
+        "name": "CRIM 330 D100",
+        "prerequisites": "CRIM 101 and 230."
+    },
+    {
+        "course_number": "335",
+        "name": "CRIM 335 OL01",
+        "prerequisites": "CRIM 101 and CRIM 135."
+    },
+    {
+        "course_number": "370",
+        "name": "CRIM 370 D100",
+        "prerequisites": "CRIM 320 and 330, and written application to the school no later than the last day of classes of the preceding term. CRIM 370 and 470 may not be taken concurrently."
+    },
+    {
+        "course_number": "380",
+        "name": "CRIM 380 OL01",
+        "prerequisites": "CRIM 101."
+    },
+    {
+        "course_number": "416",
+        "name": "CRIM 416 D100",
+        "prerequisites": "CRIM 101."
+    },
+    {
+        "course_number": "470",
+        "name": "CRIM 470 D100",
+        "prerequisites": "CRIM 320, 321 and 330. Written application to the school no later than the last day of classes of the preceding term. Reserved for criminology honours and majors. Recommended: CRIM 370."
+    },
+    {
+        "course_number": "485",
+        "name": "CRIM 485 OL01",
+        "prerequisites": "Permission of the school, and minimum 90 units and CGPA of 2.75. Applicants must be declared criminology majors."
+    },
+    {
+        "course_number": "486",
+        "name": "CRIM 486 D100",
+        "prerequisites": "Permission of the school, and minimum 90 units and CGPA of 2.75. Applicants must be declared criminology majors and must be enrolled in or have completed CRIM 320, 321 and 485. Corequisite: CRIM 488. A criminal record check may be required dependent on agency."
+    },
+    {
+        "course_number": "487",
+        "name": "CRIM 487 D100",
+        "prerequisites": "CRIM 485, a minimum of 90 units and CGPA of 2.75, and/or permission of the school. Applicants must be declared criminology majors. Corequisite: CRIM 489. A criminal record check may be required dependent on agency."
+    },
+    {
+        "course_number": "488",
+        "name": "CRIM 488 D100",
+        "prerequisites": "Permission of the school, CRIM 485, a minimum of 90 units and CGPA of 2.75. Applicants must be declared criminology majors. Corequisite: CRIM 486. A criminal record check may be required dependent on agency."
+    },
+    {
+        "course_number": "489",
+        "name": "CRIM 489 D100",
+        "prerequisites": "CRIM 485, a minimum of 90 units and CGPA of 2.75, and/or permission of the school. Applicants must be declared criminology majors. Corequisite: CRIM 487. A criminal record check may be required dependent on agency."
+    },
+    {
+        "course_number": "811",
+        "name": "CRIM 811 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "815",
+        "name": "CRIM 815 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "864",
+        "name": "CRIM 864 G100",
+        "prerequisites": "CRIM 862, or permission of the instructor."
+    },
+    {
+        "course_number": "870",
+        "name": "CRIM 870 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "890",
+        "name": "CRIM 890 G100",
+        "prerequisites": "CRIM 897."
+    },
+    {
+        "course_number": "897",
+        "name": "CRIM 897 G100",
+        "prerequisites": "Completion of all course work within the PhD program."
+    },
+    {
+        "course_number": "898",
+        "name": "CRIM 898 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "899",
+        "name": "CRIM 899 G100",
+        "prerequisites": ""
+    }
+]

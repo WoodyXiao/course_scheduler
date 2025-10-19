@@ -1,0 +1,447 @@
+[
+    {
+        "course_number": "110",
+        "name": "CA 110 D100",
+        "prerequisites": "Open to art, performance and cinema studies majors."
+    },
+    {
+        "course_number": "117",
+        "name": "CA 117 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "122",
+        "name": "CA 122 D100",
+        "prerequisites": "By audition for admission to the dance program and declared dance major or extended minor status. Corequisite: CA 129 must be taken concurrently."
+    },
+    {
+        "course_number": "127",
+        "name": "CA 127 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "129",
+        "name": "CA 129 D100",
+        "prerequisites": "By audition for admission to the dance program and declared dance major or extended minor status. Corequisite: CA 122 must be taken concurrently."
+    },
+    {
+        "course_number": "130",
+        "name": "CA 130 D100",
+        "prerequisites": "Declared status in the film major, film honors or extended film minor."
+    },
+    {
+        "course_number": "135",
+        "name": "CA 135 OL01",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "136",
+        "name": "CA 136 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "140",
+        "name": "CA 140 OL01",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "142",
+        "name": "CA 142 OL01",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "143",
+        "name": "CA 143 D100",
+        "prerequisites": "Acceptance into the major, or permission of instructor. Corequisite: CA 145 or permission of instructor."
+    },
+    {
+        "course_number": "145",
+        "name": "CA 145 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "149",
+        "name": "CA 149 OL01",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "151",
+        "name": "CA 151 D100",
+        "prerequisites": "By audition."
+    },
+    {
+        "course_number": "160",
+        "name": "CA 160 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "170",
+        "name": "CA 170 D100",
+        "prerequisites": "Declared status in the performance production and design major or extended minor, or permission of instructor."
+    },
+    {
+        "course_number": "175",
+        "name": "CA 175 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "186",
+        "name": "CA 186 E100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "210w",
+        "name": "CA 210W D100",
+        "prerequisites": "CA 118."
+    },
+    {
+        "course_number": "220",
+        "name": "CA 220 D100",
+        "prerequisites": "CA 122, 123, 124, 129 and prior approval by interview."
+    },
+    {
+        "course_number": "230",
+        "name": "CA 230 D100",
+        "prerequisites": "CA 131. Corequsite: CA 233."
+    },
+    {
+        "course_number": "233",
+        "name": "CA 233 D100",
+        "prerequisites": "CA 131. Corequisite: CA 230."
+    },
+    {
+        "course_number": "235",
+        "name": "CA 235 D100",
+        "prerequisites": "One of CA 117, 118, 135, 136 or 137 or 30 units."
+    },
+    {
+        "course_number": "240",
+        "name": "CA 240 D100",
+        "prerequisites": "CA 140, 144, 146."
+    },
+    {
+        "course_number": "245",
+        "name": "CA 245 D100",
+        "prerequisites": "CA 140, 144, and achieving a B (or higher) in CA 145 and CA 146."
+    },
+    {
+        "course_number": "247",
+        "name": "CA 247 D100",
+        "prerequisites": "CA 140, 144, 146 or permission of instructor."
+    },
+    {
+        "course_number": "251",
+        "name": "CA 251 D100",
+        "prerequisites": "One of CA 123, 131, 146, 152, 161, 171."
+    },
+    {
+        "course_number": "253",
+        "name": "CA 253 D100",
+        "prerequisites": "One of CA 123, 131, 146, 152, 161, 171."
+    },
+    {
+        "course_number": "254",
+        "name": "CA 254 D100",
+        "prerequisites": "One of CA 123, 131, 146, 152, 161, 171."
+    },
+    {
+        "course_number": "257w",
+        "name": "CA 257W D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "260",
+        "name": "CA 260 D100",
+        "prerequisites": "CA 118 (or 168) and 161. A course materials fee is required."
+    },
+    {
+        "course_number": "262",
+        "name": "CA 262 D100",
+        "prerequisites": "CA 160. A course materials fee is required."
+    },
+    {
+        "course_number": "264",
+        "name": "CA 264 D100",
+        "prerequisites": "CA 160. A course materials fee is required."
+    },
+    {
+        "course_number": "270",
+        "name": "CA 270 D100",
+        "prerequisites": "CA 171."
+    },
+    {
+        "course_number": "275",
+        "name": "CA 275 D100",
+        "prerequisites": "CA 175 or permission of instructor."
+    },
+    {
+        "course_number": "285",
+        "name": "CA 285 D100",
+        "prerequisites": "One of CA 122, 130, 145, 150, 160, 170."
+    },
+    {
+        "course_number": "306",
+        "name": "CA 306 D100",
+        "prerequisites": "45 units including CA 304 and permission of Internship Coordinator."
+    },
+    {
+        "course_number": "307",
+        "name": "CA 307 D100",
+        "prerequisites": "45 units including CA 304 and permission of Internship Coordinator."
+    },
+    {
+        "course_number": "312w",
+        "name": "CA 312W D100",
+        "prerequisites": "45 units."
+    },
+    {
+        "course_number": "315",
+        "name": "CA 315 D100",
+        "prerequisites": "45 units."
+    },
+    {
+        "course_number": "320",
+        "name": "CA 320 D100",
+        "prerequisites": "CA 221."
+    },
+    {
+        "course_number": "322",
+        "name": "CA 322 D100",
+        "prerequisites": "CA 123 and 124."
+    },
+    {
+        "course_number": "324",
+        "name": "CA 324 D100",
+        "prerequisites": "CA 124, 228W, and 285."
+    },
+    {
+        "course_number": "326",
+        "name": "CA 326 D100",
+        "prerequisites": "Acceptance into the dance major or extended minor, and prior approval. Corequisite: Students must be concurrently enrolled in a technique course at an appropriate level. These courses include CA 220, CA 320, CA 322, CA 420, and CA 421."
+    },
+    {
+        "course_number": "327",
+        "name": "CA 327 D100",
+        "prerequisites": "Acceptance into the dance major or extended minor and prior approval. Corequisite: Students must be concurrently enrolled in a technique course at an appropriate level. These courses include 220, 320, 322, 420, and 421."
+    },
+    {
+        "course_number": "330",
+        "name": "CA 330 D100",
+        "prerequisites": "CA 231 and declared status in the film major or film honours."
+    },
+    {
+        "course_number": "333",
+        "name": "CA 333 D100",
+        "prerequisites": "36 units in CA courses, including CA 285."
+    },
+    {
+        "course_number": "334",
+        "name": "CA 334 D100",
+        "prerequisites": "36 units in CA courses, including CA 285."
+    },
+    {
+        "course_number": "341",
+        "name": "CA 341 E100",
+        "prerequisites": "45 units."
+    },
+    {
+        "course_number": "344",
+        "name": "CA 344 D100",
+        "prerequisites": "CA 140 or permission of instructor."
+    },
+    {
+        "course_number": "345",
+        "name": "CA 345 D100",
+        "prerequisites": "CA 246."
+    },
+    {
+        "course_number": "354",
+        "name": "CA 354 D100",
+        "prerequisites": "One of CA 221, 231, 246, 252, 261, 271, 285, or permission of instructor."
+    },
+    {
+        "course_number": "360",
+        "name": "CA 360 D100",
+        "prerequisites": "CA 117 (or 167), 118 (or 168), 210W (or 210), 261 and status as an approved visual art major. Corequisite: CA 366."
+    },
+    {
+        "course_number": "362",
+        "name": "CA 362 D100",
+        "prerequisites": "CA 160. A course materials fee is required."
+    },
+    {
+        "course_number": "364",
+        "name": "CA 364 D100",
+        "prerequisites": "CA 160. A course materials fee is required."
+    },
+    {
+        "course_number": "366",
+        "name": "CA 366 D100",
+        "prerequisites": "CA 117 (or 167), 118 (or 168), 210W (or 210), 261 and status as an approved visual art major. Corequisite: CA 360."
+    },
+    {
+        "course_number": "370",
+        "name": "CA 370 D100",
+        "prerequisites": "CA 271 or permission of instructor."
+    },
+    {
+        "course_number": "378",
+        "name": "CA 378 D100",
+        "prerequisites": "60 units or permission of instructor."
+    },
+    {
+        "course_number": "386",
+        "name": "CA 386 OL01",
+        "prerequisites": "60 units."
+    },
+    {
+        "course_number": "400",
+        "name": "CA 400 D100",
+        "prerequisites": "60 units plus a minimum standing of completion of second year in any of the programs offered in the School for the Contemporary Arts, and prior approval."
+    },
+    {
+        "course_number": "401",
+        "name": "CA 401 D100",
+        "prerequisites": "60 units plus a minimum standing of completion of second year in any of the programs offered in the School for the Contemporary Arts, and prior approval."
+    },
+    {
+        "course_number": "406",
+        "name": "CA 406 D100",
+        "prerequisites": "60 units including CA 304 and permission of Internship Coordinator."
+    },
+    {
+        "course_number": "407",
+        "name": "CA 407 D100",
+        "prerequisites": "60 units including CA 304 and permission of Internship Coordinator."
+    },
+    {
+        "course_number": "420",
+        "name": "CA 420 D100",
+        "prerequisites": "CA 285 and CA 321."
+    },
+    {
+        "course_number": "424",
+        "name": "CA 424 D100",
+        "prerequisites": "CA 324."
+    },
+    {
+        "course_number": "427",
+        "name": "CA 427 D100",
+        "prerequisites": "One of CA 322 or 323."
+    },
+    {
+        "course_number": "430",
+        "name": "CA 430 D100",
+        "prerequisites": "CA 331."
+    },
+    {
+        "course_number": "440",
+        "name": "CA 440 D100",
+        "prerequisites": "CA 240 or permission of instructor."
+    },
+    {
+        "course_number": "445",
+        "name": "CA 445 D100",
+        "prerequisites": "CA 346."
+    },
+    {
+        "course_number": "449",
+        "name": "CA 449 D100",
+        "prerequisites": "CA 241 or permission of instructor."
+    },
+    {
+        "course_number": "450",
+        "name": "CA 450 D100",
+        "prerequisites": "CA 350 or prior approval."
+    },
+    {
+        "course_number": "451",
+        "name": "CA 451 D100",
+        "prerequisites": "CA 253, CA 355, CA 356, CA 357W."
+    },
+    {
+        "course_number": "460",
+        "name": "CA 460 D100",
+        "prerequisites": "CA 361, 367 and status as an approved major in visual art."
+    },
+    {
+        "course_number": "470",
+        "name": "CA 470 D100",
+        "prerequisites": "CA 370 or 371; or permission of instructor."
+    },
+    {
+        "course_number": "811",
+        "name": "CA 811 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "812",
+        "name": "CA 812 G100",
+        "prerequisites": "CA (or FPA) 811."
+    },
+    {
+        "course_number": "813",
+        "name": "CA 813 G100",
+        "prerequisites": "CA (or FPA) 811."
+    },
+    {
+        "course_number": "821",
+        "name": "CA 821 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "822",
+        "name": "CA 822 G100",
+        "prerequisites": "CA 821 and two of the following: CA 823, 824, 825, 826, or 828."
+    },
+    {
+        "course_number": "824",
+        "name": "CA 824 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "827",
+        "name": "CA 827 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "829",
+        "name": "CA 829 G100",
+        "prerequisites": "Permission of the graduate program committee."
+    },
+    {
+        "course_number": "830",
+        "name": "CA 830 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "889",
+        "name": "CA 889 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "890",
+        "name": "CA 890 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "892",
+        "name": "CA 892 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "895",
+        "name": "CA 895 G100",
+        "prerequisites": "CA 892."
+    },
+    {
+        "course_number": "898",
+        "name": "CA 898 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "899",
+        "name": "CA 899 G100",
+        "prerequisites": "CA 895."
+    }
+]

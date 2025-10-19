@@ -1,0 +1,52 @@
+[
+    {
+        "course_number": "400",
+        "name": "MASC 400 Z100",
+        "prerequisites": "Prerequisites are set by Bamfield Marine Science Centre, and normally include completion of lower division core courses."
+    },
+    {
+        "course_number": "401",
+        "name": "MASC 401 Z100",
+        "prerequisites": "Prerequisites are set by Bamfield Marine Science Centre, and normally include completion of lower division core courses."
+    },
+    {
+        "course_number": "410",
+        "name": "MASC 410 Z100",
+        "prerequisites": "Prerequisites are set by Bamfield Marine Science Centre, and normally include completion of lower division core courses."
+    },
+    {
+        "course_number": "417",
+        "name": "MASC 417 Z100",
+        "prerequisites": "Prerequisites are set by Bamfield Marine Science Centre, and normally include completion of lower division core courses."
+    },
+    {
+        "course_number": "420",
+        "name": "MASC 420 Z100",
+        "prerequisites": "Prerequisites are set by Bamfield Marine Science Centre, and normally include completion of lower division core courses."
+    },
+    {
+        "course_number": "430",
+        "name": "MASC 430 Z100",
+        "prerequisites": "Prerequisites are set by Bamfield Marine Science Centre, and normally include completion of lower division core courses."
+    },
+    {
+        "course_number": "435",
+        "name": "MASC 435 Z100",
+        "prerequisites": "Prerequisites are set by Bamfield Marine Science Centre, and normally include completion of lower division core courses."
+    },
+    {
+        "course_number": "471",
+        "name": "MASC 471 Z100",
+        "prerequisites": "Prerequisites are set by Bamfield Marine Science Centre, and normally include completion of lower division core courses."
+    },
+    {
+        "course_number": "472",
+        "name": "MASC 472 Z100",
+        "prerequisites": "Prerequisites are set by Bamfield Marine Science Centre, and normally include completion of lower division core courses."
+    },
+    {
+        "course_number": "501",
+        "name": "MASC 501 G100",
+        "prerequisites": ""
+    }
+]

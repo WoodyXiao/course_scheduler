@@ -1,0 +1,17 @@
+[
+    {
+        "course_number": "100",
+        "name": "COGS 100 B100",
+        "prerequisites": "Open to all students."
+    },
+    {
+        "course_number": "110",
+        "name": "COGS 110 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "491",
+        "name": "COGS 491 D100",
+        "prerequisites": "Approval of Cognitive Science steering committee either when student has completed COGS 490 or when student is taking COGS 490."
+    }
+]

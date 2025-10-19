@@ -1,0 +1,62 @@
+[
+    {
+        "course_number": "200",
+        "name": "FEP 200 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "201",
+        "name": "FEP 201 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "202",
+        "name": "FEP 202 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "203",
+        "name": "FEP 203 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "204",
+        "name": "FEP 204 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "205",
+        "name": "FEP 205 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "206",
+        "name": "FEP 206 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "209",
+        "name": "FEP 209 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "221",
+        "name": "FEP 221 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "222",
+        "name": "FEP 222 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "224",
+        "name": "FEP 224 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "225",
+        "name": "FEP 225 D100",
+        "prerequisites": ""
+    }
+]

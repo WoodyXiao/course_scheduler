@@ -1,0 +1,17 @@
+[
+    {
+        "course_number": "829",
+        "name": "LS 829 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "998",
+        "name": "LS 998 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "999",
+        "name": "LS 999 G100",
+        "prerequisites": ""
+    }
+]

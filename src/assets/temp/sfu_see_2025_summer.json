@@ -1,0 +1,152 @@
+[
+    {
+        "course_number": "221",
+        "name": "SEE 221 D100",
+        "prerequisites": "MSE 103 or PHYS 140, and MATH 152."
+    },
+    {
+        "course_number": "230",
+        "name": "SEE 230 D100",
+        "prerequisites": "PHYS 141, MATH 232. Corequisite: (MATH 260 or MATH 310)."
+    },
+    {
+        "course_number": "241",
+        "name": "SEE 241 D100",
+        "prerequisites": "PHYS 141, MATH 232. Corequisite: MATH 251."
+    },
+    {
+        "course_number": "290",
+        "name": "SEE 290 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "294",
+        "name": "SEE 294 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "300",
+        "name": "SEE 300 D100",
+        "prerequisites": "A minimum of 65 units OR a minimum of 55 units plus two-term co-op work."
+    },
+    {
+        "course_number": "310",
+        "name": "SEE 310 D100",
+        "prerequisites": "Completion of one co-op work term; SEE 111, 224, 242, 251."
+    },
+    {
+        "course_number": "324",
+        "name": "SEE 324 D100",
+        "prerequisites": "PHYS 141, SEE 224, SEE 225."
+    },
+    {
+        "course_number": "331",
+        "name": "SEE 331 D100",
+        "prerequisites": "SEE 231 and SEE 251."
+    },
+    {
+        "course_number": "332",
+        "name": "SEE 332 D100",
+        "prerequisites": "SEE 251, SEE 331."
+    },
+    {
+        "course_number": "341",
+        "name": "SEE 341 D100",
+        "prerequisites": "SEE 242, SEE 230."
+    },
+    {
+        "course_number": "342",
+        "name": "SEE 342 D100",
+        "prerequisites": "SEE 341."
+    },
+    {
+        "course_number": "351",
+        "name": "SEE 351 D100",
+        "prerequisites": "(MATH 260 or MATH 310), and SEE 224. Corequisite: SEE 324. MSE students who completed MSE 321 can take this course upon approval of the course instructor."
+    },
+    {
+        "course_number": "352",
+        "name": "SEE 352 D100",
+        "prerequisites": "SEE 222, SEE 224."
+    },
+    {
+        "course_number": "354",
+        "name": "SEE 354 D100",
+        "prerequisites": "SEE 222, SEE 331, SEE 324."
+    },
+    {
+        "course_number": "390",
+        "name": "SEE 390 D100",
+        "prerequisites": "SEE 290 or SEE 294."
+    },
+    {
+        "course_number": "394",
+        "name": "SEE 394 D100",
+        "prerequisites": "SEE 290 or SEE 294."
+    },
+    {
+        "course_number": "475",
+        "name": "SEE 475 D100",
+        "prerequisites": "Permission of the undergraduate curriculum chair."
+    },
+    {
+        "course_number": "486",
+        "name": "SEE 486 D100",
+        "prerequisites": "A minimum of 100 units and permission of the chair of the undergraduate curriculum committee. The specific prerequisite courses will be identified by the course supervisor."
+    },
+    {
+        "course_number": "490",
+        "name": "SEE 490 D100",
+        "prerequisites": "SEE 390 or SEE 394."
+    },
+    {
+        "course_number": "494",
+        "name": "SEE 494 D100",
+        "prerequisites": "SEE 390 or SEE 394."
+    },
+    {
+        "course_number": "498",
+        "name": "SEE 498 D100",
+        "prerequisites": "At least 115 units with a minimum 3.0 CGPA and approval of the department, or permission of the academic supervisor."
+    },
+    {
+        "course_number": "499",
+        "name": "SEE 499 D100",
+        "prerequisites": "SEE 498."
+    },
+    {
+        "course_number": "890",
+        "name": "SEE 890 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "891",
+        "name": "SEE 891 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "895",
+        "name": "SEE 895 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "896",
+        "name": "SEE 896 G200",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "897",
+        "name": "SEE 897 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "898",
+        "name": "SEE 898 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "899",
+        "name": "SEE 899 G100",
+        "prerequisites": "SEE 890. Corequisite: SEE 897."
+    }
+]

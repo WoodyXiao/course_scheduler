@@ -1,0 +1,57 @@
+[
+    {
+        "course_number": "201",
+        "name": "FASS 201 D100",
+        "prerequisites": "Open only to students accepted to the FASS Co-op Program."
+    },
+    {
+        "course_number": "222",
+        "name": "FASS 222 D100",
+        "prerequisites": "15 units."
+    },
+    {
+        "course_number": "223",
+        "name": "FASS 223 D100",
+        "prerequisites": "15 units."
+    },
+    {
+        "course_number": "224",
+        "name": "FASS 224 D100",
+        "prerequisites": "15 units."
+    },
+    {
+        "course_number": "225",
+        "name": "FASS 225 D100",
+        "prerequisites": "15 units."
+    },
+    {
+        "course_number": "301",
+        "name": "FASS 301 D100",
+        "prerequisites": "Open only to students accepted to the FASS Co-op Program."
+    },
+    {
+        "course_number": "302",
+        "name": "FASS 302 D100",
+        "prerequisites": "Open only to students accepted to the FASS Co-op Program."
+    },
+    {
+        "course_number": "305",
+        "name": "FASS 305 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "401",
+        "name": "FASS 401 D100",
+        "prerequisites": "Open only to students accepted to the FASS Co-op Program."
+    },
+    {
+        "course_number": "402",
+        "name": "FASS 402 D100",
+        "prerequisites": "Open only to students accepted to the FASS Co-op Program."
+    },
+    {
+        "course_number": "805",
+        "name": "FASS 805 G100",
+        "prerequisites": ""
+    }
+]

@@ -1,0 +1,27 @@
+[
+    {
+        "course_number": "601",
+        "name": "ALS 601 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "602",
+        "name": "ALS 602 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "611",
+        "name": "ALS 611 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "630",
+        "name": "ALS 630 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "631",
+        "name": "ALS 631 G100",
+        "prerequisites": ""
+    }
+]

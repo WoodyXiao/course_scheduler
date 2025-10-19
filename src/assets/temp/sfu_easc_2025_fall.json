@@ -1,0 +1,142 @@
+[
+    {
+        "course_number": "101",
+        "name": "EASC 101 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "103",
+        "name": "EASC 103 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "202",
+        "name": "EASC 202 D100",
+        "prerequisites": "EASC 101 and CHEM 121. All with a grade of C- or better."
+    },
+    {
+        "course_number": "206",
+        "name": "EASC 206 D100",
+        "prerequisites": "EASC 101 with a grade of C- or better. Corequisite: EASC 210."
+    },
+    {
+        "course_number": "207",
+        "name": "EASC 207 D100",
+        "prerequisites": "MATH 152, and one of: (PHYS 102 and PHYS 133), (PHYS 121 and PHYS 133), (PHYS 126 and PHYS 133) or (PHYS 141). All with a grade of C- or better."
+    },
+    {
+        "course_number": "209w",
+        "name": "EASC 209W D100",
+        "prerequisites": "EASC 101 with a grade of C- or better."
+    },
+    {
+        "course_number": "301",
+        "name": "EASC 301 D100",
+        "prerequisites": "EASC 205 and 208. All with a grade of C- or better."
+    },
+    {
+        "course_number": "302",
+        "name": "EASC 302 D100",
+        "prerequisites": "STAT 201 or 270, EASC 201 and 205. All with a grade of C- or better."
+    },
+    {
+        "course_number": "304",
+        "name": "EASC 304 D100",
+        "prerequisites": "EASC 101 and PHYS 102 or 121 or 126 or 141; and 12 additional units in earth sciences, physical geography or environmental science. All with a grade of C- or better."
+    },
+    {
+        "course_number": "309",
+        "name": "EASC 309 D100",
+        "prerequisites": "EASC 201, 204, 205, 206 and 207. All with a grade of C- or better."
+    },
+    {
+        "course_number": "310w",
+        "name": "EASC 310W D100",
+        "prerequisites": "EASC 210. Recommended: BISC 102. All with a grade of C- or better."
+    },
+    {
+        "course_number": "315w",
+        "name": "EASC 315W D100",
+        "prerequisites": "CHEM 122 and 126. Corequisite or prerequisite: EASC 304. All with a grade of C- or better."
+    },
+    {
+        "course_number": "402",
+        "name": "EASC 402 D100",
+        "prerequisites": "EASC 302 with a grade of C- or better."
+    },
+    {
+        "course_number": "421",
+        "name": "EASC 421 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "492",
+        "name": "EASC 492 D100",
+        "prerequisites": "75 units including 30 units in earth sciences courses and permission of the department."
+    },
+    {
+        "course_number": "493",
+        "name": "EASC 493 D100",
+        "prerequisites": "75 units including 30 units in earth sciences courses and permission of the department."
+    },
+    {
+        "course_number": "498",
+        "name": "EASC 498 D100",
+        "prerequisites": "Permission of the department. Normally taken after completion of 300-level program requirements."
+    },
+    {
+        "course_number": "499",
+        "name": "EASC 499 D100",
+        "prerequisites": "EASC 498 with a grade of B or better, admittance to the honours program, and permission of the department."
+    },
+    {
+        "course_number": "600",
+        "name": "EASC 600 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "605",
+        "name": "EASC 605 G100",
+        "prerequisites": "Permission of instructor."
+    },
+    {
+        "course_number": "611",
+        "name": "EASC 611 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "626",
+        "name": "EASC 626 G100",
+        "prerequisites": "Recommended: undergraduate courses in geochemistry and introductory chemistry (or permission of instructor)."
+    },
+    {
+        "course_number": "711",
+        "name": "EASC 711 G100",
+        "prerequisites": "Permission of the instructor."
+    },
+    {
+        "course_number": "810",
+        "name": "EASC 810 G100",
+        "prerequisites": "Enrollment in MSc program."
+    },
+    {
+        "course_number": "898",
+        "name": "EASC 898 G100",
+        "prerequisites": "Enrollment in MSc program."
+    },
+    {
+        "course_number": "901",
+        "name": "EASC 901 G100",
+        "prerequisites": "Enrollment in PhD program."
+    },
+    {
+        "course_number": "910",
+        "name": "EASC 910 G100",
+        "prerequisites": "Enrollment in PhD program."
+    },
+    {
+        "course_number": "998",
+        "name": "EASC 998 G100",
+        "prerequisites": "Enrollment in PhD Program."
+    }
+]

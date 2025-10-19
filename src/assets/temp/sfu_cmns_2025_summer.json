@@ -1,0 +1,192 @@
+[
+    {
+        "course_number": "110",
+        "name": "CMNS 110 OL01",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "120w",
+        "name": "CMNS 120W D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "130",
+        "name": "CMNS 130 OL01",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "226",
+        "name": "CMNS 226 D100",
+        "prerequisites": "Nine CMNS units with a minimum grade of C-. CMNS 220 recommended."
+    },
+    {
+        "course_number": "253w",
+        "name": "CMNS 253W OL01",
+        "prerequisites": "Nine CMNS units with a minimum grade of C-."
+    },
+    {
+        "course_number": "258",
+        "name": "CMNS 258 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "304w",
+        "name": "CMNS 304W OL01",
+        "prerequisites": "17 CMNS units with a minimum grade of C- or 45 units with a minimum CGPA of 2.00."
+    },
+    {
+        "course_number": "311",
+        "name": "CMNS 311 B100",
+        "prerequisites": "17 CMNS units with a minimum grade of C- or 45 units with a minimum CGPA of 2.00."
+    },
+    {
+        "course_number": "312",
+        "name": "CMNS 312 D100",
+        "prerequisites": "17 CMNS units with a minimum grade of C- or 45 units with a minimum CGPA of 2.00."
+    },
+    {
+        "course_number": "313",
+        "name": "CMNS 313 D100",
+        "prerequisites": "17 CMNS units with a minimum grade of C- or 45 units with a minimum CGPA of 2.00."
+    },
+    {
+        "course_number": "316",
+        "name": "CMNS 316 B100",
+        "prerequisites": "17 CMNS units with a minimum grade of C- or 45 units with a minimum CGPA of 2.00."
+    },
+    {
+        "course_number": "395",
+        "name": "CMNS 395 D100",
+        "prerequisites": "Acceptance in the co-operative education program."
+    },
+    {
+        "course_number": "396",
+        "name": "CMNS 396 D100",
+        "prerequisites": "CMNS 395."
+    },
+    {
+        "course_number": "437",
+        "name": "CMNS 437 D100",
+        "prerequisites": "26 CMNS units with a minimum grade of C- or 60 units with a minimum CGPA of 2.00."
+    },
+    {
+        "course_number": "445",
+        "name": "CMNS 445 D100",
+        "prerequisites": "26 CMNS units with a minimum grade of C- or 60 units with a minimum CGPA of 2.00."
+    },
+    {
+        "course_number": "453",
+        "name": "CMNS 453 OL01",
+        "prerequisites": "26 CMNS units with a minimum grade of C- or 60 units with a minimum CGPA of 2.00."
+    },
+    {
+        "course_number": "455w",
+        "name": "CMNS 455W D100",
+        "prerequisites": "26 CMNS units with a minimum grade of C- or 60 units with a minimum CGPA of 2.00."
+    },
+    {
+        "course_number": "479",
+        "name": "CMNS 479 D001",
+        "prerequisites": "Two upper division CMNS courses with a minimum grade of C- and permission of the instructor."
+    },
+    {
+        "course_number": "480",
+        "name": "CMNS 480 D001",
+        "prerequisites": "Two upper division CMNS courses with a minimum grade of C- and consent of instructor."
+    },
+    {
+        "course_number": "488",
+        "name": "CMNS 488 D100",
+        "prerequisites": "Depends on topic; published before enrollment."
+    },
+    {
+        "course_number": "494",
+        "name": "CMNS 494 D100",
+        "prerequisites": "CMNS 396."
+    },
+    {
+        "course_number": "495",
+        "name": "CMNS 495 D100",
+        "prerequisites": "CMNS 494."
+    },
+    {
+        "course_number": "496",
+        "name": "CMNS 496 D100",
+        "prerequisites": "CMNS 495."
+    },
+    {
+        "course_number": "497",
+        "name": "CMNS 497 D100",
+        "prerequisites": "Students accepted into honours program only."
+    },
+    {
+        "course_number": "498",
+        "name": "CMNS 498 D100",
+        "prerequisites": "Successful completion of CMNS 497 with grade of B or higher."
+    },
+    {
+        "course_number": "850",
+        "name": "CMNS 850 G001",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "851",
+        "name": "CMNS 851 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "858",
+        "name": "CMNS 858 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "880",
+        "name": "CMNS 880 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "881",
+        "name": "CMNS 881 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "891",
+        "name": "CMNS 891 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "892",
+        "name": "CMNS 892 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "893",
+        "name": "CMNS 893 G100",
+        "prerequisites": "CMNS 801 and one of CMNS 800, CMNS 802 or CMNS 804."
+    },
+    {
+        "course_number": "895",
+        "name": "CMNS 895 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "896",
+        "name": "CMNS 896 G100",
+        "prerequisites": "CMNS 801 and one of CMNS 800, 802, or 804."
+    },
+    {
+        "course_number": "897",
+        "name": "CMNS 897 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "898",
+        "name": "CMNS 898 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "899",
+        "name": "CMNS 899 G100",
+        "prerequisites": ""
+    }
+]

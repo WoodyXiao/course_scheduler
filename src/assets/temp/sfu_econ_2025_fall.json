@@ -1,0 +1,207 @@
+[
+    {
+        "course_number": "102",
+        "name": "ECON 102 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "103",
+        "name": "ECON 103 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "105",
+        "name": "ECON 105 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "113",
+        "name": "ECON 113 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "115",
+        "name": "ECON 115 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "201",
+        "name": "ECON 201 D100",
+        "prerequisites": "ECON 103 with a minimum grade of C- or ECON 113 with a minimum grade of B-; ECON 105 with a minimum grade of C- or ECON 115 with a minimum grade of B-; MATH 150, MATH 151, MATH 154, or MATH 157, with a minimum grade of C-."
+    },
+    {
+        "course_number": "220w",
+        "name": "ECON 220W D100",
+        "prerequisites": "ECON 201 with a minimum grade of C-, minimum 30 units and no more than 80 units."
+    },
+    {
+        "course_number": "260",
+        "name": "ECON 260 D100",
+        "prerequisites": "ECON 103 with a minimum grade of C- or ECON 113 with a minimum grade of B-."
+    },
+    {
+        "course_number": "291",
+        "name": "ECON 291 D100",
+        "prerequisites": "ECON 103 or ECON 113, with a minimum grade of C-; ECON 105 or ECON 115, with a minimum grade of C-."
+    },
+    {
+        "course_number": "302",
+        "name": "ECON 302 D100",
+        "prerequisites": "ECON 201 with a minimum grade of C-; 45 units."
+    },
+    {
+        "course_number": "305",
+        "name": "ECON 305 D100",
+        "prerequisites": "ECON 201 with a minimum grade of C-; 45 units. Students with a minimum grade of A- in ECON 103 and 105 at Simon Fraser University at their first attempt can complete ECON 305 concurrently with ECON 201 after 30 units. Students seeking permission to enroll on this basis must contact the undergraduate advisor in economics."
+    },
+    {
+        "course_number": "325",
+        "name": "ECON 325 D100",
+        "prerequisites": "ECON 201 with a minimum grade of C-; 45 units."
+    },
+    {
+        "course_number": "333",
+        "name": "ECON 333 D100",
+        "prerequisites": "ECON 103 with a minimum grade of C- or ECON 113 with a minimum grade of B-; ECON 105 with a minimum grade of C- or ECON 115 with a minimum grade of B-; ECON 233, BUS (or BUEC) 232, STAT 270, or STAT 271, with a minimum grade of C-; MATH 150, MATH 151, MATH 154, or MATH 157, with a minimum grade of C-; 45 units. Students with a minimum grade of A- in ECON 233, BUS (or BUEC) 232, STAT 270, or STAT 271 can take ECON 333 after 30 units. Students seeking permission to enroll based on their ECON 233, BUS (or BUEC) 232, STAT 270, or STAT 271 grade must contact the undergraduate advisor in economics."
+    },
+    {
+        "course_number": "334",
+        "name": "ECON 334 D100",
+        "prerequisites": "ECON 233 or BUS 232 or STAT 270 or POL 201, with a minimum grade of C-; ECON 103 with a minimum grade of C-, or ECON 113 with a minimum grade of B-, or ECON 105 with a minimum grade of C-, or ECON 115 with a minimum grade of B-."
+    },
+    {
+        "course_number": "345",
+        "name": "ECON 345 D100",
+        "prerequisites": "ECON 103 with a minimum grade of C- or ECON 113 with a minimum grade of B-; ECON 105 with a minimum grade of C- or ECON 115 with a minimum grade of B-; 45 units or permission of the department."
+    },
+    {
+        "course_number": "355w",
+        "name": "ECON 355W D100",
+        "prerequisites": "ECON 103 with a minimum grade of C- or ECON 113 with a minimum grade of B-; ECON 105 with a minimum grade of C- or ECON 115 with a minimum grade of B-; 45 units."
+    },
+    {
+        "course_number": "383",
+        "name": "ECON 383 D100",
+        "prerequisites": "To be determined by the instructor subject to approval by the department chair."
+    },
+    {
+        "course_number": "402",
+        "name": "ECON 402 D100",
+        "prerequisites": "ECON 302 and 331, with a minimum grade of C-. Students who have completed both MATH 232 and 251 may substitute these courses for ECON 331. Entry into this course requires a minimum CGPA of 3.0 or permission of the department."
+    },
+    {
+        "course_number": "410",
+        "name": "ECON 410 D100",
+        "prerequisites": "ECON 201 and ECON 305, all with a minimum grade of C-."
+    },
+    {
+        "course_number": "435",
+        "name": "ECON 435 D100",
+        "prerequisites": "ECON 201 and ECON (or BUEC) 333, all with a minimum grade of C-. Entry into this course requires a minimum CGPA of 3.0 or permission of the department."
+    },
+    {
+        "course_number": "436",
+        "name": "ECON 436 D100",
+        "prerequisites": "ECON 302 or ECON 305, with a minimum grade of C-."
+    },
+    {
+        "course_number": "446",
+        "name": "ECON 446 D100",
+        "prerequisites": "ECON 201, ECON 305 and ECON 345, all with a minimum grade of C-."
+    },
+    {
+        "course_number": "482",
+        "name": "ECON 482 D100",
+        "prerequisites": "To be determined by the instructor subject to approval by the department chair."
+    },
+    {
+        "course_number": "483",
+        "name": "ECON 483 D100",
+        "prerequisites": "To be determined by the instructor subject to approval by the department chair."
+    },
+    {
+        "course_number": "494",
+        "name": "ECON 494 D100",
+        "prerequisites": "ECON 302, 305 and ECON (or BUEC) 333, all with a minimum grade of C-. A minimum CGPA of 3.0."
+    },
+    {
+        "course_number": "750",
+        "name": "ECON 750 G100",
+        "prerequisites": "Completion of core MA degree requirements of ECON 802, 807 (or 808), 835, and 836 with a minimum GPA of 3.0."
+    },
+    {
+        "course_number": "751",
+        "name": "ECON 751 G100",
+        "prerequisites": "ECON 750."
+    },
+    {
+        "course_number": "752",
+        "name": "ECON 752 G100",
+        "prerequisites": "ECON 751 and department approval."
+    },
+    {
+        "course_number": "798",
+        "name": "ECON 798 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "802",
+        "name": "ECON 802 G100",
+        "prerequisites": "ECON 331."
+    },
+    {
+        "course_number": "803",
+        "name": "ECON 803 G100",
+        "prerequisites": "ECON 802 or equivalent."
+    },
+    {
+        "course_number": "808",
+        "name": "ECON 808 G100",
+        "prerequisites": "ECON 807 or equivalent."
+    },
+    {
+        "course_number": "815",
+        "name": "ECON 815 G100",
+        "prerequisites": "ECON 331."
+    },
+    {
+        "course_number": "831",
+        "name": "ECON 831 G100",
+        "prerequisites": "ECON 331."
+    },
+    {
+        "course_number": "835",
+        "name": "ECON 835 G100",
+        "prerequisites": "ECON 435 and ECON 798."
+    },
+    {
+        "course_number": "837",
+        "name": "ECON 837 G100",
+        "prerequisites": "ECON 835 or equivalent."
+    },
+    {
+        "course_number": "842",
+        "name": "ECON 842 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "899",
+        "name": "ECON 899 G100",
+        "prerequisites": "ECON 802, 807 (or 808), 835, and 836 (or 837)."
+    },
+    {
+        "course_number": "900",
+        "name": "ECON 900 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "990",
+        "name": "ECON 990 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "991",
+        "name": "ECON 991 G100",
+        "prerequisites": ""
+    }
+]

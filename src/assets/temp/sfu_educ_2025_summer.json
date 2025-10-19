@@ -1,0 +1,457 @@
+[
+    {
+        "course_number": "100w",
+        "name": "EDUC 100W D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "199",
+        "name": "EDUC 199 OL01",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "220",
+        "name": "EDUC 220 OL01",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "230",
+        "name": "EDUC 230 OL01",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "240",
+        "name": "EDUC 240 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "250",
+        "name": "EDUC 250 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "252",
+        "name": "EDUC 252 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "311",
+        "name": "EDUC 311 D100",
+        "prerequisites": "60 units."
+    },
+    {
+        "course_number": "313",
+        "name": "EDUC 313 D100",
+        "prerequisites": "EDUC 401/402 or corequisite EDUC 403."
+    },
+    {
+        "course_number": "315",
+        "name": "EDUC 315 OL01",
+        "prerequisites": "EDUC 220 or PSYC 250 or LING 100. Students may be required to successfully complete a Criminal Record Check."
+    },
+    {
+        "course_number": "322",
+        "name": "EDUC 322 OL01",
+        "prerequisites": "EDUC 220 or PSYC 250."
+    },
+    {
+        "course_number": "323",
+        "name": "EDUC 323 D100",
+        "prerequisites": "60 units including EDUC 220."
+    },
+    {
+        "course_number": "324",
+        "name": "EDUC 324 D100",
+        "prerequisites": "EDUC 220 or PSYC 250 and 60 units."
+    },
+    {
+        "course_number": "325",
+        "name": "EDUC 325 D100",
+        "prerequisites": "EDUC 220."
+    },
+    {
+        "course_number": "326",
+        "name": "EDUC 326 E100",
+        "prerequisites": "One of EDUC 100, 220, 230, or 240; or EDUC 401/402, or corequisite EDUC 403."
+    },
+    {
+        "course_number": "341",
+        "name": "EDUC 341 OL01",
+        "prerequisites": "60 units including three units in EDUC courses."
+    },
+    {
+        "course_number": "352w",
+        "name": "EDUC 352W E100",
+        "prerequisites": "EDUC 252."
+    },
+    {
+        "course_number": "370",
+        "name": "EDUC 370 D100",
+        "prerequisites": "Completion of at least 60 units, including 3 units in Education."
+    },
+    {
+        "course_number": "371w",
+        "name": "EDUC 371W D100",
+        "prerequisites": "60 units; or permission of instructor."
+    },
+    {
+        "course_number": "375",
+        "name": "EDUC 375 E100",
+        "prerequisites": "EDUC 401/402 or corequisite EDUC 403."
+    },
+    {
+        "course_number": "376",
+        "name": "EDUC 376 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "382",
+        "name": "EDUC 382 F100",
+        "prerequisites": "60 units."
+    },
+    {
+        "course_number": "404",
+        "name": "EDUC 404 D001",
+        "prerequisites": "EDUC 401/402 or corequisite EDUC 403."
+    },
+    {
+        "course_number": "411",
+        "name": "EDUC 411 D100",
+        "prerequisites": "One of MATH 152, 155 or 158. Corequisite: EDUC 415 or appropriate math background and permission of instructor."
+    },
+    {
+        "course_number": "412w",
+        "name": "EDUC 412W D100",
+        "prerequisites": "EDUC 401/402 or corequisite EDUC 403."
+    },
+    {
+        "course_number": "414",
+        "name": "EDUC 414 D100",
+        "prerequisites": "EDUC 401/402 or corequisite EDUC 403."
+    },
+    {
+        "course_number": "415",
+        "name": "EDUC 415 E100",
+        "prerequisites": "One of MATH 152, 155, or 158, and either EDUC 401/402 or corequisite EDUC 403."
+    },
+    {
+        "course_number": "416",
+        "name": "EDUC 416 D100",
+        "prerequisites": "EDUC 401/402 or corequisite EDUC 403."
+    },
+    {
+        "course_number": "422",
+        "name": "EDUC 422 OL01",
+        "prerequisites": "PSYC 250 or corequisite of EDUC 315 or 473. Students may be required to successfully complete a Criminal Record Check."
+    },
+    {
+        "course_number": "423",
+        "name": "EDUC 423 D100",
+        "prerequisites": "Or corequisite: EDUC 323."
+    },
+    {
+        "course_number": "424",
+        "name": "EDUC 424 D100",
+        "prerequisites": "Prerequisite or corequisite: EDUC 422. Students must successfully complete a Criminal Record Check."
+    },
+    {
+        "course_number": "426",
+        "name": "EDUC 426 OL01",
+        "prerequisites": "Students may be required to successfully complete a Criminal Record Check. 60 units including EDUC 220 or PSYC 250, or EDUC 401/402 or Corequsite: EDUC 403."
+    },
+    {
+        "course_number": "437",
+        "name": "EDUC 437 OL01",
+        "prerequisites": "60 units including 3 units in Education."
+    },
+    {
+        "course_number": "448",
+        "name": "EDUC 448 OL01",
+        "prerequisites": "60 units including six in education courses. Teaching experience is recommended."
+    },
+    {
+        "course_number": "452",
+        "name": "EDUC 452 D100",
+        "prerequisites": "EDUC 401W/402W or Corequisite: EDUC 403. Students may be required to successfully complete a Criminal Record Check."
+    },
+    {
+        "course_number": "454",
+        "name": "EDUC 454 D100",
+        "prerequisites": "EDUC 401 and EDUC 402 or Corequisite: EDUC 403."
+    },
+    {
+        "course_number": "457",
+        "name": "EDUC 457 D100",
+        "prerequisites": "EDUC 401/402 or corequisite EDUC 403."
+    },
+    {
+        "course_number": "459",
+        "name": "EDUC 459 D100",
+        "prerequisites": "EDUC 401/402 or corequisite EDUC 403."
+    },
+    {
+        "course_number": "464",
+        "name": "EDUC 464 OL01",
+        "prerequisites": "EDUC 401/402 or PSYC 250 or corequisite EDUC 403."
+    },
+    {
+        "course_number": "465",
+        "name": "EDUC 465 OL01",
+        "prerequisites": "60 units."
+    },
+    {
+        "course_number": "466",
+        "name": "EDUC 466 OL01",
+        "prerequisites": "Corequisite: EDUC 464."
+    },
+    {
+        "course_number": "471",
+        "name": "EDUC 471 E100",
+        "prerequisites": "60 units."
+    },
+    {
+        "course_number": "472",
+        "name": "EDUC 472 D100",
+        "prerequisites": "EDUC 401/402 or corequisite EDUC 403."
+    },
+    {
+        "course_number": "473w",
+        "name": "EDUC 473W D100",
+        "prerequisites": "EDUC 401/402 or corequisite EDUC 403."
+    },
+    {
+        "course_number": "474",
+        "name": "EDUC 474 E100",
+        "prerequisites": "EDUC 401/402 or corequisite EDUC 403."
+    },
+    {
+        "course_number": "475",
+        "name": "EDUC 475 D100",
+        "prerequisites": "EDUC 401/402 or corequisite EDUC 403. Students must successfully complete an SFU criminal records check."
+    },
+    {
+        "course_number": "476",
+        "name": "EDUC 476 F100",
+        "prerequisites": "EDUC 401/402 or corequisite EDUC 403."
+    },
+    {
+        "course_number": "477",
+        "name": "EDUC 477 D100",
+        "prerequisites": "EDUC 401/402 or corequisite EDUC 403."
+    },
+    {
+        "course_number": "478",
+        "name": "EDUC 478 D100",
+        "prerequisites": "EDUC 401/402 or corequisite EDUC 403."
+    },
+    {
+        "course_number": "480",
+        "name": "EDUC 480 F100",
+        "prerequisites": "EDUC 401/402 or corequisite EDUC 403."
+    },
+    {
+        "course_number": "481",
+        "name": "EDUC 481 F100",
+        "prerequisites": "EDUC 401/402 (French Immersion) or corequisite EDUC 403."
+    },
+    {
+        "course_number": "482",
+        "name": "EDUC 482 D100",
+        "prerequisites": "60 units."
+    },
+    {
+        "course_number": "490",
+        "name": "EDUC 490 D100",
+        "prerequisites": "60 units, consent of supervising faculty member, and approval of the director of undergraduate programs."
+    },
+    {
+        "course_number": "493",
+        "name": "EDUC 493 D100",
+        "prerequisites": "60 units and a CGPA of 3.0, EDUC 452, consent of supervising faculty member, and approval of the director of undergraduate programs. Applications are available in the undergraduate programs office."
+    },
+    {
+        "course_number": "702",
+        "name": "EDUC 702 G001",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "703",
+        "name": "EDUC 703 G001",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "704",
+        "name": "EDUC 704 G001",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "705",
+        "name": "EDUC 705 G001",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "718",
+        "name": "EDUC 718 G011",
+        "prerequisites": "Acceptance into the MEd in Educational Practice program."
+    },
+    {
+        "course_number": "719",
+        "name": "EDUC 719 G031",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "811",
+        "name": "EDUC 811 G011",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "816",
+        "name": "EDUC 816 G031",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "819",
+        "name": "EDUC 819 G031",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "823",
+        "name": "EDUC 823 G031",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "844",
+        "name": "EDUC 844 G001",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "845",
+        "name": "EDUC 845 G031",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "849",
+        "name": "EDUC 849 G001",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "856",
+        "name": "EDUC 856 G031",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "857",
+        "name": "EDUC 857 G031",
+        "prerequisites": "Consent of the instructor."
+    },
+    {
+        "course_number": "864",
+        "name": "EDUC 864 G001",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "867",
+        "name": "EDUC 867 G001",
+        "prerequisites": "EDUC 866."
+    },
+    {
+        "course_number": "870",
+        "name": "EDUC 870 G031",
+        "prerequisites": "Acceptance to the MA/MEd counselling psychology program or permission of instructor. Students must successfully complete a Criminal Record Check."
+    },
+    {
+        "course_number": "871",
+        "name": "EDUC 871 G031",
+        "prerequisites": "EDUC 870."
+    },
+    {
+        "course_number": "874",
+        "name": "EDUC 874 G031",
+        "prerequisites": "EDUC 870."
+    },
+    {
+        "course_number": "877",
+        "name": "EDUC 877 G031",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "879",
+        "name": "EDUC 879 G031",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "883",
+        "name": "EDUC 883 G001",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "885",
+        "name": "EDUC 885 G001",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "886",
+        "name": "EDUC 886 G001",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "888",
+        "name": "EDUC 888 G011",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "889",
+        "name": "EDUC 889 G031",
+        "prerequisites": "EDUC 719."
+    },
+    {
+        "course_number": "891",
+        "name": "EDUC 891 G001",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "898",
+        "name": "EDUC 898 G001",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "899",
+        "name": "EDUC 899 G001",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "904",
+        "name": "EDUC 904 G001",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "910",
+        "name": "EDUC 910 G001",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "928",
+        "name": "EDUC 928 G001",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "934",
+        "name": "EDUC 934 G001",
+        "prerequisites": "EDUC 864, EDUC 890, EDUC 891, EDUC 892, EDUC 893. Corequisite: EDUC 935."
+    },
+    {
+        "course_number": "935",
+        "name": "EDUC 935 G001",
+        "prerequisites": "EDUC 864, EDUC 890, EDUC 891, EDUC 892, EDUC 893. Corequisite: EDUC 934."
+    },
+    {
+        "course_number": "983",
+        "name": "EDUC 983 G001",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "984",
+        "name": "EDUC 984 G001",
+        "prerequisites": ""
+    }
+]

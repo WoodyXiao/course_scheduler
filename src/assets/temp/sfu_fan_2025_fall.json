@@ -1,0 +1,12 @@
+[
+    {
+        "course_number": "x91",
+        "name": "FAN X91 P100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "x99",
+        "name": "FAN X99 D100",
+        "prerequisites": ""
+    }
+]

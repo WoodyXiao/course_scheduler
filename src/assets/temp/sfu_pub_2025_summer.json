@@ -1,0 +1,32 @@
+[
+    {
+        "course_number": "355w",
+        "name": "PUB 355W OL01",
+        "prerequisites": "60 units."
+    },
+    {
+        "course_number": "372",
+        "name": "PUB 372 OL01",
+        "prerequisites": "60 units."
+    },
+    {
+        "course_number": "458",
+        "name": "PUB 458 BLS1",
+        "prerequisites": "75 units."
+    },
+    {
+        "course_number": "480",
+        "name": "PUB 480 OL01",
+        "prerequisites": "75 units."
+    },
+    {
+        "course_number": "899",
+        "name": "PUB 899 G100",
+        "prerequisites": "Admittance to the program."
+    },
+    {
+        "course_number": "900",
+        "name": "PUB 900 G300",
+        "prerequisites": "PUB 899."
+    }
+]

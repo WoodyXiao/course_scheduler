@@ -1,0 +1,17 @@
+[
+    {
+        "course_number": "750",
+        "name": "LBRL 750 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "751",
+        "name": "LBRL 751 G100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "752",
+        "name": "LBRL 752 G100",
+        "prerequisites": ""
+    }
+]

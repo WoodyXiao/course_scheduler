@@ -1,0 +1,12 @@
+[
+    {
+        "course_number": "100",
+        "name": "ITAL 100 D100",
+        "prerequisites": ""
+    },
+    {
+        "course_number": "360",
+        "name": "ITAL 360 D100",
+        "prerequisites": "45 units or permission of the department."
+    }
+]
