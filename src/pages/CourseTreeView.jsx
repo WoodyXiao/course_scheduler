@@ -17,7 +17,11 @@ const CourseTreeView = () => {
   const [extraInfo, setExtraInfo] = useState([]);
   const [allCourses, setAllCourses] = useState([]);
   const [hasSearched, setHasSearched] = useState(false); // Track if user has searched
+  const [suggestions, setSuggestions] = useState([]); // Auto-suggestions
+  const [showSuggestions, setShowSuggestions] = useState(false); // Show/hide suggestions
+  const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(-1); // Keyboard navigation
   const extraInfoRef = useRef([]);
+  const suggestionsRef = useRef(null); // Ref for suggestions dropdown
 
   // 1. Load and normalize all cmpt courses, take name from subject
   useEffect(() => {
@@ -109,6 +113,23 @@ const CourseTreeView = () => {
       }
     }
   }, [courseNumber, allCourses]);
+
+  // Close suggestions when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (suggestionsRef.current && !suggestionsRef.current.contains(event.target)) {
+        setShowSuggestions(false);
+        setActiveSuggestionIndex(-1);
+      }
+    };
+
+    if (showSuggestions) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }
+  }, [showSuggestions]);
 
   // 3. Recursive.
   function parsePrerequisites(
@@ -275,10 +296,75 @@ const CourseTreeView = () => {
     } else {
       setCourseNumber(inputValue.trim().toUpperCase());
     }
+    setShowSuggestions(false); // Hide suggestions after search
   };
 
   const handleInputChange = (event) => {
-    setInputValue(event.target.value);
+    const value = event.target.value;
+    setInputValue(value);
+    
+    // Generate suggestions if input is not empty
+    if (value.trim().length > 0) {
+      const filtered = allCourses
+        .filter(course => {
+          const courseCode = `${course.subject} ${course.course_number}`.toLowerCase();
+          const searchTerm = value.toLowerCase().trim();
+          return courseCode.includes(searchTerm);
+        })
+        .slice(0, 10); // Limit to 10 suggestions
+      
+      setSuggestions(filtered);
+      setShowSuggestions(filtered.length > 0);
+      setActiveSuggestionIndex(-1);
+    } else {
+      setSuggestions([]);
+      setShowSuggestions(false);
+      setActiveSuggestionIndex(-1);
+    }
+  };
+
+  const handleSuggestionClick = (course) => {
+    const courseCode = `${course.subject} ${course.course_number}`;
+    setInputValue(courseCode);
+    setCourseNumber(courseCode);
+    setShowSuggestions(false);
+    setActiveSuggestionIndex(-1);
+  };
+
+  const handleKeyDown = (event) => {
+    if (!showSuggestions) {
+      if (event.key === 'Enter') {
+        handleSearch();
+      }
+      return;
+    }
+
+    switch (event.key) {
+      case 'ArrowDown':
+        event.preventDefault();
+        setActiveSuggestionIndex(prev => 
+          prev < suggestions.length - 1 ? prev + 1 : prev
+        );
+        break;
+      case 'ArrowUp':
+        event.preventDefault();
+        setActiveSuggestionIndex(prev => prev > 0 ? prev - 1 : -1);
+        break;
+      case 'Enter':
+        event.preventDefault();
+        if (activeSuggestionIndex >= 0 && activeSuggestionIndex < suggestions.length) {
+          handleSuggestionClick(suggestions[activeSuggestionIndex]);
+        } else {
+          handleSearch();
+        }
+        break;
+      case 'Escape':
+        setShowSuggestions(false);
+        setActiveSuggestionIndex(-1);
+        break;
+      default:
+        break;
+    }
   };
 
   return (
@@ -303,20 +389,72 @@ const CourseTreeView = () => {
         </div>
         
         <div className="flex flex-col sm:flex-row gap-3">
-          <div className="flex-1">
+          <div className="flex-1 relative" ref={suggestionsRef}>
             <input
               className="w-full px-4 py-3 text-sm sm:text-base bg-white border-2 border-gray-300 rounded-lg text-gray-700 placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all shadow-sm"
               type="text"
-              placeholder="Enter course number (e.g., 225, CMPT 225, 471W)"
+              placeholder="Enter course number (e.g., CMPT 225, CMPT 376W)"
               value={inputValue}
               onChange={handleInputChange}
-              onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
+              onKeyDown={handleKeyDown}
+              autoComplete="off"
             />
+            
+            {/* Suggestions Dropdown */}
+            {showSuggestions && suggestions.length > 0 && (
+              <div className="absolute z-50 w-full mt-1 bg-white border-2 border-blue-300 rounded-lg shadow-xl max-h-64 overflow-y-auto">
+                {suggestions.map((course, index) => {
+                  const courseCode = `${course.subject} ${course.course_number}`;
+                  const hasPrerequisites = course.prerequisites && course.prerequisites.trim().length > 0;
+                  const isActive = index === activeSuggestionIndex;
+                  
+                  return (
+                    <div
+                      key={`${course.subject}-${course.course_number}-${index}`}
+                      className={`px-4 py-3 cursor-pointer transition-colors border-b border-gray-100 last:border-b-0 ${
+                        isActive 
+                          ? 'bg-blue-100 border-l-4 border-l-blue-600' 
+                          : 'hover:bg-blue-50 border-l-4 border-l-transparent'
+                      }`}
+                      onClick={() => handleSuggestionClick(course)}
+                      onMouseEnter={() => setActiveSuggestionIndex(index)}
+                    >
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2">
+                            <p className={`text-sm sm:text-base font-semibold ${
+                              isActive ? 'text-blue-700' : 'text-gray-800'
+                            }`}>
+                              {courseCode}
+                            </p>
+                            {hasPrerequisites ? (
+                              <span className="px-2 py-0.5 text-xs font-medium bg-green-100 text-green-700 rounded-full">
+                                Has Prerequisites
+                              </span>
+                            ) : (
+                              <span className="px-2 py-0.5 text-xs font-medium bg-gray-100 text-gray-600 rounded-full">
+                                No Prerequisites
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                        {isActive && (
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-600 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                            <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                          </svg>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+            
             <p className="mt-2 text-xs sm:text-sm text-gray-600 flex items-center gap-1">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              Press Enter or click Search to view prerequisites
+              {showSuggestions ? 'Use ↑↓ to navigate, Enter to select, Esc to close' : 'Start typing to see suggestions'}
             </p>
           </div>
           <button
