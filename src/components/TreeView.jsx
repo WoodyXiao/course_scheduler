@@ -30,6 +30,10 @@ function TreeView({ data }) {
   const [nodePositions, setNodePositions] = useState({}); // Store custom positions
   const [activeDepartments, setActiveDepartments] = useState([]); // Track departments in current tree
   const zoomTransformRef = useRef(null); // Store zoom transform state
+  
+  // Plan Mode states
+  const [planMode, setPlanMode] = useState(false); // Whether in Plan mode
+  const [checkedNodes, setCheckedNodes] = useState(new Set()); // Checked node IDs
 
   useEffect(() => {
     // This effect runs when `data` prop changes.
@@ -37,7 +41,75 @@ function TreeView({ data }) {
     // Clear previous node positions and zoom when switching to a new course
     setNodePositions({});
     zoomTransformRef.current = null;
+    // Reset plan mode states when switching courses
+    setPlanMode(false);
+    setCheckedNodes(new Set());
   }, [data]);
+
+  // Calculate if a node's prerequisites are satisfied based on checked nodes
+  const isNodeSatisfied = useCallback((node) => {
+    if (!planMode) return true; // In normal mode, all nodes are satisfied
+    
+    // If this node is directly checked, it's satisfied
+    if (checkedNodes.has(node.data.uniqueId)) {
+      return true;
+    }
+    
+    // For course nodes (not logic nodes), only consider them satisfied if directly checked
+    // This prevents cascading satisfaction through prerequisite chains
+    if (!node.data.condition || (node.data.condition !== "AND" && node.data.condition !== "OR")) {
+      // This is a course node - it's only satisfied if explicitly checked
+      return false;
+    }
+    
+    // For logic nodes (AND/OR), check children
+    // Get all children (both visible and collapsed)
+    const allChildren = node.children || node._children;
+    
+    // If logic node has no children, it's not satisfied
+    if (!allChildren || allChildren.length === 0) {
+      return false;
+    }
+    
+    if (node.data.condition === "AND") {
+      // AND: All children must be satisfied
+      return allChildren.every(child => isNodeSatisfied(child));
+    } else if (node.data.condition === "OR") {
+      // OR: At least one child must be satisfied
+      return allChildren.some(child => isNodeSatisfied(child));
+    }
+    
+    return false;
+  }, [planMode, checkedNodes]);
+
+  // Check if a node's prerequisites (children) are satisfied, allowing it to be checked
+  const canCheckNode = useCallback((node) => {
+    if (!planMode) return true; // In normal mode, can always check
+    
+    // If node has no children (no prerequisites), can always check
+    if (!node.children || node.children.length === 0) {
+      // But also check _children (collapsed prerequisites)
+      if (!node._children || node._children.length === 0) {
+        return true;
+      }
+      // If has collapsed children, need to check them
+      // Treat as AND by default for course nodes
+      return node._children.every(child => isNodeSatisfied(child));
+    }
+    
+    // For logic nodes (AND/OR), this shouldn't be called as they don't have checkboxes
+    // For course nodes with visible children, check if prerequisites are met
+    if (node.data.condition === "AND") {
+      // AND: All children must be satisfied
+      return node.children.every(child => isNodeSatisfied(child));
+    } else if (node.data.condition === "OR") {
+      // OR: At least one child must be satisfied
+      return node.children.some(child => isNodeSatisfied(child));
+    }
+    
+    // For course nodes with children, treat as AND by default
+    return node.children.every(child => isNodeSatisfied(child));
+  }, [planMode, isNodeSatisfied]);
 
   const toggleChildren = useCallback((nodeData) => {
     // Find the node in the tree hierarchy
@@ -106,6 +178,36 @@ function TreeView({ data }) {
     zoomTransformRef.current = null; // Reset zoom as well
     setUpdateCounter(prev => prev + 1);
   }, []);
+
+  const togglePlanMode = useCallback(() => {
+    setPlanMode(prev => {
+      const newMode = !prev;
+      if (!newMode) {
+        // Exiting plan mode, clear checked nodes
+        setCheckedNodes(new Set());
+      }
+      return newMode;
+    });
+  }, []);
+
+  const handleCheckboxChange = useCallback((node, isChecked) => {
+    // If trying to check (not uncheck), verify prerequisites are met
+    if (isChecked && !canCheckNode(node)) {
+      // Show alert to user
+      alert(`Cannot check ${node.data.name}!\n\nPrerequisites not satisfied. Please complete the required prerequisite courses first.`);
+      return;
+    }
+    
+    setCheckedNodes(prev => {
+      const newSet = new Set(prev);
+      if (isChecked) {
+        newSet.add(node.data.uniqueId);
+      } else {
+        newSet.delete(node.data.uniqueId);
+      }
+      return newSet;
+    });
+  }, [canCheckNode]);
 
   const captureScreenshot = useCallback(() => {
     const svg = svgRef.current;
@@ -296,6 +398,10 @@ function TreeView({ data }) {
       .attr("class", "link")
       .attr("d", d3.linkVertical().x(d => d.x).y(d => d.y))
       .attr("stroke", (d) => {
+        // In plan mode, gray out unsatisfied paths
+        if (planMode && !(isNodeSatisfied(d.source) && isNodeSatisfied(d.target))) {
+          return "#D1D5DB"; // Gray for unsatisfied paths
+        }
         // Green for OR nodes (choose one), Red for everything else (required)
         if (d.source.data.condition === "OR") return "#10B981"; // Green - optional
         return "#EF4444"; // Red - required (default for AND and course nodes)
@@ -303,7 +409,13 @@ function TreeView({ data }) {
       .attr("fill", "none")
       .attr("stroke-width", "3px")
       .attr("stroke-dasharray", "5,5")
-      .attr("opacity", 0.8)
+      .attr("opacity", (d) => {
+        // Reduce opacity for unsatisfied paths in plan mode
+        if (planMode && !(isNodeSatisfied(d.source) && isNodeSatisfied(d.target))) {
+          return 0.2;
+        }
+        return 0.8;
+      })
       .style("filter", "drop-shadow(0 2px 4px rgba(0,0,0,0.1))");
 
     // Draw nodes (vertical layout)
@@ -444,9 +556,20 @@ function TreeView({ data }) {
       .attr("cy", 0)
       .attr("r", 20) // Course nodes are 20px radius (smaller)
       .style("fill", (d) => {
+        // In plan mode, check if node is satisfied
+        if (planMode && !isNodeSatisfied(d)) {
+          return "#D1D5DB"; // Gray for unsatisfied nodes
+        }
         // For course nodes, use department-specific gradient
         const dept = extractDepartment(d.data.name);
         return dept ? `url(#gradient-${dept})` : "url(#gradient-default)";
+      })
+      .style("opacity", (d) => {
+        // Reduce opacity for unsatisfied nodes in plan mode
+        if (planMode && !isNodeSatisfied(d)) {
+          return 0.4;
+        }
+        return 1;
       })
       .style("filter", "drop-shadow(0 4px 8px rgba(0,0,0,0.15))")
       .style("stroke", "#ffffff")
@@ -485,9 +608,20 @@ function TreeView({ data }) {
       .attr("rx", 3) // Rounded corners (smaller)
       .attr("ry", 3)
       .style("fill", (d) => {
+        // In plan mode, check if node is satisfied
+        if (planMode && !isNodeSatisfied(d)) {
+          return "#D1D5DB"; // Gray for unsatisfied nodes
+        }
         if (d.data.condition === "AND") return "url(#andGradient)";
         if (d.data.condition === "OR") return "url(#orGradient)";
         return "url(#gradient-default)";
+      })
+      .style("opacity", (d) => {
+        // Reduce opacity for unsatisfied nodes in plan mode
+        if (planMode && !isNodeSatisfied(d)) {
+          return 0.4;
+        }
+        return 1;
       })
       .style("filter", "drop-shadow(0 4px 8px rgba(0,0,0,0.15))")
       .style("stroke", "#ffffff")
@@ -622,7 +756,42 @@ function TreeView({ data }) {
       .style("pointer-events", "none")
       .text((d) => d.data.name);
 
-  }, [treeData, toggleChildren, highlightPath, clearHighlight, nodePositions, extractDepartment]);
+    // Add checkboxes in Plan Mode (only for course nodes, positioned on the left)
+    if (planMode) {
+      nodeContainers
+        .filter(d => d.data.condition !== "AND" && d.data.condition !== "OR")
+        .append("foreignObject")
+        .attr("x", -40) // Position to the left of the node
+        .attr("y", -10)
+        .attr("width", 20)
+        .attr("height", 20)
+        .append("xhtml:input")
+        .attr("type", "checkbox")
+        .attr("class", (d) => {
+          const canCheck = canCheckNode(d);
+          return canCheck ? "cursor-pointer" : "cursor-not-allowed";
+        })
+        .style("width", "18px")
+        .style("height", "18px")
+        .style("cursor", (d) => canCheckNode(d) ? "pointer" : "not-allowed")
+        .style("opacity", (d) => canCheckNode(d) ? "1" : "0.5")
+        .property("checked", d => checkedNodes.has(d.data.uniqueId))
+        .property("disabled", d => !canCheckNode(d) && !checkedNodes.has(d.data.uniqueId)) // Can always uncheck
+        .attr("title", (d) => {
+          if (checkedNodes.has(d.data.uniqueId)) {
+            return "Click to uncheck";
+          }
+          return canCheckNode(d) 
+            ? "Click to check as completed" 
+            : "Prerequisites not met - complete required courses first";
+        })
+        .on("change", function(event, d) {
+          event.stopPropagation();
+          handleCheckboxChange(d, event.target.checked);
+        });
+    }
+
+  }, [treeData, toggleChildren, highlightPath, clearHighlight, nodePositions, extractDepartment, planMode, checkedNodes, isNodeSatisfied, handleCheckboxChange, canCheckNode]);
 
   const setupZoom = useCallback(() => {
     const svg = d3.select(svgRef.current);
@@ -656,34 +825,75 @@ function TreeView({ data }) {
   useEffect(() => {
     drawTree();
     setupZoom();
-  }, [treeData, updateCounter, drawTree, setupZoom]);  // Update dependencies - add updateCounter
+  }, [treeData, updateCounter, planMode, checkedNodes, drawTree, setupZoom]);  // Update dependencies - add planMode and checkedNodes
 
   return (
     <div className="relative w-full">
       {/* Action Buttons */}
-      <div className="mb-3 sm:mb-4 flex justify-end gap-2 px-2 sm:px-0">
+      <div className="mb-3 sm:mb-4 flex justify-between items-center gap-2 px-2 sm:px-0">
+        {/* Plan Mode Button (Left) */}
         <button
-          onClick={captureScreenshot}
-          className="px-3 py-2 sm:px-4 text-sm sm:text-base bg-green-600 text-white rounded-lg hover:bg-green-700 active:bg-green-800 transition-colors shadow-md hover:shadow-lg flex items-center gap-2 touch-manipulation"
+          onClick={togglePlanMode}
+          className={`px-3 py-2 sm:px-4 text-sm sm:text-base rounded-lg transition-all shadow-md hover:shadow-lg flex items-center gap-2 touch-manipulation ${
+            planMode 
+              ? 'bg-purple-600 text-white hover:bg-purple-700 active:bg-purple-800' 
+              : 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:from-purple-700 hover:to-indigo-700 active:from-purple-800 active:to-indigo-800'
+          }`}
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 20 20" fill="currentColor">
-            <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
+            <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
+            <path fillRule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clipRule="evenodd" />
           </svg>
-          <span className="hidden sm:inline">Capture</span>
-          <span className="sm:hidden">📷</span>
+          <span className="hidden sm:inline">{planMode ? 'Exit Plan Mode' : 'Plan Path'}</span>
+          <span className="sm:hidden">{planMode ? '✓' : '📋'}</span>
         </button>
-        
-        <button
-          onClick={resetNodePositions}
-          className="px-3 py-2 sm:px-4 text-sm sm:text-base bg-blue-600 text-white rounded-lg hover:bg-blue-700 active:bg-blue-800 transition-colors shadow-md hover:shadow-lg flex items-center gap-2 touch-manipulation"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 20 20" fill="currentColor">
-            <path fillRule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clipRule="evenodd" />
-          </svg>
-          <span className="hidden sm:inline">Reset</span>
-          <span className="sm:hidden">🔄</span>
-        </button>
+
+        {/* Utility Buttons (Right) */}
+        <div className="flex gap-2">
+          <button
+            onClick={captureScreenshot}
+            className="px-3 py-2 sm:px-4 text-sm sm:text-base bg-green-600 text-white rounded-lg hover:bg-green-700 active:bg-green-800 transition-colors shadow-md hover:shadow-lg flex items-center gap-2 touch-manipulation"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
+            </svg>
+            <span className="hidden sm:inline">Capture</span>
+            <span className="sm:hidden">📷</span>
+          </button>
+          
+          <button
+            onClick={resetNodePositions}
+            className="px-3 py-2 sm:px-4 text-sm sm:text-base bg-blue-600 text-white rounded-lg hover:bg-blue-700 active:bg-blue-800 transition-colors shadow-md hover:shadow-lg flex items-center gap-2 touch-manipulation"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clipRule="evenodd" />
+            </svg>
+            <span className="hidden sm:inline">Reset</span>
+            <span className="sm:hidden">🔄</span>
+          </button>
+        </div>
       </div>
+
+      {/* Plan Mode Status Indicator */}
+      {planMode && (
+        <div className="mb-3 sm:mb-4 p-3 sm:p-4 bg-gradient-to-r from-purple-50 to-indigo-50 rounded-lg border-2 border-purple-300 mx-2 sm:mx-0 shadow-md">
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 sm:h-6 sm:w-6 text-purple-600" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
+              </svg>
+              <div>
+                <h4 className="text-xs sm:text-sm font-bold text-purple-800">📋 Plan Mode Active</h4>
+                <p className="text-xs text-purple-700">Check course nodes to visualize your learning path</p>
+              </div>
+            </div>
+            <div className="text-right">
+              <p className="text-lg sm:text-2xl font-bold text-purple-600">{checkedNodes.size}</p>
+              <p className="text-xs text-purple-700">Completed</p>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Tree Container */}
       <div className="bg-white rounded-lg sm:rounded-xl shadow-lg border border-gray-200 overflow-x-auto overflow-y-hidden mx-2 sm:mx-0">
@@ -727,16 +937,32 @@ function TreeView({ data }) {
             <p className="hidden sm:block"><strong>🖱️ Drag:</strong> Move course nodes (colored only)</p>
             <p className="sm:hidden"><strong>👆 Drag:</strong> Move course nodes</p>
             <p className="hidden sm:block"><strong>🔒 Note:</strong> AND/OR nodes cannot be dragged</p>
+            <p><strong>📋 Plan Mode:</strong> Visualize your learning path step-by-step</p>
           </div>
           <div className="space-y-1">
             <p className="hidden sm:block"><strong>⌨️ Shift + Scroll:</strong> Zoom in/out</p>
             <p className="sm:hidden"><strong>👉 Pinch:</strong> Zoom in/out</p>
-            <p><strong>✨ Animation:</strong> Smooth hover effects</p>
+            <p><strong>✨ Animation:</strong> Smooth hover & color transitions</p>
             <p><strong>🎨 Colors:</strong> By department (see legend below)</p>
             <p><strong>📷 Capture:</strong> Save tree as image</p>
             <p><strong>🔄 Reset:</strong> Restore layout & zoom</p>
           </div>
         </div>
+        {planMode && (
+          <div className="mt-3 pt-3 border-t border-blue-300">
+            <p className="text-xs text-purple-800 font-semibold mb-1">📋 Plan Mode Instructions:</p>
+            <ul className="text-xs text-purple-700 space-y-1 list-disc list-inside">
+              <li>Check course boxes to mark as completed</li>
+              <li><strong>⚠️ Prerequisites enforced:</strong> Can only check courses after completing their prerequisites</li>
+              <li>Watch paths light up as you progress</li>
+              <li><strong>AND nodes:</strong> All prerequisites must be checked</li>
+              <li><strong>OR nodes:</strong> At least one option must be checked</li>
+              <li>Gray nodes/lines = not yet satisfied</li>
+              <li>Colored nodes/lines = prerequisites met ✓</li>
+              <li>Dimmed checkboxes = prerequisites not met (disabled)</li>
+            </ul>
+          </div>
+        )}
       </div>
 
       {/* Legend - Department Colors & Node Types */}
