@@ -4,7 +4,7 @@ import * as d3 from "d3";
 // Define color schemes for different departments (constant)
 // Avoiding red (AND nodes) and green (OR nodes) colors
 const departmentColors = {
-  'CMPT': { from: '#0284C7', to: '#0EA5E9', name: 'Computing Science' },  // Indigo/Purple
+  'CMPT': { from: '#0284C7', to: '#0EA5E9', name: 'Computing Science' },  // Sky Blue
   'MATH': { from: '#F97316', to: '#FB923C', name: 'Mathematics' },        // Orange (unified with MACM)
   'MACM': { from: '#F97316', to: '#FB923C', name: 'Applied Math' },       // Orange (unified with MATH)
   'STAT': { from: '#0891B2', to: '#06B6D4', name: 'Statistics' },         // Cyan
@@ -17,7 +17,8 @@ const departmentColors = {
   'HIST': { from: '#92400E', to: '#B45309', name: 'History' },            // Brown
   'PHIL': { from: '#4338CA', to: '#6366F1', name: 'Philosophy' },         // Indigo
   'BUS': { from: '#DB2777', to: '#EC4899', name: 'Business' },            // Pink
-  'ENSC': { from: '#4F46E5', to: '#7C3AED', name: 'Engineering Science' }, // Sky Blue
+  'BPK': { from: '#059669', to: '#10B981', name: 'Biomedical Physiology' }, // Emerald Green
+  'ENSC': { from: '#4F46E5', to: '#7C3AED', name: 'Engineering Science' }, // Indigo/Purple
 };
 
 function TreeView({ data, allCourses, onLoadPrerequisites }) {
@@ -40,7 +41,7 @@ function TreeView({ data, allCourses, onLoadPrerequisites }) {
   useEffect(() => {
     // This effect runs when `data` prop changes.
     if (data && !data.loading) {
-      setTreeData(d3.hierarchy(data));  // Recreate the hierarchy with the new data
+    setTreeData(d3.hierarchy(data));  // Recreate the hierarchy with the new data
     } else {
       setTreeData(null);  // Clear tree data for loading or null states
     }
@@ -855,7 +856,11 @@ function TreeView({ data, allCourses, onLoadPrerequisites }) {
         const isLoading = loadingNodes.has(d.data.uniqueId);
         return (hasPrerequisites || isLoading) ? "block" : "none";
       })
-      .style("cursor", (d) => planMode ? "not-allowed" : "pointer")
+      .style("cursor", (d) => {
+        if (planMode) return "not-allowed";
+        if (loadingNodes.has(d.data.uniqueId)) return "wait";
+        return "pointer";
+      })
       .style("pointer-events", "all") // Ensure this captures events
       .on("mousedown", function(event) {
         // Prevent drag from starting on indicator
@@ -871,6 +876,12 @@ function TreeView({ data, allCourses, onLoadPrerequisites }) {
           return;
         }
         
+        // Prevent double-click while loading
+        if (loadingNodes.has(d.data.uniqueId)) {
+          console.log(`🚫 [Search] Already loading ${d.data.name}, please wait...`);
+          return;
+        }
+        
         console.log(`🔍 [Search] Search indicator clicked for ${d.data.name}`);
         console.log(`🔍 [Search] Node data:`, d.data);
         console.log(`🔍 [Search] Has prerequisites:`, d.data.hasPrerequisites);
@@ -880,6 +891,9 @@ function TreeView({ data, allCourses, onLoadPrerequisites }) {
       })
       .on("mouseover", function(event, d) {
         event.stopPropagation(); // Prevent node hover
+        
+        // Don't highlight if loading
+        if (loadingNodes.has(d.data.uniqueId)) return;
         
         // Clear any existing highlight from node
         clearHighlight();
@@ -1258,8 +1272,8 @@ function TreeView({ data, allCourses, onLoadPrerequisites }) {
   useEffect(() => {
     // Only draw tree and setup zoom if we have valid data (not loading)
     if (data && !data.loading) {
-      drawTree();
-      setupZoom();
+    drawTree();
+    setupZoom();
     }
   }, [treeData, updateCounter, planMode, checkedNodes, loadingNodes, loadedNodes, drawTree, setupZoom, data]);  // Update dependencies
 
@@ -1312,16 +1326,19 @@ function TreeView({ data, allCourses, onLoadPrerequisites }) {
             <span className="sm:hidden">📷</span>
           </button>
           
-          <button
-            onClick={resetNodePositions}
-            className="px-3 py-2 sm:px-4 text-sm sm:text-base bg-blue-600 text-white rounded-lg hover:bg-blue-700 active:bg-blue-800 transition-colors shadow-md hover:shadow-lg flex items-center gap-2 touch-manipulation"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 20 20" fill="currentColor">
-              <path fillRule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clipRule="evenodd" />
-            </svg>
-            <span className="hidden sm:inline">Reset</span>
-            <span className="sm:hidden">🔄</span>
-          </button>
+          {/* Reset button - only show when nodes have been dragged */}
+          {Object.keys(nodePositions).length > 0 && (
+            <button
+              onClick={resetNodePositions}
+              className="px-3 py-2 sm:px-4 text-sm sm:text-base bg-blue-600 text-white rounded-lg hover:bg-blue-700 active:bg-blue-800 transition-colors shadow-md hover:shadow-lg flex items-center gap-2 touch-manipulation animate-fadeIn"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clipRule="evenodd" />
+              </svg>
+              <span className="hidden sm:inline">Reset Positions</span>
+              <span className="sm:hidden">🔄</span>
+            </button>
+          )}
         </div>
       </div>
 

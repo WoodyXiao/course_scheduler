@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import TreeView from "../components/TreeView";
 import { parseWithAI, isComplexPrerequisite } from "../utils/aiParser";
 
@@ -28,24 +28,96 @@ const CourseTreeView = () => {
   const [suggestions, setSuggestions] = useState([]); // Auto-suggestions
   const [showSuggestions, setShowSuggestions] = useState(false); // Show/hide suggestions
   const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(-1); // Keyboard navigation
+  const [searchHistory, setSearchHistory] = useState([]); // Search history
+  const [showHistory, setShowHistory] = useState(false); // Show/hide history dropdown
   const extraInfoRef = useRef([]);
   const suggestionsRef = useRef(null); // Ref for suggestions dropdown
+  const historyRef = useRef(null); // Ref for history dropdown
 
-  // 1. Load and normalize all cmpt courses, take name from subject
+  // Debug: Log searchHistory changes
+  useEffect(() => {
+    console.log('🔄 [History] State updated:', searchHistory, 'Length:', searchHistory.length);
+  }, [searchHistory]);
+
+  // Load search history from localStorage on mount
+  useEffect(() => {
+    try {
+      const savedHistory = localStorage.getItem('course-search-history');
+      if (savedHistory) {
+        const parsed = JSON.parse(savedHistory);
+        console.log('📚 [History] Loaded from localStorage:', parsed);
+        
+        // Validate that it's an array of valid course codes
+        if (Array.isArray(parsed)) {
+          // Filter out invalid items (single characters, empty strings, etc.)
+          const validHistory = parsed.filter(item => {
+            return typeof item === 'string' && item.length > 1 && item.trim().length > 1;
+          });
+          
+          console.log('📚 [History] Valid items:', validHistory);
+          
+          if (validHistory.length > 0) {
+            setSearchHistory(validHistory);
+            // Update localStorage with cleaned data
+            localStorage.setItem('course-search-history', JSON.stringify(validHistory));
+          } else {
+            console.warn('⚠️ [History] No valid items, clearing...');
+            localStorage.removeItem('course-search-history');
+          }
+        } else {
+          console.error('❌ [History] Invalid format, clearing...');
+          localStorage.removeItem('course-search-history');
+        }
+      }
+    } catch (error) {
+      console.error('Failed to load search history:', error);
+      localStorage.removeItem('course-search-history');
+    }
+  }, []);
+
+  // 1. Load and normalize all courses from multiple departments
   useEffect(() => {
     Promise.all([
+      // CMPT courses
       import("../assets/sfu_courses_2025/cmpt/sfu_cmpt_2025_spring.json"),
       import("../assets/sfu_courses_2025/cmpt/sfu_cmpt_2025_summer.json"),
       import("../assets/sfu_courses_2025/cmpt/sfu_cmpt_2025_fall.json"),
-      // import("../assets/sfu_courses_2025/math/sfu_math_2025_fall.json"),
+      // MATH courses
+      import("../assets/sfu_courses_2025/math/sfu_math_2025_fall.json"),
+      // BPK courses
+      import("../assets/sfu_courses_2025/bpk/sfu_bpk_2025_summer.json"),
+      import("../assets/sfu_courses_2025/bpk/sfu_bpk_2025_fall.json"),
+      // BUS courses
+      import("../assets/sfu_courses_2025/bus/sfu_bus_2025_summer.json"),
+      import("../assets/sfu_courses_2025/bus/sfu_bus_2025_fall.json"),
+      // ENSC courses
+      import("../assets/sfu_courses_2025/ensc/sfu_ensc_2025_summer.json"),
+      import("../assets/sfu_courses_2025/ensc/sfu_ensc_2025_fall.json"),
     ])
-      .then(([spring, summer, fall, math]) => {
-        // 合并所有term
+      .then(([
+        cmptSpring, cmptSummer, cmptFall,
+        mathFall,
+        bpkSummer, bpkFall,
+        busSummer, busFall,
+        enscSummer, enscFall
+      ]) => {
+        // 合并所有专业和学期
         const merged = [
-          ...(spring.default || []),
-          ...(summer.default || []),
-          ...(fall.default || []),
-          // ...(math.default || []),
+          // CMPT
+          ...(cmptSpring.default || []),
+          ...(cmptSummer.default || []),
+          ...(cmptFall.default || []),
+          // MATH
+          ...(mathFall.default || []),
+          // BPK
+          ...(bpkSummer.default || []),
+          ...(bpkFall.default || []),
+          // BUS
+          ...(busSummer.default || []),
+          ...(busFall.default || []),
+          // ENSC
+          ...(enscSummer.default || []),
+          ...(enscFall.default || []),
         ];
 
         // 标准化，自动抽subject
@@ -116,8 +188,8 @@ const CourseTreeView = () => {
           allCourses,
           `${course.subject} ${course.course_number}`
         ).then((parsedData) => {
-          setCourseData(parsedData);
-          setExtraInfo([...extraInfoRef.current]);
+        setCourseData(parsedData);
+        setExtraInfo([...extraInfoRef.current]);
         }).catch((error) => {
           console.error('AI parsing failed:', error);
           setCourseData(null);
@@ -148,13 +220,58 @@ const CourseTreeView = () => {
     }
   }, [showSuggestions]);
 
-  // Simple cache for AI parsing results
+  // Close history dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (historyRef.current && !historyRef.current.contains(event.target)) {
+        setShowHistory(false);
+      }
+    };
+
+    if (showHistory) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }
+  }, [showHistory]);
+
+  // Simple cache for AI parsing results (in-memory)
   const aiCache = useRef(new Map());
+  
+  // LocalStorage key for persistent cache
+  const CACHE_STORAGE_KEY = 'course-prerequisite-cache';
+  
+  // Load cache from localStorage on mount
+  useEffect(() => {
+    try {
+      const savedCache = localStorage.getItem(CACHE_STORAGE_KEY);
+      if (savedCache) {
+        const parsed = JSON.parse(savedCache);
+        console.log('💾 [Cache] Loaded from localStorage:', Object.keys(parsed).length, 'items');
+        
+        // Convert object back to Map
+        Object.entries(parsed).forEach(([key, value]) => {
+          aiCache.current.set(key, value);
+        });
+        
+        console.log('💾 [Cache] Cache initialized with', aiCache.current.size, 'items');
+      }
+    } catch (error) {
+      console.error('Failed to load cache from localStorage:', error);
+      localStorage.removeItem(CACHE_STORAGE_KEY);
+    }
+  }, []);
   
   // Cache management functions
   const clearCache = () => {
     aiCache.current.clear();
-    console.log('💾 [Cache] Cache cleared');
+    try {
+      localStorage.removeItem(CACHE_STORAGE_KEY);
+      console.log('💾 [Cache] Cache cleared (memory + localStorage)');
+    } catch (error) {
+      console.error('Failed to clear cache from localStorage:', error);
+    }
   };
   
   const getCacheInfo = () => {
@@ -162,6 +279,111 @@ const CourseTreeView = () => {
     const cacheKeys = Array.from(aiCache.current.keys());
     return { size: cacheSize, keys: cacheKeys };
   };
+  
+  // Save cache entry to localStorage
+  const saveCacheToStorage = (key, value) => {
+    try {
+      // Get current cache from localStorage
+      const savedCache = localStorage.getItem(CACHE_STORAGE_KEY);
+      const cacheObj = savedCache ? JSON.parse(savedCache) : {};
+      
+      // Add new entry
+      cacheObj[key] = value;
+      
+      // Save back to localStorage
+      localStorage.setItem(CACHE_STORAGE_KEY, JSON.stringify(cacheObj));
+      console.log('💾 [Cache] Saved to localStorage:', key);
+    } catch (error) {
+      console.error('Failed to save cache to localStorage:', error);
+      // If quota exceeded, try to clear old entries
+      if (error.name === 'QuotaExceededError') {
+        console.warn('⚠️ [Cache] LocalStorage quota exceeded, cache will be memory-only');
+      }
+    }
+  };
+  
+  // Clear current TreeView (but keep cache)
+  const clearTreeView = () => {
+    setCourseData(null);
+    setInputValue("");
+    setCourseNumber("");
+    setExtraInfo([]);
+    setHasSearched(false);
+    setSuggestions([]);
+    setShowSuggestions(false);
+    console.log('🗑️ [TreeView] TreeView cleared (cache preserved)');
+  };
+
+  // Add course to search history
+  const addToHistory = useCallback((courseCode) => {
+    console.log('📚 [History] addToHistory function called with:', courseCode, 'Type:', typeof courseCode);
+    
+    if (!courseCode || typeof courseCode !== 'string') {
+      console.error('❌ [History] Invalid course code:', courseCode);
+      return;
+    }
+    
+    const cleanCode = courseCode.trim();
+    console.log('📚 [History] Clean code:', cleanCode, 'Length:', cleanCode.length);
+    
+    if (!cleanCode) {
+      console.log('⚠️ [History] Empty after trim, returning');
+      return;
+    }
+    
+    console.log('📚 [History] Proceeding to add:', cleanCode);
+    
+    // Use functional update to avoid stale closure
+    setSearchHistory(prevHistory => {
+      const newHistory = [
+        cleanCode,
+        ...prevHistory.filter(item => item !== cleanCode) // Remove duplicates
+      ].slice(0, 10); // Keep only last 10 searches
+
+      console.log('📚 [History] New history array:', newHistory);
+      
+      // Save to localStorage
+      try {
+        const jsonString = JSON.stringify(newHistory);
+        console.log('💾 [History] Saving to localStorage:', jsonString);
+        localStorage.setItem('course-search-history', jsonString);
+      } catch (error) {
+        console.error('Failed to save search history:', error);
+      }
+      
+      return newHistory;
+    });
+  }, []);
+
+  // Clear search history
+  const clearHistory = () => {
+    setSearchHistory([]);
+    try {
+      localStorage.removeItem('course-search-history');
+      console.log('🗑️ [History] Search history cleared');
+    } catch (error) {
+      console.error('Failed to clear search history:', error);
+    }
+  };
+
+  // Load course from history
+  const loadFromHistory = (courseCode) => {
+    setInputValue(courseCode);
+    setCourseNumber(courseCode);
+    setShowHistory(false);
+  };
+
+  // Wrapper for parsePrerequisitesWithAI that also adds to history
+  const parsePrerequisitesWithHistory = useCallback(async (prerequisites, allCourses, courseFullName) => {
+    // Add to search history when expanding nodes
+    if (courseFullName && courseFullName.trim()) {
+      console.log('📚 [History] Adding expanded course to history:', courseFullName);
+      addToHistory(courseFullName);
+    }
+    
+    // Call the original parsing function
+    return await parsePrerequisitesWithAI(prerequisites, allCourses, courseFullName);
+  }, [addToHistory]);
 
   // 2.5. AI-Enhanced Parsing (按需加载，不递归)
   // 只解析当前课程，不递归解析前置课程
@@ -175,16 +397,36 @@ const CourseTreeView = () => {
     const shouldUseAI = ENABLE_AI_FALLBACK && isComplexPrerequisite(prerequisites);
     
     if (shouldUseAI) {
-      // Check cache first
+      // Check cache first (memory → localStorage → AI)
       const cacheKey = `${courseFullName}:${prerequisites}`;
-      const cachedResult = aiCache.current.get(cacheKey);
+      let cachedResult = aiCache.current.get(cacheKey);
+      let cacheSource = 'memory';
+      
+      // If not in memory, try localStorage
+      if (!cachedResult) {
+        try {
+          const savedCache = localStorage.getItem(CACHE_STORAGE_KEY);
+          if (savedCache) {
+            const cacheObj = JSON.parse(savedCache);
+            if (cacheObj[cacheKey]) {
+              cachedResult = cacheObj[cacheKey];
+              cacheSource = 'localStorage';
+              // Load into memory cache for faster future access
+              aiCache.current.set(cacheKey, cachedResult);
+              console.log(`💾 [Cache] Loaded from localStorage and cached in memory: ${courseFullName}`);
+            }
+          }
+        } catch (error) {
+          console.error('Failed to load from localStorage cache:', error);
+        }
+      }
       
       if (cachedResult) {
-        console.log(`💾 [Cache] Found cached result for ${courseFullName}`);
+        console.log(`💾 [Cache] Cache hit for ${courseFullName} (source: ${cacheSource})`);
         if (courseFullName) {
-          extraInfoRef.current.push(`💾 ${courseFullName} loaded from cache`);
+          extraInfoRef.current.push(`💾 ${courseFullName} loaded from ${cacheSource}`);
         } else {
-          extraInfoRef.current.push('💾 Loaded from cache');
+          extraInfoRef.current.push(`💾 Loaded from ${cacheSource}`);
         }
         
         // 不递归！只标记哪些节点有前置课程（留待用户点击时加载）
@@ -196,7 +438,7 @@ const CourseTreeView = () => {
           condition: "",
           children: [markedResult],
           metadata: {
-            source: 'ai-cache',
+            source: `ai-cache-${cacheSource}`,
             originalText: prerequisites
           }
         };
@@ -215,10 +457,11 @@ const CourseTreeView = () => {
             extraInfoRef.current.push('🤖 Parsed with AI (Gemini) for better accuracy');
           }
           
-          // Store result in cache
+          // Store result in cache (memory + localStorage)
           const cacheKey = `${courseFullName}:${prerequisites}`;
           aiCache.current.set(cacheKey, aiResult);
-          console.log(`💾 [Cache] Stored result for ${courseFullName}`);
+          saveCacheToStorage(cacheKey, aiResult);
+          console.log(`💾 [Cache] Stored result for ${courseFullName} (memory + localStorage)`);
           
           // 不递归！只标记哪些节点有前置课程（留待用户点击时加载）
           const markedResult = markNodesWithPrerequisites(aiResult, allCourses);
@@ -239,12 +482,20 @@ const CourseTreeView = () => {
         }
       } catch (error) {
         console.error(`❌ [AI] Error:`, error);
-        extraInfoRef.current.push('⚠️ AI parsing error, using local parser');
+        // Check if it's a quota error
+        if (error.message && error.message.includes('429')) {
+          extraInfoRef.current.push('⚠️ AI quota exceeded, using local parser (will retry after cooldown)');
+        } else {
+          extraInfoRef.current.push('⚠️ AI parsing error, using local parser');
+        }
       }
     }
     
     // Fallback to local parsing (original logic - 也改为不递归)
     console.log(`💻 [Local] Using local parser for ${courseFullName} (non-recursive)`);
+    if (courseFullName) {
+      extraInfoRef.current.push(`💻 ${courseFullName} parsed with local parser`);
+    }
     return parsePrerequisitesNonRecursive(prerequisites, allCourses, courseFullName);
   }
   
@@ -414,24 +665,24 @@ const CourseTreeView = () => {
             "| [key]=",
             key
           );
-          
-          const matched = allCourses.filter(
-            (c) =>
-              (c.subject || "") === dept && (c.course_number || "") === num
-          );
-          console.log(
-            "Search course key:",
-            key,
-            "result:",
-            matched.length,
-            matched
-          );
 
-          const found = matched[0];
-          let childNode = { name: key, condition: "", children: [] };
+            const matched = allCourses.filter(
+              (c) =>
+                (c.subject || "") === dept && (c.course_number || "") === num
+            );
+            console.log(
+            "Search course key:",
+              key,
+              "result:",
+              matched.length,
+              matched
+            );
+
+            const found = matched[0];
+            let childNode = { name: key, condition: "", children: [] };
           
           // 标记节点是否有前置课程（用于按需加载）
-          if (found && found.prerequisites && found.prerequisites.trim()) {
+            if (found && found.prerequisites && found.prerequisites.trim()) {
             childNode.hasPrerequisites = true;
             childNode.prerequisiteText = found.prerequisites;
           }
@@ -486,12 +737,31 @@ const CourseTreeView = () => {
 
   // 搜索框：自动兼容格式
   const handleSearch = () => {
-    const [subject, num] = parseCourseKey(inputValue.trim());
-    if (subject && num) {
-      setCourseNumber(`${subject} ${num}`);
-    } else {
-      setCourseNumber(inputValue.trim().toUpperCase());
+    const trimmedInput = inputValue.trim();
+    console.log('🔍 [Search] handleSearch called, input:', trimmedInput);
+    
+    if (!trimmedInput) {
+      console.log('⚠️ [Search] Empty input, aborting');
+      return;
     }
+    
+    const [subject, num] = parseCourseKey(trimmedInput);
+    const searchQuery = subject && num ? `${subject} ${num}` : trimmedInput.toUpperCase();
+    
+    console.log('🔍 [Search] Parsed - Subject:', subject, 'Num:', num, 'Query:', searchQuery);
+    console.log('🔍 [Search] About to call addToHistory with:', searchQuery);
+    console.log('🔍 [Search] addToHistory function exists:', typeof addToHistory);
+    
+    setCourseNumber(searchQuery);
+    
+    // Call addToHistory and log it
+    try {
+      addToHistory(searchQuery);
+      console.log('✅ [Search] addToHistory called successfully');
+    } catch (error) {
+      console.error('❌ [Search] Error calling addToHistory:', error);
+    }
+    
     setShowSuggestions(false); // Hide suggestions after search
   };
 
@@ -521,19 +791,30 @@ const CourseTreeView = () => {
 
   const handleSuggestionClick = (course) => {
     const courseCode = `${course.subject} ${course.course_number}`;
+    console.log('💡 [Suggestion] Suggestion clicked:', courseCode);
+    
     setInputValue(courseCode);
     setCourseNumber(courseCode);
+    addToHistory(courseCode); // Add to search history
     setShowSuggestions(false);
     setActiveSuggestionIndex(-1);
+    
+    console.log('💡 [Suggestion] Added to history:', courseCode);
   };
 
   const handleKeyDown = (event) => {
+    console.log('⌨️ [Keyboard] Key pressed:', event.key, 'showSuggestions:', showSuggestions);
+    
     if (!showSuggestions) {
       if (event.key === 'Enter') {
+        console.log('⌨️ [Keyboard] Enter pressed without suggestions, calling handleSearch');
+        event.preventDefault(); // 防止表单提交
         handleSearch();
       }
       return;
     }
+
+    console.log('⌨️ [Keyboard] Suggestions visible, active index:', activeSuggestionIndex);
 
     switch (event.key) {
       case 'ArrowDown':
@@ -548,9 +829,12 @@ const CourseTreeView = () => {
         break;
       case 'Enter':
         event.preventDefault();
+        console.log('⌨️ [Keyboard] Enter pressed with suggestions');
         if (activeSuggestionIndex >= 0 && activeSuggestionIndex < suggestions.length) {
+          console.log('⌨️ [Keyboard] Selecting suggestion at index:', activeSuggestionIndex);
           handleSuggestionClick(suggestions[activeSuggestionIndex]);
         } else {
+          console.log('⌨️ [Keyboard] No active suggestion, calling handleSearch');
           handleSearch();
         }
         break;
@@ -573,6 +857,9 @@ const CourseTreeView = () => {
         <p className="text-sm sm:text-base text-gray-600">
           Visualize course prerequisites in an interactive tree structure
         </p>
+        <p className="text-xs sm:text-sm text-gray-500 mt-1">
+          Supports: <span className="font-semibold text-blue-600">CMPT</span>, <span className="font-semibold text-purple-600">MATH</span>, <span className="font-semibold text-green-600">BPK</span>, <span className="font-semibold text-red-600">BUS</span>, <span className="font-semibold text-orange-600">ENSC</span>
+        </p>
       </div>
 
       {/* Search Section */}
@@ -586,12 +873,12 @@ const CourseTreeView = () => {
         
         <div className="flex flex-col sm:flex-row gap-3">
           <div className="flex-1 relative" ref={suggestionsRef}>
-            <input
+          <input
               className="w-full px-4 py-3 text-sm sm:text-base bg-white border-2 border-gray-300 rounded-lg text-gray-700 placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all shadow-sm"
-              type="text"
-              placeholder="Enter course number (e.g., CMPT 225, CMPT 376W)"
-              value={inputValue}
-              onChange={handleInputChange}
+            type="text"
+              placeholder="Enter course number (e.g., CMPT 225, BUS 201, BPK 201)"
+            value={inputValue}
+            onChange={handleInputChange}
               onKeyDown={handleKeyDown}
               autoComplete="off"
             />
@@ -653,7 +940,7 @@ const CourseTreeView = () => {
               {showSuggestions ? 'Use ↑↓ to navigate, Enter to select, Esc to close' : 'Start typing to see suggestions'}
             </p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-2 relative">
             <button
               onClick={handleSearch}
               className="px-6 h-[52px] bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2 active:scale-95 touch-manipulation whitespace-nowrap"
@@ -663,6 +950,73 @@ const CourseTreeView = () => {
               </svg>
               <span>Search</span>
             </button>
+            
+            {/* History button */}
+            <div className="relative" ref={historyRef}>
+              <button
+                onClick={() => {
+                  console.log('🖱️ [History] Button clicked, current history:', searchHistory);
+                  setShowHistory(!showHistory);
+                }}
+                className={`px-4 h-[52px] ${searchHistory.length > 0 ? 'bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800' : 'bg-gray-400 cursor-not-allowed'} text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2 active:scale-95 touch-manipulation relative`}
+                title={`Search History (${searchHistory.length} items)`}
+                disabled={searchHistory.length === 0}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span className="hidden sm:inline">History</span>
+                {searchHistory.length > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                    {searchHistory.length}
+                  </span>
+                )}
+              </button>
+              
+              {/* History Dropdown */}
+              {showHistory && searchHistory.length > 0 && (
+                <div className="absolute right-0 mt-2 w-64 sm:w-80 bg-white rounded-lg shadow-xl border border-gray-200 z-50 max-h-96 overflow-y-auto animate-fadeIn">
+                  <div className="p-3 border-b border-gray-200 flex items-center justify-between">
+                    <h3 className="font-semibold text-gray-800 text-sm">Search History</h3>
+                    <button
+                      onClick={clearHistory}
+                      className="text-xs text-red-600 hover:text-red-700 font-medium"
+                    >
+                      Clear All
+                    </button>
+                  </div>
+                  <div className="py-1">
+                    {searchHistory.filter(item => typeof item === 'string' && item.length > 0).map((item, index) => (
+                      <button
+                        key={index}
+                        onClick={() => loadFromHistory(item)}
+                        className="w-full px-4 py-2.5 text-left hover:bg-blue-50 transition-colors flex items-center justify-between group"
+                      >
+                        <span className="font-medium text-gray-700 group-hover:text-blue-600">{String(item)}</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-gray-400 group-hover:text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+            
+            {/* Clear TreeView button - only show when there's a tree displayed */}
+            {courseData && (
+              <button
+                onClick={clearTreeView}
+                className="px-4 h-[52px] bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2 active:scale-95 touch-manipulation animate-fadeIn"
+                title="Clear current tree view"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+                <span className="hidden sm:inline">Clear</span>
+                <span className="sm:hidden">✕</span>
+              </button>
+            )}
             
             <button
               onClick={clearCache}
@@ -684,7 +1038,7 @@ const CourseTreeView = () => {
         <TreeView 
           data={courseData} 
           allCourses={allCourses}
-          onLoadPrerequisites={parsePrerequisitesWithAI}
+          onLoadPrerequisites={parsePrerequisitesWithHistory}
         />
       ) : hasSearched ? (
         // No results found after search
