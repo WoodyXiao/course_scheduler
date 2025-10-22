@@ -31,6 +31,7 @@ function TreeView({ data, allCourses, onLoadPrerequisites }) {
   const [nodePositions, setNodePositions] = useState({}); // Store custom positions
   const [activeDepartments, setActiveDepartments] = useState([]); // Track departments in current tree
   const [treeDepth, setTreeDepth] = useState(0); // Track maximum depth of the tree
+  const nodesByNameRef = useRef(new Map()); // Pre-computed index: courseName -> [node1, node2, ...]
   const zoomTransformRef = useRef(null); // Store zoom transform state
   const [loadingNodes, setLoadingNodes] = useState(new Set()); // Track which nodes are loading prerequisites
   const [loadedNodes, setLoadedNodes] = useState(new Set()); // Track which nodes have already loaded
@@ -67,30 +68,13 @@ function TreeView({ data, allCourses, onLoadPrerequisites }) {
   }, []);
 
   // Calculate if a node's prerequisites are satisfied based on checked nodes
-  // Find all nodes with the same course name (for Plan Mode highlighting)
+  // Find all nodes with the same course name (using pre-computed index for performance)
   const findNodesWithSameName = useCallback((courseName) => {
-    if (!treeData || !courseName) return [];
+    if (!courseName) return [];
     
-    const matchingNodes = [];
-    const traverse = (node) => {
-      // Only match course nodes (not AND/OR nodes), and ignore unit requirements
-      if (node.data.name === courseName && 
-          !node.data.condition && 
-          !isUnitRequirement(node.data.name)) {
-        matchingNodes.push(node);
-      }
-      
-      if (node.children) {
-        node.children.forEach(child => traverse(child));
-      }
-      if (node._children) {
-        node._children.forEach(child => traverse(child));
-      }
-    };
-    
-    traverse(treeData);
-    return matchingNodes;
-  }, [treeData, isUnitRequirement]);
+    // Use pre-computed index for O(1) lookup instead of O(n) traversal
+    return nodesByNameRef.current.get(courseName) || [];
+  }, []);
 
   const isNodeSatisfied = useCallback((node) => {
     if (!planMode) return true; // In normal mode, all nodes are satisfied
@@ -577,6 +561,18 @@ function TreeView({ data, allCourses, onLoadPrerequisites }) {
     
     console.log(`📏 [TreeView] Tree stats - Depth: ${maxDepth}, Max children: ${maxChildren}, Node size: ${nodeSize.course}px`);
     
+    // Build index of nodes by course name for O(1) lookup (performance optimization)
+    nodesByNameRef.current.clear();
+    treeData.descendants().forEach(node => {
+      // Only index course nodes (not AND/OR nodes), and ignore unit requirements
+      if (node.data.name && !node.data.condition && !isUnitRequirement(node.data.name)) {
+        const existing = nodesByNameRef.current.get(node.data.name) || [];
+        existing.push(node);
+        nodesByNameRef.current.set(node.data.name, existing);
+      }
+    });
+    console.log(`🗂️ [TreeView] Indexed ${nodesByNameRef.current.size} unique course names`);
+    
     // Helper function to calculate individual node size based on local context
     const getNodeSize = (d) => {
       const childrenCount = (d.children || d._children || []).length;
@@ -914,16 +910,17 @@ function TreeView({ data, allCourses, onLoadPrerequisites }) {
         // Highlight all nodes with the same course name (in all modes now)
         if (d.data.name && !d.data.condition && !isUnitRequirement(d.data.name)) {
           const sameNameNodes = findNodesWithSameName(d.data.name);
+          
+          // Batch DOM updates for better performance
+          const circles = g.selectAll(".node-circle");
+          
           sameNameNodes.forEach(node => {
             const individualSize = getNodeSize(node);
-            // Find the circle element for this node
-            g.selectAll(".node-circle")
-              .filter(circleData => circleData.data.uniqueId === node.data.uniqueId)
+            // Use data-based filter (more efficient than iterating all circles)
+            circles.filter(circleData => circleData.data.uniqueId === node.data.uniqueId)
               .style("filter", "drop-shadow(0 8px 16px rgba(0,0,0,0.3)) drop-shadow(0 0 12px rgba(59, 130, 246, 0.6))")
               .style("stroke-width", "4px")
-              .transition()
-              .duration(200)
-              .attr("r", individualSize.courseHover);
+              .attr("r", individualSize.courseHover); // Remove transition for instant feedback
           });
         } else {
           // Fallback for non-course nodes
@@ -931,9 +928,7 @@ function TreeView({ data, allCourses, onLoadPrerequisites }) {
           d3.select(this)
             .style("filter", "drop-shadow(0 8px 16px rgba(0,0,0,0.3))")
             .style("stroke-width", "4px")
-            .transition()
-            .duration(200)
-            .attr("r", individualSize.courseHover);
+            .attr("r", individualSize.courseHover); // Remove transition for instant feedback
         }
       })
       .on("mouseout", function(event, d) {
@@ -943,15 +938,16 @@ function TreeView({ data, allCourses, onLoadPrerequisites }) {
         // Reset all nodes with the same course name (in all modes now)
         if (d.data.name && !d.data.condition && !isUnitRequirement(d.data.name)) {
           const sameNameNodes = findNodesWithSameName(d.data.name);
+          
+          // Batch DOM updates for better performance
+          const circles = g.selectAll(".node-circle");
+          
           sameNameNodes.forEach(node => {
             const individualSize = getNodeSize(node);
-            g.selectAll(".node-circle")
-              .filter(circleData => circleData.data.uniqueId === node.data.uniqueId)
+            circles.filter(circleData => circleData.data.uniqueId === node.data.uniqueId)
               .style("filter", "drop-shadow(0 4px 8px rgba(0,0,0,0.15))")
               .style("stroke-width", "2px")
-              .transition()
-              .duration(200)
-              .attr("r", individualSize.course);
+              .attr("r", individualSize.course); // Remove transition for instant feedback
           });
         } else {
           // Fallback for non-course nodes
@@ -959,9 +955,7 @@ function TreeView({ data, allCourses, onLoadPrerequisites }) {
           d3.select(this)
             .style("filter", "drop-shadow(0 4px 8px rgba(0,0,0,0.15))")
             .style("stroke-width", "2px")
-            .transition()
-            .duration(200)
-            .attr("r", individualSize.course);
+            .attr("r", individualSize.course); // Remove transition for instant feedback
         }
       });
 
