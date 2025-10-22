@@ -30,6 +30,9 @@ const CourseTreeView = () => {
   const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(-1); // Keyboard navigation
   const [searchHistory, setSearchHistory] = useState([]); // Search history
   const [showHistory, setShowHistory] = useState(false); // Show/hide history dropdown
+  const [showCachePanel, setShowCachePanel] = useState(false); // Show/hide cache management panel
+  const [showStoragePanel, setShowStoragePanel] = useState(false); // Show/hide localStorage panel
+  const [showDevTools, setShowDevTools] = useState(false); // Show/hide entire developer tools panel
   const extraInfoRef = useRef([]);
   const suggestionsRef = useRef(null); // Ref for suggestions dropdown
   const historyRef = useRef(null); // Ref for history dropdown
@@ -264,6 +267,24 @@ const CourseTreeView = () => {
   }, []);
   
   // Cache management functions
+  const removeCacheItem = (cacheKey) => {
+    // Remove from memory
+    aiCache.current.delete(cacheKey);
+    
+    // Remove from localStorage
+    try {
+      const savedCache = localStorage.getItem(CACHE_STORAGE_KEY);
+      if (savedCache) {
+        const cacheObj = JSON.parse(savedCache);
+        delete cacheObj[cacheKey];
+        localStorage.setItem(CACHE_STORAGE_KEY, JSON.stringify(cacheObj));
+      }
+      console.log('🗑️ [Cache] Removed cache item:', cacheKey);
+    } catch (error) {
+      console.error('Failed to remove cache item:', error);
+    }
+  };
+
   const clearCache = () => {
     aiCache.current.clear();
     try {
@@ -351,6 +372,20 @@ const CourseTreeView = () => {
         console.error('Failed to save search history:', error);
       }
       
+      return newHistory;
+    });
+  }, []);
+
+  // Remove single item from search history
+  const removeFromHistory = useCallback((courseCode) => {
+    setSearchHistory(prevHistory => {
+      const newHistory = prevHistory.filter(item => item !== courseCode);
+      try {
+        localStorage.setItem('course-search-history', JSON.stringify(newHistory));
+        console.log('🗑️ [History] Removed from history:', courseCode);
+      } catch (error) {
+        console.error('Failed to update history:', error);
+      }
       return newHistory;
     });
   }, []);
@@ -987,16 +1022,32 @@ const CourseTreeView = () => {
                   </div>
                   <div className="py-1">
                     {searchHistory.filter(item => typeof item === 'string' && item.length > 0).map((item, index) => (
-                      <button
+                      <div
                         key={index}
-                        onClick={() => loadFromHistory(item)}
-                        className="w-full px-4 py-2.5 text-left hover:bg-blue-50 transition-colors flex items-center justify-between group"
+                        className="w-full px-4 py-2.5 hover:bg-blue-50 transition-colors flex items-center justify-between group"
                       >
-                        <span className="font-medium text-gray-700 group-hover:text-blue-600">{String(item)}</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-gray-400 group-hover:text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
-                      </button>
+                        <button
+                          onClick={() => loadFromHistory(item)}
+                          className="flex-1 text-left flex items-center justify-between"
+                        >
+                          <span className="font-medium text-gray-700 group-hover:text-blue-600">{String(item)}</span>
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-gray-400 group-hover:text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </button>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            removeFromHistory(item);
+                          }}
+                          className="ml-2 p-1 text-red-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors"
+                          title="Remove from history"
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                          </svg>
+                        </button>
+                      </div>
                     ))}
                   </div>
                 </div>
@@ -1017,18 +1068,6 @@ const CourseTreeView = () => {
                 <span className="sm:hidden">✕</span>
               </button>
             )}
-            
-            <button
-              onClick={clearCache}
-              className="px-4 h-[52px] bg-gradient-to-r from-gray-500 to-gray-600 hover:from-gray-600 hover:to-gray-700 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2 active:scale-95 touch-manipulation"
-              title={`Clear AI Cache (${getCacheInfo().size} items)`}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-              </svg>
-              <span className="hidden sm:inline">Clear Cache</span>
-              <span className="sm:hidden">🗑️</span>
-            </button>
           </div>
         </div>
       </div>
@@ -1084,6 +1123,164 @@ const CourseTreeView = () => {
               </li>
             ))}
           </ul>
+        </div>
+      )}
+
+      {/* Developer Tools Toggle Button */}
+      <div className="mt-6 sm:mt-8 flex justify-center">
+        <button
+          onClick={() => setShowDevTools(!showDevTools)}
+          className="px-4 py-2 bg-gradient-to-r from-slate-100 to-gray-100 hover:from-slate-200 hover:to-gray-200 text-gray-700 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 flex items-center gap-2 text-sm border border-gray-300"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+          <span className="font-medium">{showDevTools ? 'Hide' : 'Show'} Advanced Settings</span>
+          <span className="text-xs bg-white px-2 py-0.5 rounded shadow-sm border border-gray-200">
+            Cache: {getCacheInfo().size} | History: {searchHistory.length}
+          </span>
+          <svg xmlns="http://www.w3.org/2000/svg" className={`h-4 w-4 text-gray-500 transition-transform ${showDevTools ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+      </div>
+
+      {/* Developer Tools Panel - Collapsible */}
+      {showDevTools && (
+        <div className="mt-4 p-4 sm:p-6 bg-gradient-to-br from-slate-50 to-gray-100 rounded-xl shadow-md border border-gray-300 animate-fadeIn">
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          {/* AI Cache Panel */}
+          <div className="bg-white rounded-lg p-4 border-2 border-blue-200 shadow-sm">
+            <div className="flex items-center justify-between mb-3">
+              <button
+                onClick={() => setShowCachePanel(!showCachePanel)}
+                className="flex items-center gap-2 text-blue-600 hover:text-blue-700 font-semibold text-sm"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" />
+                </svg>
+                <span>AI Cache ({getCacheInfo().size})</span>
+                <svg xmlns="http://www.w3.org/2000/svg" className={`h-4 w-4 transition-transform ${showCachePanel ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <button
+                onClick={clearCache}
+                className="text-xs px-3 py-1 bg-red-500 hover:bg-red-600 text-white rounded-md font-medium shadow-sm"
+              >
+                Clear All
+              </button>
+            </div>
+            
+            {showCachePanel && (
+              <div className="max-h-64 overflow-y-auto bg-gray-50 rounded-lg p-2 border border-gray-200">
+                {getCacheInfo().keys.length > 0 ? (
+                  <div className="space-y-1">
+                    {getCacheInfo().keys.map((key, index) => (
+                      <div key={index} className="flex items-center justify-between p-2 hover:bg-blue-50 rounded group bg-white border border-gray-200">
+                        <span className="text-gray-700 truncate flex-1 text-xs font-mono">{key}</span>
+                        <button
+                          onClick={() => {
+                            removeCacheItem(key);
+                            setShowCachePanel(false);
+                            setTimeout(() => setShowCachePanel(true), 50);
+                          }}
+                          className="ml-2 text-red-500 hover:text-red-600 opacity-0 group-hover:opacity-100 transition-opacity p-1 hover:bg-red-50 rounded"
+                          title="Remove this cache entry"
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                          </svg>
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="text-gray-500 text-center py-4 text-sm">No cache entries</p>
+                )}
+              </div>
+            )}
+          </div>
+
+          {/* LocalStorage Panel */}
+          <div className="bg-white rounded-lg p-4 border-2 border-purple-200 shadow-sm">
+            <div className="flex items-center justify-between mb-3">
+              <button
+                onClick={() => setShowStoragePanel(!showStoragePanel)}
+                className="flex items-center gap-2 text-purple-600 hover:text-purple-700 font-semibold text-sm"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+                </svg>
+                <span>LocalStorage (2 keys)</span>
+                <svg xmlns="http://www.w3.org/2000/svg" className={`h-4 w-4 transition-transform ${showStoragePanel ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+            </div>
+            
+            {showStoragePanel && (
+              <div className="max-h-64 overflow-y-auto bg-gray-50 rounded-lg p-2 border border-gray-200 space-y-2">
+                {/* Search History in LocalStorage */}
+                <div className="bg-white border border-purple-200 rounded-lg p-3 shadow-sm">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-sm font-semibold text-purple-700">course-search-history</span>
+                    <button
+                      onClick={() => {
+                        localStorage.removeItem('course-search-history');
+                        setSearchHistory([]);
+                        setShowStoragePanel(false);
+                        setTimeout(() => setShowStoragePanel(true), 50);
+                      }}
+                      className="text-red-500 hover:text-red-600 p-1 hover:bg-red-50 rounded"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                      </svg>
+                    </button>
+                  </div>
+                  <p className="text-gray-600 text-xs break-all bg-gray-50 p-2 rounded font-mono">
+                    {localStorage.getItem('course-search-history') || 'null'}
+                  </p>
+                </div>
+
+                {/* AI Cache in LocalStorage */}
+                <div className="bg-white border border-purple-200 rounded-lg p-3 shadow-sm">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-sm font-semibold text-purple-700">course-prerequisite-cache</span>
+                    <button
+                      onClick={() => {
+                        localStorage.removeItem(CACHE_STORAGE_KEY);
+                        aiCache.current.clear();
+                        setShowStoragePanel(false);
+                        setTimeout(() => setShowStoragePanel(true), 50);
+                      }}
+                      className="text-red-500 hover:text-red-600 p-1 hover:bg-red-50 rounded"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                      </svg>
+                    </button>
+                  </div>
+                  <p className="text-gray-600 text-xs break-all bg-gray-50 p-2 rounded font-mono">
+                    {(() => {
+                      const data = localStorage.getItem(CACHE_STORAGE_KEY);
+                      if (!data) return 'null';
+                      try {
+                        const parsed = JSON.parse(data);
+                        return `${Object.keys(parsed).length} cache entries`;
+                      } catch {
+                        return 'Invalid data';
+                      }
+                    })()}
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
         </div>
       )}
     </div>

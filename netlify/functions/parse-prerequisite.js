@@ -35,16 +35,20 @@ Parsing Rules:
    - Comma-separated lists (e.g., "A, B, C") → OR node unless "and" is explicit
 3. Parentheses → nested children
 4. IGNORE and DO NOT include in tree:
-   - Grade requirements ("with a minimum grade of C-")
-   - Unit requirements ("30 units", "completion of 60 units")
    - Permissions ("permission of the department")
    - Recommendations ("Recommended: X")
    - Corequisites (these are separate from prerequisites)
    - GPA/CGPA requirements
-5. INCLUDE in tree:
+5. INCLUDE in tree as separate nodes:
    - All course codes (university courses like "CMPT 225", "MATH 152")
    - High school courses (like "BC Math 12", "Grade 12 English")
    - Transfer credits (like "equivalent of CMPT 120")
+   - Unit requirements ("12 units", "30 units", "60 units", "completion of 60 units")
+   - Grade requirements ONLY when paired with courses ("with a minimum grade of C-" should be ignored, but the course itself is included)
+6. For unit requirements:
+   - Extract as "X units" format (e.g., "12 units", "60 units")
+   - If it says "completion of X units", use "X units"
+   - Treat units as separate prerequisite nodes (use AND if combined with courses)
 
 Examples:
 
@@ -95,6 +99,36 @@ Output:
   "name": "BC Math 12",
   "condition": "",
   "children": []
+}
+
+Input: "12 units."
+Output:
+{
+  "name": "12 units",
+  "condition": "",
+  "children": []
+}
+
+Input: "BUS 251 with a minimum grade of C-; 15 units."
+Output:
+{
+  "name": "AND",
+  "condition": "AND",
+  "children": [
+    {"name": "BUS 251", "condition": "", "children": []},
+    {"name": "15 units", "condition": "", "children": []}
+  ]
+}
+
+Input: "CMPT 225 and completion of 60 units"
+Output:
+{
+  "name": "AND",
+  "condition": "AND",
+  "children": [
+    {"name": "CMPT 225", "condition": "", "children": []},
+    {"name": "60 units", "condition": "", "children": []}
+  ]
 }
 
 CRITICAL: Return ONLY the JSON object. No explanations, no markdown, no additional text.`;

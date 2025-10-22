@@ -472,6 +472,22 @@ function TreeView({ data, allCourses, onLoadPrerequisites }) {
     return match ? match[1] : null;
   }, []);
 
+  // Check if a node is a unit requirement (not a course)
+  const isUnitRequirement = useCallback((nodeName) => {
+    if (!nodeName) return false;
+    // Match patterns like "12 units", "60 units", "completion of 60 units"
+    return /^\d+\s*units?$/i.test(nodeName.trim()) || 
+           /^completion of \d+\s*units?$/i.test(nodeName.trim());
+  }, []);
+
+  // Check if a node is a text-only requirement
+  const isTextRequirement = useCallback((nodeName) => {
+    if (!nodeName) return false;
+    // Check if it's a unit requirement or other non-course text
+    return isUnitRequirement(nodeName) || 
+           (!extractDepartment(nodeName) && nodeName.length > 0);
+  }, [extractDepartment, isUnitRequirement]);
+
   const drawTree = useCallback(() => {
     // Early return if treeData is null or invalid
     if (!treeData) {
@@ -566,6 +582,22 @@ function TreeView({ data, allCourses, onLoadPrerequisites }) {
     orGradient.append("stop")
       .attr("offset", "100%")
       .attr("stop-color", "#10B981")
+      .attr("stop-opacity", 1);
+
+    // Unit requirement gradient (Yellow/Amber - for "X units" nodes)
+    const unitGradient = defs.append("linearGradient")
+      .attr("id", "gradient-unit")
+      .attr("x1", "0%").attr("y1", "0%")
+      .attr("x2", "100%").attr("y2", "100%");
+    
+    unitGradient.append("stop")
+      .attr("offset", "0%")
+      .attr("stop-color", "#FBBF24")
+      .attr("stop-opacity", 1);
+    
+    unitGradient.append("stop")
+      .attr("offset", "100%")
+      .attr("stop-color", "#F59E0B")
       .attr("stop-opacity", 1);
 
     const g = svg.append("g")
@@ -766,6 +798,10 @@ function TreeView({ data, allCourses, onLoadPrerequisites }) {
         // In plan mode, check if node is satisfied
         if (planMode && !isNodeSatisfied(d)) {
           return "#D1D5DB"; // Gray for unsatisfied nodes
+        }
+        // Check if it's a unit requirement node
+        if (isUnitRequirement(d.data.name)) {
+          return "url(#gradient-unit)"; // Special gradient for unit requirements
         }
         // For course nodes, use department-specific gradient
         const dept = extractDepartment(d.data.name);
@@ -1232,7 +1268,7 @@ function TreeView({ data, allCourses, onLoadPrerequisites }) {
         .text("✓");
     }
 
-  }, [treeData, toggleChildren, highlightPath, clearHighlight, nodePositions, extractDepartment, planMode, checkedNodes, isNodeSatisfied, handleCheckboxChange, canCheckNode, loadingNodes, loadedNodes]);
+  }, [treeData, toggleChildren, highlightPath, clearHighlight, nodePositions, extractDepartment, isUnitRequirement, planMode, checkedNodes, isNodeSatisfied, handleCheckboxChange, canCheckNode, loadingNodes, loadedNodes]);
 
   const setupZoom = useCallback(() => {
     const svg = d3.select(svgRef.current);
@@ -1462,9 +1498,9 @@ function TreeView({ data, allCourses, onLoadPrerequisites }) {
             </div>
           )}
 
-          {/* Logic Node Types */}
+          {/* Node Types */}
           <div>
-            <p className="font-semibold text-gray-700 mb-2 text-xs">Logic Nodes:</p>
+            <p className="font-semibold text-gray-700 mb-2 text-xs">Node Types:</p>
             <div className="space-y-1.5">
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 rounded-sm bg-gradient-to-br from-red-400 to-red-500 flex-shrink-0 shadow-sm border border-white"></div>
@@ -1473,6 +1509,10 @@ function TreeView({ data, allCourses, onLoadPrerequisites }) {
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 rounded-sm bg-gradient-to-br from-green-400 to-green-500 flex-shrink-0 shadow-sm border border-white"></div>
                 <span className="text-xs text-gray-700"><strong>OR</strong> - Any one required (small square)</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex-shrink-0 shadow-sm border border-white"></div>
+                <span className="text-xs text-gray-700"><strong>Units</strong> - Credit requirement (yellow circle)</span>
               </div>
             </div>
           </div>
