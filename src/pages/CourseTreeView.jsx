@@ -359,7 +359,7 @@ const CourseTreeView = () => {
       const newHistory = [
         cleanCode,
         ...prevHistory.filter(item => item !== cleanCode) // Remove duplicates
-      ].slice(0, 10); // Keep only last 10 searches
+      ].slice(0, 20); // Keep last 20 searches
 
       console.log('📚 [History] New history array:', newHistory);
       

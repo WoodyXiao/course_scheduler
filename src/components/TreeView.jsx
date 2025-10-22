@@ -30,6 +30,7 @@ function TreeView({ data, allCourses, onLoadPrerequisites }) {
   const [draggedNode, setDraggedNode] = useState(null);
   const [nodePositions, setNodePositions] = useState({}); // Store custom positions
   const [activeDepartments, setActiveDepartments] = useState([]); // Track departments in current tree
+  const [treeDepth, setTreeDepth] = useState(0); // Track maximum depth of the tree
   const zoomTransformRef = useRef(null); // Store zoom transform state
   const [loadingNodes, setLoadingNodes] = useState(new Set()); // Track which nodes are loading prerequisites
   const [loadedNodes, setLoadedNodes] = useState(new Set()); // Track which nodes have already loaded
@@ -57,7 +58,40 @@ function TreeView({ data, allCourses, onLoadPrerequisites }) {
     setLoadedNodes(new Set());
   }, [data]);
 
+  // Helper function: Check if a node is a unit requirement (not a course)
+  const isUnitRequirement = useCallback((nodeName) => {
+    if (!nodeName) return false;
+    // Match patterns like "12 units", "60 units", "completion of 60 units"
+    return /^\d+\s*units?$/i.test(nodeName.trim()) || 
+           /^completion of \d+\s*units?$/i.test(nodeName.trim());
+  }, []);
+
   // Calculate if a node's prerequisites are satisfied based on checked nodes
+  // Find all nodes with the same course name (for Plan Mode highlighting)
+  const findNodesWithSameName = useCallback((courseName) => {
+    if (!treeData || !courseName) return [];
+    
+    const matchingNodes = [];
+    const traverse = (node) => {
+      // Only match course nodes (not AND/OR nodes), and ignore unit requirements
+      if (node.data.name === courseName && 
+          !node.data.condition && 
+          !isUnitRequirement(node.data.name)) {
+        matchingNodes.push(node);
+      }
+      
+      if (node.children) {
+        node.children.forEach(child => traverse(child));
+      }
+      if (node._children) {
+        node._children.forEach(child => traverse(child));
+      }
+    };
+    
+    traverse(treeData);
+    return matchingNodes;
+  }, [treeData, isUnitRequirement]);
+
   const isNodeSatisfied = useCallback((node) => {
     if (!planMode) return true; // In normal mode, all nodes are satisfied
     
@@ -391,11 +425,31 @@ function TreeView({ data, allCourses, onLoadPrerequisites }) {
     
     setCheckedNodes(prev => {
       const newSet = new Set(prev);
+      
       if (isChecked) {
+        // Check this node
         newSet.add(node.data.uniqueId);
+        
+        // Also check all other nodes with the same course name
+        if (node.data.name && !node.data.condition && !isUnitRequirement(node.data.name)) {
+          const sameNameNodes = findNodesWithSameName(node.data.name);
+          sameNameNodes.forEach(n => {
+            if (canCheckNode(n)) {
+              newSet.add(n.data.uniqueId);
+            }
+          });
+        }
       } else {
         // Unchecking: remove this node and all dependent nodes
         newSet.delete(node.data.uniqueId);
+        
+        // Also uncheck all other nodes with the same course name
+        if (node.data.name && !node.data.condition && !isUnitRequirement(node.data.name)) {
+          const sameNameNodes = findNodesWithSameName(node.data.name);
+          sameNameNodes.forEach(n => {
+            newSet.delete(n.data.uniqueId);
+          });
+        }
         
         // Find and uncheck all nodes that depend on this one
         const dependents = findDependentNodes(node);
@@ -403,7 +457,7 @@ function TreeView({ data, allCourses, onLoadPrerequisites }) {
       }
       return newSet;
     });
-  }, [canCheckNode, findDependentNodes]);
+  }, [canCheckNode, findDependentNodes, findNodesWithSameName, isUnitRequirement]);
 
   const captureScreenshot = useCallback(() => {
     const svg = svgRef.current;
@@ -472,14 +526,6 @@ function TreeView({ data, allCourses, onLoadPrerequisites }) {
     return match ? match[1] : null;
   }, []);
 
-  // Check if a node is a unit requirement (not a course)
-  const isUnitRequirement = useCallback((nodeName) => {
-    if (!nodeName) return false;
-    // Match patterns like "12 units", "60 units", "completion of 60 units"
-    return /^\d+\s*units?$/i.test(nodeName.trim()) || 
-           /^completion of \d+\s*units?$/i.test(nodeName.trim());
-  }, []);
-
   // Check if a node is a text-only requirement
   const isTextRequirement = useCallback((nodeName) => {
     if (!nodeName) return false;
@@ -505,6 +551,49 @@ function TreeView({ data, allCourses, onLoadPrerequisites }) {
     // Add gradient definitions for better visual appeal
     const defs = svg.append("defs");
     
+    // Calculate tree depth and complexity
+    const maxDepth = Math.max(...treeData.descendants().map(d => d.depth));
+    setTreeDepth(maxDepth);
+    
+    // Find the maximum number of children any node has
+    const maxChildren = Math.max(...treeData.descendants().map(d => {
+      const children = d.children || d._children || [];
+      return children.length;
+    }));
+    
+    // Dynamic node sizing based on tree depth AND children count
+    // Smaller nodes for: deep trees (depth >= 5) OR wide nodes (children >= 6)
+    const needsSmallNodes = maxDepth >= 5 || maxChildren >= 6;
+    
+    const nodeSize = needsSmallNodes ? {
+      course: 14,        // Even smaller for complex trees
+      courseHover: 17,
+      logic: 9,          // AND/OR nodes
+    } : {
+      course: 20,        // Normal size for simple trees
+      courseHover: 23,
+      logic: 12,
+    };
+    
+    console.log(`📏 [TreeView] Tree stats - Depth: ${maxDepth}, Max children: ${maxChildren}, Node size: ${nodeSize.course}px`);
+    
+    // Helper function to calculate individual node size based on local context
+    const getNodeSize = (d) => {
+      const childrenCount = (d.children || d._children || []).length;
+      
+      // If this node has many children (>= 6), use smaller size regardless of global setting
+      if (childrenCount >= 6) {
+        return {
+          course: 12,        // Extra small for nodes with many children
+          courseHover: 15,
+          logic: 8,
+        };
+      }
+      
+      // Otherwise use the global nodeSize
+      return nodeSize;
+    };
+
     // Collect all unique departments from the tree
     const departments = new Set();
     treeData.descendants().forEach(d => {
@@ -793,7 +882,7 @@ function TreeView({ data, allCourses, onLoadPrerequisites }) {
       .attr("class", "node-circle")
       .attr("cx", 0)
       .attr("cy", 0)
-      .attr("r", 20) // Course nodes are 20px radius (smaller)
+      .attr("r", d => getNodeSize(d).course) // Dynamic size based on tree depth and children count
       .style("fill", (d) => {
         // In plan mode, check if node is satisfied
         if (planMode && !isNodeSatisfied(d)) {
@@ -822,32 +911,69 @@ function TreeView({ data, allCourses, onLoadPrerequisites }) {
         // Highlight path
         highlightPath(d);
         
-        d3.select(this)
-          .style("filter", "drop-shadow(0 6px 12px rgba(0,0,0,0.25))")
-          .transition()
-          .duration(200)
-          .attr("r", 23); // Hover size (smaller)
+        // Highlight all nodes with the same course name (in all modes now)
+        if (d.data.name && !d.data.condition && !isUnitRequirement(d.data.name)) {
+          const sameNameNodes = findNodesWithSameName(d.data.name);
+          sameNameNodes.forEach(node => {
+            const individualSize = getNodeSize(node);
+            // Find the circle element for this node
+            g.selectAll(".node-circle")
+              .filter(circleData => circleData.data.uniqueId === node.data.uniqueId)
+              .style("filter", "drop-shadow(0 8px 16px rgba(0,0,0,0.3)) drop-shadow(0 0 12px rgba(59, 130, 246, 0.6))")
+              .style("stroke-width", "4px")
+              .transition()
+              .duration(200)
+              .attr("r", individualSize.courseHover);
+          });
+        } else {
+          // Fallback for non-course nodes
+          const individualSize = getNodeSize(d);
+          d3.select(this)
+            .style("filter", "drop-shadow(0 8px 16px rgba(0,0,0,0.3))")
+            .style("stroke-width", "4px")
+            .transition()
+            .duration(200)
+            .attr("r", individualSize.courseHover);
+        }
       })
       .on("mouseout", function(event, d) {
         // Clear highlight
         clearHighlight();
         
-        d3.select(this)
-          .style("filter", "drop-shadow(0 4px 8px rgba(0,0,0,0.15))")
-          .transition()
-          .duration(200)
-          .attr("r", 20); // Base size (smaller)
+        // Reset all nodes with the same course name (in all modes now)
+        if (d.data.name && !d.data.condition && !isUnitRequirement(d.data.name)) {
+          const sameNameNodes = findNodesWithSameName(d.data.name);
+          sameNameNodes.forEach(node => {
+            const individualSize = getNodeSize(node);
+            g.selectAll(".node-circle")
+              .filter(circleData => circleData.data.uniqueId === node.data.uniqueId)
+              .style("filter", "drop-shadow(0 4px 8px rgba(0,0,0,0.15))")
+              .style("stroke-width", "2px")
+              .transition()
+              .duration(200)
+              .attr("r", individualSize.course);
+          });
+        } else {
+          // Fallback for non-course nodes
+          const individualSize = getNodeSize(d);
+          d3.select(this)
+            .style("filter", "drop-shadow(0 4px 8px rgba(0,0,0,0.15))")
+            .style("stroke-width", "2px")
+            .transition()
+            .duration(200)
+            .attr("r", individualSize.course);
+        }
       });
 
-    // Add squares for AND/OR logic nodes (smaller: 24x24px square, no hover effects)
+    // Add squares for AND/OR logic nodes (dynamic size based on tree depth and children count)
     nodeContainers
       .filter(d => d.data.condition === "AND" || d.data.condition === "OR")
       .append("rect")
       .attr("class", "node-square")
-      .attr("x", -12) // Center the square (24px width / 2)
-      .attr("y", -12) // Center the square (24px height / 2)
-      .attr("width", 24)
-      .attr("height", 24)
+      .attr("x", d => -getNodeSize(d).logic) // Center the square
+      .attr("y", d => -getNodeSize(d).logic) // Center the square
+      .attr("width", d => getNodeSize(d).logic * 2)
+      .attr("height", d => getNodeSize(d).logic * 2)
       .attr("rx", 3) // Rounded corners (smaller)
       .attr("ry", 3)
       .style("fill", (d) => {
@@ -1034,13 +1160,17 @@ function TreeView({ data, allCourses, onLoadPrerequisites }) {
       .style("stroke", "#ffffff")
       .style("stroke-width", "2px")
       .style("opacity", (d) => {
+        // Hide in plan mode
+        if (planMode) return 0;
+        
         const hasPrerequisites = d.data.hasPrerequisites && !loadedNodes.has(d.data.uniqueId);
         const isLoading = loadingNodes.has(d.data.uniqueId);
-        if (!(hasPrerequisites || isLoading)) return 0;
-        // Reduce opacity in plan mode to indicate disabled state
-        return planMode ? 0.3 : 1;
+        return (hasPrerequisites || isLoading) ? 1 : 0;
       })
       .style("display", (d) => {
+        // Hide in plan mode
+        if (planMode) return "none";
+        
         const hasPrerequisites = d.data.hasPrerequisites && !loadedNodes.has(d.data.uniqueId);
         const isLoading = loadingNodes.has(d.data.uniqueId);
         return (hasPrerequisites || isLoading) ? "block" : "none";
@@ -1063,12 +1193,16 @@ function TreeView({ data, allCourses, onLoadPrerequisites }) {
       .style("stroke", "#ffffff")
       .style("stroke-width", "2px")
       .style("opacity", (d) => {
+        // Hide in plan mode
+        if (planMode) return 0;
+        
         const hasChildren = (d.children && d.children.length > 0) || (d._children && d._children.length > 0);
-        if (!hasChildren) return 0;
-        // Reduce opacity in plan mode to indicate disabled state
-        return planMode ? 0.3 : 1;
+        return hasChildren ? 1 : 0;
       })
       .style("display", (d) => {
+        // Hide in plan mode
+        if (planMode) return "none";
+        
         const hasChildren = (d.children && d.children.length > 0) || (d._children && d._children.length > 0);
         return hasChildren ? "block" : "none";
       })
@@ -1089,11 +1223,17 @@ function TreeView({ data, allCourses, onLoadPrerequisites }) {
       .style("fill", "#ffffff")
       .style("pointer-events", "none")
       .style("opacity", (d) => {
+        // Hide in plan mode
+        if (planMode) return 0;
+        
         const hasPrerequisites = d.data.hasPrerequisites && !loadedNodes.has(d.data.uniqueId);
         const isLoading = loadingNodes.has(d.data.uniqueId);
         return (hasPrerequisites || isLoading) ? 1 : 0;
       })
       .style("display", (d) => {
+        // Hide in plan mode
+        if (planMode) return "none";
+        
         const hasPrerequisites = d.data.hasPrerequisites && !loadedNodes.has(d.data.uniqueId);
         const isLoading = loadingNodes.has(d.data.uniqueId);
         return (hasPrerequisites || isLoading) ? "block" : "none";
@@ -1121,10 +1261,16 @@ function TreeView({ data, allCourses, onLoadPrerequisites }) {
       .style("fill", "#ffffff")
       .style("pointer-events", "none")
       .style("opacity", (d) => {
+        // Hide in plan mode
+        if (planMode) return 0;
+        
         const hasChildren = (d.children && d.children.length > 0) || (d._children && d._children.length > 0);
         return hasChildren ? 1 : 0;
       })
       .style("display", (d) => {
+        // Hide in plan mode
+        if (planMode) return "none";
+        
         const hasChildren = (d.children && d.children.length > 0) || (d._children && d._children.length > 0);
         return hasChildren ? "block" : "none";
       })
@@ -1134,31 +1280,60 @@ function TreeView({ data, allCourses, onLoadPrerequisites }) {
       })
 
     // Add course name label below the node (circle or square)
-    nodeContainers.append("text")
-      .attr("dy", (d) => {
-        // Adjust label position based on node size
-        const isLogicNode = d.data.condition === "AND" || d.data.condition === "OR";
-        return isLogicNode ? 26 : 35; // Logic nodes closer (12px + 14px), course nodes (20px + 15px)
-      })
-      .style("font-family", "Inter, -apple-system, BlinkMacSystemFont, sans-serif")
-      .style("font-size", (d) => {
-        // Slightly smaller font for logic nodes
-        const isLogicNode = d.data.condition === "AND" || d.data.condition === "OR";
-        return isLogicNode ? "8px" : "11px";
-      })
-      .style("font-weight", (d) => {
-        // Normal weight for logic nodes, bold for courses
-        const isLogicNode = d.data.condition === "AND" || d.data.condition === "OR";
-        return isLogicNode ? "500" : "600";
-      })
-      .style("text-anchor", "middle")
-      .style("fill", (d) => {
-        // Slightly lighter color for logic nodes
-        const isLogicNode = d.data.condition === "AND" || d.data.condition === "OR";
-        return isLogicNode ? "#6B7280" : "#374151";
-      })
-      .style("pointer-events", "none")
-      .text((d) => d.data.name);
+    nodeContainers.each(function(d) {
+      const isLogicNode = d.data.condition === "AND" || d.data.condition === "OR";
+      
+      // For course nodes with long names, split into multiple lines
+      if (!isLogicNode && d.data.name && d.data.name.length > 15) {
+        const words = d.data.name.split(' ');
+        const maxLineLength = 12; // Max characters per line
+        
+        let lines = [];
+        let currentLine = '';
+        
+        words.forEach(word => {
+          if ((currentLine + ' ' + word).trim().length <= maxLineLength) {
+            currentLine = (currentLine + ' ' + word).trim();
+          } else {
+            if (currentLine) lines.push(currentLine);
+            currentLine = word;
+          }
+        });
+        if (currentLine) lines.push(currentLine);
+        
+        // Calculate vertical offset to keep first line below the node
+        const lineCount = lines.length;
+        const startY = 35; // Base position below node
+        
+        const text = d3.select(this).append("text")
+          .attr("y", startY)  // Use "y" instead of "dy" for absolute positioning
+          .style("font-family", "Inter, -apple-system, BlinkMacSystemFont, sans-serif")
+          .style("font-size", "11px")
+          .style("font-weight", "600")
+          .style("text-anchor", "middle")
+          .style("fill", "#374151")
+          .style("pointer-events", "none");
+        
+        // Add each line as a tspan
+        lines.forEach((line, i) => {
+          text.append("tspan")
+            .attr("x", 0)
+            .attr("dy", i === 0 ? "0em" : "1.1em")  // First line at baseline, subsequent lines offset
+            .text(line);
+        });
+      } else {
+        // Single line text
+        const text = d3.select(this).append("text")
+          .attr("dy", isLogicNode ? 26 : 35)
+          .style("font-family", "Inter, -apple-system, BlinkMacSystemFont, sans-serif")
+          .style("font-size", isLogicNode ? "8px" : "11px")
+          .style("font-weight", isLogicNode ? "500" : "600")
+          .style("text-anchor", "middle")
+          .style("fill", isLogicNode ? "#6B7280" : "#374151")
+          .style("pointer-events", "none")
+          .text(d.data.name);
+      }
+    });
 
     // Add checkboxes in Plan Mode (only for course nodes, positioned on the left)
     // Using a similar approach to indicators: hitarea + visible checkbox
@@ -1268,7 +1443,7 @@ function TreeView({ data, allCourses, onLoadPrerequisites }) {
         .text("✓");
     }
 
-  }, [treeData, toggleChildren, highlightPath, clearHighlight, nodePositions, extractDepartment, isUnitRequirement, planMode, checkedNodes, isNodeSatisfied, handleCheckboxChange, canCheckNode, loadingNodes, loadedNodes]);
+  }, [treeData, toggleChildren, highlightPath, clearHighlight, nodePositions, extractDepartment, isUnitRequirement, findNodesWithSameName, planMode, checkedNodes, isNodeSatisfied, handleCheckboxChange, canCheckNode, loadingNodes, loadedNodes]);
 
   const setupZoom = useCallback(() => {
     const svg = d3.select(svgRef.current);
